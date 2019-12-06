@@ -1,5 +1,10 @@
 @tailwind base;
 
-@tailwind components;
+@import './styles';
+@import './tailwind';
 
+/* Place custom SCSS or Tailwindcss extracts and base styles here */
+
+
+@tailwind components;
 @tailwind utilities;
