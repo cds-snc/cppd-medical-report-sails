@@ -1,13 +1,30 @@
 {% extends "layouts/layout.njk" %}
 
-{% block css %}
+{% block content %}
+<h1>{{ __('start.title') }}</h1>
     
-{% endblock %}
+    <h2>{{ __('start.instruction_header') }}</h2>
 
-{% block body %}
-Huzzah!
-{% endblock %}
+    <p>{{ __('start.instruction_overview') }}</p>
+    
+    <p>{{ __('start.applicant_instruction_begin') }}</p>
 
-{% block js %}
+    <ul>
+        <li>{{ __('start.applicant_instruction_1') }}</li>
+        <li>{{ __('start.applicant_instruction_2') }}</li>
+        <li>{{ __('start.applicant_instruction_3') }}</li>
+    </ul>
 
+    <p>{{ __('start.doctor_instruction_1') }}</p>
+
+    <p>{{ __('start.doctor_instruction_2') }}</p>
+    
+    <p>{{ __('start.doctor_instruction_3') }}</p>
+    
+    <div>
+        <a class="button-link" href="" role="button" draggable="false">
+            {{ __('start.submit') }}
+            <span aria-hidden="true">→</span>
+        </a>
+    </div>
 {% endblock %}
