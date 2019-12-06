@@ -1,10 +1,8 @@
-{% if route %}
 <div class="language-link">
-    {% if locale != 'fr' %}
-    <a href="{{route.path.fr}}" lang="fr">Français</a>
+    {% if getLocale() != 'fr' %}
+    <a href="" lang="fr">Français</a>
     {% endif %}
-    {% if locale != 'en' %}
-    <a href="{{route.path.en}}" lang="en">English</a>
+    {% if getLocale() != 'en' %}
+    <a href="" lang="en">English</a>
     {% endif %}
 </div>
-{% endif %}
