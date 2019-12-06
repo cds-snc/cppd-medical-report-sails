@@ -1,0 +1,23 @@
+{% macro conditionForm(condition) %}
+    
+    {{ textInput('name_of_condition', 'add_condition.name_of_condition', { required: true, "autocomplete": "off", value: condition.name_of_condition }) }}
+    <p class="text-gray-600 -mt-8">{{ __('add_condition.name_of_condition_hint') }}</p>
+    
+    {{ textInput('symptoms_began', 'add_condition.symptoms_began', { hint: 'add_condition.symptoms_began_hint', required: true, "autocomplete": "off", value: condition.symptoms_began }) }}
+
+    {{ textArea('clinically_impair', 'add_condition.clinically_impair', { hint: 'add_condition.clinically_impair_hint', required: true, value: condition.clinically_impair }) }}
+
+    {{ radioButtons('condition_outlook', { '1':'add_condition.condition_outlook_improve','2':'add_condition.condition_outlook_deteriorate', '3':'add_condition.condition_outlook_staysame', '4':'add_condition.condition_outlook_unknown'}, condition.condition_outlook, 'add_condition.condition_outlook', errors, { required: true }) }}
+
+    <div id="unknown_outlook_details" class="ml-4">
+        {{ textArea('condition_outlook_unknown', 'add_condition.prognosis_unknown', { required: true, value: condition.condition_outlook_unknown }) }}
+    </div>
+
+    {{ radioButtons('condition_last', { '1':'add_condition.condition_last_1_year', '2':'add_condition.condition_last_more' }, condition.condition_last, 'add_condition.condition_last', errors, { required: true }) }}
+
+    {{ radioButtons('symptoms_occur', { '1':'add_condition.symptoms_occur_periodically', '2':'add_condition.symptoms_occur_continuously', '3':'add_condition.symptoms_occur_unknown'}, condition.symptoms_occur, 'add_condition.symptoms_occur', errors, { required: true }) }}
+
+    <div id="unknown_symptoms_occur_details" class="ml-4">
+        {{ textArea('symptoms_occur_uknown', 'add_condition.symptoms_occur_unknown_label', { required: true, value: condition.symptoms_occur_uknown }) }}
+    </div>
+{% endmacro %}

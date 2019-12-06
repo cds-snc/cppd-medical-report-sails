@@ -1,3 +1,19 @@
+{%- from 'macros/validationMessage.njk' import validationMessage as validationMessage with context -%}
+{%- from 'macros/input-text.njk' import textInput as textInput with context -%}
+{%- from 'macros/input-textarea.njk' import textArea as textArea with context -%}
+{%- from 'macros/radios.njk' import radioButtons as radioButtons with context -%}
+{%- from 'macros/checkboxes.njk' import checkBoxes as checkBoxes with context -%}
+{%- from 'macros/buttons.njk' import formButtons as formButtons with context -%}
+{%- from 'macros/input-file.njk' import fileInput as fileInput with context -%}
+
+<!-- custom -->
+{%- from 'macros/raw-checkboxes.njk' import rawCheckBoxes as rawCheckBoxes with context -%}
+{%- from 'macros/medical-consent.njk' import medicalConsent as medicalConsent with context -%}
+{%- from 'macros/patientName.njk' import patientName as patientName with context -%}
+{%- from 'macros/condition-form.njk' import conditionForm as conditionForm with context -%}
+{%- from 'macros/treatment-form.njk' import treatmentForm with context -%}
+{%- from 'macros/medication-form.njk' import medicationForm with context -%}
+
 <!DOCTYPE html>
 <html lang="{{ getLocale() }}">
     <head>

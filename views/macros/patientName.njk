@@ -1,0 +1,7 @@
+{% macro patientName(data) %}
+    {% if featureFlag.USER_RESEARCH_20191125 %}
+        {{ data.name }}
+    {% else %}
+        {{ data.first_name }} {{ data.last_name }}
+    {% endif %}
+{% endmacro %}
