@@ -8,5 +8,9 @@
 module.exports = {
   index: function(req, res) {
     res.view("pages/personal");
+  },
+
+  store: function(req, res) {
+    res.json({ valid: true });
   }
 };
