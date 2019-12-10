@@ -18,8 +18,6 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-  // "/": "/en/start",
-
   // "/:lang/start": "StartController.index"
 
   /* named routes (og hook)
@@ -69,6 +67,8 @@ module.exports.routes = {
   }
   */
 
+  "/": "/en/start", // redirect to start
+
   'GET /en/start': {
     name: 'start',
     controller: 'StartController',
@@ -80,17 +80,28 @@ module.exports.routes = {
     }
   },
 
-  'GET en/personal': {
+  'GET /en/personal': {
     name: 'personal',
     controller: 'PersonalController',
     action: 'index',
     lang: 'en',
     i18n: {
-      en: '/en/personal',
-      fr: '/fr/personnel'
+      en: '/en/personal/:id',
+      fr: '/fr/personnel/:id'
+    }
+  },
+
+  // example route with params
+  'GET /en/product/:id': {
+    name: 'getProduct',
+    controller: 'ProductController',
+    action: 'show',
+    lang: 'en',
+    i18n: {
+      en: '/en/product/:id',
+      fr: '/fr/produit/:id'
     }
   }
-
 
   /***************************************************************************
    *                                                                          *
