@@ -86,8 +86,8 @@ module.exports.routes = {
     action: 'index',
     lang: 'en',
     i18n: {
-      en: '/en/personal/:id',
-      fr: '/fr/personnel/:id'
+      en: '/en/personal',
+      fr: '/fr/personnel'
     }
   },
 
