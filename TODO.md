@@ -1,6 +1,9 @@
 - Flash messaging
+  - https://www.npmjs.com/package/sails-hook-flash
 - Form validation
-- Better watch config
+  - Express Validator?
+  - https://github.com/JohnKimDev/sails-hook-req-validate
 - Webpack config
   - Notifier!
   - Make sure we have parity with Grunt actions
+  - Improve watch config
