@@ -1,27 +1,33 @@
 module.exports = function (req, res, next) {
     const locales = sails.config.i18n.locales;
 
-    // move this out to a policy that has access to req.getLocale()?
-    sails.route = (routeName, ...parametersValues) => {
-        let route = sails.router.namedRoutes[routeName][req.getLocale()]
+    sails.route = (routeName, params = {}) => {
+        let lang = req.getLocale();
 
-        if (!route) {
+        // use optional lang param if passed
+        if (_.has(params, 'lang')) {
+            lang = params.lang;
+        }
+
+        // get i18n routes
+        const routes = sails.router.namedRoutes[routeName]
+
+        if (!routes) {
             throw new Error('No named route : ' + routeName + '\n Maybe you missed the name property?')
         }
 
-        let parameters = route.match(new RegExp(/:[a-zA-Z_]+/, 'g'))
+        // get localized route
+        let route = routes[lang]
 
-        if (parameters) {
-            let parametersLength = parameters.length
-            let valuesLength = parametersValues.length
+        if (!route) {
+            throw new Error('No named route : ' + routeName + '\n in that language. Maybe you mistyped the lang property?')
+        }
 
-            if (parametersLength !== valuesLength) {
-                console.warn('Length of named parameters (' + parametersLength + ') is not the same as the length of values ' + valuesLength + ' ')
-            }
-
-            for (let i = 0; i < parametersLength; ++i) {
-                route = route.replace(parameters[i], parametersValues[i])
-            }
+        // map any passed-in params to placeholders in the route path
+        if (!_.isEmpty(params)) {
+            Object.keys(params).forEach((key, index) => {
+                route = route.replace(':' + key, params[key])
+            })
         }
 
         return route
