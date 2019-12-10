@@ -3,4 +3,12 @@
 {% block content %}
     <h1>Product</h1>
     {{ params | dump }}
+
+    <p>Get Personal route: {{ route('personal', { id: 123 }) }}</p>
+
+    <p>Route name: {{ req.options.name }}</p>
+
+    <p>French this route: {{ route(req.options.name, { lang: 'fr' }) }}</p>
+
+    <p>Req.Options: {{ req.options | dump }}</p>
 {% endblock %}
