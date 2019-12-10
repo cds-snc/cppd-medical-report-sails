@@ -6,8 +6,7 @@
  */
 
 module.exports = {
-    index: function (req, res) {
-        res.view("pages/personal");
-    }
+  index: function(req, res) {
+    res.view("pages/personal");
+  }
 };
-
