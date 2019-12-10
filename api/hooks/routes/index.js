@@ -29,6 +29,7 @@ module.exports = sails => {
                         // no need to add the default(base) route
                         if (lang !== defaultLang) {
                             i18nRoute[verb.toUpperCase() + ' ' + path] = {
+                                name: options.name,
                                 controller: options.controller,
                                 action: options.action,
                                 lang: lang,
@@ -39,13 +40,13 @@ module.exports = sails => {
                     })
 
                     // create a name-indexed list of routes for easy lookup
+                    // namedRoutes only contains the base set of routes to avoid
+                    // name collisions (ie, exclude the i18n extended routes above)
                     if (!_.has(router.namedRoutes, name)) {
                         router.namedRoutes[options.name] = i18nRoutes
                     }
                 }
             })
-
-            sails.log.info(sails.config.routes);
         },
 
         // probably don't need this anymore
