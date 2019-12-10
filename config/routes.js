@@ -18,9 +18,91 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-  "/": "/en/start",
+  // "/:lang/start": "StartController.index"
 
-  "/:lang/start": "StartController.index"
+  /* named routes (og hook)
+  'GET /:lang/start': {
+    name: 'start',
+    controller: 'StartController',
+    action: 'index'
+  }, */
+
+
+  /* named routes (custom)
+  'start': {
+    verb: 'GET',
+    controller: 'StartController',
+    action: 'index',
+    path: { en: '/start', fr: '/debut' }
+  },
+
+  'personal': {
+    verb: 'GET',
+    controller: 'PersonalController',
+    action: 'index',
+    path: { en: '/personal', fr: '/personnel' }
+  }
+  */
+
+  // regex version
+  /*
+  'GET r|^\/(en|fr)\/(start|debut)|lang': {
+    name: 'start',
+    controller: 'StartController',
+    action: 'index',
+    i18nRoutes: {
+      en: '/en/start',
+      fr: '/fr/debut'
+    }
+  },
+
+  'GET r|^\/(en|fr)\/(personal|personnel)|lang': {
+    name: 'personal',
+    controller: 'PersonalController',
+    action: 'index',
+    i18nRoutes: {
+      en: '/en/personal',
+      fr: '/fr/personnel'
+    }
+  }
+  */
+
+  "/": "/en/start", // redirect to start
+
+  'GET /en/start': {
+    name: 'start',
+    controller: 'StartController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/start',
+      fr: '/fr/debut'
+    }
+  },
+
+  'GET /en/personal': {
+    name: 'personal',
+    controller: 'PersonalController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/personal/:id',
+      fr: '/fr/personnel/:id'
+    }
+  },
+
+  // example route with params
+  'GET /en/product/:id': {
+    name: 'getProduct',
+    controller: 'ProductController',
+    action: 'show',
+    lang: 'en',
+    i18n: {
+      en: '/en/product/:id',
+      fr: '/fr/produit/:id'
+    }
+  }
+
   /***************************************************************************
    *                                                                          *
    * More custom routes here...                                               *
