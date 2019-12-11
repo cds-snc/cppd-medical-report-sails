@@ -3,6 +3,9 @@
 - Form validation
   - Express Validator?
   - https://github.com/JohnKimDev/sails-hook-req-validate
+  - handle redirect/flash as well
+- Modify nunjucks templates to have errors and value passed in
+- Explicitly pass value and flash.errors into nunjucks components
 - Webpack config
   - Notifier!
   - Make sure we have parity with Grunt actions
