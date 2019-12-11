@@ -10,3 +10,4 @@
   - Notifier!
   - Make sure we have parity with Grunt actions
   - Improve watch config
+- Generators
