@@ -11,7 +11,18 @@ module.exports = {
   },
 
   store: function (req, res) {
-    req.flash('errors', ['Huzzah']);
-    res.redirect('/en/personal');
+    req.validate({
+      'social': 'numeric'
+    }, (err, params) => {
+      sails.log.error(err);
+      sails.log.error(params);
+
+      if (err) {
+        req.flash('errors', err);
+        return res.redirect('back');
+      } else {
+        res.redirect('/en/start');
+      }
+    });
   }
 };
