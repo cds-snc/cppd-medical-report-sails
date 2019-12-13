@@ -21,9 +21,8 @@ module.exports = {
         res.locals.data = req.session._old_input
       }
     } */
-
     res.view("pages/personal", {
-      data: null
+      data: req.session._old_input ? req.session._old_input : null
     });
   },
 
