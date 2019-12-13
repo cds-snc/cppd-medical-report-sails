@@ -41,9 +41,8 @@ module.exports.http = {
       'favicon',
     ],
 
-    flash: function (req, res, next) {
-      require('../api/middleware/flash')(req, res, next);
-    },
+    flash: require('connect-flash')(),
+
     /***************************************************************************
     *                                                                          *
     * The body parser that will handle incoming multipart HTTP requests.       *
