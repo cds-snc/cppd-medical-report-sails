@@ -15,12 +15,16 @@ module.exports = {
      * the form.
      * _old_input = form data flashed to the session by the validator
      */
+    /*
     if (req.session) {
       if (req.session._old_input) {
         res.locals.data = req.session._old_input
       }
-    }
-    res.view("pages/personal");
+    } */
+
+    res.view("pages/personal", {
+      data: null
+    });
   },
 
   store: function (req, res) {
@@ -35,6 +39,7 @@ module.exports = {
 
     if (valid) {
       // probably save the model here
+      // then flash a success message before redirecting
       res.redirect('/en/start');
     }
   }
