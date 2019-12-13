@@ -21,10 +21,15 @@ module.exports = function defineValidateHook(sails) {
       sails.validate = (req, res, validations) => {
         const result = validate(req.body, validations);
 
-        // if there are validation errors, flash them along with the data to the session and redirect back
+        /** 
+         * if there are validation errors, flash them along
+         * with the data to the session and redirect back
+         * need to circle back to this after doing some
+         * more work on flash messaging
+         */
         if (result) {
           req.addFlash('errors', result);
-          req.addFlash('_old_input', req.body);
+          req.session._old_input = req.body;
           return res.redirect('back');
         }
         return true;
