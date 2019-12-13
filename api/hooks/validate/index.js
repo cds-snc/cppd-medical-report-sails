@@ -27,7 +27,7 @@ module.exports = function defineValidateHook(sails) {
          */
         if (result) {
           req.flash('errors', result);
-          req.flash('_old_input', req.body);
+          req.flash('data', req.body);
           return res.redirect('back');
         }
         return true;

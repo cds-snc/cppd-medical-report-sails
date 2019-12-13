@@ -21,8 +21,11 @@ module.exports = {
         res.locals.data = req.session._old_input
       }
     } */
+    // sails.log.info(req.flash('_old_input'));
+
     res.view('pages/personal', {
-      data: req.flash('_old_input') ? req.flash('_old_input') : null
+      errors: req.flash('errors') || null,
+      data: req.flash('data') || null
     });
   },
 
