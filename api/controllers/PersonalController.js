@@ -1,5 +1,3 @@
-const validate = require('validate.js');
-
 /**
  * PersonalController
  *
@@ -10,44 +8,28 @@ const validate = require('validate.js');
 
 module.exports = {
   index: function (req, res) {
+    // this belongs somewhere else
+    if (req.session) {
+      if (req.session._old_input) {
+        res.locals.data = req.session._old_input
+      }
+    }
     res.view("pages/personal");
   },
 
   store: function (req, res) {
-
-    const validations = {
+    let valid = req.validate(req, res, {
       social: {
         presence: true,
         numericality: {
-          message: "Must be numeric"
+          message: "^Must be numeric"
         }
       }
+    })
+
+    if (valid) {
+      // probably save the model here
+      res.redirect('/en/start');
     }
-
-    const result = validate(req.body, validations);
-    if (result) {
-      sails.log.info(result);
-      req.flash('errors', result);
-      return res.redirect('back');
-    } else {
-      return res.redirect('start');
-    }
-
-
-    /*
-    req.validate({
-      'social': 'numeric'
-    }, (err, params) => {
-      sails.log.error(err);
-      sails.log.error(params);
-
-      if (err) {
-        req.flash('errors', err);
-        return res.redirect('back');
-      } else {
-        res.redirect('/en/start');
-      }
-    });
-    */
   }
 };
