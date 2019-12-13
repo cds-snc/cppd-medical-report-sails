@@ -21,8 +21,8 @@ module.exports = {
         res.locals.data = req.session._old_input
       }
     } */
-    res.view("pages/personal", {
-      data: req.session._old_input ? req.session._old_input : null
+    res.view('pages/personal', {
+      data: req.flash('_old_input') ? req.flash('_old_input') : null
     });
   },
 
@@ -31,14 +31,15 @@ module.exports = {
       social: {
         presence: true,
         numericality: {
-          message: "^Must be numeric"
+          message: '^Must be numeric'
         }
       }
     })
 
     if (valid) {
       // probably save the model here
-      // then flash a success message before redirecting
+      // optionally flash a success message
+      // then redirect
       res.redirect('/en/start');
     }
   }
