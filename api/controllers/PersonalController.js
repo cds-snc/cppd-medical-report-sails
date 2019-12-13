@@ -8,7 +8,13 @@
 
 module.exports = {
   index: function (req, res) {
-    // this belongs somewhere else
+    /**
+     * This might belong somewhere else
+     * Check to see if there is _old_input in the session
+     * then assign it to local data object so it populates
+     * the form.
+     * _old_input = form data flashed to the session by the validator
+     */
     if (req.session) {
       if (req.session._old_input) {
         res.locals.data = req.session._old_input
