@@ -11,7 +11,7 @@ module.exports = {
   },
 
   store: function (req, res) {
-    req.addFlash('success', 'Huzzah');
+    req.flash('errors', ['Huzzah']);
     res.redirect('/en/personal');
   }
 };
