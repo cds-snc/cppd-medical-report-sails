@@ -22,10 +22,12 @@ module.exports = {
       }
     } */
     // sails.log.info(req.flash('_old_input'));
+    const errors = req.flash('errors');
+    const data = req.flash('data')[0];
 
     res.view('pages/personal', {
-      errors: req.flash('errors') || null,
-      data: req.flash('data') || null
+      errors: errors,
+      data: data
     });
   },
 
@@ -34,7 +36,13 @@ module.exports = {
       social: {
         presence: true,
         numericality: {
-          message: '^Must be numeric'
+          message: '^Social must be numeric'
+        },
+        length: {
+          minimum: 9,
+          maximum: 9,
+          tooShort: "^Social needs to have %{count} digits or more",
+          tooLong: "^Whoa that's too much"
         }
       }
     })
