@@ -11,6 +11,3 @@
   - Make sure we have parity with Grunt actions
   - Improve watch config
 - Generators
-
-
-- Create Routes folder and @require routes files in config/routes.js
