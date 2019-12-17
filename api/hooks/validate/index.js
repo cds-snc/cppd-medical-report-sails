@@ -33,6 +33,10 @@ module.exports = function defineValidateHook(sails) {
         return true;
       }
 
+      /**
+       * Bind the validate method to the req object so it's
+       * available in our Controllers.
+       */
       sails.on('router:before', () => {
         sails.router.bind('all /*', (req, res, next) => {
           req.validate = sails.validate
