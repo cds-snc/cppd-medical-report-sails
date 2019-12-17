@@ -4,7 +4,7 @@
         {% for field, messages in errors %}
             {% for message in messages %}
                 <li class="error-list__list-item">
-                    {{ message }}
+                    <a class="error-list__link" href="#{{ field }}">{{ message }}</a>
                 </li>
             {% endfor %}
         {% endfor %}
