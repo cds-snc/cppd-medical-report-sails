@@ -10,14 +10,15 @@ module.exports = {
   index: function (req, res) {
     /**
      * If there are errors or data flashed to the session
-     * assign them to local variables
+     * assign them to local variables. Note that connect-flash
+     * pushes values onto an array, hence the _.first() helpers
      */
     const errors = req.flash('errors');
-    const data = req.flash('data')[0];
+    const data = req.flash('data');
 
     res.view('pages/personal', {
-      errors: errors.length ? errors : null,
-      data: data
+      errors: _.first(errors) || null,
+      data: _.first(data) || null
     });
   },
 
