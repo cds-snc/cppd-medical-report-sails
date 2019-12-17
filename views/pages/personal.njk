@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Personal</h1>
-    {{ req.flash('errors') | dump }} 
+    
     <form action="{{ route('personal.store') }}" method="post">
         {{ textInput('social', 'section1.sin', { hint: 'section1.sin_example', class: "w-3-4", required: true }) }}
 
