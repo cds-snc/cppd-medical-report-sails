@@ -45,6 +45,8 @@ module.exports.views = {
       autoescape: true
     });
 
+    nunjucks.installJinjaCompat();
+
     consolidate.requires.nunjucks = nunjucks;
 
     /* Add filters here if required
