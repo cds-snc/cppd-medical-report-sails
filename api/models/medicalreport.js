@@ -13,9 +13,9 @@ module.exports = {
     address: Sequelize.STRING,
     telephone_number: Sequelize.STRING,
     alt_telephone_number: Sequelize.STRING,
-    contact_period: Sequelize.ENUM('am','pm','never'),
+    contact_period: Sequelize.ENUM('morning','afternoon','letters_only'),
   },
   options: {
-    tableName: 'MedicalReport'
+    tableName: 'MedicalReports'
   }
 };

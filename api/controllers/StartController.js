@@ -8,6 +8,5 @@
 module.exports = {
   index: function(req, res) {
     res.view("pages/start");
-    foo.create({name: "bar"});
   }
 };

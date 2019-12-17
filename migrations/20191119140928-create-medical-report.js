@@ -39,7 +39,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       contact_period: {
-        type: Sequelize.ENUM('am', 'pm', 'never'),
+        type: Sequelize.ENUM('morning', 'afternoon', 'letters_only'),
       },
       createdAt: {
         type: Sequelize.DATE,
