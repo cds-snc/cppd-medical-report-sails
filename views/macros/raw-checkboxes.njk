@@ -15,7 +15,7 @@
             {% endif %}
             <div class="multiple-choice multiple-choice--checkboxes" id="{{ key }}">
                 {% if errors and errors[key] %}
-                    {{ validationMessage(errors[key].msg, key) }}
+                    {{ validationMessage(errors[key], key) }}
                 {% endif %}
                 {% for index, val in values %}
                     <div class="multiple-choice__item">

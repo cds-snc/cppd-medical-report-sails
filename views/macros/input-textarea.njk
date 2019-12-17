@@ -4,7 +4,7 @@
   - `attributes`: object of optional attributes: id, class, hint, divClasses, autocomplete
 #}
 {% if errors %}
-    {# set firstError = errors[Object.keys(errors)[0]] #}
+    {% set firstError = errors.keys()[0] %}
 {% endif %}
 
 {% macro textArea(name, label, attributes) %}
@@ -22,8 +22,8 @@
             <span class="form-message">{{ __(attributes.hint) }}</span>
         {% endif %}
         {% if errors and errors[name] %}
-            {{ validationMessage(errors[name].msg, name) }}
+            {{ validationMessage(errors[name], name) }}
         {% endif %}
-        <textarea class="{{ attributes.class if attributes.class else "w-3-4" }}" id="{{ attributes.id if attributes.id else name }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError.param === name %} autofocus="true" {% endif %} name="{{ name }}">{{ attributes.value if attributes.value else data[name] }}</textarea>
+        <textarea class="{{ attributes.class if attributes.class else "w-3-4" }}" id="{{ attributes.id if attributes.id else name }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === name %} autofocus="true" {% endif %} name="{{ name }}">{{ attributes.value if attributes.value else data[name] }}</textarea>
     </div>
 {% endmacro %}
