@@ -4,7 +4,7 @@
   - `attributes`: object of optional attributes: class, hint, divClasses, autocomplete
 #}
 {% if errors %}
-    {% set firstError = errors[errors.keys()[0]] %}
+    {# set firstError = errors[Object.keys(errors)[0]] #}
 {% endif %}
 
 {% macro textInput(name, label, attributes) %}
