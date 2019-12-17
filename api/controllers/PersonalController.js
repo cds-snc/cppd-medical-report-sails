@@ -9,21 +9,11 @@
 module.exports = {
   index: function (req, res) {
     /**
-     * This might belong somewhere else
-     * Check to see if there is _old_input in the session
-     * then assign it to local data object so it populates
-     * the form.
-     * _old_input = form data flashed to the session by the validator
+     * If there are errors or data flashed to the session
+     * assign them to local variables
      */
-    /*
-    if (req.session) {
-      if (req.session._old_input) {
-        res.locals.data = req.session._old_input
-      }
-    } */
-    // sails.log.info(req.flash('_old_input'));
-    const errors = req.flash('errors');
-    const data = req.flash('data')[0];
+    const errors = req.flash('errors') || null;
+    const data = req.flash('data')[0] || null;
 
     res.view('pages/personal', {
       errors: errors,
@@ -43,6 +33,16 @@ module.exports = {
           maximum: 9,
           tooShort: "^Social needs to have %{count} digits or more",
           tooLong: "^Whoa that's too much"
+        }
+      },
+      first_name: {
+        presence: {
+          allowEmpty: false,
+        },
+      },
+      last_name: {
+        presence: {
+          allowEmpty: false
         }
       }
     })
