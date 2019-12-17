@@ -1,14 +1,14 @@
 <div class="error-list" role="alert">
     <h3 class="error-list__header">{{ __('Please correct the errors on the page') }}</h3>
     <ol class="error-list__list" id="formErrors">
-        {% for error in errors %}
-            {% for field, messages in error %}
-                {% for message in messages %}
-                    <li class="error-list__list-item">
-                        {{ message }}
-                    </li>
-                {% endfor %}
+
+        {% for field, messages in errors %}
+            {% for message in messages %}
+                <li class="error-list__list-item">
+                    {{ message }}
+                </li>
             {% endfor %}
         {% endfor %}
+
     </ol>
 </div>
