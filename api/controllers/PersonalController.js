@@ -12,11 +12,11 @@ module.exports = {
      * If there are errors or data flashed to the session
      * assign them to local variables
      */
-    const errors = req.flash('errors') || null;
-    const data = req.flash('data')[0] || null;
+    const errors = req.flash('errors');
+    const data = req.flash('data')[0];
 
     res.view('pages/personal', {
-      errors: errors,
+      errors: errors.length ? errors : null,
       data: data
     });
   },
