@@ -45,6 +45,12 @@ module.exports = {
         presence: {
           allowEmpty: false
         }
+      },
+      preferred_title: {
+        presence: true
+      },
+      contact_time: {
+        presence: true
       }
     })
 
