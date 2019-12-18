@@ -28,6 +28,7 @@
     "eslint": "5.16.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
+    "nodemon": "^2.0.2",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.0.1",
     "tailwindcss": "^1.1.4",
@@ -39,6 +40,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",
+    "dev": "nodemon --exec NODE_ENV=development node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
@@ -47,6 +49,9 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/samojled/sails-starter-2.git"
+  },
+  "nodemonConfig": {
+    "ext": "js,json,scss"
   },
   "author": "samojled",
   "license": "",
