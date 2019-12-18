@@ -48,8 +48,8 @@ module.exports = {
       message: '^Telephone is incorrectly formatted'
     }
   },
-  alternate_telephone: function (value, options, key, attributes) {
-    if (value) {
+  alternate_telephone: function (value) {
+    if (value) { // makes it optional
       return {
         format: {
           pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
