@@ -48,13 +48,14 @@ module.exports = {
       message: '^Telephone is incorrectly formatted'
     }
   },
-  alternate_telephone: {
-    format: {
-      pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
-      message: '^Alternate telephone is incorrectly formatted'
-    },
-    presence: {
-      allowEmpty: true
+  alternate_telephone: function (value, options, key, attributes) {
+    if (value) {
+      return {
+        format: {
+          pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
+          message: '^Alternate telephone is incorrectly formatted'
+        }
+      }
     }
   },
   contact_time: {
