@@ -37,7 +37,7 @@ module.exports = {
         last_name_at_birth: req.body.birth_last_name,
         birth_date: req.body.birthdate,
         address: req.body.address,
-        telephone_number: req.body.telephone_number,
+        telephone_number: req.body.telephone,
         alt_telephone_number: req.body.alternate_telephone,
         contact_period: req.body.contact_time
       });
