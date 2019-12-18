@@ -59,7 +59,9 @@ module.exports = {
     }
   },
   contact_time: {
-    presence: true,
+    presence: {
+      message: '^Best time to contact you is required'
+    },
     inclusion: {
       within: ['morning', 'afternoon', 'letters_only'],
       message: '^Invalid selection'
