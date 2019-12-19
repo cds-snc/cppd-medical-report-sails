@@ -6,12 +6,12 @@
  */
 
 module.exports = {
-    index: function (req, res) {
-        sails.log.info('conditions.index');
-        if (!_.has(req.session.medicalReport, 'conditions')) {
-            res.redirect(sails.route('conditions.add'));
-        }
+  index: function (req, res) {
+    if (!_.has(req.session.medicalReport, 'conditions')) {
+      res.redirect(sails.route('conditions.add'));
+    } else {
+      res.send(req.session.medicalReport);
     }
-
+  }
 };
 
