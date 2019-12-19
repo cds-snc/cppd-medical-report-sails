@@ -123,6 +123,17 @@ module.exports.routes = {
     }
   },
 
+  "POST /en/conditions/add": {
+    name: "conditions.store",
+    controller: "AddConditionController",
+    action: "store",
+    lang: "en",
+    i18n: {
+      en: "/en/conditions/add",
+      fr: "/fr/conditions/ajouter"
+    }
+  },
+
   // example route with params
   "GET /en/product/:id": {
     name: "getProduct",
