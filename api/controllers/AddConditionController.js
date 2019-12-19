@@ -22,7 +22,7 @@ module.exports = {
         req.session.medicalReport.conditions = [];
       }
 
-      req.session.medicalReport.conditions.push(body);
+      req.session.medicalReport.conditions.push(req.body);
 
       sails.log.info(req.session.medicalReport);
 
