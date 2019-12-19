@@ -1,5 +1,5 @@
 module.exports = {
-  treatment_type: {
+  name_of_condition: {
     presence: {
       allowEmpty: false,
       message: '^errors.name_of_condition.length'
@@ -15,6 +15,11 @@ module.exports = {
     presence: {
       allowEmpty: false,
       message: '^errors.clinically_impair'
+    }
+  },
+  condition_outlook: {
+    presence: {
+      message: '^errors.condition_outlook_required'
     }
   },
   condition_outlook_unknown: {
