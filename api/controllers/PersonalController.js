@@ -8,26 +8,24 @@
 module.exports = {
   index: function (req, res) {
     /**
-     * If there are errors or data flashed to the session
-     * assign them to local variables. Note that connect-flash
-     * pushes values onto an array, hence the _.first() helpers
+     * If there is a medical report in the session, load it
      */
-    const errors = req.flash('errors');
-    const data = req.flash('data');
+    if (req.session.medicalReport) {
+      res.locals.data = req.session.medicalReport;
+    }
 
-    res.view('pages/personal', {
-      errors: _.first(errors) || null,
-      data: _.first(data) || null
-    });
+    res.view('pages/personal');
   },
 
   store: function (req, res) {
-    let valid = req.validate(req, res, require('../schemas/personal.schema'))
+    let valid = req.validate(req, res, require('../schemas/personal.schema'));
 
     if (valid) {
-      // probably save the model here
-      // optionally flash a success message
-      // then redirect
+      // save the model
+      req.session.medicalReport = req.body;
+      res.redirect(sails.route('personal'));
+
+      /* Commenting out for now -ds
       MedicalReport.create({
         sin: req.body.social,
         title: req.body.preferred_title,
@@ -42,6 +40,7 @@ module.exports = {
         contact_period: req.body.contact_time
       });
       res.redirect('/en/start');
+      */
     }
   }
 };
