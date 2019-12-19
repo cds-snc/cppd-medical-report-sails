@@ -134,6 +134,28 @@ module.exports.routes = {
     }
   },
 
+  "GET /en/conditions/:id/edit": {
+    name: "conditions.edit",
+    controller: "EditConditionController",
+    action: "edit",
+    lang: "en",
+    i18n: {
+      en: "/en/conditions/:id/edit",
+      fr: "/fr/conditions/:id/modifier"
+    }
+  },
+
+  "POST /en/conditions/:id/delete": {
+    name: "conditions.delete",
+    controller: "DeleteConditionController",
+    action: "destroy",
+    lang: "en",
+    i18n: {
+      en: "/en/conditions/:id/delete",
+      fr: "/fr/conditions/:id/delete"
+    }
+  },
+
   // example route with params
   "GET /en/product/:id": {
     name: "getProduct",
