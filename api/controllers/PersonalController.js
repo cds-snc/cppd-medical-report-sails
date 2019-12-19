@@ -7,36 +7,14 @@
 
 module.exports = {
   index: function (req, res) {
-    let errors = null;
-    let data = {};
-
     /**
      * If there is a medical report in the session, load it
      */
     if (req.session.medicalReport) {
-      data = req.session.medicalReport;
+      res.locals.data = req.session.medicalReport;
     }
 
-    /**
-     * If there are errors or data flashed to the session
-     * assign them to local variables in the template.
-     * Note that connect-flash pushes values onto a
-     * queue/array, hence the _.first() helpers
-     */
-    if (_.has(req.session, 'flash')) {
-      if (_.has(req.session.flash, 'errors')) {
-        errors = _.first(req.flash('errors'));
-      }
-
-      if (_.has(req.session.flash, 'data')) {
-        data = _.first(req.flash('data'));
-      }
-    }
-
-    res.view('pages/personal', {
-      errors: errors || null,
-      data: data || null
-    });
+    res.view('pages/personal');
   },
 
   store: function (req, res) {
