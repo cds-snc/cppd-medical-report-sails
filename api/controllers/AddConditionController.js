@@ -12,7 +12,22 @@ module.exports = {
   },
 
   store: function (req, res) {
+    let valid = req.validate(req, res, require('../schemas/condition.schema'));
 
+    sails.log.info(req.session.medicalReport);
+
+    if (valid) {
+      // save model here
+      if (!_.has(req.session.medicalReport, 'conditions')) {
+        req.session.medicalReport.conditions = [];
+      }
+
+      req.session.medicalReport.conditions.push(body);
+
+      sails.log.info(req.session.medicalReport);
+
+      res.redirect(sails.route('conditions'));
+    }
   }
 };
 
