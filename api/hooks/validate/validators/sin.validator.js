@@ -18,10 +18,6 @@ const validateLuhn = string => {
 }
 
 const validateSIN = function (value, options, key, attributes) {
-  if (/[^0-9\s]+/.test(value)) {
-    return options.message || 'is incorrectly formatted';
-  }
-
   if (!validateLuhn(value)) {
     return options.message || 'is invalid';
   }
