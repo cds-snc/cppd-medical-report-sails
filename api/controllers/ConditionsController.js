@@ -10,8 +10,9 @@ module.exports = {
     if (!_.has(req.session.medicalReport, 'conditions')) {
       res.redirect(sails.route('conditions.add'));
     } else {
-      res.send(req.session.medicalReport);
+      res.locals.data = req.session.medicalReport;
+
+      res.view('pages/conditions/index');
     }
   }
 };
-
