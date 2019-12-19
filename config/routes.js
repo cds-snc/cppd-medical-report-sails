@@ -18,153 +18,105 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-  // "/:lang/start": "StartController.index"
+  '/': '/en/start', // redirect to start
 
-  /* named routes (og hook)
-  'GET /:lang/start': {
-    name: 'start',
-    controller: 'StartController',
-    action: 'index'
-  }, */
-
-  /* named routes (custom)
-  'start': {
-    verb: 'GET',
-    controller: 'StartController',
-    action: 'index',
-    path: { en: '/start', fr: '/debut' }
-  },
-
-  'personal': {
-    verb: 'GET',
-    controller: 'PersonalController',
-    action: 'index',
-    path: { en: '/personal', fr: '/personnel' }
-  }
-  */
-
-  // regex version
-  /*
-  'GET r|^\/(en|fr)\/(start|debut)|lang': {
+  'GET /en/start': {
     name: 'start',
     controller: 'StartController',
     action: 'index',
-    i18nRoutes: {
+    lang: 'en',
+    i18n: {
       en: '/en/start',
       fr: '/fr/debut'
     }
   },
 
-  'GET r|^\/(en|fr)\/(personal|personnel)|lang': {
+  'GET /en/personal': {
     name: 'personal',
     controller: 'PersonalController',
     action: 'index',
-    i18nRoutes: {
+    lang: 'en',
+    i18n: {
       en: '/en/personal',
       fr: '/fr/personnel'
     }
-  }
-  */
+  },
 
-  "/": "/en/start", // redirect to start
-
-  "GET /en/start": {
-    name: "start",
-    controller: "StartController",
-    action: "index",
-    lang: "en",
+  'POST /en/personal': {
+    name: 'personal.store',
+    controller: 'PersonalController',
+    action: 'store',
+    lang: 'en',
     i18n: {
-      en: "/en/start",
-      fr: "/fr/debut"
+      en: '/en/personal',
+      fr: '/fr/personnel'
     }
   },
 
-  "GET /en/personal": {
-    name: "personal",
-    controller: "PersonalController",
-    action: "index",
-    lang: "en",
+  'GET /en/conditions': {
+    name: 'conditions',
+    controller: 'ConditionsController',
+    action: 'index',
+    lang: 'en',
     i18n: {
-      en: "/en/personal",
-      fr: "/fr/personnel"
+      en: '/en/conditions',
+      fr: '/fr/conditions'
     }
   },
 
-  "POST /en/personal": {
-    name: "personal.store",
-    controller: "PersonalController",
-    action: "store",
-    lang: "en",
+  'GET /en/conditions/add': {
+    name: 'conditions.add',
+    controller: 'AddConditionController',
+    action: 'index',
+    lang: 'en',
     i18n: {
-      en: "/en/personal",
-      fr: "/fr/personnel"
+      en: '/en/conditions/add',
+      fr: '/fr/conditions/ajouter'
     }
   },
 
-  "GET /en/conditions": {
-    name: "conditions",
-    controller: "ConditionsController",
-    action: "index",
-    lang: "en",
+  'POST /en/conditions/add': {
+    name: 'conditions.store',
+    controller: 'AddConditionController',
+    action: 'store',
+    lang: 'en',
     i18n: {
-      en: "/en/conditions",
-      fr: "/fr/conditions"
+      en: '/en/conditions/add',
+      fr: '/fr/conditions/ajouter'
     }
   },
 
-  "GET /en/conditions/add": {
-    name: "conditions.add",
-    controller: "AddConditionController",
-    action: "index",
-    lang: "en",
+  'GET /en/conditions/:id/edit': {
+    name: 'conditions.edit',
+    controller: 'EditConditionController',
+    action: 'edit',
+    lang: 'en',
     i18n: {
-      en: "/en/conditions/add",
-      fr: "/fr/conditions/ajouter"
+      en: '/en/conditions/:id/edit',
+      fr: '/fr/conditions/:id/modifier'
     }
   },
 
-  "POST /en/conditions/add": {
-    name: "conditions.store",
-    controller: "AddConditionController",
-    action: "store",
-    lang: "en",
+  'POST /en/conditions/:id/delete': {
+    name: 'conditions.delete',
+    controller: 'DeleteConditionController',
+    action: 'destroy',
+    lang: 'en',
     i18n: {
-      en: "/en/conditions/add",
-      fr: "/fr/conditions/ajouter"
-    }
-  },
-
-  "GET /en/conditions/:id/edit": {
-    name: "conditions.edit",
-    controller: "EditConditionController",
-    action: "edit",
-    lang: "en",
-    i18n: {
-      en: "/en/conditions/:id/edit",
-      fr: "/fr/conditions/:id/modifier"
-    }
-  },
-
-  "POST /en/conditions/:id/delete": {
-    name: "conditions.delete",
-    controller: "DeleteConditionController",
-    action: "destroy",
-    lang: "en",
-    i18n: {
-      en: "/en/conditions/:id/delete",
-      fr: "/fr/conditions/:id/delete"
+      en: '/en/conditions/:id/delete',
+      fr: '/fr/conditions/:id/delete'
     }
   },
 
   // example route with params
-  "GET /en/product/:id": {
-    name: "getProduct",
-    controller: "ProductController",
-    action: "show",
-    lang: "en",
+  'GET /en/product/:id': {
+    name: 'getProduct',
+    controller: 'ProductController',
+    action: 'show',
+    lang: 'en',
     i18n: {
-      en: "/en/product/:id",
-      fr: "/fr/produit/:id"
+      en: '/en/product/:id',
+      fr: '/fr/produit/:id'
     }
   }
 
