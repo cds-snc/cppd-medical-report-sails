@@ -20,16 +20,22 @@ module.exports = {
       message: '^Last name is required'
     }
   },
-  birthdate: {
-    presence: {
-      allowEmpty: false,
-      message: '^Birthdate is required'
-    },
-    validateDateFormat: {
-      message: '^Birthdate is not formatted correctly'
-    },
-    validateDateExists: {
-      message: '^Birthdate is not a valid date'
+  birthdate: function (value) {
+    if (value) {
+      return {
+        validateDateFormat: {
+          message: '^Birthdate is not formatted correctly'
+        },
+        validateDateExists: {
+          message: '^Birthdate is not a valid date'
+        }
+      }
+    }
+    return {
+      presence: {
+        allowEmpty: false,
+        message: '^Birthdate is required'
+      },
     }
   },
   address: {
@@ -38,14 +44,20 @@ module.exports = {
       message: '^Mailing address is required'
     }
   },
-  telephone: {
-    presence: {
-      allowEmpty: false,
-      message: '^Telephone is required'
-    },
-    format: {
-      pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
-      message: '^Telephone is incorrectly formatted'
+  telephone: function (value) {
+    if (value) {
+      return {
+        format: {
+          pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
+          message: '^Telephone is incorrectly formatted'
+        }
+      }
+    }
+    return {
+      presence: {
+        allowEmpty: false,
+        message: '^Telephone is required'
+      },
     }
   },
   alternate_telephone: function (value) {
