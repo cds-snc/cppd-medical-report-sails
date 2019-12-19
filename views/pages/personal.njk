@@ -3,9 +3,7 @@
 {% block content %}
     <h1>Personal</h1>
     
-    <form action="{{ route('personal.store') }}" method="post">
-        <input type='hidden' name='_csrf' value='{{ _csrf }}'>
-        
+    <form action="{{ route('personal.store') }}" method="post">        
         {{ textInput('social', 'section1.sin', { hint: 'section1.sin_example', class: "w-3-4", required: true }) }}
 
         {{ radioButtons('preferred_title', { '1':'section1.preferred_title_mr','2':'section1.preferred_title_mrs','3':'section1.preferred_title_miss','4':'section1.preferred_title_ms'}, data.preferred_title, 'section1.preferred_title', errors) }}
