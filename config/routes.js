@@ -101,6 +101,28 @@ module.exports.routes = {
     }
   },
 
+  "GET /en/conditions": {
+    name: "conditions",
+    controller: "ConditionsController",
+    action: "index",
+    lang: "en",
+    i18n: {
+      en: "/en/conditions",
+      fr: "/fr/conditions"
+    }
+  },
+
+  "GET /en/conditions/add": {
+    name: "conditions.add",
+    controller: "AddConditionController",
+    action: "index",
+    lang: "en",
+    i18n: {
+      en: "/en/conditions/add",
+      fr: "/fr/conditions/ajouter"
+    }
+  },
+
   // example route with params
   "GET /en/product/:id": {
     name: "getProduct",
