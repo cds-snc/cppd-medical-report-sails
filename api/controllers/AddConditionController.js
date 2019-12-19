@@ -6,9 +6,13 @@
  */
 
 module.exports = {
-    index: function (req, res) {
-        sails.log.info('conditions.add');
-        res.view('pages/conditions/add');
-    }
+  index: function (req, res) {
+    sails.log.info('conditions.add');
+    res.view('pages/conditions/add');
+  },
+
+  store: function (req, res) {
+
+  }
 };
 
