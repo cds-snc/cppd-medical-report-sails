@@ -49,7 +49,7 @@
     "start": "NODE_ENV=production node app.js",
     "dev": "nodemon --exec NODE_ENV=development node app.js",
     "test": "npm run lint && npm run custom-tests && echo 'Done.'",
-    "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+    "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=300 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "custom-tests": "echo \"(No other custom tests yet.)\" && echo",
     "db:install": "docker pull postgres:latest",
     "db:start": "docker run --rm -p 5432:5432 -d --name postgres-dev postgres:latest",
