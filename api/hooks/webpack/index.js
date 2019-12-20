@@ -36,7 +36,7 @@ module.exports = function defineWebpackHook(sails) {
       const isSailsScriptEnv = () => global.isSailsScriptEnv;
       const isTestEnv = () => sails.config.port !== 1337;
 
-      if (isSailsScriptEnv()) void done();
+      if (isSailsScriptEnv()) return void done();
 
       const compiler = webpack(sails.config.webpack.config);
 
@@ -46,7 +46,7 @@ module.exports = function defineWebpackHook(sails) {
         if (err || stats.hasErrors()) {
           throw new Error("sails-hook-webpack failed");
         } else {
-          done();
+          return done();
         }
       });
 
