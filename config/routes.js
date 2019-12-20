@@ -67,7 +67,7 @@ module.exports.routes = {
   'GET /en/conditions/add': {
     name: 'conditions.add',
     controller: 'AddConditionController',
-    action: 'index',
+    action: 'create',
     lang: 'en',
     i18n: {
       en: '/en/conditions/add',
@@ -90,6 +90,17 @@ module.exports.routes = {
     name: 'conditions.edit',
     controller: 'EditConditionController',
     action: 'edit',
+    lang: 'en',
+    i18n: {
+      en: '/en/conditions/:id/edit',
+      fr: '/fr/conditions/:id/modifier'
+    }
+  },
+
+  'POST /en/conditions/:id/edit': {
+    name: 'conditions.update',
+    controller: 'EditConditionController',
+    action: 'update',
     lang: 'en',
     i18n: {
       en: '/en/conditions/:id/edit',
