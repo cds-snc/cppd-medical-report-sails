@@ -64,7 +64,10 @@
     "url": "git://github.com/samojled/sails-starter-2.git"
   },
   "nodemonConfig": {
-    "ext": "js,json,scss"
+    "ext": "js,json,scss",
+    "ignore": [
+      "config/locales/*.json"
+    ]
   },
   "author": "samojled",
   "license": "",

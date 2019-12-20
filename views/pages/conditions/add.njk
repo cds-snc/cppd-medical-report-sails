@@ -1,0 +1,44 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+    {%- from 'pages/conditions/condition-form.njk' import conditionForm with context -%}
+    
+    <h1>{{ __('conditions.title') }}<br/> <span class="text-base">{{ __('conditions.patient')}} {{ patientName(data) }}</span></h1>
+
+    <div>
+        <p>
+            {{ __('conditions.intro') }}
+        </p>
+
+        <form action="{{ route('conditions.store') }}" method="post">
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+
+            {{ conditionForm(data) }}
+
+            <p id="attach_files_desk" class="font-bold">{{ __('add_condition.attach_notes') }}</p>
+            <p class="text-gray-600">{{ __('add_condition.attach_notes_hint') }}</p>
+
+            <div id="app">
+                <file-upload files="{{ data.condition_files }}" field-name="condition_files" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
+            </div>
+
+            <div class="multiple-choice multiple-choice--checkboxes">
+                <div class="multiple-choice__item">
+                    <input id="attach_later" name="attach_later" type="checkbox" value="attach_later">
+                    <label for="attach_later">{{ __('add_condition.attach_later') }}</label>
+                </div>
+            </div>
+
+            <div class="w-full flex">
+                <div class="w-1/3">
+                    <button type="submit">{{ __('add_condition.add_condition') }}</button>
+                </div>
+                {% if data.conditions %}
+                    <div class="w-1/3 text-center">
+                        <a class="button-link transparent" href="{{ routePath('conditions') }}">{{ __('Cancel') }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+{% endblock %}
