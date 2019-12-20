@@ -7,25 +7,21 @@
 
 module.exports = {
   index: function (req, res) {
-    sails.log.info('conditions.add');
     res.view('pages/conditions/add');
   },
 
   store: function (req, res) {
-    let valid = req.validate(req, res, require('../schemas/condition.schema'));
+    const body = Object.assign({}, req.body);
+    delete body._csrf;
 
-    sails.log.info(req.session.medicalReport);
+    let valid = req.validate(req, res, require('../schemas/condition.schema'));
 
     if (valid) {
       // save model here
       if (!_.has(req.session.medicalReport, 'conditions')) {
         req.session.medicalReport.conditions = [];
       }
-
-      req.session.medicalReport.conditions.push(req.body);
-
-      sails.log.info(req.session.medicalReport);
-
+      req.session.medicalReport.conditions.push(body);
       res.redirect(sails.route('conditions'));
     }
   }
