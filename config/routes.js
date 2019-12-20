@@ -111,7 +111,7 @@ module.exports.routes = {
   'POST /en/conditions/:id/delete': {
     name: 'conditions.delete',
     controller: 'DeleteConditionController',
-    action: 'destroy',
+    action: 'delete',
     lang: 'en',
     i18n: {
       en: '/en/conditions/:id/delete',

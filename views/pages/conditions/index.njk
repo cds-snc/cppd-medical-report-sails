@@ -20,7 +20,7 @@
                       {{ __('conditions.edit') }}
                   </a><br>
                   <form action="{{ route('conditions.delete', { id: loop.index }) }}" method="POST" class="mt-0">
-                      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                      <input type="hidden" name="_csrf" value="{{ _csrf }}">
                       <a href="#" role="button" onclick="this.parentNode.submit();" class="text-sm">
                           <svg class="w-4 h-4 inline fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 1.6a8.4 8.4 0 100 16.8 8.4 8.4 0 000-16.8zm5 9.4H5V9h10v2z"/></svg>
                           {{ __('conditions.remove_condition' )}}
