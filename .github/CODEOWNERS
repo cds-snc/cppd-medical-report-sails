@@ -1,0 +1,14 @@
+# Indicates who needs to approve what kinds of pull request based on file touched
+# This file is read in last-in precendence order (i.e. settings for bottom-most win)
+
+# Default: engineering needs to review changes to files
+*   @cds-snc/esdc-cppd-devs
+
+# For CPPD-specific user-facing changes to application, require review from policy, design/product, and engineering
+# views/pages/*    @cds-snc/esdc-cppd-policy @cds-snc/esdc-cppd-design @cds-snc/esdc-cppd-devs
+# config/locales/*       @cds-snc/esdc-cppd-policy @cds-snc/esdc-cppd-design @cds-snc/esdc-cppd-devs
+
+# For changes to UI widgets, etc., require review from design/product and engineering
+# views/_includes/*     @cds-snc/esdc-cppd-design @cds-snc/esdc-cppd-devs
+# views/layouts/*     @cds-snc/esdc-cppd-design @cds-snc/esdc-cppd-devs
+# views/macros/*     @cds-snc/esdc-cppd-design @cds-snc/esdc-cppd-devs
