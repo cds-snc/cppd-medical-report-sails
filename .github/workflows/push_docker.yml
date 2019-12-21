@@ -11,9 +11,12 @@ jobs:
   push_docker:
     runs-on: ubuntu-18.04
     steps:
-      - name: Login to Azure Container Registry
-        run: docker login --username ${AZURE_CONTAINER_REGISTRY_USERNAME} --password ${AZURE_CONTAINER_REGISTRY_PASSWORD}
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}
+          username: ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}
+          password: ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
       - name: Build Docker image
-        run: docker build -t ${AZURE_CONTAINER_REGISTRY_URL}/cppd-medical-report-sails:${github.ref} .
+        run: docker build -t ${{ AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:${{github.ref}} .
       - name: Publish Docker image
-        run: docker push ${AZURE_CONTAINER_REGISTRY_URL}/cppd-medical-report-sails:${github.ref}
+        run: docker push ${{ AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:${{ github.ref }}
