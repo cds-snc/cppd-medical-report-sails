@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout codebase
-        run: actions/checkout@v1
+        run: actions/checkout@v2.0.0
       - name: Login to Azure Container Registry
         run: docker login --username ${AZURE_CONTAINER_REGISTRY_USERNAME} --password ${AZURE_CONTAINER_REGISTRY_PASSWORD}
       - name: Build Docker image
