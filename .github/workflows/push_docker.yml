@@ -11,6 +11,7 @@ jobs:
   push_docker:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v1
       - uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}
