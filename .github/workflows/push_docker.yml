@@ -17,9 +17,11 @@ jobs:
           login-server: ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}
           username: ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}
           password: ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
+      - name: Get branch
+        run: echo ::set-env name=BRANCH::$(echo ${GITHUB_REF:10})
       - name: Build Docker image
         # run: docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:${{github.ref}} .
-        run: docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:pr_test .
+        run: docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:${{env.BRANCH}} .
       - name: Publish Docker image
         # run: docker push ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:${{ github.ref }}
-        run: docker push ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:pr_test
+        run: docker push ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:${{env.BRANCH}}
