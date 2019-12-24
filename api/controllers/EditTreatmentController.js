@@ -5,12 +5,47 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const {
+  conditionReducer,
+} = require('../utils/condition.mapper')
+
 module.exports = {
   edit: function (req, res) {
+    const data = req.session.medicalReport
+    const conditionList = conditionReducer(data.conditions)
 
+    // redirect back if there are no treatments
+    if (!_.has(req.session.medicalReport, 'treatments')) {
+      return res.redirect(sails.route('treatments'));
+    }
+
+    const treatment = req.session.medicalReport.treatments[req.params.id - 1];
+
+    if (!treatment) {
+      return res.redirect(sails.route('treatments'));
+    }
+
+    res.view('pages/treatments/edit', {
+      id: req.params.id,
+      treatment: treatment,
+      conditionList: conditionList
+    });
   },
 
   update: function (req, res) {
+    const body = Object.assign({}, req.body);
+    delete body._csrf;
 
+    // the medications array is 0 indexed
+    const treatmentId = req.params.id - 1;
+
+    let valid = req.validate(req, res, require('../schemas/treatment.schema'));
+
+    if (valid) {
+      // replace the contents of the medication on the array
+      req.session.medicalReport.treatments[treatmentId] = body;
+
+      res.redirect(sails.route('treatments'));
+    }
   }
 };
