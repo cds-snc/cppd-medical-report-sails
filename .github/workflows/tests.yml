@@ -1,0 +1,23 @@
+name: Run Tests
+
+on: 
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.13.1
+      - name: Install Sails
+        run: npm install sails -g
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: sails test
+
