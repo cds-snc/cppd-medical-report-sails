@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports.webpack = {
   config: [
@@ -30,9 +31,15 @@ module.exports.webpack = {
         ]),
         new MiniCssExtractPlugin({
           filename: "./assets/styles/app.css"
-        })
+        }),
+        // make sure to include the plugin!
+        new VueLoaderPlugin(),
       ],
-
+      resolve: {
+        alias: {
+          vue$: 'vue/dist/vue.esm.js', // Use the full build
+        },
+      },
       entry: {
         app: "./assets/js/app.js",
         styles: "./assets/styles/app.scss"
@@ -62,7 +69,11 @@ module.exports.webpack = {
                 ]
               ]
             }
-          }
+          },
+          {
+            test: /\.vue$/,
+            loader: 'vue-loader',
+          },
         ]
       }
     }

@@ -21,7 +21,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="[ALPHA] Node Starter App">
         <meta name="github-sha" content="{{ GITHUB_SHA }}">
-        <meta name="csrf-token" content="{{ csrfToken }}">
+        <meta name="csrf-token" content="{{ _csrf }}">
         <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" sizes="32x32">
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
         <link href="https://fonts.googleapis.com/css?family=Lato:700|Noto+Sans:400,700&amp;display=fallback" rel="stylesheet">
@@ -47,13 +47,6 @@
     </body>
     {% include "_includes/script.njk" %}
     {% block scripts %}
-        {% if jsFiles %}
-            {% for val in jsFiles %}
-                <script type="text/javascript" src={{val}}></script>
-            {% endfor %}
-        {% endif %}
-        {% if appJs %}
-            <script type="text/javascript" src={{appJs}}></script>
-        {% endif %}
+        <script type="text/javascript" src="/build/assets/js/app.js"></script>
     {% endblock %}
 </html>
