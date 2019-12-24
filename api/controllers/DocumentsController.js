@@ -7,10 +7,23 @@
 
 module.exports = {
   index: function (req, res) {
+    /**
+     * If there is a medical report in the session, load it
+     */
+    if (req.session.medicalReport) {
+      res.locals.data = req.session.medicalReport;
+    }
 
+    res.view('pages/documents');
   },
   
   store: function (req, res) {
+    let valid = req.validate(req, res, require('../schemas/documents.schema'));
 
+    if (valid) {
+      // save the model
+      req.session.medicalReport.documents = req.body.documents;
+      res.redirect(sails.route('conditions'));
+    }
   }
 };
