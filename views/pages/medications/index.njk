@@ -1,0 +1,52 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+    <h1 class="border-gray-400 border-b">{{ __('medication.title') }}<br/> <span class="text-base">{{ __('patient_name')}} {{ patientName(data) }}</span></h1>
+
+    <div class="mt-10">
+        <h2 class="text-2xl mb-4">{{ __('medications.medications') }}</h2>
+
+        {% for medication in data.medications %}  
+            <div class="flex border-t border-b">
+                <div class="w-1/2">
+                    <p>{{ medication.medication_name }}</p>
+                    <p class="text-base">{{ medication.medication_dosage }}</p>
+                    <p class="text-base">{{ medication.medication_start_date }} - {{ medication.medication_end_date }}</p>
+                </div>
+                <div class="w-1/2">
+                    <a href="{{ route('medications.edit', { id: loop.index }) }}" class="text-sm">
+                        <svg class="w-4 h-4 inline fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M17.561 2.439c-1.442-1.443-2.525-1.227-2.525-1.227L8.984 7.264 2.21 14.037 1.2 18.799l4.763-1.01 6.774-6.771 6.052-6.052c-.001 0 .216-1.083-1.228-2.527zM5.68 17.217l-1.624.35a3.71 3.71 0 0 0-.69-.932 3.742 3.742 0 0 0-.932-.691l.35-1.623.47-.469s.883.018 1.881 1.016c.997.996 1.016 1.881 1.016 1.881l-.471.468z"/></svg>
+                        {{ __('medications.edit_medication') }}<span class="sr-only"> {{ medication.medication_name }}</span>
+                    </a><br>
+                    <form action="{{ route('medications.delete', { id: loop.index }) }}" method="POST" class="mt-0">
+                        <input type="hidden" name="_csrf" value="{{ _csrf }}">
+                        <a href="#" role="button" onclick="this.parentNode.submit();" class="text-sm">
+                            <svg class="w-4 h-4 inline fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 1.6a8.4 8.4 0 100 16.8 8.4 8.4 0 000-16.8zm5 9.4H5V9h10v2z"/></svg>
+                            {{ __('medications.remove_medication' )}}<span class="sr-only"> {{ medication.medication_name }}</span>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="mt-4">
+            <a href="{{ route('medications.add') }}" class="text-sm">
+                <svg class="h-4 w-4 inline fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M16 10c0 .553-.048 1-.601 1H11v4.399c0 .552-.447.601-1 .601-.553 0-1-.049-1-.601V11H4.601C4.049 11 4 10.553 4 10c0-.553.049-1 .601-1H9V4.601C9 4.048 9.447 4 10 4c.553 0 1 .048 1 .601V9h4.399c.553 0 .601.447.601 1z"/>
+                </svg>
+                {{ __('medications.add_a_medication') }}
+            </a>
+        </div>
+
+        <!-- This shouldn't be a form post -->
+        <form method="post">
+            <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+            <div class="w-full">
+                <div class="w-1/3">
+                    <button type="submit">{{ __('Next: Treatments') }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
