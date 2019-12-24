@@ -31,6 +31,9 @@ module.exports.routes = {
     }
   },
 
+  /**
+   * PERSONAL ROUTES
+   */
   'GET /en/personal': {
     name: 'personal',
     controller: 'PersonalController',
@@ -260,6 +263,30 @@ module.exports.routes = {
     }
   },
 
+  /**
+   * HEALTH ROUTES
+   */
+  'GET /en/health': {
+    name: 'health',
+    controller: 'HealthController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/health',
+      fr: '/fr/health'
+    }
+  },
+
+  'POST /en/health': {
+    name: 'health.store',
+    controller: 'HealthController',
+    action: 'store',
+    lang: 'en',
+    i18n: {
+      en: '/en/health',
+      fr: '/fr/health'
+    }
+  },
 
   // example route with params
   'GET /en/product/:id': {
