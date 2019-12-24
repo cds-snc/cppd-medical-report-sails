@@ -7,7 +7,6 @@
 
  const {
   conditionReducer,
-  oneAttribute,
 } = require('../utils/condition.mapper')
 
 module.exports = {
