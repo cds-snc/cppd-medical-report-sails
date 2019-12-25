@@ -1,8 +1,3 @@
-/**
- * I don't know if we should convert this to a "sails helper"
- */
-// const reduce = require('lodash.reduce')
-
 const conditionReducer = (conditions) => {
   return _.reduce(
     conditions,
