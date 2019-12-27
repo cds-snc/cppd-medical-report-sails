@@ -23,7 +23,7 @@ module.exports = {
     if (valid) {
       // save the model
       req.session.medicalReport = req.body;
-      res.redirect(sails.route('conditions'));
+      res.redirect(sails.route('consent'));
 
       /* Commenting out for now -ds
       MedicalReport.create({
