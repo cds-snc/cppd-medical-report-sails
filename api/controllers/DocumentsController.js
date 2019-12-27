@@ -23,7 +23,7 @@ module.exports = {
     if (valid) {
       // save the model
       req.session.medicalReport.supporting_documents = req.body.supporting_documents;
-      res.redirect(sails.route('conditions'));
+      res.redirect(sails.route('employment'));
     }
   }
 };
