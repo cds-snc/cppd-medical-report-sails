@@ -260,7 +260,6 @@ module.exports.routes = {
     }
   },
 
-
   // example route with params
   'GET /en/product/:id': {
     name: 'getProduct',
