@@ -15,23 +15,19 @@
   //
   // (See .eslintrc in the root directory of this Sails app for more context.)
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
   "extends": [
     "../.eslintrc"
   ],
-
   "env": {
     "browser": true,
-    "node": false
+    "node": true
   },
-
   "parserOptions": {
-    "ecmaVersion": 8
+    "ecmaVersion": 8,
+    "sourceType": "module",
     //^ If you are not using a transpiler like Babel, change this to `5`.
   },
-
   "globals": {
-
     // Allow any window globals you're relying on here; e.g.
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "SAILS_LOCALS": true,
@@ -39,7 +35,6 @@
     // "google": true,
     // ...etc.
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     // Make sure backend globals aren't indadvertently tolerated in our client-side JS:
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     "sails": false,
@@ -47,9 +42,10 @@
     // ...and any other backend globals (e.g. `"Organization": false`)
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   },
-
   "rules": {
-    "no-undef": ["error"]
+    "no-undef": [
+      "error"
+    ]
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     // ^^Note: If you've enabled the "no-undef" rule in the top level .eslintrc file, then
     // the globalIds of Sails models should also be blacklisted above under "globals".
@@ -57,5 +53,4 @@
     // simply be removed, since it'd be redundant.)
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   }
-
 }
