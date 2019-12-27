@@ -1,0 +1,59 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+
+    <h1>{{ __('section4.title') }}</h1>
+
+    <p>{{ __('section4.instructions_1') | safe }}</p>
+
+    <p>{{ __('section4.instructions_2') | safe }}
+
+    <form method="post">
+        <div class="{{ 'has-error' if errors and errors['condition_type'] }}">
+            <fieldset class="fieldset">
+                <legend class="fieldset__legend">
+                    <span aria-hidden="true" class="required">*</span>
+
+                    {{ __('section4.question') }}
+
+                    <span class="required">{{ __("required")}}</span>
+                </legend>
+
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+        
+                <div class="multiple-choice multiple-choice--radios">
+                    {% if errors and errors['condition_type'] %}
+                            {{ validationMessage(errors['condition_type'].msg, key) }}
+                        {% endif %}
+                    <div class="multiple-choice__item">
+                        <input id="condition_type_terminal" type="radio" name="condition_type" value="terminal" {% if data.condition_type == 'terminal' %} checked="checked" {% endif %} {% if errors and errors['condition_type'] %} aria-describedby="condition_type-error" aria-invalid="true" {% endif %}> <label for="condition_type_terminal">{{ __('section4.yes_terminal') | safe }}</label>
+                    </div>
+                </div>
+
+                <div class="indent-block">
+                    {{ textArea('diagnosis', 'section4.diagnosis') }}
+
+                    {{ textInput('icd_code', 'ICD-9-CM_code', { hint: 'ICD-9-CM_format' }) }}
+
+                    {{ textInput('onset_date', 'section4.onset_date', { hint: 'year_month' }) }}
+
+                    <p>{{ __('section4.terminal_instructions') | safe }}
+                </div>
+
+                <div class="multiple-choice multiple-choice--radios">
+                    <div class="multiple-choice__item">
+                        <input id="condition_type_grave" type="radio" name="condition_type" value="grave" {% if data.condition_type == 'grave' %} checked="checked" {% endif %} {% if errors and errors['condition_type'] %} aria-describedby="condition_type-error" aria-invalid="true" {% endif %}> <label for="condition_type_grave">{{ __('section4.yes_grave') | safe }}</label>
+                    </div>
+                </div>
+
+                <div class="multiple-choice multiple-choice--radios">
+                    <div class="multiple-choice__item">
+                        <input id="condition_type_none" type="radio" name="condition_type" value="none" {% if data.condition_type == 'none' %} checked="checked" {% endif %} {% if errors and errors['condition_type'] %} aria-describedby="condition_type-error" aria-invalid="true" {% endif %}> <label for="condition_type_none">{{ __('section4.neither_terminal_or_grave') }}</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        {{ formButtons() }}
+    </form>
+{% endblock %}

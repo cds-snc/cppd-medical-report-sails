@@ -1,5 +1,5 @@
 /**
- * RelationshipController
+ * ExpeditedController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
@@ -18,20 +18,20 @@ module.exports = {
       }
     }
 
-    res.view('pages/relationship');
+    res.view('pages/expedited');
   },
 
   store: function (req, res) {
-    let valid = req.validate(req, res, require('../schemas/relationship.schema'));
+    let valid = req.validate(req, res, require('../schemas/expedited.schema'));
 
     if (valid) {
       // save the model
-      req.session.medicalReport.numYearsWasPatient = req.body.numYearsWasPatient;
-      req.session.medicalReport.visitNumber = req.body.visitNumber;
-      req.session.medicalReport.lastVisitDate = req.body.lastVisitDate;
-      req.session.medicalReport.firstTreatmentDate = req.body.firstTreatmentDate;
+      req.session.medicalReport.condition_type = req.body.condition_type;
+      req.session.medicalReport.diagnosis = req.body.diagnosis;
+      req.session.medicalReport.icd_code = req.body.icd_code;
+      req.session.medicalReport.onset_date = req.body.onset_date;
 
-      res.redirect(sails.route('expedited'));
+      res.redirect(sails.route('conditions'));
     }
   }
 };
