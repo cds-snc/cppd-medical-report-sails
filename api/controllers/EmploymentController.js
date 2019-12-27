@@ -33,7 +33,7 @@ module.exports = {
       req.session.medicalReport.type_of_work = req.body.type_of_work;
       req.session.medicalReport.type_of_work_other = req.body.type_of_work_other;
 
-      res.redirect(sails.route('health'));
+      res.redirect(sails.route('declaration'));
     }
   }
 };
