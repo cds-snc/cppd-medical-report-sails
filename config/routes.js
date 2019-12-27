@@ -31,6 +31,9 @@ module.exports.routes = {
     }
   },
 
+  /**
+   * PERSONAL ROUTES
+   */
   'GET /en/personal': {
     name: 'personal',
     controller: 'PersonalController',
@@ -257,6 +260,31 @@ module.exports.routes = {
     i18n: {
       en: '/en/treatments/:id/delete',
       fr: '/fr/treatments/:id/delete'
+    }
+  },
+
+  /**
+   * HEALTH ROUTES
+   */
+  'GET /en/health': {
+    name: 'health',
+    controller: 'HealthController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/health',
+      fr: '/fr/health'
+    }
+  },
+
+  'POST /en/health': {
+    name: 'health.store',
+    controller: 'HealthController',
+    action: 'store',
+    lang: 'en',
+    i18n: {
+      en: '/en/health',
+      fr: '/fr/health'
     }
   },
 
