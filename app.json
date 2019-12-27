@@ -1,3 +1,11 @@
 {
-    "name": "cppd-medical-report-sails"
+    "name": "cppd-medical-report-starter",
+    "description": "",
+    "formation": {},
+    "addons": [],
+    "buildpacks": [
+        {
+            "url": "heroku/nodejs"
+        }
+    ]
 }
