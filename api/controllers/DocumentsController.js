@@ -16,7 +16,7 @@ module.exports = {
 
     res.view('pages/documents');
   },
-  
+
   store: function (req, res) {
     let valid = req.validate(req, res, require('../schemas/documents.schema'));
 

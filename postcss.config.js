@@ -1,7 +1,7 @@
-const cssnano = require("cssnano");
-const purgecss = require("@fullhuman/postcss-purgecss")({
+const cssnano = require('cssnano');
+const purgecss = require('@fullhuman/postcss-purgecss')({
   // Specify the paths to all of the template files in your project
-  content: ["views/**/*.njk"],
+  content: ['views/**/*.njk'],
 
   // Include any special characters you're using in this regular expression
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
@@ -9,12 +9,12 @@ const purgecss = require("@fullhuman/postcss-purgecss")({
 
 module.exports = {
   plugins: [
-    require("@csstools/postcss-sass"),
-    require("tailwindcss"),
+    require('@csstools/postcss-sass'),
+    require('tailwindcss'),
     cssnano({
-      preset: "default"
+      preset: 'default'
     }),
-    require("autoprefixer"),
-    ...(process.env.NODE_ENV === "production" ? [purgecss] : [])
+    require('autoprefixer'),
+    ...(process.env.NODE_ENV === 'production' ? [purgecss] : [])
   ]
 };

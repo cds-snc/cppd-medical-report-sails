@@ -7,12 +7,12 @@
 
 const {
   conditionReducer,
-} = require('../utils/condition.mapper')
+} = require('../utils/condition.mapper');
 
 module.exports = {
   create: function (req, res) {
-    const data = req.session.medicalReport
-    const conditionList = conditionReducer(data.conditions)
+    const data = req.session.medicalReport;
+    const conditionList = conditionReducer(data.conditions);
 
     res.view('pages/treatments/add', {
       conditionList: conditionList
