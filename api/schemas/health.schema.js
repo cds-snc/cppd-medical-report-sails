@@ -5,4 +5,4 @@ module.exports = {
       message: '^errors.overall_health_required'
     }
   },
-};
+}
