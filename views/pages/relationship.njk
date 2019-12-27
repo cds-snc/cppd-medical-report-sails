@@ -1,0 +1,39 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+
+    <h1>{{ __('section3.title') }}</h1>
+
+    <div>
+        <p>
+            {{ __('section3.intro') }}
+        </p>
+
+        <form method="post">
+
+            <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+            {{ 
+                radioButtons('numYearsWasPatient', 
+                    { 
+                        '1': 'section3.form.num_years_was_patient.opt1',
+                        '2': 'section3.form.num_years_was_patient.opt2',
+                        '3': 'section3.form.num_years_was_patient.opt3',
+                        '4': 'section3.form.num_years_was_patient.opt4'
+                    }, 
+                data.numYearsWasPatient, 
+                'section3.form.num_years_was_patient.desc',
+                errors,
+                { required: true }) 
+            }}
+            {{ textInput('visitNumber', 'section3.form.visit_number.desc', { required: true }) }}
+
+            {{ textInput('lastVisitDate', 'section3.form.last_visit_date.desc', { hint: 'YYYY-MM-DD', required: true }) }}
+
+            {{ textInput('firstTreatmentDate', 'section3.form.first_treatment_date.desc', { hint: 'YYYY-MM-DD', required: true }) }}
+
+            {{ formButtons() }}
+        </form>
+    </div>
+
+{% endblock %}

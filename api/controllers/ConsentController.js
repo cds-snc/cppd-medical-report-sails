@@ -30,7 +30,7 @@ module.exports = {
       req.session.medicalReport.witnessPhone = req.body.witnessPhone;
       req.session.medicalReport.witnessSignature = req.body.witnessSignature;
 
-      res.redirect(sails.route('conditions'));
+      res.redirect(sails.route('relationship'));
     }
   }
 };
