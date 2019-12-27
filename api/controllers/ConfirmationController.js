@@ -19,7 +19,6 @@ module.exports = {
       fs.writeFileSync('sessions/' + filename, data)
       req.session.medicalReport = {};
 
-      res.redirect(route('start'));
+      res.redirect(sails.route('start'));
   }
-
 };
