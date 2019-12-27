@@ -339,7 +339,7 @@ module.exports.routes = {
   },
 
   /**
-   * CONSENT ROUTES
+   * RELATIONSHIP ROUTES
    */
   'GET /en/relationship': {
     name: 'relationship',
