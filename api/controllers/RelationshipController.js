@@ -31,7 +31,7 @@ module.exports = {
       req.session.medicalReport.lastVisitDate = req.body.lastVisitDate;
       req.session.medicalReport.firstTreatmentDate = req.body.firstTreatmentDate;
 
-      res.redirect(sails.route('conditions'));
+      res.redirect(sails.route('expedited'));
     }
   }
 };
