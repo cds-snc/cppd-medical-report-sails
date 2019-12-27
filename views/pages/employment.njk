@@ -1,0 +1,31 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+
+    <h1>{{ __('section6.title') }}</h1>
+
+    <div>
+        <p>
+            {{ __('section6.instructions') }}
+        </p>
+
+        <form method="post">
+            <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+            {{ radioButtons('stop_work', { '1':'Yes','2':'No','3':'section6.stop_work_not_discussed'}, data.stop_work, 'section6.stop_work_question', errors) }}
+
+            {{ textInput('date_stopped_work', 'section6.stop_work_recommended', { hint: 'year_month_date_format', required: true }) }}
+
+            {{ radioButtons('return_to_work', { '1':'section6.return_work_yes','2':'section6.return_work_no','3':'section6.return_work_unknown'}, data.return_to_work, 'section6.return_work_question', errors) }}
+
+            {{ radioButtons('return_to_work_timeframe', { '1':'section6.return_work_6_to_12_months','2':'section6.return_work_12_to_24_months','3':'section6.return_work_more_than_24_months','4':'Unknown'}, data.return_to_work_timeframe, 'section6.return_work_timeframe_question', errors) }}
+
+            {{ radioButtons('type_of_work', { '1':'section6.type_work_usual','2':'section6.type_work_modified','3':'section6.type_work_training','4':'section6.type_work_other'}, data.type_of_work, 'section6.type_work_question', errors) }}
+
+            {{ textInput('type_of_work_other', 'section6.type_work_question') }}
+
+            {{ formButtons() }}
+        </form>
+    </div>
+
+{% endblock %}
