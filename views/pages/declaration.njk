@@ -1,0 +1,26 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+
+    <h1>{{ __('section9.title') }}</h1>
+
+    <div>
+        <p>
+            {{ __('section9.confirm_statement_1') }}
+        </p>
+
+        <form method="post">
+            <input type="hidden" name="_csrf" value="{{ _csrf }}">
+            {{ radioButtons('i_am_a', { '1':'section9.confirm_statement_ccfp','other':'section9.confirm_statement_other', '2':'section9.confirm_statement_np', '3':'section9.confirm_statement_rn'}, data.i_am_a, 'section9.confirm_statement_2', errors, { required: true }) }}
+
+            {{ textInput('other_specify', 'section9.other_specify')}}
+
+            {{ textInput('name', 'Name', { required: true }) }}
+            {{ textInput('date', 'Date', { hint: 'year_month_day_format', required: true }) }}
+            {{ textArea('physician_address', 'section9.address_and_phone', { required: true}) }}
+
+            {{ formButtons() }}
+        </form>
+    </div>
+
+{% endblock %}

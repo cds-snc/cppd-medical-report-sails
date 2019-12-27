@@ -413,6 +413,56 @@ module.exports.routes = {
     }
   },
 
+  /**
+   * DECLARATION ROUTES
+   */
+  'GET /en/declaration': {
+    name: 'declaration',
+    controller: 'DeclarationController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/declaration',
+      fr: '/fr/declaration'
+    }
+  },
+
+  'POST /en/declaration': {
+    name: 'declaration.store',
+    controller: 'DeclarationController',
+    action: 'store',
+    lang: 'en',
+    i18n: {
+      en: '/en/declaration',
+      fr: '/fr/declaration'
+    }
+  },
+
+  /**
+   * CONFIRMATION ROUTES
+   */
+  'GET /en/confirmation': {
+    name: 'confirmation',
+    controller: 'ConfirmationController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/confirmation',
+      fr: '/fr/confirmation'
+    }
+  },
+
+  'POST /en/confirmation': {
+    name: 'confirmation.store',
+    controller: 'ConfirmationController',
+    action: 'store',
+    lang: 'en',
+    i18n: {
+      en: '/en/confirmation',
+      fr: '/fr/confirmation'
+    }
+  },
+
   // example route with params
   'GET /en/product/:id': {
     name: 'getProduct',
