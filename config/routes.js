@@ -452,6 +452,17 @@ module.exports.routes = {
     }
   },
 
+  'POST /en/confirmation': {
+    name: 'confirmation.store',
+    controller: 'ConfirmationController',
+    action: 'store',
+    lang: 'en',
+    i18n: {
+      en: '/en/confirmation',
+      fr: '/fr/confirmation'
+    }
+  },
+
   // example route with params
   'GET /en/product/:id': {
     name: 'getProduct',
