@@ -11,7 +11,7 @@
 
         <form method="post">
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
-            {{ radioButtons('section9.confirm_statement_2', { '1':'section9.confirm_statement_ccfp','other':'section9.confirm_statement_other', '2':'section9.confirm_statement_np', '3':'section9.confirm_statement_rn'}, data.i_am_a, 'section9.confirm_statement_2', errors, { required: true }) }}
+            {{ radioButtons('i_am_a', { '1':'section9.confirm_statement_ccfp','other':'section9.confirm_statement_other', '2':'section9.confirm_statement_np', '3':'section9.confirm_statement_rn'}, data.i_am_a, 'section9.confirm_statement_2', errors, { required: true }) }}
 
             {{ textInput('other_specify', 'section9.other_specify')}}
 
