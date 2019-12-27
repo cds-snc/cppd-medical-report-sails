@@ -66,7 +66,8 @@
   "nodemonConfig": {
     "ext": "js,json,scss",
     "ignore": [
-      "config/locales/*.json"
+      "config/locales/*.json",
+      "sessions/*.json"
     ]
   },
   "author": "samojled",
