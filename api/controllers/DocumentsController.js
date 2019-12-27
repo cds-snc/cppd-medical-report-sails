@@ -1,5 +1,5 @@
 /**
- * HealthController
+ * DocumentsController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
@@ -14,17 +14,16 @@ module.exports = {
       res.locals.data = req.session.medicalReport;
     }
 
-    res.view('pages/health');
+    res.view('pages/documents');
   },
 
   store: function (req, res) {
-    let valid = req.validate(req, res, require('../schemas/health.schema'));
+    let valid = req.validate(req, res, require('../schemas/documents.schema'));
 
     if (valid) {
       // save the model
-      req.session.medicalReport.overall_health = req.body.overall_health;
-      res.redirect(sails.route('documents'));
+      req.session.medicalReport.supporting_documents = req.body.supporting_documents;
+      res.redirect(sails.route('conditions'));
     }
   }
-
 };

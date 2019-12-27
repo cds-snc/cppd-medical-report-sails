@@ -35,13 +35,13 @@ module.exports.views = {
    *                                                                          *
    ***************************************************************************/
 
-  extension: "njk",
+  extension: 'njk',
 
   getRenderFn: () => {
-    const consolidate = require("consolidate");
-    const nunjucks = require("nunjucks");
+    const consolidate = require('consolidate');
+    const nunjucks = require('nunjucks');
 
-    nunjucks.configure(["views", "views/macros"], {
+    nunjucks.configure(['views', 'views/macros'], {
       autoescape: true
     });
 

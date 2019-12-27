@@ -7,7 +7,7 @@
 
 module.exports = {
   delete: function (req, res) {
-    const index = req.params.id - 1 // array is zero-indexed
+    const index = req.params.id - 1; // array is zero-indexed
 
     req.session.medicalReport.conditions.splice(index, 1);
 

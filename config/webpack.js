@@ -1,13 +1,14 @@
-const path = require("path");
-const webpack = require("webpack");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports.webpack = {
   config: [
     {
-      mode: "development",
+      mode: 'development',
 
       plugins: [
         new webpack.ProgressPlugin(),
@@ -20,8 +21,8 @@ module.exports.webpack = {
         // folders to this list and they'll be copied as well.
         new CopyWebpackPlugin([
           {
-            from: "./assets/img",
-            to: path.resolve(__dirname, "..", ".tmp", "public", "img")
+            from: './assets/img',
+            to: path.resolve(__dirname, '..', '.tmp', 'public', 'img')
           }
           /* {
             from: "./assets/fonts",
@@ -29,40 +30,50 @@ module.exports.webpack = {
           } */
         ]),
         new MiniCssExtractPlugin({
-          filename: "./assets/styles/app.css"
-        })
+          filename: './assets/styles/app.css'
+        }),
+        // make sure to include the plugin!
+        new VueLoaderPlugin(),
       ],
-
+      resolve: {
+        alias: {
+          vue$: 'vue/dist/vue.esm.js', // Use the full build
+        },
+      },
       entry: {
-        app: "./assets/js/app.js",
-        styles: "./assets/styles/app.scss"
+        app: './assets/js/app.js',
+        styles: './assets/styles/app.scss'
       },
       output: {
-        filename: "assets/js/[name].js",
-        path: path.resolve(__dirname, "../.tmp/public/build")
+        filename: 'assets/js/[name].js',
+        path: path.resolve(__dirname, '../.tmp/public/build')
       },
       module: {
         rules: [
           {
             test: /\.scss$/,
-            use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
           },
           {
             test: /\.(js|jsx)$/,
-            include: [path.resolve(__dirname, "src")],
-            loader: "babel-loader",
+            include: [path.resolve(__dirname, 'src')],
+            loader: 'babel-loader',
             options: {
-              plugins: ["syntax-dynamic-import"],
+              plugins: ['syntax-dynamic-import'],
               presets: [
                 [
-                  "@babel/preset-env",
+                  '@babel/preset-env',
                   {
                     modules: false
                   }
                 ]
               ]
             }
-          }
+          },
+          {
+            test: /\.vue$/,
+            loader: 'vue-loader',
+          },
         ]
       }
     }

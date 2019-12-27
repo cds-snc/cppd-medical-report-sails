@@ -6,10 +6,10 @@
  */
 
 module.exports = {
-    show: function (req, res) {
-        res.view('pages/product/view', {
-            params: req.params
-        });
-    }
+  show: function (req, res) {
+    res.view('pages/product/view', {
+      params: req.params
+    });
+  }
 };
 

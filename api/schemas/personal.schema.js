@@ -29,14 +29,14 @@ module.exports = {
         validateDateExists: {
           message: '^Birthdate is not a valid date'
         }
-      }
+      };
     }
     return {
       presence: {
         allowEmpty: false,
         message: '^Birthdate is required'
       },
-    }
+    };
   },
   address: {
     presence: {
@@ -51,14 +51,14 @@ module.exports = {
           pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
           message: '^Telephone is incorrectly formatted'
         }
-      }
+      };
     }
     return {
       presence: {
         allowEmpty: false,
         message: '^Telephone is required'
       },
-    }
+    };
   },
   alternate_telephone: function (value) {
     if (value) { // makes it optional
@@ -67,7 +67,7 @@ module.exports = {
           pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
           message: '^Alternate telephone is incorrectly formatted'
         }
-      }
+      };
     }
   },
   contact_time: {
@@ -79,4 +79,4 @@ module.exports = {
       message: '^Invalid selection'
     }
   }
-}
+};

@@ -39,4 +39,4 @@ module.exports = {
   symptoms_occur_unknown: {
     // conditional
   }
-}
+};

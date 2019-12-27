@@ -7,12 +7,12 @@
 
 const {
   conditionReducer,
-} = require('../utils/condition.mapper')
+} = require('../utils/condition.mapper');
 
 module.exports = {
   edit: function (req, res) {
-    const data = req.session.medicalReport
-    const conditionList = conditionReducer(data.conditions)
+    const data = req.session.medicalReport;
+    const conditionList = conditionReducer(data.conditions);
 
     // redirect back if there are no treatments
     if (!_.has(req.session.medicalReport, 'treatments')) {

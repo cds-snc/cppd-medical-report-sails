@@ -7,6 +7,6 @@
 
 module.exports = {
   index: function(req, res) {
-    res.view("pages/start");
+    res.view('pages/start');
   }
 };

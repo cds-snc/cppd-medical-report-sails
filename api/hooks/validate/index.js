@@ -26,7 +26,7 @@ module.exports = function defineValidateHook(sails) {
       sails.validate = (req, res, validations) => {
         let errors = validate(req.body, validations);
 
-        /** 
+        /**
          * if there are validation errors, flash them along
          * with the data to the session and redirect back
          */
@@ -36,7 +36,7 @@ module.exports = function defineValidateHook(sails) {
           return res.redirect('back');
         }
         return true;
-      }
+      };
 
       /**
        * Bind the validate method to the req object so it's
@@ -44,12 +44,12 @@ module.exports = function defineValidateHook(sails) {
        */
       sails.on('router:before', () => {
         sails.router.bind('all /*', (req, res, next) => {
-          req.validate = sails.validate
+          req.validate = sails.validate;
 
-          return next()
-        })
-      })
-      return done()
+          return next();
+        });
+      });
+      return done();
     }
   };
 };
