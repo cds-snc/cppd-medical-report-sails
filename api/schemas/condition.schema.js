@@ -50,7 +50,7 @@ module.exports = {
       return {
         presence: {
           allowEmpty: false,
-          message: '^errors.symptoms_occur_uknown_required'
+          message: '^errors.symptoms_occur_unknown_required'
         }
       }
     }
