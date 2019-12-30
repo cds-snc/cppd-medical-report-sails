@@ -7,10 +7,6 @@
 
 module.exports = {
   create: function (req, res) {
-    if (!_.has(req.session, 'medicalReport')) {
-      return res.redirect(sails.route('start'));
-    }
-
     res.view('pages/conditions/add', {
       data: req.session.medicalReport
     });

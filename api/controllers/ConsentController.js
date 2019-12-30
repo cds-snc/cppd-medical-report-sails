@@ -7,10 +7,6 @@
 
 module.exports = {
   index: function (req, res) {
-    if (!_.has(req.session, 'medicalReport')) {
-      return res.redirect(sails.route('start'));
-    }
-
     let data = req.session.medicalReport;
 
     /**

@@ -8,6 +8,9 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 
+const defaultPolicies = ['localize', 'route', 'flash'];
+const defaultPlusReportExists = ['localize', 'route', 'flash', 'reportExists'];
+
 module.exports.policies = {
   /***************************************************************************
    *                                                                          *
@@ -17,5 +20,57 @@ module.exports.policies = {
    ***************************************************************************/
 
   // '*': true,
-  '*': ['localize', 'route', 'flash']
+  '*': defaultPolicies,
+
+  ConditionsController: {
+    'index': defaultPlusReportExists,
+  },
+  
+  AddConditionController: {
+    'create': defaultPlusReportExists,
+  },
+
+  AddMedicationController: {
+    'create': defaultPlusReportExists,
+  },
+
+  AddTreatmentController: {
+    'create': defaultPlusReportExists,
+  },
+
+  ConsentController: {
+    'index': defaultPlusReportExists,
+  },
+
+  DeclarationController: {
+    'index': defaultPlusReportExists,
+  },
+
+  DocumentsController: {
+    'index': defaultPlusReportExists,
+  },
+
+  EmploymentController: {
+    'index': defaultPlusReportExists,
+  },
+
+  ExpeditedController: {
+    'index': defaultPlusReportExists,
+  },
+
+  HealthController: {
+    'index': defaultPlusReportExists,
+  },
+
+  MedicationsController: {
+    'index': defaultPlusReportExists,
+  },
+
+  RelationshipController: {
+    'index': defaultPlusReportExists,
+  },
+
+  TreatmentsController: {
+    'index': defaultPlusReportExists,
+  },
 };
