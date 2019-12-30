@@ -7,4 +7,5 @@ module.exports = function (req, res, next) {
   if (!_.has(req.session, 'medicalReport')) {
     return res.redirect(sails.route('start'));
   }
+  next();
 }
