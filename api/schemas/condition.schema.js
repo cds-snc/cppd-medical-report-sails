@@ -22,8 +22,16 @@ module.exports = {
       message: '^errors.condition_outlook_required'
     }
   },
-  condition_outlook_unknown: {
-    // conditional
+  condition_outlook_unknown: function (value, attributes) {
+    const condition_outlook = attributes.condition_outlook;
+    if (condition_outlook && condition_outlook === '4') {
+      return {
+        presence: {
+          allowEmpty: false,
+          message: '^errors.condition_outlook_unknown'
+        }
+      }
+    }
   },
   condition_last: {
     presence: {
@@ -36,7 +44,15 @@ module.exports = {
       message: '^errors.symptoms_occur_required'
     }
   },
-  symptoms_occur_unknown: {
-    // conditional
+  symptoms_occur_unknown: function (value, attributes) {
+    const symptoms_occur = attributes.symptoms_occur;
+    if (symptoms_occur && symptoms_occur === '3') {
+      return {
+        presence: {
+          allowEmpty: false,
+          message: '^errors.symptoms_occur_uknown_required'
+        }
+      }
+    }
   }
 };
