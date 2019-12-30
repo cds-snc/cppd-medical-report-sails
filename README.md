@@ -30,11 +30,24 @@ Note:  Generators are usually run using the globally-installed `sails` CLI (comm
 
 These instructions are optimized for development at the moment, rather than production runs.
 
-### Build
+### This App Only
+
+#### Build
 
 1. Navigate into a cloned copy of this repo
 1. `docker build -t cdssnc/cppd-medical-report-sails .`
 
-### Run
+#### Run
 
 1. `docker run -it --rm -p 1337:1337 cdssnc/cppd-medical-report-sails`
+
+## Dev Container + Database (Docker Compose)
+
+This maps your local files into a Docker container and spins up a PostgreSQL database. This app runs on port `1337` and the database at port `5432` and username `postgres`, both are accessible at `localhost`.
+
+### Run
+
+1. Launch the application `docker compose up`
+1. Setup the database: `npm run db:init`
+
+When you want to stop both, you can hit `CTRL` + `D` in the terminal that launched it.

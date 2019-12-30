@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - '1337:1337'
+    volumes:
+      - .:/cppd-medical-report-sails
+    links:
+      - db
+  db:
+    image: postgres:12
+    ports:
+      - '5432:5432'
+
+# Documentation: https://docs.docker.com/compose/
