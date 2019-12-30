@@ -34,12 +34,12 @@ module.exports.datastores = {
 
   default: {
     user: 'postgres',
-    password: '',
+    password: null,
     database: 'postgres',
     dialect: 'postgres',
     options: {
       dialect: 'postgres',
-      host   : 'localhost',
+      host   : 'db',
       port   : 5432,
       logging: console.log        // or specify sails log level to use ('info', 'warn', 'verbose', etc)
     }

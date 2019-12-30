@@ -3,7 +3,7 @@
     "username": "postgres",
     "password": null,
     "database": "postgres",
-    "host": "localhost",
+    "host": "db",
     "dialect": "postgres",
     "operatorsAliases": "false"
   },
@@ -11,7 +11,7 @@
     "username": "postgres",
     "password": null,
     "database": "postgres",
-    "host": "localhost",
+    "host": "db",
     "dialect": "postgres",
     "operatorsAliases": "false"
   }
