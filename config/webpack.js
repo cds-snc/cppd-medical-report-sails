@@ -42,7 +42,8 @@ module.exports.webpack = {
       },
       entry: {
         app: './assets/js/app.js',
-        styles: './assets/styles/app.scss'
+        styles: './assets/styles/app.scss',
+        condition: './assets/js/pages/condition.js'
       },
       output: {
         filename: 'assets/js/[name].js',
