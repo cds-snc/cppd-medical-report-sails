@@ -24,6 +24,8 @@ module.exports.session = {
    * Set the Sesssion Adapter using the env variable (defaults to null|memory)
    */
   adapter: process.env.SESSION_ADAPTER || null,
+  
+  url: process.env.SESSION_ADAPTER_URL || 'redis://localhost:6379',
 
   /***************************************************************************
   *                                                                          *
