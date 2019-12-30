@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: PORT=80 sails lift
+  web: sails lift --port=$PORT
