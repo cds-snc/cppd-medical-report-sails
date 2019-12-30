@@ -7,14 +7,23 @@
 
 module.exports = {
   index: function (req, res) {
-    /**
-     * If there is a medical report in the session, load it
-     */
-    if (req.session.medicalReport) {
-      res.locals.data = req.session.medicalReport;
+    if (!_.has(req.session, 'medicalReport')) {
+      return res.redirect(sails.route('start'));
     }
 
-    res.view('pages/consent');
+    let data = req.session.medicalReport;
+
+    /**
+     * If we're returning to the form with flash data in locals,
+     * merge it with the rest of the medicalReport in the session.
+     */
+    if (res.locals.data) {
+      data = _.merge(res.locals.data, req.session.medicalReport);
+    }
+
+    res.view('pages/consent', {
+      data: data
+    });
   },
 
   store: function (req, res) {

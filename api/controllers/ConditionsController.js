@@ -7,12 +7,16 @@
 
 module.exports = {
   index: function (req, res) {
-    if (!_.has(req.session.medicalReport, 'conditions')) {
-      res.redirect(sails.route('conditions.add'));
-    } else {
-      res.locals.data = req.session.medicalReport;
-
-      res.view('pages/conditions/index');
+    if (!_.has(req.session, 'medicalReport')) {
+      return res.redirect(sails.route('start'));
     }
+
+    if (!_.has(req.session.medicalReport, 'conditions')) {
+      return res.redirect(sails.route('conditions.add'));
+    }
+
+    res.view('pages/conditions/index',{
+      data: req.session.medicalReport
+    });
   }
 };

@@ -12,12 +12,17 @@ const {
 
 module.exports = {
   create: function (req, res) {
+    if (!_.has(req.session, 'medicalReport')) {
+      return res.redirect(sails.route('start'));
+    }
+
     const data = req.session.medicalReport;
     const conditionList = conditionReducer(data.conditions);
 
     res.view('pages/medications/add', {
       conditionList: conditionList,
-      oneValue: oneAttribute(conditionList)
+      oneValue: oneAttribute(conditionList),
+      data: data,
     });
   },
 
