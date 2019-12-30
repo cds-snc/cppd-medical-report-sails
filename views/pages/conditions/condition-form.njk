@@ -18,6 +18,6 @@
     {{ radioButtons('symptoms_occur', { '1':'add_condition.symptoms_occur_periodically', '2':'add_condition.symptoms_occur_continuously', '3':'add_condition.symptoms_occur_unknown'}, condition.symptoms_occur, 'add_condition.symptoms_occur', errors, { required: true }) }}
 
     <div id="unknown_symptoms_occur_details" class="ml-4">
-        {{ textArea('symptoms_occur_uknown', 'add_condition.symptoms_occur_unknown_label', { required: true, value: condition.symptoms_occur_uknown }) }}
+        {{ textArea('symptoms_occur_unknown', 'add_condition.symptoms_occur_unknown_label', { required: true, value: condition.symptoms_occur_unknown }) }}
     </div>
 {% endmacro %}

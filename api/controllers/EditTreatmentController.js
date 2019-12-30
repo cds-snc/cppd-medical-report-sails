@@ -7,6 +7,7 @@
 
 const {
   conditionReducer,
+  oneAttribute,
 } = require('../utils/condition.mapper');
 
 module.exports = {
@@ -28,7 +29,8 @@ module.exports = {
     res.view('pages/treatments/edit', {
       id: req.params.id,
       treatment: treatment,
-      conditionList: conditionList
+      conditionList: conditionList,
+      oneValue: oneAttribute(conditionList)
     });
   },
 

@@ -9,7 +9,7 @@
  *       name_of_condition: "",
  *       symptoms_began: "",
  *       symptoms_occur: "",
- *       symptoms_occur_uknown: ""
+ *       symptoms_occur_unknown: ""
  *    }
  * ]
  * ... and returns an object like so:

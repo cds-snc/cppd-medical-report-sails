@@ -223,7 +223,7 @@
   "errors.supporting_documents_required": "erreur",
   "errors.symptoms_began.length": "erreur",
   "errors.symptoms_occur_required": "erreur",
-  "errors.symptoms_occur_uknown_required": "erreur",
+  "errors.symptoms_occur_unknown_required": "erreur",
   "errors.treatment_end_date.length": "errors.treatment_end_date.length",
   "errors.treatment_frequency.length": "errors.treatment_frequency.length",
   "errors.treatment_results.length": "errors.treatment_results.length",

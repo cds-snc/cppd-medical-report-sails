@@ -223,7 +223,7 @@
   "errors.supporting_documents_required": "Supporting Documents is required",
   "errors.symptoms_began.length": "Symptoms began is required",
   "errors.symptoms_occur_required": "Symptoms occur is required",
-  "errors.symptoms_occur_uknown_required": "Tell us why the frequency of symptoms is unknown",
+  "errors.symptoms_occur_unknown_required": "Tell us why the frequency of symptoms is unknown",
   "errors.treatment_end_date.length": "Treatment end date is required",
   "errors.treatment_frequency.length": "Treatment Frequency is required",
   "errors.treatment_results.length": "Treatment results is required",
