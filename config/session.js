@@ -20,6 +20,10 @@ module.exports.session = {
   ***************************************************************************/
   secret: '75ecc460b1d5d821b1549f98641fac3d',
 
+  /**
+   * Set the Sesssion Adapter using the env variable (defaults to null|memory)
+   */
+  adapter: process.env.SESSION_ADAPTER || null,
 
   /***************************************************************************
   *                                                                          *
