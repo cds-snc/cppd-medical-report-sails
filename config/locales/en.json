@@ -423,5 +423,12 @@
   "write your Social Insurance Number at the top of each page of this Medical Report.": false,
   "year_month": "YYYY-MM",
   "year_month_date_format": "YYYY-MM-DD",
-  "year_month_day_format": "YYYY-MM-DD"
+  "year_month_day_format": "YYYY-MM-DD",
+  "Visit number is not a number": "Visit number is not a number",
+  "Social Insurance Number is required": "Social Insurance Number is required",
+  "Birthdate is required": "Birthdate is required",
+  "Must pick an option": "Must pick an option",
+  "You must enter how many times the patient has visited your office in the past 12 months.": "You must enter how many times the patient has visited your office in the past 12 months.",
+  "Date of last office visit is required": "Date of last office visit is required",
+  "Date of first treatment is required": "Date of first treatment is required"
 }
