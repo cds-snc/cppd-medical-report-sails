@@ -1,17 +1,17 @@
 {% macro medicationForm(medication) %}
 
-{{ textInput('medication_name', 'form.medication_name.desc', {required: true, "autocomplete": "off", value: medication.medication_name }) }}
-{{ textInput('medication_dosage', 'form.medication_dosage.desc', {required: true, "autocomplete": "off", value: medication.medication_dosage }) }}
-{{ textInput('medication_frequency', 'form.medication_frequency.desc', {required: true, hint: 'form.medication_frequency.hint', "autocomplete": "off", value: medication.medication_frequency }) }}
-{{ textInput('medication_start_date', 'form.medication_start_date.text', { required: true, hint: 'form.medication_start_date.hint', "autocomplete": "off", value: medication.medication_start_date })}}
-{{ textInput('medication_end_date', 'form.medication_end_date.text', {required: true, hint: 'form.medication_end_date.hint', "autocomplete": "off", value: medication.medication_end_date })}}
+{{ textInput('medicationName', 'form.medication_name.desc', {required: true, "autocomplete": "off", value: medication.medicationName }) }}
+{{ textInput('medicationDosage', 'form.medication_dosage.desc', {required: true, "autocomplete": "off", value: medication.medicationDosage }) }}
+{{ textInput('medicationFrequency', 'form.medication_frequency.desc', {required: true, hint: 'form.medication_frequency.hint', "autocomplete": "off", value: medication.medicationFrequency }) }}
+{{ textInput('medicationStartDate', 'form.medication_start_date.text', { required: true, hint: 'form.medication_start_date.hint', "autocomplete": "off", value: medication.medicationStartDate })}}
+{{ textInput('medicationEndDate', 'form.medication_end_date.text', {required: true, hint: 'form.medication_end_date.hint', "autocomplete": "off", value: medication.medicationEndDate })}}
 
 {% if oneValue %}
     {% set selectedValues = ["0"] %}
 {% else %}
-    {% set selectedValues = medication.medication_treated_condition %}
+    {% set selectedValues = medication.medicationTreatedDondition %}
 {% endif %}
-{{ rawCheckBoxes('medication_treated_condition', 
+{{ rawCheckBoxes('medicationTreatedCondition', 
     conditionList,
     selectedValues, 
     'form.medication_treated_conditions.question',{},
@@ -19,9 +19,9 @@
 }}
 
 {{ textArea(
-    'medication_results',
+    'medicationResults',
     'form.medicaiton_results.desc',
-    { required: true, hint: 'form.medication_results.hint', value: medication.medication_results }
+    { required: true, hint: 'form.medication_results.hint', value: medication.medicationResults }
 ) }}
 
 {% endmacro %}
