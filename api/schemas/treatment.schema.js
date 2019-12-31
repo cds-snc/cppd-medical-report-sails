@@ -1,36 +1,36 @@
 module.exports = {
-  treatment_type: {
+  treatmentType: {
     presence: {
       allowEmpty: false,
       message: '^errors.treatment_type.length'
     },
   },
-  treatment_frequency: {
+  treatmentFrequency: {
     presence: {
       message: '^errors.treatment_frequency.length',
       allowEmpty: false,
     },
   },
-  treatment_start_date: {
+  treatmentStartDate: {
     presence: {
       message: '^errors.treatment_start_date.length',
       allowEmpty: false,
     },
   },
-  treatment_end_date: {
+  treatmentEndDate: {
     presence: {
       message: '^errors.treatment_end_date.length',
       allowEmpty: false,
     },
   },
   // DOUBLE CHECK THIS VALIDATION RULE
-  treatment_treated_condition: {
+  treatmentTreatedCondition: {
     presence: {
       message: '^errors.treatment_treated_condition.is_checked',
       allowEmpty: false
     }
   },
-  treatment_results: {
+  treatmentResults: {
     presence: {
       message: '^errors.treatment_results.length',
       allowEmpty: false

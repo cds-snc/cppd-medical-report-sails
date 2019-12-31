@@ -9,8 +9,8 @@
         {% for treatment in data.treatments %}  
             <div class="flex border-t border-b">
                 <div class="w-1/2">
-                    <p>{{ treatment.treatment_type }}</p>
-                    <p class="text-base">{{ treatment.treatment_start_date }}</p>
+                    <p>{{ treatment.treatmentType }}</p>
+                    <p class="text-base">{{ treatment.treatmentStartDate }}</p>
                 </div>
                 <div class="w-1/2">
                     <a href="{{ route('treatments.edit', { id: loop.index }) }}" class="text-sm">
