@@ -27,9 +27,8 @@ module.exports = {
 
     if (valid) {
       // save the model
-      req.session.medicalReport.overall_health = req.body.overall_health;
+      req.session.medicalReport.overallHealth = req.body.overallHealth;
       res.redirect(sails.route('documents'));
     }
   }
-
 };
