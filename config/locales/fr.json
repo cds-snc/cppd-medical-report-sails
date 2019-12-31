@@ -428,5 +428,6 @@
   "You must enter how many times the patient has visited your office in the past 12 months.": "You must enter how many times the patient has visited your office in the past 12 months.",
   "Visit number is not a number": "Visit number is not a number",
   "Date of last office visit is required": "Date of last office visit is required",
-  "Date of first treatment is required": "Date of first treatment is required"
+  "Date of first treatment is required": "Date of first treatment is required",
+  "applicantSectionA.title": "FR Section A"
 }

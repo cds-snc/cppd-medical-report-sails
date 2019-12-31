@@ -70,3 +70,5 @@ When you want to stop both, you can hit `CTRL` + `D` in the terminal that launch
     1. Change the values to correspond to your newly created files
 1. In your newly created view, add `<p>Hello Canada</p>` to the `content` block
 1. Start the server (`npm run dev`) and see if you can get to your new route's index
+1. Code up your view, replace the `Hello Canada` text
+    1. As you go, add translation keys to `config/locales/en.json` and `config/locales/fr.json`

@@ -430,5 +430,6 @@
   "Must pick an option": "Must pick an option",
   "You must enter how many times the patient has visited your office in the past 12 months.": "You must enter how many times the patient has visited your office in the past 12 months.",
   "Date of last office visit is required": "Date of last office visit is required",
-  "Date of first treatment is required": "Date of first treatment is required"
+  "Date of first treatment is required": "Date of first treatment is required",
+  "applicantSectionA.title": "Section A"
 }

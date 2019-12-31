@@ -1,5 +1,12 @@
 {% extends "layouts/layout.njk" %}
 
 {% block content %}
-    <p>Hello Canada</p>
+    <h1>{{ __('applicantSectionA.title') }}</h1>
+
+    <form action="{{ route('applicantSectionA.store') }}" method="post">
+
+        {{ textInput('social', 'section1.sin', { hint: 'section1.sin_example', class: "w-3-4", required: true }) }}
+
+    </form>
+
 {% endblock %}
