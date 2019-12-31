@@ -21,14 +21,14 @@ module.exports = {
         validateDateExists: {
           message: '^Date of last office visit is not a valid date'
         }
-      }
+      };
     }
     return {
       presence: {
         allowEmpty: false,
         message: '^Date of last office visit is required'
       },
-    }
+    };
   },
   firstTreatmentDate: function (value) {
     if (value) {
@@ -39,13 +39,13 @@ module.exports = {
         validateDateExists: {
           message: '^Date of first treatment is not a valid date'
         }
-      }
+      };
     }
     return {
       presence: {
         allowEmpty: false,
         message: '^Date of first treatment is required'
       },
-    }
+    };
   }
-}
+};

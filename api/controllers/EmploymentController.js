@@ -21,7 +21,7 @@ module.exports = {
       data: data
     });
   },
-  
+
   store: function (req, res) {
     let valid = req.validate(req, res, require('../schemas/employment.schema'));
 

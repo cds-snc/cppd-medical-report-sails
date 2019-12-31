@@ -11,14 +11,14 @@ module.exports = {
   },
 
   store: function (req, res) {
-    const fs = require('fs')
-      const data = JSON.stringify(req.session.medicalReport)
+    const fs = require('fs');
+    const data = JSON.stringify(req.session.medicalReport);
 
-      const filename = Date.now() + '.json'
+    const filename = Date.now() + '.json';
 
-      fs.writeFileSync('sessions/' + filename, data)
-      req.session.medicalReport = {};
+    fs.writeFileSync('sessions/' + filename, data);
+    req.session.medicalReport = {};
 
-      res.redirect(sails.route('start'));
+    res.redirect(sails.route('start'));
   }
 };

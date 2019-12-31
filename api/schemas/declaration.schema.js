@@ -13,7 +13,7 @@ module.exports = {
           message: '^Other is required if Other is selected',
           allowEmpty: false
         }
-      }
+      };
     }
   },
   name: {
@@ -31,14 +31,14 @@ module.exports = {
         validateDateExists: {
           message: '^Date is not a valid date'
         }
-      }
+      };
     }
     return {
       presence: {
         allowEmpty: false,
         message: '^Date is required'
       },
-    }
+    };
   },
   physicianAddress: {
     presence: {
@@ -46,4 +46,4 @@ module.exports = {
       allowEmpty: false,
     },
   }
-}
+};

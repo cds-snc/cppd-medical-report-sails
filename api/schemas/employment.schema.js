@@ -7,7 +7,7 @@ module.exports = {
   },
   dateStoppedWork: function (value, attributes) {
     const stopWork = attributes.stopWork;
-    if (stopWork && stopWork === '1') { 
+    if (stopWork && stopWork === '1') {
       if (value) {
         return {
           validateDateFormat: {
@@ -16,14 +16,14 @@ module.exports = {
           validateDateExists: {
             message: '^Stop work date is not a valid date'
           }
-        }
+        };
       }
       return {
         presence: {
           allowEmpty: false,
           message: '^Stop work date is required if stop work is selected'
         },
-      }
+      };
     }
   },
   returnToWork: {
@@ -40,7 +40,7 @@ module.exports = {
           allowEmpty: false,
           message: '^Return to work timeframe is required if return to work is yes'
         },
-      }
+      };
     }
   },
   typeOfWork: function (value, attributes) {
@@ -51,7 +51,7 @@ module.exports = {
           allowEmpty: false,
           message: '^Type of work is required if return to work is yes'
         },
-      }
+      };
     }
   },
   typeOfWorkOther: function (value, attributes) {
@@ -62,7 +62,7 @@ module.exports = {
           allowEmpty: false,
           message: '^Other type of work is required if Other selected'
         },
-      }
+      };
     }
   },
-}
+};
