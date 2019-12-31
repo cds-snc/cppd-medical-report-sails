@@ -27,11 +27,11 @@ module.exports = {
 
     if (valid) {
       // save the model
-      req.session.medicalReport.i_am_a = req.body.i_am_a;
-      req.session.medicalReport.other_specify = req.body.other_specify;
+      req.session.medicalReport.practitionerType = req.body.practitionerType;
+      req.session.medicalReport.otherSpecify = req.body.otherSpecify;
       req.session.medicalReport.name = req.body.name;
       req.session.medicalReport.date = req.body.date;
-      req.session.medicalReport.physician_address = req.body.physician_address;
+      req.session.medicalReport.physicianAddress = req.body.physicianAddress;
 
       res.redirect(sails.route('confirmation'));
     }

@@ -1,13 +1,13 @@
 module.exports = {
-  i_am_a: {
+  practitionerType: {
     presence: {
       message: '^I am a is required',
       allowEmpty: false,
     },
   },
-  other_specify: function (value, attributes) {
-    const i_am_a = attributes.i_am_a;
-    if (i_am_a === 'other') {
+  otherSpecify: function (value, attributes) {
+    const practitionerType = attributes.practitionerType;
+    if (practitionerType === 'other') {
       return {
         presence: {
           message: '^Other is required if Other is selected',
@@ -24,23 +24,23 @@ module.exports = {
   },
   date: function (value) {
     if (value) {
-        return {
-          validateDateFormat: {
-            message: '^Date is not formatted correctly'
-          },
-          validateDateExists: {
-            message: '^Date is not a valid date'
-          }
+      return {
+        validateDateFormat: {
+          message: '^Date is not formatted correctly'
+        },
+        validateDateExists: {
+          message: '^Date is not a valid date'
         }
       }
-      return {
-        presence: {
-          allowEmpty: false,
-          message: '^Date is required'
-        },
-      }
+    }
+    return {
+      presence: {
+        allowEmpty: false,
+        message: '^Date is required'
+      },
+    }
   },
-  physician_address: {
+  physicianAddress: {
     presence: {
       message: '^Address is required',
       allowEmpty: false,
