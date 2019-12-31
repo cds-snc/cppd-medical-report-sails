@@ -1,5 +1,5 @@
 module.exports = {
-  social: {
+  socialInsuranceNumber: {
     presence: {
       allowEmpty: false,
       message: '^Social Insurance Number is required'
@@ -8,13 +8,13 @@ module.exports = {
       message: '^Social Insurance Number is invalid'
     },
   },
-  first_name: {
+  firstName: {
     presence: {
       allowEmpty: false,
       message: '^First name is required'
     },
   },
-  last_name: {
+  lastName: {
     presence: {
       allowEmpty: false,
       message: '^Last name is required'
@@ -60,7 +60,7 @@ module.exports = {
       },
     };
   },
-  alternate_telephone: function (value) {
+  alternateTelephone: function (value) {
     if (value) { // makes it optional
       return {
         format: {
@@ -70,7 +70,7 @@ module.exports = {
       };
     }
   },
-  contact_time: {
+  contactTime: {
     presence: {
       message: '^Best time to contact you is required'
     },
