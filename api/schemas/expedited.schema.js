@@ -1,5 +1,5 @@
 module.exports = {
-  condition_type: {
+  conditionType: {
     presence: {
       message: '^You must select an option',
       allowEmpty: false,
