@@ -30,7 +30,8 @@ module.exports = {
       id: req.params.id,
       treatment: treatment,
       conditionList: conditionList,
-      oneValue: oneAttribute(conditionList)
+      oneValue: oneAttribute(conditionList),
+      data: req.session.medicalReport,
     });
   },
 

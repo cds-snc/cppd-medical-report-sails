@@ -7,14 +7,19 @@
 
 module.exports = {
   index: function (req, res) {
+    let data = req.session.medicalReport;
+
     /**
-     * If there is a medical report in the session, load it
+     * If we're returning to the form with flash data in locals,
+     * merge it with the rest of the medicalReport in the session.
      */
-    if (req.session.medicalReport) {
-      res.locals.data = req.session.medicalReport;
+    if (res.locals.data) {
+      data = _.merge(res.locals.data, req.session.medicalReport);
     }
 
-    res.view('pages/documents');
+    res.view('pages/documents', {
+      data: data
+    });
   },
 
   store: function (req, res) {

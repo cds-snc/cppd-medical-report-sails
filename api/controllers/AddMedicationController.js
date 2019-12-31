@@ -17,7 +17,8 @@ module.exports = {
 
     res.view('pages/medications/add', {
       conditionList: conditionList,
-      oneValue: oneAttribute(conditionList)
+      oneValue: oneAttribute(conditionList),
+      data: data,
     });
   },
 

@@ -20,7 +20,8 @@ module.exports = {
 
     res.view('pages/conditions/edit', {
       id: req.params.id,
-      condition: condition
+      condition: condition,
+      data: req.session.medicalReport
     });
   },
 

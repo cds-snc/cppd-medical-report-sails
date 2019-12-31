@@ -7,7 +7,9 @@
 
 module.exports = {
   create: function (req, res) {
-    res.view('pages/conditions/add');
+    res.view('pages/conditions/add', {
+      data: req.session.medicalReport
+    });
   },
 
   store: function (req, res) {
