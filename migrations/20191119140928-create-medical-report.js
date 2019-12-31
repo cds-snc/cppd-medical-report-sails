@@ -14,31 +14,31 @@ module.exports = {
       title: {
         type: Sequelize.STRING,
       },
-      first_name: {
+      firstName: {
         type: Sequelize.STRING,
       },
-      middle_name: {
+      middleName: {
         type: Sequelize.STRING,
       },
-      last_name: {
+      lastName: {
         type: Sequelize.STRING,
       },
-      last_name_at_birth: {
+      lastNameAtBirth: {
         type: Sequelize.STRING,
       },
-      birth_date: {
+      birthDate: {
         type: Sequelize.DATEONLY,
       },
       address: {
         type: Sequelize.STRING,
       },
-      telephone_number: {
+      telephoneNumber: {
         type: Sequelize.STRING,
       },
-      alt_telephone_number: {
+      altTelephoneNumber: {
         type: Sequelize.STRING,
       },
-      contact_period: {
+      contactPeriod: {
         type: Sequelize.ENUM('morning', 'afternoon', 'letters_only'),
       },
       createdAt: {
