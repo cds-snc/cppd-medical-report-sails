@@ -1,6 +1,6 @@
 module.exports = {
-  supporting_documents: function (value, attributes) {
-    const attachLater = attributes.attach_later;
+  supportingDocuments: function (value, attributes) {
+    const attachLater = attributes.attachLater;
     if (!attachLater) {
       return {
         presence: {
