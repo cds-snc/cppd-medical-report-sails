@@ -52,7 +52,7 @@ This maps your local files into a Docker container and spins up a PostgreSQL dat
 
 When you want to stop both, you can hit `CTRL` + `D` in the terminal that launched it.
 
-## How to Add a New Route with a View
+## How to Add a New Route with a View and a Schema
 
 1. Add a new view
     1. Copy `views/pages/PersonalController.js` and change the name appropriately
@@ -64,3 +64,9 @@ When you want to stop both, you can hit `CTRL` + `D` in the terminal that launch
     1. Copy `api/controllers/PersonalController.js` and change the name appropriately
     1. For the `index` function, remove business logic, but keep `res.view` and point it to the new view
     1. For the `store` function, remove business logic, but keep the validation and redirect parts. For the validation part, redirect it to the new schema
+1. Add a new route
+    1. Go to `/config/routes.js`
+    1. Copy the `GET` and `POST` from Personal routes
+    1. Change the values to correspond to your newly created files
+1. In your newly created view, add `<p>Hello Canada</p>` to the `content` block
+1. Start the server (`npm run dev`) and see if you can get to your new route's index

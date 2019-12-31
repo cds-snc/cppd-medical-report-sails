@@ -473,7 +473,32 @@ module.exports.routes = {
       en: '/en/product/:id',
       fr: '/fr/produit/:id'
     }
-  }
+  },
+
+  /**
+   * APPLICANT SECTION A ROUTES
+   */
+  'GET /en/applicantSectionA': {
+    name: 'applicantSectionA',
+    controller: 'ApplicantSectionAController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/applicantSectionA',
+      fr: '/fr/applicantSectionA'
+    }
+  },
+
+  'POST /en/applicantSectionA': {
+    name: 'applicantSectionA.store',
+    controller: 'ApplicantSectionAController',
+    action: 'store',
+    lang: 'en',
+    i18n: {
+      en: '/en/applicantSectionA',
+      fr: '/fr/applicantSectionA'
+    }
+  },
 
   /***************************************************************************
    *                                                                          *
