@@ -20,5 +20,5 @@ function checkUnknowns(detailsId, radiosName, unknownValue) {
   }
 }
 
-checkUnknowns('unknown_outlook_details', 'condition_outlook', '4')
-checkUnknowns('unknown_symptoms_occur_details', 'symptoms_occur', '3')
+checkUnknowns('unknown_outlook_details', 'conditionOutlook', '4')
+checkUnknowns('unknown_symptoms_occur_details', 'symptomsOccur', '3')
