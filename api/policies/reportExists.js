@@ -8,4 +8,4 @@ module.exports = function (req, res, next) {
     return res.redirect(sails.route('start'));
   }
   next();
-}
+};

@@ -30,7 +30,7 @@ module.exports = {
           allowEmpty: false,
           message: '^errors.condition_outlook_unknown'
         }
-      }
+      };
     }
   },
   condition_last: {
@@ -52,7 +52,7 @@ module.exports = {
           allowEmpty: false,
           message: '^errors.symptoms_occur_unknown_required'
         }
-      }
+      };
     }
   }
 };

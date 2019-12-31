@@ -13,7 +13,7 @@ module.exports = {
           message: '^Signature is Required if you Consent',
           allowEmpty: false
         }
-      }
+      };
     }
   },
-}
+};

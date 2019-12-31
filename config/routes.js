@@ -387,7 +387,7 @@ module.exports.routes = {
       fr: '/fr/expedited'
     }
   },
-  
+
   /*
    * EMPLOYMENT ROUTES
    */

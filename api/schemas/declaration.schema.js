@@ -13,7 +13,7 @@ module.exports = {
           message: '^Other is required if Other is selected',
           allowEmpty: false
         }
-      }
+      };
     }
   },
   name: {
@@ -24,21 +24,21 @@ module.exports = {
   },
   date: function (value) {
     if (value) {
-        return {
-          validateDateFormat: {
-            message: '^Date is not formatted correctly'
-          },
-          validateDateExists: {
-            message: '^Date is not a valid date'
-          }
-        }
-      }
       return {
-        presence: {
-          allowEmpty: false,
-          message: '^Date is required'
+        validateDateFormat: {
+          message: '^Date is not formatted correctly'
         },
-      }
+        validateDateExists: {
+          message: '^Date is not a valid date'
+        }
+      };
+    }
+    return {
+      presence: {
+        allowEmpty: false,
+        message: '^Date is required'
+      },
+    };
   },
   physician_address: {
     presence: {
@@ -46,4 +46,4 @@ module.exports = {
       allowEmpty: false,
     },
   }
-}
+};
