@@ -51,3 +51,16 @@ This maps your local files into a Docker container and spins up a PostgreSQL dat
 1. Setup the database: `npm run db:init`
 
 When you want to stop both, you can hit `CTRL` + `D` in the terminal that launched it.
+
+## How to Add a New Route with a View
+
+1. Add a new view
+    1. Copy `views/pages/PersonalController.js` and change the name appropriately
+    1. Remove everything inside the `content` block
+1. Add a new schema
+    1. Copy `api/schemas/personal.schema.js` and change the name appropriately
+    1. Remove all fields, but keep the `module.exports`
+1. Add a new controller
+    1. Copy `api/controllers/PersonalController.js` and change the name appropriately
+    1. For the `index` function, remove business logic, but keep `res.view` and point it to the new view
+    1. For the `store` function, remove business logic, but keep the validation and redirect parts. For the validation part, redirect it to the new schema
