@@ -27,12 +27,12 @@ module.exports = {
 
     if (valid) {
       // save the model
-      req.session.medicalReport.stop_work = req.body.stop_work;
-      req.session.medicalReport.date_stopped_work = req.body.date_stopped_work;
-      req.session.medicalReport.return_to_work = req.body.return_to_work;
-      req.session.medicalReport.return_to_work_timeframe = req.body.return_to_work_timeframe;
-      req.session.medicalReport.type_of_work = req.body.type_of_work;
-      req.session.medicalReport.type_of_work_other = req.body.type_of_work_other;
+      req.session.medicalReport.stopWork = req.body.stopWork;
+      req.session.medicalReport.dateStoppedWork = req.body.dateStoppedWork;
+      req.session.medicalReport.returnToWork = req.body.returnToWork;
+      req.session.medicalReport.returnToWorkTimeframe = req.body.returnToWorkTimeframe;
+      req.session.medicalReport.typeOfWork = req.body.typeOfWork;
+      req.session.medicalReport.typeOfWorkOther = req.body.typeOfWorkOther;
 
       res.redirect(sails.route('declaration'));
     }
