@@ -30,7 +30,9 @@ There are additional instructions below for getting started with Docker. See als
 
 ## Routing
 
-To support [Node Starter](https://github.com/cds-snc/node-starter-app)-style bilingual routes, we had to modify the way that routing works in Sails. Luckily, Sails provides some really useful ways to modify the underlying framework. As such, we've created a custom [hook](https://sailsjs.com/documentation/concepts/extending-sails/hooks) for routes. The route format is backwards-compatible with the Sails router, and follows this format:
+To support [Node Starter](https://github.com/cds-snc/node-starter-app)-style bilingual routes, we had to modify the way that routing works in Sails. Luckily, Sails provides some really useful ways to modify the underlying framework. As such, we've created a custom [hook](https://sailsjs.com/documentation/concepts/extending-sails/hooks) for routes.
+
+Routes are defined in `config/routes.js`.  The route format is backwards-compatible with the Sails router, and follows this format:
 
 ```js
   'GET /en/start': {
