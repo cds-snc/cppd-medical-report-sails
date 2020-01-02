@@ -64,6 +64,25 @@ And, of course, all the HTTP verbs you know and love are availabe, such as: `GET
 
 It is also possible to target SailsJS Actions instead of Controllers, but we prefer the Controller method, as they are more portable.
 
+## Controllers
+
+To generate a new Controller, use the sails generator: `sails generate controller test`. This command will generate an empty controller called `TestController.js` in the api/controllers folder.
+
+Controllers can be organized in any number of ways. Typically in MVC frameworks, method names follow a general CRUD-like conventions:
+
+```js
+module.exports = {
+  index: function (req, res) { ... },
+  create: function (req, res) { ... },
+  store: function (req, res) { ... },
+  edit: function (req, res) { ... },
+  update: function (req, res) { ... },
+  delete: function (req, res) { ... },
+};
+```
+
+The avid reader will notice that we've further divided our controllers up - this is a completely optional way of working, but we find more controllers with less code more readable/manageable.
+
 ## Redis session store
 
 Currently, the application data is stored in the session, and the default session store is in memory which clears out every time the process restarts. It can get annoying pretty quickly in development when the session store gets cleared out every time you make a change to a file.
@@ -101,6 +120,6 @@ This maps your local files into a Docker container and spins up a PostgreSQL dat
 ### Run
 
 1. Launch the application `docker compose up`
-1. Setup the database: `npm run db:init`
+1. Setup the database: `npm run db:migrate`
 
 When you want to stop both, you can hit `CTRL` + `D` in the terminal that launched it.
