@@ -68,10 +68,16 @@ It is also possible to target SailsJS Actions instead of Controllers, but we pre
 
 ### Named routes
 
-We have also added a route helper for use in views so you can reference a route by name and not worry about the users selected language. For example, using the example routes above, if you wanted to link to the `start` route:
+We have also added a route helper for use in views or controllers so you can reference a route by name and not worry about the user's selected language. For example, using the example routes above, if you wanted to link to the `start` route:
 
 ```html
 <a href="{{ route('start') }}">Start</a>
+```
+
+or in a controller:
+
+```js
+res.redirect(sails.route('start'));
 ```
 
 This will generate a link using the user's current language, ie: `/en/start` or `/fr/debut`.
@@ -92,13 +98,14 @@ You can also force the language if you need to:
 
 To generate a new Controller, use the sails generator: `sails generate controller test`. This command will generate an empty controller called `TestController.js` in the api/controllers folder.
 
-Controllers can be organized in any number of ways. Typically in MVC frameworks, method names follow a general CRUD-like conventions:
+Controllers can be organized in any number of ways. Typically in MVC frameworks, method names follow general "resourceful" conventions:
 
 ```js
 module.exports = {
   index: function (req, res) { ... },
   create: function (req, res) { ... },
   store: function (req, res) { ... },
+  show: function (req, res) { ... },
   edit: function (req, res) { ... },
   update: function (req, res) { ... },
   delete: function (req, res) { ... },
