@@ -24,13 +24,13 @@ Quickest way to get started is:
 - `npm install`
 - `npm run dev`
 
-Note that you can use `sails lift` which will also bring up the server, but `npm run dev` runs with `nodemon`, a better change monitor.
+Note that you can use `sails lift` which will also bring up the server, but `npm run dev` runs with `nodemon`, for better file change monitoring.
 
 There are additional instructions below for getting started with Docker. See also sections on [Session store](#redis-session-store) and [Database](#database).
 
 ## Routing
 
-To support [Node Starter](https://github.com/cds-snc/node-starter-app)-style bilingual routes, we had to modify the way that routing works in Sails. Luckily, Sails provides some really useful ways to modify the underlying framework. As such, we've got a custom [hook](https://sailsjs.com/documentation/concepts/extending-sails/hooks) for routes. The route format is backwards-compatible with the Sails router, and follows this format:
+To support [Node Starter](https://github.com/cds-snc/node-starter-app)-style bilingual routes, we had to modify the way that routing works in Sails. Luckily, Sails provides some really useful ways to modify the underlying framework. As such, we've created a custom [hook](https://sailsjs.com/documentation/concepts/extending-sails/hooks) for routes. The route format is backwards-compatible with the Sails router, and follows this format:
 
 ```js
   'GET /en/start': {
