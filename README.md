@@ -26,7 +26,43 @@ Quickest way to get started is:
 
 Note that you can use `sails lift` which will also bring up the server, but `npm run dev` runs with `nodemon`, a better change monitor.
 
-There are additional instructions below for getting started with Docker.
+There are additional instructions below for getting started with Docker. See also sections on Session store and Database.
+
+## Routing
+
+To support [Node Starter](https://github.com/cds-snc/node-starter-app)-style bilingual routes, we had to modify the way that routing works in Sails. Luckily, Sails provides some really useful ways to modify the underlying framework. As such, we've got a custom `hook` for routes. The route format is backwards-compatible with the Sails router, and follows this format:
+
+```js
+  'GET /en/start': {
+    name: 'start',
+    controller: 'StartController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/start',
+      fr: '/fr/debut'
+    }
+  },
+```
+
+You can also use route params for edit routes:
+
+```js
+  'GET /en/conditions/:id/edit': {
+    name: 'conditions.edit',
+    controller: 'EditConditionController',
+    action: 'edit',
+    lang: 'en',
+    i18n: {
+      en: '/en/conditions/:id/edit',
+      fr: '/fr/conditions/:id/modifier'
+    }
+  },
+```
+
+And, of course, all the HTTP verbs you know and love are availabe, such as: `GET`,`POST`,`PUT`,`DELETE`,`PATCH`.
+
+It is also possible to target SailsJS Actions instead of Controllers, but we prefer the Controller method, as they are more portable.
 
 ## Redis session store
 
