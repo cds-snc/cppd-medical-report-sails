@@ -1,7 +1,5 @@
 # Canada Pension Plan Disability (CPPD) - Medical Report (Form ISP-2519)
 
-**Demo (`master` branch):** https://cppdmedicalreport-appservice.azurewebsites.net/
-
 [ESDC](https://www.canada.ca/en/employment-social-development.html) and [CDS](https://digital.canada.ca) are working together to make [CPPD](https://www.canada.ca/en/services/benefits/publicpensions/cpp/cpp-disability-benefit.html) better. We're focused on finding ways to shrink end-to-end processing time without decreasing the quality of decisions. We're currently building a prototype of the CPPD Medical Report as a way to explore some hypotheses and potentially make more of this process online.
 
 For more information, contact us at [cds-snc@tbs-sct.gc.ca](mailto:cds-snc@tbs-sct.gc.ca).
@@ -11,6 +9,13 @@ For more information, contact us at [cds-snc@tbs-sct.gc.ca](mailto:cds-snc@tbs-s
 [ESDC](https://www.canada.ca/en/employment-social-development.html) et la [CDS](https://digital.canada.ca) travaillent ensemble pour améliorer le PPIRPC (programme de prestations d'invalidité du Régime de pensions du Canada). Nous travaillons à trouver des moyens de réduire le temps de traitement de bout en bout sans nuire à la qualité des décisions. Nous mettons actuellement au point un prototype du rapport médical sur le PPPC afin d’explorer certaines hypothèses et d’optimiser davantage ce processus en ligne.
 
 Pour plus d'informations, contactez-nous à l'adresse [cds-snc@tbs-sct.gc.ca](mailto:cds-snc@tbs-sct.gc.ca).
+
+## Built with
+
+- [Sails](https://sailsjs.com/)
+- [Nunjucks](https://mozilla.github.io/nunjucks/)
+- [VueJS](https://vuejs.org/)
+- [Validate.JS](https://validatejs.org/)
 
 ## Local development
 
