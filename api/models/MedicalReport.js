@@ -5,15 +5,15 @@ module.exports = {
 
     sin: Sequelize.STRING,
     title: Sequelize.STRING,
-    first_name: Sequelize.STRING,
-    middle_name: Sequelize.STRING,
-    last_name: Sequelize.STRING,
-    last_name_at_birth: Sequelize.STRING,
-    birth_date: Sequelize.DATEONLY,
+    firstName: Sequelize.STRING,
+    middleName: Sequelize.STRING,
+    lastName: Sequelize.STRING,
+    lastNameAtBirth: Sequelize.STRING,
+    birthDate: Sequelize.DATEONLY,
     address: Sequelize.STRING,
-    telephone_number: Sequelize.STRING,
-    alt_telephone_number: Sequelize.STRING,
-    contact_period: Sequelize.ENUM('morning','afternoon','letters_only'),
+    telephoneNumber: Sequelize.STRING,
+    altTelephoneNumber: Sequelize.STRING,
+    contactPeriod: Sequelize.ENUM('morning','afternoon','letters_only'),
   },
   options: {
     tableName: 'MedicalReports'

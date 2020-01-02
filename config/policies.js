@@ -25,7 +25,7 @@ module.exports.policies = {
   ConditionsController: {
     'index': defaultPlusReportExists,
   },
-  
+
   AddConditionController: {
     'create': defaultPlusReportExists,
   },

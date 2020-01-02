@@ -27,10 +27,10 @@ module.exports = {
 
     if (valid) {
       // save the model
-      req.session.medicalReport.condition_type = req.body.condition_type;
+      req.session.medicalReport.conditionType = req.body.conditionType;
       req.session.medicalReport.diagnosis = req.body.diagnosis;
-      req.session.medicalReport.icd_code = req.body.icd_code;
-      req.session.medicalReport.onset_date = req.body.onset_date;
+      req.session.medicalReport.icdCode = req.body.icdCode;
+      req.session.medicalReport.onsetDate = req.body.onsetDate;
 
       res.redirect(sails.route('conditions'));
     }

@@ -10,9 +10,9 @@
       {% for condition in data.conditions %}  
           <div class="flex border-t border-b">
               <div class="w-1/2">
-                  <p>{{ condition.name_of_condition }}</p>
+                  <p>{{ condition.conditionName }}</p>
                   <p class="text-base">{{ __('conditions.icd_code') }} XXXX</p>
-                  <p class="text-base">{{ __('conditions.symptoms_began') }} {{ condition.symptoms_began }}</p>
+                  <p class="text-base">{{ __('conditions.symptoms_began') }} {{ condition.symptomsBegan }}</p>
               </div>
               <div class="w-1/2">
                   <a href="{{ route('conditions.edit', { id: loop.index }) }}" class="text-sm">
