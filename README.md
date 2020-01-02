@@ -64,7 +64,7 @@ You can also use dynamic route parameters:
 
 And, of course, all the HTTP verbs you know and love are availabe, such as: `GET`,`POST`,`PUT`,`DELETE`,`PATCH`.
 
-It is also possible to target SailsJS Actions instead of Controllers, but we prefer the Controller method, as they are more portable.
+It is also possible to target SailsJS Actions instead of Controllers, but we prefer using Controllers, as they are more portable.
 
 ### Named routes
 
@@ -106,6 +106,10 @@ module.exports = {
 ```
 
 The avid reader will notice that we've further divided our controllers up - this is a completely optional way of working, but we find more controllers with less code more readable/manageable.
+
+## Request validation
+
+In order to enable validation in the controllers, we have added the [validate.js](https://validatejs.org/) package, along with a custom hook. To validate a request, create a schema file in `api/schemas`
 
 ## Redis session store
 
