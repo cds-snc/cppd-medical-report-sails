@@ -109,7 +109,28 @@ The avid reader will notice that we've further divided our controllers up - this
 
 ## Request validation
 
-In order to enable validation in the controllers, we have added the [validate.js](https://validatejs.org/) package, along with a custom hook. To validate a request, create a schema file in `api/schemas`
+In order to enable validation in the controllers, we have added the [validate.js](https://validatejs.org/) package, along with a custom hook. To validate a request, create a schema file in `api/schemas`. See the [Validate.JS](https://validatejs.org/) documentation for details, but the simplest example to validate the presence of a field is:
+
+```js
+module.exports = {
+  conditionName: {
+    presence: {
+      allowEmpty: false,
+      message: '^errors.name_of_condition.length'
+    }
+  },
+}
+```
+
+Then, in your controller on the POST method (save or update), you can pass the request through the `validate` helper along with the schema, and then do something based on the result:
+
+```js
+let valid = req.validate(req, res, require('../schemas/condition.schema'));
+
+if (valid) {
+  // do something
+}
+```
 
 ## Redis session store
 
