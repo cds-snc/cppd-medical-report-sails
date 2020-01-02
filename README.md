@@ -139,6 +139,8 @@ if (valid) {
 }
 ```
 
+If the request fails validation, the validator will redirect the user back to their previous location. In addition, all of the validation errors and the form data will be flashed to the session. Errors will then be made available to the view as local variable `errors`, and the data will be available to the view as `data`.
+
 ## Redis session store
 
 Currently, the application data is stored in the session, and the default session store is in memory which clears out every time the process restarts. It can get annoying pretty quickly in development when the session store gets cleared out every time you make a change to a file.
