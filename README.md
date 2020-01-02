@@ -37,7 +37,7 @@ To mitigate this, you can configure Redis as a persistent session store. If you'
 - `cp .env.example .env`
 - there is no step two (see note)
 
-Note: If you're running Redis on a non-standard port, or somewhere other than localhost, then you can set `SESSION_ADAPTER_URL` in that `.env` file.
+**Note**: If you're running Redis on a non-standard port, or somewhere other than localhost, then you can set `SESSION_ADAPTER_URL` in that `.env` file.
 
 ## Database
 
