@@ -17,6 +17,8 @@ Pour plus d'informations, contactez-nous à l'adresse [cds-snc@tbs-sct.gc.ca](ma
 - [VueJS](https://vuejs.org/)
 - [Validate.JS](https://validatejs.org/)
 
+We have reused the nunjucks templates, SASS and related files from [Node Starter](https://github.com/cds-snc/node-starter-app).
+
 ## Local development
 
 Quickest way to get started is:
