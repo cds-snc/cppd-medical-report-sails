@@ -68,7 +68,7 @@ It is also possible to target SailsJS Actions instead of Controllers, but we pre
 
 ### Named routes
 
-We have also added a route helper for use in views or controllers so you can reference a route by name and not worry about the user's selected language. For example, using the example routes above, if you wanted to link to the `start` route:
+We have also added a route helper for use in views (or `res.locals`) or controllers (on the `sails` object) so you can reference a route by name and not worry about the user's selected language. For example, using the example routes above, if you wanted to link to the `start` route:
 
 ```html
 <a href="{{ route('start') }}">Start</a>
