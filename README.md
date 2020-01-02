@@ -26,11 +26,11 @@ Quickest way to get started is:
 
 Note that you can use `sails lift` which will also bring up the server, but `npm run dev` runs with `nodemon`, a better change monitor.
 
-There are additional instructions below for getting started with Docker. See also sections on Session store and Database.
+There are additional instructions below for getting started with Docker. See also sections on [Session store](#redis-session-store) and [Database](#database).
 
 ## Routing
 
-To support [Node Starter](https://github.com/cds-snc/node-starter-app)-style bilingual routes, we had to modify the way that routing works in Sails. Luckily, Sails provides some really useful ways to modify the underlying framework. As such, we've got a custom `hook` for routes. The route format is backwards-compatible with the Sails router, and follows this format:
+To support [Node Starter](https://github.com/cds-snc/node-starter-app)-style bilingual routes, we had to modify the way that routing works in Sails. Luckily, Sails provides some really useful ways to modify the underlying framework. As such, we've got a custom [hook](https://sailsjs.com/documentation/concepts/extending-sails/hooks) for routes. The route format is backwards-compatible with the Sails router, and follows this format:
 
 ```js
   'GET /en/start': {
@@ -45,7 +45,7 @@ To support [Node Starter](https://github.com/cds-snc/node-starter-app)-style bil
   },
 ```
 
-You can also use route params for edit routes:
+You can also use dynamic route parameters:
 
 ```js
   'GET /en/conditions/:id/edit': {
@@ -63,6 +63,28 @@ You can also use route params for edit routes:
 And, of course, all the HTTP verbs you know and love are availabe, such as: `GET`,`POST`,`PUT`,`DELETE`,`PATCH`.
 
 It is also possible to target SailsJS Actions instead of Controllers, but we prefer the Controller method, as they are more portable.
+
+### Named routes
+
+We have also added a route helper for use in views so you can reference a route by name and not worry about the users selected language. For example, if you wanted to link to the start route (example above):
+
+```html
+<a href="{{ route('start') }}">Start</a>
+```
+
+This will generate a link using the user's current language, ie: `/en/start` or `/fr/debut`.
+
+You can pass route parameters in an object as the second argument to the route helper:
+
+```html
+<a href="{{ route('medications.edit', { id: [ID] }) }}">Edit</a>
+```
+
+You can also force the language if you need to:
+
+```html
+<a href="{{ route('start', { lang: 'fr' }) }}">Début</a>
+```
 
 ## Controllers
 
