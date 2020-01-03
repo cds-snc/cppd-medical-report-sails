@@ -1,5 +1,9 @@
 {% macro conditionForm(condition) %}
     
+    <condition-form :condition="{{ condition | dump }}" :schema="{{ schema | dump }}"></condition-form>
+
+<div class="mt-12">----- ignore everything below for now ------</div>
+
     {{ textInput('conditionName', 'add_condition.name_of_condition', { required: true, "autocomplete": "off", value: condition.conditionName }) }}
     <p class="text-gray-600 -mt-8">{{ __('add_condition.name_of_condition_hint') }}</p>
     
