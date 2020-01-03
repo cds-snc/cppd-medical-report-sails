@@ -22,9 +22,7 @@
             <p id="attach_files_desk" class="font-bold">{{ __('add_condition.attach_notes') }}</p>
             <p class="text-gray-600">{{ __('add_condition.attach_notes_hint') }}</p>
 
-            <div id="app">
-                <file-upload files="{{ condition.conditionFiles }}" field-name="conditionFiles" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
-            </div>
+            <file-upload files="{{ condition.conditionFiles }}" field-name="conditionFiles" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
 
             <div class="multiple-choice multiple-choice--checkboxes">
                 <div class="multiple-choice__item">

@@ -27,20 +27,22 @@
         <title>{{ __('app.title') }}</title>
     </head>
     <body>
-        <a class="skip-link" href="#content">{{ __('Skip to main content') }}</a>
-        <div class="outer-container">
-            <header>
-                {% include "_includes/phaseBanner.njk" %}
-                {% include "_includes/fip.njk" %}
-            </header>
-            <main id="content">
-                {% if errors %}
-                    {% include "_includes/errorList.njk" %}
-                {% endif %}
+        <div id="app">
+            <a class="skip-link" href="#content">{{ __('Skip to main content') }}</a>
+            <div class="outer-container">
+                <header>
+                    {% include "_includes/phaseBanner.njk" %}
+                    {% include "_includes/fip.njk" %}
+                </header>
+                <main id="content">
+                    {% if errors %}
+                        {% include "_includes/errorList.njk" %}
+                    {% endif %}
 
                     {% block content %}{% endblock %}
-            </main>
-            {% include "_includes/footer.njk" %}
+                </main>
+                {% include "_includes/footer.njk" %}
+            </div>
         </div>
     </body>
     {% include "_includes/script.njk" %}
