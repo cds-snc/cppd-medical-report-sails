@@ -32,30 +32,34 @@
   <div>
     <h2> {{ __('dashboard.complete-sections') }} </h2>
     <hr class="my-4"/>
-    {{ sectionLink('dashboard','dashboard.basic_info', true) }}
+    {{ sectionLink('dashboard','dashboard.basic_info', sectionsCompleted.personal) }}
     <hr class="my-4"/>
-    {{ sectionLink('dashboard','dashboard.functional-limits', false)}}
+    {{ sectionLink('dashboard','dashboard.functional-limits', sectionsCompleted.functional)}}
     <hr class="my-4"/>
-    {{ sectionLink('conditions','dashboard.medical-conditions', false) }}
+    {{ sectionLink('conditions','dashboard.medical-conditions', sectionsCompleted.conditions) }}
     <hr class="my-4"/>
-    {{ sectionLink('medications','dashboard.medications', false) }}
+    {{ sectionLink('medications','dashboard.medications', sectionsCompleted.medications) }}
     <hr class="my-4"/>
-    {{ sectionLink('treatments','dashboard.treatments', true) }}
+    {{ sectionLink('treatments','dashboard.treatments', sectionsCompleted.treatments) }}
     <hr class="my-4"/>
-    {{ sectionLink('dashboard','dashboard.future-work-capacity', true) }}
+    {{ sectionLink('dashboard','dashboard.future-work-capacity', sectionsCompleted.futureWork) }}
     <hr class="my-4"/>
-    {{ sectionLink('documents','dashboard.supporting-docs', false) }}
+    {{ sectionLink('documents','dashboard.supporting-docs', sectionsCompleted.supportingDocs) }}
     <hr class="my-4"/>
-    {{ sectionLink('dashboard','dashboard.declaration', false) }}
+    {{ sectionLink('dashboard','dashboard.declaration', sectionsCompleted.declaration) }}
     <hr class="my-4"/>
   </div>
-  <div class="buttons">
-    <div class="flex justify-end">
-      <a href="about/blank" class="button-link">{{ __('dashboard.save-and-return') }}</a>
-      <div class="m-2"></div>
-      <a href="about/blank" class="button-link">{{ __('dashboard.submit') }}</a>
-    </div>
-  </div>
+  <form action="post">
+      <div class="flex justify-end">
+        <a href="about/blank" class="button-link">{{ __('dashboard.save-and-return') }}</a>
+        <div class="m-2"></div>
+        {% if ableToSubmit %}
+        <a href="about/blank" class="button-link">{{ __('dashboard.submit') }}</a>
+        {% else %}
+        <button type="submit" disabled aria-disabled="true" class="text-black bg-gray-300 shadow-none hover:bg-gray-400 cursor-not-allowed" >{{ __('dashboard.submit') }}</button>
+        {% endif %}
+      </div>
+  </form>
   <p>
     {{ __("dashboard.privacy") | safe}}
   </p>
