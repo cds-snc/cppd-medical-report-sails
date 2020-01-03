@@ -1,0 +1,73 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+  <h1>{{ __('dashboard.title') }}<br/> <span class="text-base">{{ __('dashboard.patient')}} Jon Snow </span></h1>
+
+  <p>
+    {{ __('dashboard.intro1' )}}
+  </p>
+  <p>
+    {{ __('dashboard.intro2' )}}
+  </p>
+
+  <div class="border-l-4 border-solid border-blue-800 bg-blue-200 p-4">
+    <p>{{ __('dashboard.pay') | safe }}</p>
+    <a href="about:blank"> <svg class="h-4 w-4 inline fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path d="M16 10c0 .553-.048 1-.601 1H11v4.399c0 .552-.447.601-1 .601-.553 0-1-.049-1-.601V11H4.601C4.049 11 4 10.553 4 10c0-.553.049-1 .601-1H9V4.601C9 4.048 9.447 4 10 4c.553 0 1 .048 1 .601V9h4.399c.553 0 .601.447.601 1z"/>
+                </svg> {{ __('dashboard.pay_link') }} </a>
+  </div>
+  <div>
+    <h2> {{ __('dashboard.complete-sections') }} </h2>
+    <hr class="my-4"/>
+    <div class="flex justify-between">
+      <a href="about/blank" >{{ __('dashboard.basic_info') }}</a>
+      <p class="text-green-800">Completed</p>
+    </div>
+    <hr class="my-4"/>
+    <div class="flex justify-between">
+      <a href="about/blank">{{ __('dashboard.functional-limits') }}</a>
+      <p class="text-green-800 ">Completed</p>
+    </div>
+    <hr class="my-4"/>
+    <div class="flex justify-between">
+      <a href="about/blank">{{ __('dashboard.medical-conditions') }}</a>
+      <p class="text-green-800">Completed</p>
+    </div>
+    <hr class="my-4"/>
+    <div class="flex justify-between">
+      <a href="about/blank">{{ __('dashboard.medications') }}</a>
+      <p class="text-green-800">Completed</p>
+    </div>
+    <hr class="my-4"/>
+    <div class="flex justify-between">
+      <a href="about/blank">{{ __('dashboard.treatments') }}</a>
+      <p class="text-green-800">Completed</p>
+    </div>
+    <hr class="my-4"/>
+    <div class="flex justify-between">
+      <a href="about/blank">{{ __('dashboard.future-work-capacity') }}</a>
+      <p class="text-green-800">Completed</p>
+    </div>
+    <hr class="my-4"/>
+    <div class="flex justify-between">
+      <a href="about/blank">{{ __('dashboard.supporting-docs') }}</a>
+      <p class="text-green-800">Completed</p>
+    </div>
+    <hr class="my-4"/>
+    <div class="flex justify-between">
+      <a href="about/blank">{{ __('dashboard.declaration') }}</a>
+      <p class="text-green-800">Completed</p>
+    </div>
+    <hr class="my-4"/>
+  </div>
+  <div class="buttons">
+    <div class="flex justify-end">
+      <a href="about/blank" class="button-link">{{ __('dashboard.save-and-return') }}</a>
+      <div class="m-2"></div>
+      <a href="about/blank" class="button-link">{{ __('dashboard.submit') }}</a>
+    </div>
+  </div>
+  <p>
+    {{ __("dashboard.privacy")}}
+  </p>
+{% endblock %}
