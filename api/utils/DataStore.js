@@ -33,7 +33,7 @@ const storeMedicalReport = (medicalReportData) => {
     // TODO Replace file system storage in favor of a database
     fs.writeFileSync(
         getDataFilePath(medicalReportData.applicationCode), 
-        JSON.stringify(medicalReportData)
+        JSON.stringify(medicalReportData, null, "\t")
     );
 };
 

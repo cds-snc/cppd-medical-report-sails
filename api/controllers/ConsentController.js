@@ -5,7 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore')
+const dataStore = require('../utils/DataStore');
 
 module.exports = {
   index: function (req, res) {

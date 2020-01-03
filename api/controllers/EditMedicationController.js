@@ -9,6 +9,7 @@ const {
   conditionReducer,
   oneAttribute,
 } = require('../utils/condition.mapper');
+const dataStore = require('../utils/DataStore');
 
 module.exports = {
   edit: function (req, res) {
@@ -47,7 +48,8 @@ module.exports = {
     if (valid) {
       // replace the contents of the medication on the array
       req.session.medicalReport.medications[medicationId] = body;
-
+      dataStore.storeMedicalReport(req.session.medicalReport);
+      
       res.redirect(sails.route('medications'));
     }
   }

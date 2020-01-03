@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const dataStore = require('../utils/DataStore');
+
 module.exports = {
   index: function (req, res) {
     /**
@@ -21,7 +23,7 @@ module.exports = {
     let valid = req.validate(req, res, require('../schemas/personal.schema'));
 
     if (valid) {
-      // save the model
+      // save the model, but not yet to the datastore
       req.session.medicalReport = req.body;
       res.redirect(sails.route('consent'));
 

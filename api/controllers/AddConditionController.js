@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const dataStore = require('../utils/DataStore');
+
 module.exports = {
   create: function (req, res) {
     res.view('pages/conditions/add', {
@@ -24,6 +26,8 @@ module.exports = {
         req.session.medicalReport.conditions = [];
       }
       req.session.medicalReport.conditions.push(body);
+      dataStore.storeMedicalReport(req.session.medicalReport);
+      
       res.redirect(sails.route('conditions'));
     }
   }
