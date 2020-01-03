@@ -21,7 +21,8 @@ module.exports = {
     res.view('pages/conditions/edit', {
       id: req.params.id,
       condition: condition,
-      data: req.session.medicalReport
+      data: req.session.medicalReport,
+      schema: require('../schemas/condition.schema')
     });
   },
 
