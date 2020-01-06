@@ -25,6 +25,7 @@ const generateApplicationCode = () => {
 };
 
 const getMedicalReport = (applicationCode, birthDate) => {
+    // TODO Use the birthdate to verify a match of the code with the person
     // TODO Replace file system storage in favor of a database
     return JSON.parse(fs.readFileSync(getDataFilePath(applicationCode)));
 };
