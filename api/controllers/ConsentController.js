@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const dataStore = require('../utils/DataStore');
+
 module.exports = {
   index: function (req, res) {
     let data = req.session.medicalReport;
@@ -34,6 +36,10 @@ module.exports = {
       req.session.medicalReport.witnessLast = req.body.witnessLast;
       req.session.medicalReport.witnessPhone = req.body.witnessPhone;
       req.session.medicalReport.witnessSignature = req.body.witnessSignature;
+      req.session.medicalReport.applicationCode = dataStore.generateApplicationCode();
+
+      dataStore.storeMedicalReport(req.session.medicalReport);
+
 
       res.redirect(sails.route('relationship'));
     }
