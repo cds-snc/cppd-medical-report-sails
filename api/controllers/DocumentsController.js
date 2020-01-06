@@ -31,7 +31,7 @@ module.exports = {
       // save the model
       req.session.medicalReport.supportingDocuments = req.body.supportingDocuments;
       dataStore.storeMedicalReport(req.session.medicalReport);
-      
+
       res.redirect(sails.route('employment'));
     }
   }

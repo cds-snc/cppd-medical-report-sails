@@ -40,6 +40,5 @@ const storeMedicalReport = (medicalReportData) => {
 
 module.exports = {
   generateApplicationCode,
-//   getMedicalReport,
   storeMedicalReport
 };

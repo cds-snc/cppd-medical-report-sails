@@ -36,7 +36,7 @@ module.exports = {
       req.session.medicalReport.typeOfWork = req.body.typeOfWork;
       req.session.medicalReport.typeOfWorkOther = req.body.typeOfWorkOther;
       dataStore.storeMedicalReport(req.session.medicalReport);
-      
+
       res.redirect(sails.route('declaration'));
     }
   }

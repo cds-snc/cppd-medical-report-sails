@@ -36,7 +36,6 @@ module.exports = {
       }
       req.session.medicalReport.treatments.push(body);
       dataStore.storeMedicalReport(req.session.medicalReport);
-      
       res.redirect(sails.route('treatments'));
     }
   }

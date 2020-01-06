@@ -13,7 +13,7 @@ module.exports = {
 
     req.session.medicalReport.medications.splice(index, 1);
     dataStore.storeMedicalReport(req.session.medicalReport);
-    
+
     res.redirect(sails.route('medications'));
   }
 };

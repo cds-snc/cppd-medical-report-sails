@@ -49,7 +49,7 @@ module.exports = {
       // replace the contents of the medication on the array
       req.session.medicalReport.treatments[treatmentId] = body;
       dataStore.storeMedicalReport(req.session.medicalReport);
-      
+
       res.redirect(sails.route('treatments'));
     }
   }

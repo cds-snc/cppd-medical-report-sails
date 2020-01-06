@@ -15,7 +15,7 @@ module.exports = {
   store: function (req, res) {
     dataStore.storeMedicalReport(req.session.medicalReport);
     req.session.medicalReport = {};
-    
+
     res.redirect(sails.route('start'));
   }
 };
