@@ -7,7 +7,7 @@
 
     <p>{{ __('medical_professional.instructions_2') }}</p>
 
-    <form action="{{ route('personal.store') }}" method="post">        
+    <form action="{{ route('medical-professional.store') }}" method="post">        
         {{ textInput('applicationCode', 'medical_professional.invitation_code', { class: "w-3-4", required: true }) }}
         {{ textInput('birthdate', 'medical_professional.patient_birth_date', { hint: 'year_month_day_format', required: true }) }}
 

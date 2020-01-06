@@ -433,5 +433,8 @@
   "medical_professional.instructions_2": "TRANSLATE To support your patient's application for Canada Pension Plan Disability Benefits, enter the unique code they gave you, and their date of birth.",
   "medical_professional.invitation_code": "TRANSLATE Unique 6 character invitation code",
   "medical_professional.patient_birth_date": "TRANSLATE Patient's date of birth",
-  "medical_professional.start": "TRANSLATE Start medical report"
+  "medical_professional.start": "TRANSLATE Start medical report",
+	"errors.application_code_presence": "Code must be entered",
+	"errors.application_code_format": "Code must be 6 alphanumeric characters",
+	"errors.application_code_does_not_exist": "Code does not exist"
 }
