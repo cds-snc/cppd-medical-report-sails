@@ -39,8 +39,8 @@ module.exports.routes = {
     action: 'index',
     lang: 'en',
     i18n: {
-      en: 'en/dashboard',
-      fr: 'fr/tabeleaudebord'
+      en: '/en/dashboard',
+      fr: '/fr/tabeleaudebord'
     }
   },
   /**
