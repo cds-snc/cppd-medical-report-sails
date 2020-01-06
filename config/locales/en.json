@@ -439,5 +439,5 @@
 	"Social Insurance Number is invalid": "Social Insurance Number is invalid",
 	"errors.application_code_presence": "Code must be entered",
 	"errors.application_code_format": "Code must be 6 alphanumeric characters",
-	"errors.application_code_invalid": "Code does not exist"
+	"errors.application_code_does_not_exist": "Code does not exist"
 }

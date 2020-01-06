@@ -16,7 +16,7 @@ module.exports = {
       message: '^errors.application_code_format'
     },
     applicationCodeExists: {
-      message: "^errors.application_code_invalid"
+      message: "^errors.application_code_does_not_exist"
     }
   },
   birthDate: birthDateValidtor,
