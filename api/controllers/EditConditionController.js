@@ -34,11 +34,15 @@ module.exports = {
     // the conditions array is 0 indexed
     const conditionId = req.params.id - 1;
 
-    // replace the contents of the condition on the array
-    req.session.medicalReport.conditions[conditionId] = body;
-    dataStore.storeMedicalReport(req.session.medicalReport);
+    let valid = req.validate(req, res, require('../schemas/condition.schema'));
 
-    res.redirect(sails.route('conditions'));
+    if (valid) {
+      // replace the contents of the condition on the array
+      req.session.medicalReport.conditions[conditionId] = body;
+      dataStore.storeMedicalReport(req.session.medicalReport);
+
+      res.redirect(sails.route('conditions'));
+    }
   }
 };
 
