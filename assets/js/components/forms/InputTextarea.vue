@@ -16,13 +16,7 @@
       </span>
     </div>
 
-    <input
-      :name="name"
-      type="text"
-      :id="name"
-      v-bind:value="value"
-      v-on:input="updateValue($event.target.value)"
-    />
+    <textarea :name="name" :id="name" :value="value" v-on:input="updateValue($event.target.value)"></textarea>
   </div>
 </template>
 
