@@ -7,8 +7,13 @@
 
 module.exports = {
   create: function (req, res) {
+
+    const condition = {};
+
     res.view('pages/conditions/add', {
-      data: req.session.medicalReport
+      data: req.session.medicalReport,
+      condition: condition,
+      schema: require('../schemas/condition.schema')
     });
   },
 
