@@ -19,7 +19,6 @@ function ableToSubmit (sections) {
 }
 
 function isValid (obj, schema){
-  console.log(`Validating: ${JSON.stringify(obj)}`);
   if (obj === undefined) {
     return false;
   }
