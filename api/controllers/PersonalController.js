@@ -21,7 +21,7 @@ module.exports = {
     let valid = req.validate(req, res, require('../schemas/personal.schema'));
 
     if (valid) {
-      // save the model
+      // save the model, but not yet to the datastore
       req.session.medicalReport = req.body;
       res.redirect(sails.route('consent'));
 

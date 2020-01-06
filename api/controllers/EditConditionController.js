@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const dataStore = require('../utils/DataStore');
+
 module.exports = {
   edit: function (req, res) {
     // redirect back if there are no conditions
@@ -34,6 +36,7 @@ module.exports = {
 
     // replace the contents of the condition on the array
     req.session.medicalReport.conditions[conditionId] = body;
+    dataStore.storeMedicalReport(req.session.medicalReport);
 
     res.redirect(sails.route('conditions'));
   }

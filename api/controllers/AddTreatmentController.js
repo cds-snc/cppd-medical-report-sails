@@ -9,6 +9,7 @@ const {
   conditionReducer,
   oneAttribute,
 } = require('../utils/condition.mapper');
+const dataStore = require('../utils/DataStore');
 
 module.exports = {
   create: function (req, res) {
@@ -34,6 +35,7 @@ module.exports = {
         req.session.medicalReport.treatments = [];
       }
       req.session.medicalReport.treatments.push(body);
+      dataStore.storeMedicalReport(req.session.medicalReport);
       res.redirect(sails.route('treatments'));
     }
   }
