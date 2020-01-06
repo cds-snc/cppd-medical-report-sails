@@ -47,7 +47,7 @@ module.exports.routes = {
     }
   },
   'POST /en/medical-professional': {
-    name: 'medical-professional',
+    name: 'medical-professional.store',
     controller: 'MedicalProfessionalController',
     action: 'store',
     lang: 'en',
@@ -67,7 +67,7 @@ module.exports.routes = {
     }
   },
   'POST /en/doctor': { // convenience duplicate of medical-profession
-    name: 'doctor',
+    name: 'doctor.store',
     controller: 'MedicalProfessionalController',
     action: 'store',
     lang: 'en',
