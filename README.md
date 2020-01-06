@@ -173,13 +173,26 @@ These instructions are optimized for development at the moment, rather than prod
 
 1. `docker run -it --rm -p 1337:1337 cdssnc/cppd-medical-report-sails`
 
-## Dev Container + Database (Docker Compose)
+### Dev Container + Database (Docker Compose)
 
-This maps your local files into a Docker container and spins up a PostgreSQL database. This app runs on port `1337` and the database at port `5432` and username `postgres`, both are accessible at `localhost`.
+This maps your local files into a Docker container, spins up a PostgreSQL database, and uses Redis for session storage. The app runs on port `1337`, the database at port `5432` and username `postgres`, session stores on port `6379`, and all are accessible at `localhost`.
 
 ### Run
 
-1. Launch the application `docker compose up`
+1. Build/fetch containers: `docker-compose build`
+1. Launch the application `docker-compose up`
 1. Setup the database: `npm run db:migrate`
 
 When you want to stop both, you can hit `CTRL` + `D` in the terminal that launched it.
+
+### Using with VSCode Remote Containers
+
+This lets your development environment in the Docker image that resembles production. It'll run both the database and session storage too.
+
+1. Start Docker locally
+1. Install the [Remote Development extension pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
+1. Restart VSCode, opening it into this code base
+1. Open the command prompt (macOS: CMD+SHIFT+P, Win: CTRL+SHIFT+P), and choose `Remote-Containers: Reopen in Container`
+1. Choose `From docker-compose.yml`, then `web` (this might take a little bit of time at first start)
+1. After it fully starts up, use the terminal embedded inside of VSCode to issue commands within the main container (such as `npm run dev`)
+  - You'll likely need to run things like `npm run db:migrate` and `npm run dev` to start going
