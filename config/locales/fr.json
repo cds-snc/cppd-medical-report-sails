@@ -428,5 +428,10 @@
   "You must enter how many times the patient has visited your office in the past 12 months.": "You must enter how many times the patient has visited your office in the past 12 months.",
   "Visit number is not a number": "Visit number is not a number",
   "Date of last office visit is required": "Date of last office visit is required",
-  "Date of first treatment is required": "Date of first treatment is required"
+  "Date of first treatment is required": "Date of first treatment is required",
+  "medical_professional.instructions_1": "TRANSLATE As a doctor or nurse practitioner, Service Canada needs you to provide medical infomration about your patient. This is to get a better idea of your patient's health and functional abilities in relation to their work capacity.",
+  "medical_professional.instructions_2": "TRANSLATE To support your patient's application for Canada Pension Plan Disability Benefits, enter the unique code they gave you, and their date of birth.",
+  "medical_professional.invitation_code": "TRANSLATE Unique 6 character invitation code",
+  "medical_professional.patient_birth_date": "TRANSLATE Patient's date of birth",
+  "medical_professional.start": "TRANSLATE Start medical report"
 }
