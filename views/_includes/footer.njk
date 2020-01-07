@@ -5,6 +5,12 @@
                 <li>
                     <a href={{ __('footer.link1') }}>{{ __('footer.link1.desc') }}</a>
                 </li>
+
+                <!-- TODO Remove this later -->
+                {% if data.applicationCode %}
+                <li>Invitation Code: {{ data.applicationCode }}</li>
+                {% endif %}
+
             </ul>
         </div>
         <div class="canada-wordmark">
