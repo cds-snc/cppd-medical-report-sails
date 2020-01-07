@@ -24,43 +24,17 @@ module.exports = {
     const body = Object.assign({}, req.body);
     delete body._csrf;
 
-    /**
-     * If this is the first condition being entered,
-     * bypass the regular validation, and redirect
-     * to edit route instead.
-     */
-    if (_.has(req.session.medicalReport, 'conditions') && req.session.medicalReport.conditions.length) {
-
-      let valid = req.validate(req, res, require('../schemas/condition.schema'));
-
-      if (valid) {
-        // save model here
-        if (!_.has(req.session.medicalReport, 'conditions')) {
-          req.session.medicalReport.conditions = [];
-        }
-        req.session.medicalReport.conditions.push(body);
-        res.redirect(sails.route('conditions'));
-      }
-
-      return;
-    }
-
-    let valid = req.validate(req, res, {
-      conditionName: {
-        presence: {
-          allowEmpty: false,
-          message: '^errors.name_of_condition.length'
-        }
-      },
-    });
+    let valid = req.validate(req, res, require('../schemas/condition.schema'));
 
     if (valid) {
-      req.session.medicalReport.conditions = [];
+      // save model here
+      if (!_.has(req.session.medicalReport, 'conditions')) {
+        req.session.medicalReport.conditions = [];
+      }
       req.session.medicalReport.conditions.push(body);
       dataStore.storeMedicalReport(req.session.medicalReport);
 
-      return res.redirect(sails.route('conditions.edit', { id: 1 }));
+      res.redirect(sails.route('conditions'));
     }
   }
 };
-

@@ -1,7 +1,5 @@
 {% macro conditionForm(condition) %}
-    
-    {{ textInput('conditionName', 'add_condition.name_of_condition', { required: true, "autocomplete": "off", value: condition.conditionName }) }}
-    <p class="text-gray-600 -mt-8">{{ __('add_condition.name_of_condition_hint') }}</p>
+    {{ textInput('icdCode', 'ICD 9 CM code', { required: true, value: condition.icdCode }) }}
     
     {{ textInput('symptomsBegan', 'add_condition.symptoms_began', { hint: 'add_condition.symptoms_began_hint', required: true, "autocomplete": "off", value: condition.symptomsBegan }) }}
 
