@@ -27,6 +27,24 @@ module.exports = {
     const body = Object.assign({}, req.body);
     delete body._csrf;
 
+    /**
+     * If there are newConditions, create them pre-validation
+     * and auto-select them
+     */
+    if (body.newConditions) {
+      body.newConditions.forEach((item, index) => {
+        if (!_.has(req.session.medicalReport, 'conditions')) {
+          req.session.medicalReport.conditions = [];
+        }
+
+        if (item !== '') {
+          req.session.medicalReport.conditions.push({
+            conditionName: item
+          });
+        }
+      });
+    }
+
     let valid = req.validate(req, res, require('../schemas/medication.schema'));
 
     if (valid) {
@@ -35,6 +53,7 @@ module.exports = {
         req.session.medicalReport.medications = [];
       }
       req.session.medicalReport.medications.push(body);
+
       dataStore.storeMedicalReport(req.session.medicalReport);
       res.redirect(sails.route('medications'));
     }
