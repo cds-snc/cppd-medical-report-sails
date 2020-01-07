@@ -162,6 +162,7 @@
   "add_condition.condition_outlook_staysame": "Stay the same",
   "add_condition.condition_outlook_unknown": "Unknown",
   "add_condition.name_of_condition": "Name of medical condition:",
+  "add_condition.name_of_condition.first": "Which mental or physical condition has the greatest functional impact on %s",
   "add_condition.name_of_condition_hint": "ICD-9-CM code: XXXX",
   "add_condition.prognosis_unknown": "Explain why this is the case",
   "add_condition.symptoms_began": "When did your patient's symptoms begin?",
@@ -187,7 +188,7 @@
   "conditions.remove_condition": "Remove condition",
   "conditions.save_condition": "Save condition",
   "conditions.symptoms_began": "Symptoms began: ",
-  "conditions.title": "Section 5 - Add a medical condition",
+  "conditions.title": "Medical conditions",
   "confirmation.intro": "Confirmation Intro goes here",
   "confirmation.save_data": "Save data",
   "confirmation.thank_you": "Thank you!",
@@ -209,6 +210,7 @@
   "errors.expiry.date": "Date is required",
   "errors.firstname.length": "errors.firstname.length",
   "errors.fullname.length": "Full name is required",
+  "errors.icd_code_required": "ICD Code is required",
   "errors.medication_dosage.length": "errors.medication_dosage.length",
   "errors.medication_end_date.length": "errors.medication_end_date.length",
   "errors.medication_frequency.length": "errors.medication_frequency.length",
@@ -430,5 +432,8 @@
   "Must pick an option": "Must pick an option",
   "You must enter how many times the patient has visited your office in the past 12 months.": "You must enter how many times the patient has visited your office in the past 12 months.",
   "Date of last office visit is required": "Date of last office visit is required",
-  "Date of first treatment is required": "Date of first treatment is required"
+  "Date of first treatment is required": "Date of first treatment is required",
+  "Save and continue": "Save and continue",
+  "ICD 9 CM code": "ICD 9 CM code",
+  "condition.save_condition": "condition.save_condition"
 }
