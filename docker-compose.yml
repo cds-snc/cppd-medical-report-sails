@@ -8,9 +8,14 @@ services:
       - .:/cppd-medical-report-sails
     links:
       - db
+      - sessions
   db:
     image: postgres:12
     ports:
       - '5432:5432'
+  sessions:
+    image: redis:5
+    ports:
+      - '6379:6379'
 
 # Documentation: https://docs.docker.com/compose/
