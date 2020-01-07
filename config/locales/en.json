@@ -179,6 +179,7 @@
   "caught this error": "caught this error",
   "complete the Application for a Canada Pension Plan Disability Benefit (ISP1151). The application\ncan be found at www.canada.ca/esdc-forms.": false,
   "conditions.add_a_condition": "Add another condition",
+  "conditions.all_conditions_message": "Service Canada needs to know all of %s's current mental and physical conditions",
   "conditions.edit": "Edit condition",
   "conditions.icd_code": "ICD-9-CM code: ",
   "conditions.intro": "Provide all the conditions that are currently affecting your patient, starting with the greatest functional impact.",
