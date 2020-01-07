@@ -7,7 +7,7 @@
 
 module.exports = {
   index: (req, res) => {
-    res.view('pages/function');
+    res.view('pages/functional');
   }
 };
 

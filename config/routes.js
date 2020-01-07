@@ -20,22 +20,9 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-  /**
-   * STARTING ROUTES
-   */
+  ... require('./routes/functional'),
 
   '/': '/en/start', // redirect to start
-
-  'GET /en/functional': {
-    name: 'functional',
-    controller: 'FunctionalController',
-    action: 'index',
-    lang: 'en',
-    i18n: {
-      en: '/en/functional',
-      fr: '/fr/'
-    }
-  },
 
   'GET /en/start': {
     name: 'start',
