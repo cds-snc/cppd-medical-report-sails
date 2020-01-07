@@ -36,15 +36,17 @@
                 </div>
             </div>
 
+            <div>
+                <p>{{ __('conditions.all_conditions_message', patientName(data) ) }}</p>
+            </div>
+
             <div class="w-full flex">
-                <div class="w-1/3">
-                    <button type="submit">{{ __('Save and continue') }}</button>
+                <div class="w-2/3">
+                    <button type="submit" name="save_and" value="add_another">{{ __('Save and add another condition') }}</button>
                 </div>
-                {% if data.conditions %}
-                    <div class="w-1/3 text-center">
-                        <a class="button-link transparent" href="{{ route('conditions') }}">{{ __('Cancel') }}</a>
-                    </div>
-                {% endif %}
+                <div class="w-1/3 ml-4">
+                    <button type="submit" name="save_and" value="continue">{{ __('Save and continue') }}</button>
+                </div>
             </div>
         </form>
     </div>
