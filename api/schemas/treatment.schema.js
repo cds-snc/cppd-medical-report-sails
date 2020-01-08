@@ -17,12 +17,6 @@ module.exports = {
       allowEmpty: false,
     },
   },
-  treatmentEndDate: {
-    presence: {
-      message: '^errors.treatment_end_date.length',
-      allowEmpty: false,
-    },
-  },
   // DOUBLE CHECK THIS VALIDATION RULE
   treatmentTreatedCondition: {
     presence: {

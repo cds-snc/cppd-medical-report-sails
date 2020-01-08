@@ -1,5 +1,9 @@
 {% extends "layouts/layout.njk" %}
 
+{% block scripts %}
+    <script type="text/javascript" src="/build/assets/js/conditionAdder.js"></script>
+{% endblock %}
+
 {% block content %}
     {%- from 'pages/treatments/treatment-form.njk' import treatmentForm with context -%}
 
