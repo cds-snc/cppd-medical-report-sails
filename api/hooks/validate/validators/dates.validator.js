@@ -1,5 +1,8 @@
 const isValidDateFormat = string => {
   // validates format: YYYY-MM-DD
+  if(!string) {
+    return false;
+  }
   return /^(\d{4})-(\d{2})-(\d{2})$/.test(string);
 };
 
@@ -17,6 +20,9 @@ const daysInMonth = function (m, y) {
 
 // expects YYYY-MM-DD
 const isValidDate = function (dateString) {
+  if(!dateString) { // null check
+    return false;
+  }
   const parts = dateString.split('-');
   const y = parts[0];
   let m = parts[1];
@@ -38,7 +44,32 @@ const validateDateFormat = function (value, options, key, attributes) {
   }
 };
 
+/**
+ * Checks for data validity, YYYY-MM-DD format, and not null entry.
+ * 
+ * @param {*} value Field being validated 
+ */
+const dateValidators = (value, invalidDateFormatMessage, dateDoesNotExistMessage, dateIsNullMessage) => {
+  if (value) {
+      return {
+          validateDateFormat: {
+              message: invalidDateFormatMessage || '^errors.date_not_formatted_correctly'
+          },
+          validateDateExists: {
+              message: dateDoesNotExistMessage || '^errors.date_not_valid'
+          }
+      };
+  }
+  return {
+      presence: {
+          allowEmpty: false,
+          message: dateIsNullMessage || '^errors.date_is_required'
+      },
+  };
+}
+
 module.exports = {
   validateDateFormat,
   validateDateExists,
+  dateValidators
 };

@@ -7,6 +7,10 @@ const getDataFilePath = (applicationCode) => {
 };
 
 // --- Exported Functions ---
+const applicationExists = (applicationCode) => {
+  return fs.existsSync( getDataFilePath(applicationCode) );
+};
+
 const generateApplicationCode = () => {
   // TODO Replace file system storage in favor of a database
 
@@ -39,6 +43,7 @@ const storeMedicalReport = (medicalReportData) => {
 };
 
 module.exports = {
+  applicationExists,
   generateApplicationCode,
   storeMedicalReport
 };
