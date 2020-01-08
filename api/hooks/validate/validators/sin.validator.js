@@ -17,7 +17,7 @@ const validateLuhn = string => {
   return (nCheck % 10) === 0;
 };
 
-const validateSIN = function (value, options, key, attributes) {
+const validateSIN = function (value, options) {
   if (/[^0-9\s]+/.test(value)) {
     return options.message || 'is incorrectly formatted';
   }

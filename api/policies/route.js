@@ -30,7 +30,7 @@ module.exports = function (req, res, next) {
 
     // map any passed-in params to placeholders in the route path
     if (!_.isEmpty(params)) {
-      Object.keys(params).forEach((key, index) => {
+      Object.keys(params).forEach((key) => {
         route = route.replace(':' + key, params[key]);
       });
     }
