@@ -32,7 +32,7 @@ module.exports = {
       req.session.medicalReport.overallHealth = req.body.overallHealth;
       dataStore.storeMedicalReport(req.session.medicalReport);
 
-      res.redirect(sails.route('documents'));
+      res.redirect(sails.route('dashboard'));
     }
   }
 };

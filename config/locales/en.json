@@ -260,7 +260,7 @@
 	"form.upload": "upload file",
 	"health.hint": "Provide an overview of your patient's health, keeping all of their conditions, functional limitations, and treatments in mind.",
 	"health.label": "How would you describe your patient's overall health?",
-	"health.next_button": "Next: Supporting documents",
+	"health.next_button": "Save",
 	"health.title": "Section 7 - Patient's functional limitations",
 	"hospital discharge report(s)": "hospital discharge report(s)",
 	"improve": "improve",
