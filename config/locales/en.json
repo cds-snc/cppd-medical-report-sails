@@ -452,5 +452,6 @@
 	"dashboard.completed": "Completed",
 	"dashboard.not-completed": "Not Completed",
 	"dashboard.consent": "has given consent for Service Canada to obtain personal information about them.",
-	"dashboard.view_download_consent": "View or download their consent as a PDF for your records."
+	"dashboard.view_download_consent": "View or download their consent as a PDF for your records.",
+	"return_to_dashboard": "Save"
 }
