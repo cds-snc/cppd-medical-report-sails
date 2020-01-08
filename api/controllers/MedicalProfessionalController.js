@@ -33,7 +33,6 @@ module.exports = {
     else {
       req.flash('error', 'errors.no_application_found');
       req.flash('data', req.body);
-      console.log('Flashing back');
       return res.redirect('back');
     }
   }
