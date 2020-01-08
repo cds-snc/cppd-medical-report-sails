@@ -1,3 +1,5 @@
+const { dateValidators } = require("../hooks/validate/validators/dates.validator");
+
 module.exports = {
   socialInsuranceNumber: {
     presence: {
@@ -20,24 +22,7 @@ module.exports = {
       message: '^Last name is required'
     }
   },
-  birthdate: function (value) {
-    if (value) {
-      return {
-        validateDateFormat: {
-          message: '^Birthdate is not formatted correctly'
-        },
-        validateDateExists: {
-          message: '^Birthdate is not a valid date'
-        }
-      };
-    }
-    return {
-      presence: {
-        allowEmpty: false,
-        message: '^Birthdate is required'
-      },
-    };
-  },
+  birthdate: dateValidators,
   address: {
     presence: {
       allowEmpty: false,

@@ -439,5 +439,6 @@
   "errors.application_code_does_not_exist": "TRANSLATE Code does not exist",
 	"errors.patient_birthdate_not_formated_correctly": "TRANSLATE Date is not formatted correctly",
 	"errors.patient_birthdate_not_valid": "TRANSLATE Date is not a valid date",
-	"errors.patient_birthdate_is_required": "TRANSLATE Date is required"
+  "errors.patient_birthdate_is_required": "TRANSLATE Date is required",
+  "errors.no_application_found": "TRANSLATE No medical report was found with this code and birthdate"
 }

@@ -7,8 +7,13 @@ const getDataFilePath = (applicationCode) => {
 };
 
 // --- Exported Functions ---
-const applicationExists = (applicationCode) => {
-  return fs.existsSync( getDataFilePath(applicationCode) );
+const applicationExists = (applicationCode, birthdate) => {
+  if (fs.existsSync( getDataFilePath(applicationCode) )){
+    let application = getApplication(applicationCode);
+    return birthdate === application.birthdate;
+  }
+
+  return false;
 };
 
 const generateApplicationCode = () => {
@@ -28,11 +33,10 @@ const generateApplicationCode = () => {
   return code;
 };
 
-// const getMedicalReport = (applicationCode, birthDate) => {
-//   // TODO Use the birthdate to verify a match of the code with the person
-//   // TODO Replace file system storage in favor of a database
-//   return JSON.parse(fs.readFileSync(getDataFilePath(applicationCode)));
-// };
+const getApplication = (applicationCode) => {
+  // TODO Replace file system storage in favor of a database
+  return JSON.parse(fs.readFileSync(getDataFilePath(applicationCode)));
+};
 
 const storeMedicalReport = (medicalReportData) => {
   // TODO Replace file system storage in favor of a database
@@ -45,5 +49,6 @@ const storeMedicalReport = (medicalReportData) => {
 module.exports = {
   applicationExists,
   generateApplicationCode,
+  getApplication,
   storeMedicalReport
 };

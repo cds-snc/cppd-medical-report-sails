@@ -442,5 +442,6 @@
   	"errors.application_code_does_not_exist": "Code does not exist",
 	"errors.patient_birthdate_not_formated_correctly": "Patient Date of Birth is not formatted correctly",
 	"errors.patient_birthdate_not_valid": "Patient Date of Birth is not a valid date",
-	"errors.patient_birthdate_is_required": "Patient Date of Birth is required"
+	"errors.patient_birthdate_is_required": "Patient Date of Birth is required",
+	"errors.no_application_found": "No medical report was found with this code and birthdate"
 }
