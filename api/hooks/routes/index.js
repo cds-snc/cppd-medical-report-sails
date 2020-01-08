@@ -19,7 +19,6 @@ module.exports = sails => {
         if (_.isObject(options) && _.has(options, 'name')) {
           let name = options.name;
           let verb = detectVerb(route.toLowerCase()).verb;
-          let url = detectVerb(route.toLowerCase()).path;
           let i18nRoutes = options.i18n;
           let defaultLang = options.lang;
 
