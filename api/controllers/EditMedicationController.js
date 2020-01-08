@@ -11,7 +11,7 @@ const {
 } = require('../utils/condition.mapper');
 
 const dataStore = require('../utils/DataStore');
-const Condition = require('../utils/ConditionHelper');
+const ConditionHelper = require('../utils/ConditionHelper');
 
 module.exports = {
   edit: function (req, res) {
@@ -50,7 +50,7 @@ module.exports = {
      * and auto-select them
      */
     if (body.newConditions) {
-      req.body = Condition.addConditions(req, body, 'medicationTreatedCondition');
+      req.body = ConditionHelper.addConditions(req, body, 'medicationTreatedCondition');
     }
 
     // the medications array is 0 indexed
