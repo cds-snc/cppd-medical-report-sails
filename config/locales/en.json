@@ -199,7 +199,7 @@
 	"deteriorate": "deteriorate",
 	"documents.delete": "Delete",
 	"documents.intro": "Attach any notes or documents that are relevant to your patient's medical conditions.",
-	"documents.next_button": "Next: Declaration",
+	"documents.next_button": "Save documents",
 	"documents.sub": "These could include: clinical notes, specialist reports or hospital discharge reports, etc ",
 	"documents.title": "Supporting documents",
 	"documents.which_condition": "Which conditions does this refer to?",
@@ -263,7 +263,7 @@
 	"form.upload": "upload file",
 	"health.hint": "Provide an overview of your patient's health, keeping all of their conditions, functional limitations, and treatments in mind.",
 	"health.label": "How would you describe your patient's overall health?",
-	"health.next_button": "Next: Supporting documents",
+	"health.next_button": "Save",
 	"health.title": "Section 7 - Patient's functional limitations",
 	"hospital discharge report(s)": "hospital discharge report(s)",
 	"improve": "improve",
@@ -475,5 +475,6 @@
 	"dashboard.completed": "Completed",
 	"dashboard.not-completed": "Not Completed",
 	"dashboard.consent": "has given consent for Service Canada to obtain personal information about them.",
-	"dashboard.view_download_consent": "View or download their consent as a PDF for your records."
+	"dashboard.view_download_consent": "View or download their consent as a PDF for your records.",
+	"return_to_dashboard": "Save"
 }
