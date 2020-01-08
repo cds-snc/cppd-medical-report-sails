@@ -7,6 +7,11 @@ const getDataFilePath = (applicationCode) => {
 };
 
 // --- Exported Functions ---
+const getApplication = (applicationCode) => {
+  // TODO Replace file system storage in favor of a database
+  return JSON.parse(fs.readFileSync(getDataFilePath(applicationCode)));
+};
+
 const applicationExists = (applicationCode, birthdate) => {
   if (fs.existsSync( getDataFilePath(applicationCode) )){
     let application = getApplication(applicationCode);
@@ -31,11 +36,6 @@ const generateApplicationCode = () => {
   fs.openSync(fileName, 'w');
 
   return code;
-};
-
-const getApplication = (applicationCode) => {
-  // TODO Replace file system storage in favor of a database
-  return JSON.parse(fs.readFileSync(getDataFilePath(applicationCode)));
 };
 
 const storeMedicalReport = (medicalReportData) => {
