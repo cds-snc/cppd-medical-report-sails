@@ -15,7 +15,7 @@ module.exports = {
     if (req.session.medicalReport) {
       req.session.medicalReport = null;
     }
-    res.view('pages/medical-professionals');
+    res.view('pages/medical-professional');
   },
 
   store: function (req, res) {

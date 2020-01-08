@@ -1,9 +1,7 @@
 {% extends "layouts/layout.njk" %}
 
 {% block content %}
-    {% if error %}
-        <p>There was an error</p>
-    {% endif %}
+    {{ error }}
 
     <h1>{{ __('app.title') }}</h1>
     
