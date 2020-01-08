@@ -44,8 +44,14 @@ module.exports = {
       if (!_.has(req.session.medicalReport, 'treatments')) {
         req.session.medicalReport.treatments = [];
       }
+
       req.session.medicalReport.treatments.push(body);
       dataStore.storeMedicalReport(req.session.medicalReport);
+
+      if (action === 'add_another') {
+        return res.redirect(sails.route('treatments.add'));
+      }
+
       res.redirect(sails.route('treatments'));
     }
   }
