@@ -5,7 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const {applicationExists, getApplication} = require('../utils/DataStore');
+const { applicationExists, getApplication } = require('../utils/DataStore');
 
 module.exports = {
   index: function (req, res) {
@@ -20,17 +20,18 @@ module.exports = {
 
   store: function (req, res) {
     // Validate completion / formatting, this calls res.redirect if invalid
-    req.validate(req, res, require('../schemas/invitation.schema'));
-
-    // Validate whether or not the application code exists and, if so, matches the birthdate
-    const applicationCode = req.body.applicationCode;
-    let valid = applicationExists(applicationCode, req.body.birthdate);
+    let valid = req.validate(req, res, require('../schemas/invitation.schema'));
 
     if (valid) {
-      req.session.medicalReport = getApplication(applicationCode);
-      return res.redirect(sails.route('relationship'));
-    }
-    else {
+      // Validate whether or not the application code exists and, if so, matches the birthdate
+      const applicationCode = req.body.applicationCode;
+      let ok = applicationExists(applicationCode, req.body.birthdate);
+
+      if (ok) {
+        req.session.medicalReport = getApplication(applicationCode);
+        return res.redirect(sails.route('relationship'));
+      }
+
       req.flash('error', 'errors.no_application_found');
       req.flash('data', req.body);
       return res.redirect('back');
