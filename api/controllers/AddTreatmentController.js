@@ -15,8 +15,16 @@ const ConditionHelper = require('../utils/ConditionHelper');
 
 module.exports = {
   create: function (req, res) {
-    const data = req.session.medicalReport;
+    let data = req.session.medicalReport;
     const conditionList = conditionReducer(data.conditions);
+
+    /**
+     * If we're returning to the form with flash data in locals,
+     * merge it with the rest of the medicalReport in the session.
+     */
+    if (res.locals.data) {
+      data = _.merge(res.locals.data, req.session.medicalReport);
+    }
 
     res.view('pages/treatments/add', {
       conditionList: conditionList,
@@ -28,6 +36,9 @@ module.exports = {
   store: function (req, res) {
     const body = Object.assign({}, req.body);
     delete body._csrf;
+
+    // use the value of the submit button to determine redirect
+    const action = body.save_and;
 
     /**
      * If there are newConditions, create them pre-validation
