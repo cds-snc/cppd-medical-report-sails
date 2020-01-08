@@ -46,27 +46,27 @@ const validateDateFormat = function (value, options, key, attributes) {
 
 /**
  * Checks for data validity, YYYY-MM-DD format, and not null entry.
- * 
- * @param {*} value Field being validated 
+ *
+ * @param {*} value Field being validated
  */
 const dateValidators = (value, invalidDateFormatMessage, dateDoesNotExistMessage, dateIsNullMessage) => {
   if (value) {
-      return {
-          validateDateFormat: {
-              message: invalidDateFormatMessage || '^errors.date_not_formatted_correctly'
-          },
-          validateDateExists: {
-              message: dateDoesNotExistMessage || '^errors.date_not_valid'
-          }
-      };
+    return {
+      validateDateFormat: {
+        message: invalidDateFormatMessage || '^errors.date_not_formatted_correctly'
+      },
+      validateDateExists: {
+        message: dateDoesNotExistMessage || '^errors.date_not_valid'
+      }
+    };
   }
   return {
-      presence: {
-          allowEmpty: false,
-          message: dateIsNullMessage || '^errors.date_is_required'
-      },
+    presence: {
+      allowEmpty: false,
+      message: dateIsNullMessage || '^errors.date_is_required'
+    },
   };
-}
+};
 
 module.exports = {
   validateDateFormat,

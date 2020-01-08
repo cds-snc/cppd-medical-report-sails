@@ -1,4 +1,4 @@
-const { dateValidators } = require("../hooks/validate/validators/dates.validator");
+const { dateValidators } = require('../hooks/validate/validators/dates.validator');
 
 module.exports = {
   socialInsuranceNumber: {
