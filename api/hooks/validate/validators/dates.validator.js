@@ -26,13 +26,13 @@ const isValidDate = function (dateString) {
   return m >= 0 && m < 12 && d > 0 && d <= daysInMonth(m, y);
 };
 
-const validateDateExists = function (value, options, key, attributes) {
+const validateDateExists = function (value, options) {
   if (!isValidDate(value)) {
     return options.message || 'is not a valid date';
   }
 };
 
-const validateDateFormat = function (value, options, key, attributes) {
+const validateDateFormat = function (value, options) {
   if (!isValidDateFormat(value)) {
     return options.message || 'is not a valid date format';
   }
