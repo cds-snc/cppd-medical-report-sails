@@ -9,12 +9,22 @@ const {
   conditionReducer,
   oneAttribute,
 } = require('../utils/condition.mapper');
+
 const dataStore = require('../utils/DataStore');
+const Condition = require('../utils/Condition');
 
 module.exports = {
   create: function (req, res) {
-    const data = req.session.medicalReport;
+    let data = req.session.medicalReport;
     const conditionList = conditionReducer(data.conditions);
+
+    /**
+     * If we're returning to the form with flash data in locals,
+     * merge it with the rest of the medicalReport in the session.
+     */
+    if (res.locals.data) {
+      data = _.merge(res.locals.data, req.session.medicalReport);
+    }
 
     res.view('pages/medications/add', {
       conditionList: conditionList,
@@ -32,17 +42,7 @@ module.exports = {
      * and auto-select them
      */
     if (body.newConditions) {
-      body.newConditions.forEach((item, index) => {
-        if (!_.has(req.session.medicalReport, 'conditions')) {
-          req.session.medicalReport.conditions = [];
-        }
-
-        if (item !== '') {
-          req.session.medicalReport.conditions.push({
-            conditionName: item
-          });
-        }
-      });
+      req.body = Condition.addConditions(req, body, 'medicationTreatedCondition');
     }
 
     let valid = req.validate(req, res, require('../schemas/medication.schema'));
@@ -53,8 +53,8 @@ module.exports = {
         req.session.medicalReport.medications = [];
       }
       req.session.medicalReport.medications.push(body);
-
       dataStore.storeMedicalReport(req.session.medicalReport);
+
       res.redirect(sails.route('medications'));
     }
   }
