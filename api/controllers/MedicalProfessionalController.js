@@ -19,12 +19,12 @@ module.exports = {
   },
 
   store: function (req, res) {
-    // Validate completion / formatting
-    let valid = req.validate(req, res, require('../schemas/invitation.schema'));
+    // Validate completion / formatting, this calls res.redirect if invalid
+    req.validate(req, res, require('../schemas/invitation.schema'));
 
     // Validate whether or not the application code exists and, if so, matches the birthdate
     const applicationCode = req.body.applicationCode;
-    valid = applicationExists(applicationCode, req.body.birthdate);
+    let valid = applicationExists(applicationCode, req.body.birthdate);
 
     if (valid) {
       req.session.medicalReport = getApplication(applicationCode);
