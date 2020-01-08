@@ -9,7 +9,9 @@ const {
   conditionReducer,
   oneAttribute,
 } = require('../utils/condition.mapper');
+
 const dataStore = require('../utils/DataStore');
+const Condition = require('../utils/Condition');
 
 module.exports = {
   edit: function (req, res) {
@@ -40,6 +42,17 @@ module.exports = {
     const body = Object.assign({}, req.body);
     delete body._csrf;
 
+    // use the value of the submit button to determine redirect
+    const action = body.save_and;
+
+    /**
+     * If there are newConditions, create them pre-validation
+     * and auto-select them
+     */
+    if (body.newConditions) {
+      req.body = Condition.addConditions(req, body, 'medicationTreatedCondition');
+    }
+
     // the medications array is 0 indexed
     const medicationId = req.params.id - 1;
 
@@ -49,6 +62,10 @@ module.exports = {
       // replace the contents of the medication on the array
       req.session.medicalReport.medications[medicationId] = body;
       dataStore.storeMedicalReport(req.session.medicalReport);
+
+      if (action === 'add_another') {
+        return res.redirect(sails.route('medications.add'));
+      }
 
       res.redirect(sails.route('medications'));
     }

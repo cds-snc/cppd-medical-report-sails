@@ -37,6 +37,9 @@ module.exports = {
     const body = Object.assign({}, req.body);
     delete body._csrf;
 
+    // use the value of the submit button to determine redirect
+    const action = body.save_and;
+
     /**
      * If there are newConditions, create them pre-validation
      * and auto-select them
@@ -54,6 +57,10 @@ module.exports = {
       }
       req.session.medicalReport.medications.push(body);
       dataStore.storeMedicalReport(req.session.medicalReport);
+
+      if (action === 'add_another') {
+        return res.redirect(sails.route('medications.add'));
+      }
 
       res.redirect(sails.route('medications'));
     }

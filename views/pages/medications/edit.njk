@@ -17,18 +17,13 @@
             {{ medicationForm(medication) }}
 
             <div class="w-full flex">
-                <div class="w-1/3">
-                    <button type="submit">{{ __('medications.save_medication') }}</button>
+                <div class="">
+                    <button type="submit" name="save_and" value="add_another">{{ __('medications.save_medication') }}</button>
                 </div>
-                {% if data.medications %}
-                    <div class="w-1/3 text-center">
-                        <a class="button-link transparent" href="{{ route('medications') }}">{{ __('Cancel') }}</a>
-                    </div>
-                {% else %}
-                    <div class="w-1/3 text-center">
-                        <a class="button-link transparent" href="{{ route('treatments') }}">{{ __('skip_section') }}</a>
-                    </div>
-                {% endif %}
+                
+                <div class="ml-4">
+                    <button type="submit" name="save_and" value="continue">{{ __('medications.save_and_return') }}</button>
+                </div>
             </div>
         </form>
     </div>
