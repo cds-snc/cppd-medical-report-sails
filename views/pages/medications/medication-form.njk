@@ -1,10 +1,31 @@
 {% macro medicationForm(medication) %}
 
-{{ textInput('medicationName', 'form.medication_name.desc', {required: true, "autocomplete": "off", value: medication.medicationName }) }}
-{{ textInput('medicationDosage', 'form.medication_dosage.desc', {required: true, "autocomplete": "off", value: medication.medicationDosage }) }}
-{{ textInput('medicationFrequency', 'form.medication_frequency.desc', {required: true, hint: 'form.medication_frequency.hint', "autocomplete": "off", value: medication.medicationFrequency }) }}
-{{ textInput('medicationStartDate', 'form.medication_start_date.text', { required: true, hint: 'form.medication_start_date.hint', "autocomplete": "off", value: medication.medicationStartDate })}}
-{{ textInput('medicationEndDate', 'form.medication_end_date.text', {required: true, hint: 'form.medication_end_date.hint', "autocomplete": "off", value: medication.medicationEndDate })}}
+{{ textInput('medicationName', 'form.medication_name.desc', {required: true, "autocomplete": "off", value: medication.medicationName, class: "w-full" }) }}
+
+<div class="flex flex-row w-3/4">
+    <div class="w-1/2">
+        {{ textInput('medicationDosage', 'form.medication_dosage.desc', {required: true, "autocomplete": "off", value: medication.medicationDosage, class: 'w-full' }) }}
+    </div>
+
+    <div class="w-1/2 ml-4">
+        {{ textInput('medicationFrequency', 'form.medication_frequency.desc', {required: true, "autocomplete": "off", value: medication.medicationFrequency, class: 'w-full' }) }}
+    </div>
+</div>
+
+<div class="flex flex-row w-3/4">
+    <div class="w-1/2">
+        {{ textInput('medicationStartDate', 'form.medication_start_date.text', { required: true, hint: 'form.medication_start_date.hint', "autocomplete": "off", value: medication.medicationStartDate, class: 'w-full' })}}
+    </div>
+    <div class="w-1/2 ml-4">
+        {{ textInput('medicationEndDate', 'form.medication_end_date.text', {required: true, hint: 'form.medication_end_date.hint', "autocomplete": "off", value: medication.medicationEndDate, class: 'w-full' })}}
+    </div>
+</div>
+
+{{ textArea(
+    'medicationResults',
+    'form.medicaiton_results.desc',
+    { required: true, hint: 'form.medication_results.hint', value: medication.medicationResults, class: 'w-full' }
+) }}
 
 {% if oneValue %}
     {% set selectedValues = ["0"] %}
@@ -29,11 +50,5 @@
         Add medical condition
     </a>
 </div>
-
-{{ textArea(
-    'medicationResults',
-    'form.medicaiton_results.desc',
-    { required: true, hint: 'form.medication_results.hint', value: medication.medicationResults }
-) }}
 
 {% endmacro %}
