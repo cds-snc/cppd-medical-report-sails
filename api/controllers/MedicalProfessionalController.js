@@ -15,7 +15,6 @@ module.exports = {
     if (req.session.medicalReport) {
       req.session.medicalReport = null;
     }
-
     res.view('pages/medical-professionals');
   },
 
@@ -25,18 +24,17 @@ module.exports = {
 
     // Validate whether or not the application code exists and, if so, matches the birthdate
     const applicationCode = req.body.applicationCode;
-    console.log('Code: ' + applicationCode);
-    console.log('Birthdate: ' + req.body.birthdate);
     valid = applicationExists(applicationCode, req.body.birthdate);
-    console.log('Is Valid: ' + valid);
 
     if (valid) {
       req.session.medicalReport = getApplication(applicationCode);
       return res.redirect(sails.route('relationship'));
     }
     else {
-      req.session.medicalReport = getApplication(applicationCode);
-      return res.redirect(sails.route('relationship')); // TODO change
+      req.flash('error', 'errors.no_application_found');
+      req.flash('data', req.body);
+      console.log('Flashing back');
+      return res.redirect('back');
     }
   }
 };

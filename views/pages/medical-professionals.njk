@@ -1,6 +1,10 @@
 {% extends "layouts/layout.njk" %}
 
 {% block content %}
+    {% if error %}
+        <p>There was an error</p>
+    {% endif %}
+
     <h1>{{ __('app.title') }}</h1>
     
     <p>{{ __('medical_professional.instructions_1') }}</p>
