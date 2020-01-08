@@ -1,3 +1,11 @@
+function castArray(...args) {
+  if (!args.length) {
+    return [];
+  }
+  const value = args[0];
+  return Array.isArray(value) ? value : [value];
+}
+
 const addConditions = (req, body, selectedArray) => {
   /**
      * Init conditions array if it doesn't exist yet and grab
@@ -20,6 +28,8 @@ const addConditions = (req, body, selectedArray) => {
       if (!_.has(body, selectedArray)) {
         body.medicationTreatedCondition = [];
       }
+
+      body.medicationTreatedCondition = castArray(body.medicationTreatedCondition);
 
       // the new conditions go at the end of any existing conditions
       let newIndex = index + indexStart;
