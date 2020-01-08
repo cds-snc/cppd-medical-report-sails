@@ -9,7 +9,9 @@ const {
   conditionReducer,
   oneAttribute,
 } = require('../utils/condition.mapper');
+
 const dataStore = require('../utils/DataStore');
+const ConditionHelper = require('../utils/ConditionHelper');
 
 module.exports = {
   create: function (req, res) {
@@ -26,6 +28,14 @@ module.exports = {
   store: function (req, res) {
     const body = Object.assign({}, req.body);
     delete body._csrf;
+
+    /**
+     * If there are newConditions, create them pre-validation
+     * and auto-select them
+     */
+    if (body.newConditions) {
+      req.body = ConditionHelper.addConditions(req, body, 'medicationTreatedCondition');
+    }
 
     let valid = req.validate(req, res, require('../schemas/treatment.schema'));
 
