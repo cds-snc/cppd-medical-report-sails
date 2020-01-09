@@ -68,4 +68,4 @@ module.exports = {
       fr: '/fr/medications/:id/delete'
     }
   },
-}
+};

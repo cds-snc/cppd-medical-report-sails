@@ -1,4 +1,4 @@
-
+module.exports = {
   /*
    * EMPLOYMENT ROUTES
    */
@@ -22,4 +22,5 @@
       en: '/en/employment',
       fr: '/fr/employment'
     }
-  },
+  }
+};
