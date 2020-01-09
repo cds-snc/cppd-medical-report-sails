@@ -34,6 +34,12 @@
                 {% include "_includes/fip.njk" %}
             </header>
             <main id="content">
+                {% if error %}
+                    <div class="error-list" role="alert">
+                        <h3 class="error-list__header">{{ __('Please correct the errors on the page') }}</h3>
+                        <span class="error-list__link" href="#">{{ __(error) }}</a>
+                    </div>
+                {% endif %}
                 {% if errors %}
                     {% include "_includes/errorList.njk" %}
                 {% endif %}
