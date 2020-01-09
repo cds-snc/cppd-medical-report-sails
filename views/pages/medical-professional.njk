@@ -1,0 +1,20 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+    <h1>{{ __('app.title') }}</h1>
+    
+    <p>{{ __('medical_professional.instructions_1') }}</p>
+
+    <p>{{ __('medical_professional.instructions_2') }}</p>
+
+    <form action="{{ route('medical-professional.store') }}" method="post">        
+        {{ textInput('applicationCode', 'medical_professional.invitation_code', { class: "w-3-4", required: true }) }}
+        {{ textInput('birthdate', 'medical_professional.patient_birth_date', { hint: 'year_month_day_format', required: true }) }}
+
+        <div class="w-full">
+            <div class="w-1/3">
+                <button type="submit">{{ __('medical_professional.start') }}</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

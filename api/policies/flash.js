@@ -10,6 +10,11 @@ module.exports = function (req, res, next) {
       res.locals.errors = _.first(req.flash('errors'));
     }
 
+    // Page-level errors (like a holistically invalid form submission, such as a bad login)
+    if (_.has(req.session.flash, 'error')) {
+      res.locals.error = _.first(req.flash('error'));
+    }
+
     if (_.has(req.session.flash, 'data')) {
       res.locals.data = _.first(req.flash('data'));
     }
