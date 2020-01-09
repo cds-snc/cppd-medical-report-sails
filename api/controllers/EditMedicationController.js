@@ -15,18 +15,26 @@ const ConditionHelper = require('../utils/ConditionHelper');
 
 module.exports = {
   edit: function (req, res) {
-    const data = req.session.medicalReport;
-    const conditionList = conditionReducer(data.conditions);
+    const medicalReport = req.session.medicalReport;
+    const conditionList = conditionReducer(medicalReport.conditions);
 
     // redirect back if there are no medications
     if (!_.has(req.session.medicalReport, 'medications')) {
       return res.redirect(sails.route('medications'));
     }
 
-    const medication = req.session.medicalReport.medications[req.params.id - 1];
+    let medication = medicalReport.medications[req.params.id - 1];
 
     if (!medication) {
       return res.redirect(sails.route('medications'));
+    }
+
+    /**
+     * If we're returning to the form with flash data in locals,
+     * merge it with the rest of the medication from the session.
+     */
+    if (res.locals.data) {
+      medication = _.merge(medication, res.locals.data);
     }
 
     res.view('pages/medications/edit', {
@@ -34,7 +42,7 @@ module.exports = {
       medication: medication,
       conditionList: conditionList,
       oneValue: oneAttribute(conditionList),
-      data: req.session.medicalReport,
+      medicalReport: medicalReport
     });
   },
 
