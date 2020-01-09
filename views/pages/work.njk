@@ -1,0 +1,63 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+
+    <h1>{{ __('Future work capacity') }} <br/> <span class="text-base">{{ __('conditions.patient')}} {{ patientName(data) }}</span></h1>
+
+    <div>
+        <form method="post">
+
+            <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+            {{ 
+                radioButtons('returnToWork', 
+                    { 
+                        '1': 'Yes',
+                        '2': 'No',
+                        '3': 'Unknown'
+                    }, 
+                data.returnToWork, 
+                __('Do you expect %s to return to any type of work in the future?', patientName(data)),
+                errors,
+                { required: true }) 
+            }}
+
+            {{ 
+                radioButtons('returnToWorkWhen', 
+                    { 
+                        '1': 'In 6 to 12 months',
+                        '2': 'In 12 to 24 months',
+                        '3': 'In more than 24 months',
+                        '4': 'Unknown'
+                    }, 
+                data.returnToWorkWhen, 
+                __('When do you expect %s to return to work?', patientName(data)),
+                errors,
+                { required: true }) 
+            }}
+
+            {{ 
+                radioButtons('typeOfWork', 
+                    { 
+                        '1': 'Their usual work',
+                        '2': 'Modified work',
+                        '3': 'Another type of work that will require training',
+                        '4': 'Other'
+                    }, 
+                data.typeOfWork, 
+                __('What type of work do you expect %s will be able to do?', patientName(data)),
+                errors,
+                { required: true }) 
+            }}
+
+            {{ textArea(
+                'workDetails',
+                'Provide more details where possible',
+                { required: true }
+            ) }}
+
+            {{ formButtons() }}
+        </form>
+    </div>
+
+{% endblock %}
