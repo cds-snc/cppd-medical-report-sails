@@ -10,10 +10,12 @@ const validate = require('../hooks/validate/validator');
 function getSectionsCompleted(report) {
   return {
     personal: isValid(report, require('../schemas/personal.schema')),
+    expedited : isValid(report, require('../schemas/expedited.schema')),
     functional: false,
     conditions: isArrayValid(report.conditions, require('../schemas/condition.schema')),
     medications: isArrayValid(report.medications, require('../schemas/medication.schema')),
     treatments: isArrayValid(report.treatments, require('../schemas/treatment.schema')),
+    overallHealth : isValid(report, require('../schemas/health.schema')),
     futureWork: false,
     supportingDocuments: isValid(report.supportingDocuments,require('../schemas/documents.schema'))
   };
@@ -21,12 +23,15 @@ function getSectionsCompleted(report) {
 
 function ableToSubmit (sections) {
   return sections.personal &&
+         sections.expedited &&
          sections.functional &&
          sections.conditions &&
          sections.medications &&
          sections.treatments &&
          sections.futureWork &&
-         sections.supportingDocuments;
+         sections.supportingDocs &&
+         sections.overallHealth &&
+         sections.declaration;
 }
 
 function isValid (obj, schema){
