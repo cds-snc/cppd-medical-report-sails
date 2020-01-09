@@ -26,7 +26,10 @@ module.exports = {
 
     if (valid) {
       // save the model, but not yet to the datastore
-      req.session.medicalReport = req.body;
+      req.session.medicalReport.limitations = req.body.limitations;
+      req.session.medicalReport.plannedTreatments= req.body.plannedTreatments;
+      req.session.medicalReport.height= req.body.height;
+      req.session.medicalReport.weight= req.body.weight;
       res.redirect(sails.route('dashboard'));
     }
   }
