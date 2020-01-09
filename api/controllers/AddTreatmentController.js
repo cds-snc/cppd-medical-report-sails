@@ -15,21 +15,13 @@ const ConditionHelper = require('../utils/ConditionHelper');
 
 module.exports = {
   create: function (req, res) {
-    let data = req.session.medicalReport;
-    const conditionList = conditionReducer(data.conditions);
-
-    /**
-     * If we're returning to the form with flash data in locals,
-     * merge it with the rest of the medicalReport in the session.
-     */
-    if (res.locals.data) {
-      data = _.merge(res.locals.data, req.session.medicalReport);
-    }
+    let medicalReport = req.session.medicalReport;
+    const conditionList = conditionReducer(medicalReport.conditions);
 
     res.view('pages/treatments/add', {
       conditionList: conditionList,
       oneValue: oneAttribute(conditionList),
-      data: data,
+      medicalReport: medicalReport,
     });
   },
 

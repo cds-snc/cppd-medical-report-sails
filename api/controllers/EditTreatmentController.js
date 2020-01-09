@@ -15,8 +15,8 @@ const ConditionHelper = require('../utils/ConditionHelper');
 
 module.exports = {
   edit: function (req, res) {
-    let data = req.session.medicalReport;
-    const conditionList = conditionReducer(data.conditions);
+    let medicalReport = req.session.medicalReport;
+    const conditionList = conditionReducer(medicalReport.conditions);
 
     // redirect back if there are no treatments
     if (!_.has(req.session.medicalReport, 'treatments')) {
@@ -24,7 +24,7 @@ module.exports = {
     }
 
     // Grab this treatment from the array by index
-    let treatment = req.session.medicalReport.treatments[req.params.id - 1];
+    let treatment = medicalReport.treatments[req.params.id - 1];
 
     if (!treatment) {
       return res.redirect(sails.route('treatments'));
@@ -43,7 +43,7 @@ module.exports = {
       treatment: treatment,
       conditionList: conditionList,
       oneValue: oneAttribute(conditionList),
-      data: req.session.medicalReport,
+      medicalReport: req.session.medicalReport,
     });
   },
 
