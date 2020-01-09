@@ -18,23 +18,24 @@ module.exports = {
     let data = req.session.medicalReport;
     const conditionList = conditionReducer(data.conditions);
 
-    /**
-     * If we're returning to the form with flash data in locals,
-     * merge it with the rest of the medicalReport in the session.
-     */
-    if (res.locals.data) {
-      data = _.merge(res.locals.data, req.session.medicalReport);
-    }
-
     // redirect back if there are no treatments
     if (!_.has(req.session.medicalReport, 'treatments')) {
       return res.redirect(sails.route('treatments'));
     }
 
-    const treatment = req.session.medicalReport.treatments[req.params.id - 1];
+    // Grab this treatment from the array by index
+    let treatment = req.session.medicalReport.treatments[req.params.id - 1];
 
     if (!treatment) {
       return res.redirect(sails.route('treatments'));
+    }
+
+    /**
+     * If we're returning to the form with flash data in locals,
+     * merge it with the rest of the condition from the array.
+     */
+    if (res.locals.data) {
+      treatment = _.merge(treatment, res.locals.data);
     }
 
     res.view('pages/treatments/edit', {
