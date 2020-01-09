@@ -11,12 +11,12 @@ module.exports = {
   create: function (req, res) {
     if (_.has(req.session.medicalReport, 'conditions') && req.session.medicalReport.conditions.length) {
       return res.view('pages/conditions/add', {
-        data: req.session.medicalReport
+        medicalReport: req.session.medicalReport
       });
     }
 
     res.view('pages/conditions/add_first', {
-      data: req.session.medicalReport
+      medicalReport: req.session.medicalReport
     });
   },
 

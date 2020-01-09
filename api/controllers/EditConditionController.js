@@ -14,16 +14,24 @@ module.exports = {
       return res.redirect(sails.route('conditions'));
     }
 
-    const condition = req.session.medicalReport.conditions[req.params.id - 1];
+    let condition = { ...req.session.medicalReport.conditions[req.params.id - 1] };
 
     if (!condition) {
       return res.redirect(sails.route('conditions'));
     }
 
+    /**
+     * If we're returning to the form with flash data in locals,
+     * merge it with the rest of the medication from the session.
+     */
+    if (res.locals.data) {
+      condition = _.merge(condition, res.locals.data);
+    }
+
     res.view('pages/conditions/edit', {
       id: req.params.id,
       condition: condition,
-      data: req.session.medicalReport
+      medicalReport: req.session.medicalReport
     });
   },
 

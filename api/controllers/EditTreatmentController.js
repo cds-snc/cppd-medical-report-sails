@@ -24,7 +24,7 @@ module.exports = {
     }
 
     // Grab this treatment from the array by index
-    let treatment = medicalReport.treatments[req.params.id - 1];
+    let treatment = { ...medicalReport.treatments[req.params.id - 1] };
 
     if (!treatment) {
       return res.redirect(sails.route('treatments'));
