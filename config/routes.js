@@ -76,6 +76,9 @@ module.exports.routes = {
       fr: '/fr/doctor'
     }
   },
+
+  ... require('./routes/dashboard'),
+
   /**
    * PERSONAL ROUTES
    */
