@@ -438,5 +438,7 @@
 	"Date of first treatment is required": "Date of first treatment is required",
 	"Save and continue": "Save and continue",
 	"ICD 9 CM code": "ICD 9 CM code",
-	"condition.save_condition": "Save condition"
+	"condition.save_condition": "Save condition",
+	"Save": "Save",
+	"Save and add another condition": "Save and add another condition"
 }
