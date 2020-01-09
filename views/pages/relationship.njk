@@ -5,32 +5,32 @@
     <h1>{{ __('section3.title') }}</h1>
 
     <div>
-        <p>
-            {{ __('section3.intro') }}
-        </p>
-
         <form method="post">
 
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
+            {{ textInput('relationshipStarted', __('section3.form.relationship_started.desc', patientName(data)), { required: true, hint: 'For example: Feb 2008' }) }}
+
+            {{ textInput('firstTreatmentDate', __('section3.form.first_treatment_date.desc', patientName(data)), { hint: 'For example: Feb 3, 2016', required: true }) }}
+
+            {{ textInput('visitNumber', __('section3.form.visit_number.desc', patientName(data)), { required: true }) }}
+
+            {{ textInput('lastVisitDate', 'section3.form.last_visit_date.desc', { hint: 'For example: Nov 15, 2019', required: true }) }}
+
             {{ 
-                radioButtons('numYearsWasPatient', 
+                radioButtons('stopWorking', 
                     { 
-                        '1': 'section3.form.num_years_was_patient.opt1',
-                        '2': 'section3.form.num_years_was_patient.opt2',
-                        '3': 'section3.form.num_years_was_patient.opt3',
-                        '4': 'section3.form.num_years_was_patient.opt4'
+                        '1': 'Yes',
+                        '2': 'No',
+                        '3': 'Did not discuss'
                     }, 
-                data.numYearsWasPatient, 
-                'section3.form.num_years_was_patient.desc',
+                data.stopWorking, 
+                __('section3.form.stopWorking.desc', patientName(data)),
                 errors,
                 { required: true }) 
             }}
-            {{ textInput('visitNumber', 'section3.form.visit_number.desc', { required: true }) }}
 
-            {{ textInput('lastVisitDate', 'section3.form.last_visit_date.desc', { hint: 'YYYY-MM-DD', required: true }) }}
-
-            {{ textInput('firstTreatmentDate', 'section3.form.first_treatment_date.desc', { hint: 'YYYY-MM-DD', required: true }) }}
+            {{ textInput('stopWorkingWhen', 'section3.form.stop_working_when.desc', { required: true }) }}
 
             {{ formButtons() }}
         </form>

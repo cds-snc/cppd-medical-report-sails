@@ -1,9 +1,15 @@
 module.exports = {
-  numYearsWasPatient: {
+  relationshipStarted: {
     presence: {
       allowEmpty: false,
       message: '^Must pick an option'
     }
+  },
+  firstTreatmentDate: {
+    presence: {
+      allowEmpty: false,
+      message: '^Date of first treatment is required'
+    },
   },
   visitNumber: {
     presence: {
@@ -27,24 +33,6 @@ module.exports = {
       presence: {
         allowEmpty: false,
         message: '^Date of last office visit is required'
-      },
-    };
-  },
-  firstTreatmentDate: function (value) {
-    if (value) {
-      return {
-        validateDateFormat: {
-          message: '^Date of first treatment is not formatted correctly'
-        },
-        validateDateExists: {
-          message: '^Date of first treatment is not a valid date'
-        }
-      };
-    }
-    return {
-      presence: {
-        allowEmpty: false,
-        message: '^Date of first treatment is required'
       },
     };
   }
