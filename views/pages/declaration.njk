@@ -19,7 +19,7 @@
             {{ textInput('date', 'Date', { hint: 'year_month_day_format', required: true }) }}
             {{ textArea('physicianAddress', 'section9.address_and_phone', { required: true}) }}
 
-            {{ formButtons() }}
+            {{ formButtons('return_to_dashboard', route('dashboard')) }}
         </form>
     </div>
 

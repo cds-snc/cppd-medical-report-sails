@@ -41,7 +41,7 @@ module.exports = {
       dataStore.storeMedicalReport(req.session.medicalReport);
 
 
-      res.redirect(sails.route('relationship'));
+      res.redirect(sails.route('dashboard')); // TODO This should eventually go to page that shows the invitation, not the dashboard
     }
   }
 };

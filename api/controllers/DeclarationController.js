@@ -36,7 +36,7 @@ module.exports = {
       req.session.medicalReport.physicianAddress = req.body.physicianAddress;
       dataStore.storeMedicalReport(req.session.medicalReport);
 
-      res.redirect(sails.route('confirmation'));
+      res.redirect(sails.route('dashboard'));
     }
   }
 };
