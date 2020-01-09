@@ -12,7 +12,11 @@
       </div>
     </form>
     <div class="mt-4">
-      <div v-for="(file, key) in uploaded_files" class="border-t border-gray-300 py-4 px-4 flex">
+      <div
+        v-for="(file, key) in uploaded_files"
+        v-bind:key="key"
+        class="border-t border-gray-300 py-4 px-4 flex"
+      >
         <div class="flex-auto">{{ file }}</div>
         <div
           class="flex-auto remove-file underline text-base align-middle text-right pr-4 cursor-pointer"
@@ -27,23 +31,23 @@
 export default {
   data() {
     return {
-      uploaded_files: [],
-    }
+      uploaded_files: []
+    };
   },
-  props: ['files', 'fieldName', 'uploadLabel', 'removeLabel'],
+  props: ["files", "fieldName", "uploadLabel", "removeLabel"],
   methods: {
     onSelect() {
-      const file = this.$refs.file.files[0]
-      this.uploaded_files.push(file.name)
+      const file = this.$refs.file.files[0];
+      this.uploaded_files.push(file.name);
     },
     removeFile(file) {
-      this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1)
-    },
+      this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+    }
   },
   mounted() {
     if (this.files) {
-      this.uploaded_files = this.files.split(',')
+      this.uploaded_files = this.files.split(",");
     }
-  },
-}
+  }
+};
 </script>
