@@ -1,5 +1,9 @@
 {% extends "layouts/layout.njk" %}
 
+{% block scripts %}
+    <script type="text/javascript" src="/build/assets/js/work.js"></script>
+{% endblock %}
+
 {% block content %}
 
     <h1>{{ __('Future work capacity') }} <br/> <span class="text-base">{{ __('conditions.patient')}} {{ patientName(data) }}</span></h1>
@@ -22,39 +26,41 @@
                 { required: true }) 
             }}
 
-            {{ 
-                radioButtons('returnToWorkWhen', 
-                    { 
-                        '1': 'In 6 to 12 months',
-                        '2': 'In 12 to 24 months',
-                        '3': 'In more than 24 months',
-                        '4': 'Unknown'
-                    }, 
-                data.returnToWorkWhen, 
-                __('When do you expect %s to return to work?', patientName(data)),
-                errors,
-                { required: true }) 
-            }}
+            <div id="additional_fields">
+                {{ 
+                    radioButtons('returnToWorkWhen', 
+                        { 
+                            '1': 'In 6 to 12 months',
+                            '2': 'In 12 to 24 months',
+                            '3': 'In more than 24 months',
+                            '4': 'Unknown'
+                        }, 
+                    data.returnToWorkWhen, 
+                    __('When do you expect %s to return to work?', patientName(data)),
+                    errors,
+                    { required: true }) 
+                }}
 
-            {{ 
-                radioButtons('typeOfWork', 
-                    { 
-                        '1': 'Their usual work',
-                        '2': 'Modified work',
-                        '3': 'Another type of work that will require training',
-                        '4': 'Other'
-                    }, 
-                data.typeOfWork, 
-                __('What type of work do you expect %s will be able to do?', patientName(data)),
-                errors,
-                { required: true }) 
-            }}
+                {{ 
+                    radioButtons('typeOfWork', 
+                        { 
+                            '1': 'Their usual work',
+                            '2': 'Modified work',
+                            '3': 'Another type of work that will require training',
+                            '4': 'Other'
+                        }, 
+                    data.typeOfWork, 
+                    __('What type of work do you expect %s will be able to do?', patientName(data)),
+                    errors,
+                    { required: true }) 
+                }}
 
-            {{ textArea(
-                'workDetails',
-                'Provide more details where possible',
-                { required: true }
-            ) }}
+                {{ textArea(
+                    'workDetails',
+                    'Provide more details where possible',
+                    { required: true }
+                ) }}
+            </div>
 
             <div class="buttons">
                 <div class="buttons--left">
