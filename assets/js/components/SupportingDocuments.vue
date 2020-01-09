@@ -63,7 +63,7 @@ export default {
   },
   props: {
     files: {
-      type: String,
+      type: Array,
       required: true
     },
     conditions: {
@@ -94,7 +94,7 @@ export default {
   },
   mounted() {
     if (this.files) {
-      this.uploaded_files = this.files.split(",");
+      this.uploaded_files = this.files;
     }
   }
 };

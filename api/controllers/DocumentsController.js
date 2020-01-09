@@ -20,10 +20,10 @@ module.exports = {
       data = _.merge(res.locals.data, req.session.medicalReport);
     }
 
-    documentsHelper.getDocumentsByCondition(data, 1);
-
     res.view('pages/documents', {
-      data: data
+      data: data,
+      documents: data.supportingDocuments || [],
+      conditions: data.conditions || []
     });
   },
 
