@@ -18,6 +18,10 @@
             {{ textInput('name', 'Name', { required: true }) }}
             {{ textInput('date', 'Date', { hint: 'year_month_day_format', required: true }) }}
             {{ textArea('physicianAddress', 'section9.address_and_phone', { required: true}) }}
+            
+            <p>{{ __('declaration.billing_instructions') }}</p>
+            {{ radioButtons('billingIdType', { 'bn':'declaration.billing_bn','gstHst':'delcaration.billing_gst_hst', 'sin':'declaration.billing_sin' }, data.billingIdType, 'declaration.billing_id_type', errors, { required: true }) }}
+            {{ textInput('billingId', 'declaration.billing_id', { required: true }) }}
 
             {{ formButtons('return_to_dashboard', route('dashboard')) }}
         </form>

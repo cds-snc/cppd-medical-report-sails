@@ -34,6 +34,8 @@ module.exports = {
       req.session.medicalReport.name = req.body.name;
       req.session.medicalReport.date = req.body.date;
       req.session.medicalReport.physicianAddress = req.body.physicianAddress;
+      req.session.medicalReport.billingIdType = req.body.billingIdType;
+      req.session.medicalReport.billingId = req.body.billingId;
       dataStore.storeMedicalReport(req.session.medicalReport);
 
       res.redirect(sails.route('dashboard'));

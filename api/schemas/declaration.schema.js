@@ -45,5 +45,17 @@ module.exports = {
       message: '^Address is required',
       allowEmpty: false,
     },
-  }
+  },
+  billingIdType: {
+    presence: {
+      allowEmpty: false,
+      message: '^errors.missing_billing_id_type',
+    },
+  },
+  billingId: {
+    presence: {
+      allowEmpty: false,
+      message: '^errors.missing_billing_id',
+    },
+  },
 };
