@@ -23,13 +23,6 @@ module.exports = {
       allowEmpty: false,
     },
   },
-  medicationEndDate: {
-    presence: {
-      message: '^errors.medication_end_date.length',
-      allowEmpty: false,
-    },
-  },
-  // CHECK THIS VALIDATION
   medicationTreatedCondition: {
     presence: {
       message: '^errors.medication_treated_condition.is_checked',

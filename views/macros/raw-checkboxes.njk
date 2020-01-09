@@ -13,6 +13,7 @@
             {% if attributes.hint %}
                 <span class="form-message">{{ __(attributes.hint) }}</span>
             {% endif %}
+            {% if not _.isEmpty(values) %}
             <div class="multiple-choice multiple-choice--checkboxes" id="{{ key }}">
                 {% if errors and errors[key] %}
                     {{ validationMessage(errors[key], key) }}
@@ -24,6 +25,7 @@
                     </div>
                 {% endfor %}
             </div>
+            {% endif %}
         </fieldset>
     </div>
 {% endmacro %}

@@ -5,6 +5,12 @@ module.exports = {
       message: '^errors.name_of_condition.length'
     }
   },
+  icdCode: {
+    presence: {
+      allowEmpty: false,
+      message: '^errors.icd_code_required'
+    }
+  },
   symptomsBegan: {
     presence: {
       allowEmpty: false,
