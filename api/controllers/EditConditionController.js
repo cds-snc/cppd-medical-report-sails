@@ -14,7 +14,7 @@ module.exports = {
       return res.redirect(sails.route('conditions'));
     }
 
-    let condition = req.session.medicalReport.conditions[req.params.id - 1];
+    let condition = { ...req.session.medicalReport.conditions[req.params.id - 1] };
 
     if (!condition) {
       return res.redirect(sails.route('conditions'));

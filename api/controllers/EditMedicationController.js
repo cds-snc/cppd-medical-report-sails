@@ -23,7 +23,7 @@ module.exports = {
       return res.redirect(sails.route('medications'));
     }
 
-    let medication = medicalReport.medications[req.params.id - 1];
+    let medication = { ...medicalReport.medications[req.params.id - 1] };
 
     if (!medication) {
       return res.redirect(sails.route('medications'));
