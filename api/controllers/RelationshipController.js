@@ -29,10 +29,12 @@ module.exports = {
 
     if (valid) {
       // save the model
-      req.session.medicalReport.numYearsWasPatient = req.body.numYearsWasPatient;
+      req.session.medicalReport.relationshipStarted = req.body.relationshipStarted;
+      req.session.medicalReport.firstTreatmentDate = req.body.firstTreatmentDate;
       req.session.medicalReport.visitNumber = req.body.visitNumber;
       req.session.medicalReport.lastVisitDate = req.body.lastVisitDate;
-      req.session.medicalReport.firstTreatmentDate = req.body.firstTreatmentDate;
+      req.session.medicalReport.stopWorking = req.body.stopWorking;
+      req.session.medicalReport.stopWorkingWhen = req.body.stopWorkingWhen;
       dataStore.storeMedicalReport(req.session.medicalReport);
 
       res.redirect(sails.route('expedited'));
