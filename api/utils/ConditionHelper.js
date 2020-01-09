@@ -26,14 +26,14 @@ const addConditions = (req, body, selectedArray) => {
 
       // now we're going to "select" the newly created conditions
       if (!_.has(body, selectedArray)) {
-        body.medicationTreatedCondition = [];
+        body[selectedArray] = [];
       }
 
-      body.medicationTreatedCondition = castArray(body.medicationTreatedCondition);
+      body[selectedArray] = castArray(body[selectedArray]);
 
       // the new conditions go at the end of any existing conditions
       let newIndex = index + indexStart;
-      body.medicationTreatedCondition.push(newIndex.toString());
+      body[selectedArray].push(newIndex.toString());
     }
   });
 

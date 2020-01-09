@@ -59,7 +59,7 @@ module.exports = {
      * and auto-select them
      */
     if (body.newConditions) {
-      req.body = ConditionHelper.addConditions(req, body, 'medicationTreatedCondition');
+      req.body = ConditionHelper.addConditions(req, body, 'treatmentTreatedCondition');
     }
 
     // the medications array is 0 indexed
