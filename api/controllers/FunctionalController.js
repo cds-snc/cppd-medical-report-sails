@@ -20,6 +20,15 @@ module.exports = {
     res.view('pages/functional', {
       data: data
     });
+  },
+  store: function (req, res) {
+    let valid = req.validate(req, res, require('../schemas/functional.schema'));
+
+    if (valid) {
+      // save the model, but not yet to the datastore
+      req.session.medicalReport = req.body;
+      res.redirect(sails.route('dashboard'));
+    }
   }
 };
 

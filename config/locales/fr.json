@@ -471,5 +471,9 @@
 	"functional.limitations_hint": "Veuillez fournir le plus de renseignements possible pour chacun des domaines suivants :<br/> <ul> <li>mobilité ou capacités physiques (p. ex., marche, préhension, conduite, observation de l'écran, etc.)</li> <li>capacités de communication et de réflexion (p. ex., écoute, mémoire, concentration, acquisition de connaissances, etc.)</li> <li>capacités comportementales et émotionnelles (p. ex., maîtrise des impulsions, énergie et dynamisme, confiance, etc.)</li> <li>activités courantes (p. ex., manger, aller à la toilette, s'habiller, prendre ses médicaments, etc.)</li> </ul>",
 	"functional.plannedTreatments": "Y a-t-il des traitements prévus dont vous pouvez raisonnablement vous attendre à ce qu'ils améliorent ou restreignent davantage les capacités fonctionnelles de %s?",
 	"functional.weight": "Poids actuel de %s",
-	"functional.height": "La hauteur actuelle de %s"
+	"functional.height": "La hauteur actuelle de %s",
+	"errors.functional.limitations.length": "Donnez le plus d'informations possible sur les restricitions et limitations fonctionnelles de [Nom du patient].",
+	"errors.functional.plannedTreatments.length": "Y a-t-il des traitements prévus dont vous pouvez raisonnablement vous attendre à ce qu'ils améliorent ou restreignent davantage les capacités fonctionnelles de [Nom du patient]?",
+	"errors.functional.height.length": "errors.functional.height.length",
+	"errors.functional.weight.length": "errors.functional.weight.length"
 }
