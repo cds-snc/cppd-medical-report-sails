@@ -487,7 +487,9 @@
 	"dashboard.view_download_consent": "View or download their consent as a PDF for your records.",
 	"return_to_dashboard": "Save",
 	"functional.title": "Functional limitations and restrictions",
-	"functional.limitations": "In regard to seeking and maintaining employment, does [patient’s name] currently experience any functional limitations or restrictions?",
+	"functional.limitations": "In regard to seeking and maintaining employment, does %s currently experience any functional limitations or restrictions?",
 	"functional.limitations_hint": "Provide as much detail as you can about the following domains:<br/><ul><li>mobility or physical abilities (e.g. walking, gripping, driving, staring at a screen etc.)</li><li>communication and thinking abilities (e.g. listening, recall, concentrating, learning etc.)</li><li>behavioural or emotional abilities (e.g. impulse control, energy and drive, trust etc.)</li><li> activities of daily living (e.g. feeding, toileting, grooming, taking meds etc.)</li></ul>",
-	"functional.plannedTreatments": "Are there any treatments planned that you reasonably expect will improve or further restrict [patient’s name] functional abilities?"
+	"functional.plannedTreatments": "Are there any treatments planned that you reasonably expect will improve or further restrict %s functional abilities?",
+	"functional.weight": "%s's current weight",
+	"functional.height": "%s's current height"
 }
