@@ -9,12 +9,12 @@ const validate = require('../hooks/validate/validator');
 
 function getSectionsCompleted(report) {
   return {
-    personal: isValid(report, require('../schemas/personal.schema')),
-    functional: false,
+    personal: isValid(report, require('../schemas/relationship.schema')),
+    functional: isValid(report,require('../schemas/functional.schema')),
     conditions: isArrayValid(report.conditions, require('../schemas/condition.schema')),
     medications: isArrayValid(report.medications, require('../schemas/medication.schema')),
     treatments: isArrayValid(report.treatments, require('../schemas/treatment.schema')),
-    futureWork: false,
+    futureWork: isValid(report, require('../schemas/work.schema')),
     supportingDocuments: isValid(report.supportingDocuments,require('../schemas/documents.schema'))
   };
 }
@@ -29,7 +29,7 @@ function ableToSubmit (sections) {
          sections.supportingDocuments;
 }
 
-function isValid (obj, schema){
+function isValid(obj, schema) {
   if (obj === undefined) {
     return false;
   }
@@ -37,7 +37,7 @@ function isValid (obj, schema){
   return validate(obj, schema) === undefined;
 }
 
-function isArrayValid (arr, schema){
+function isArrayValid(arr, schema) {
   if (arr === undefined) {
     return false;
   }
