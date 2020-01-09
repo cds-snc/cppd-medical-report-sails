@@ -6,6 +6,7 @@
  */
 
 const dataStore = require('../utils/DataStore');
+const documentsHelper = require('../utils/DocumentsHelper');
 
 module.exports = {
   index: function (req, res) {
@@ -18,6 +19,8 @@ module.exports = {
     if (res.locals.data) {
       data = _.merge(res.locals.data, req.session.medicalReport);
     }
+
+    documentsHelper.getDocumentsByCondition(data, 1);
 
     res.view('pages/documents', {
       data: data

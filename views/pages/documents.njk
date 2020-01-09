@@ -13,7 +13,7 @@
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
             
             <div id="app">
-                <file-upload files="{{ data.supportingDocuments }}" field-name="supportingDocuments" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
+                <supporting-documents :files="{{ data.supportingDocuments | dump }}" :conditions="{{ data.conditions | dump }}" field-name="supportingDocuments" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
             </div>
             
             <div class="multiple-choice multiple-choice--checkboxes">
