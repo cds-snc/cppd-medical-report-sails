@@ -34,7 +34,24 @@ export default {
       uploaded_files: []
     };
   },
-  props: ["files", "fieldName", "uploadLabel", "removeLabel"],
+  props: {
+    files: {
+      type: Array,
+      required: true
+    },
+    fieldName: {
+      type: String,
+      required: true
+    },
+    uploadLabel: {
+      type: String,
+      required: true
+    },
+    removeLabel: {
+      type: String,
+      required: true
+    }
+  },
   methods: {
     onSelect() {
       const file = this.$refs.file.files[0];
@@ -45,8 +62,8 @@ export default {
     }
   },
   mounted() {
-    if (this.files) {
-      this.uploaded_files = this.files.split(",");
+    if (typeof this.files === "string") {
+      this.uploaded_files = this.files ? this.files.split(",") : [];
     }
   }
 };
