@@ -51,7 +51,7 @@ module.exports = {
 
     if (req.session.medicalReport !== undefined) {
       const report = req.session.medicalReport;
-      sectionsCompleted.personal = isValid(report,require('../schemas/personal.schema'));
+      sectionsCompleted.personal = isValid(report,require('../schemas/relationship.schema'));
       sectionsCompleted.supportingDocs = isValid(report.supportingDocuments,require('../schemas/documents.schema'));
       sectionsCompleted.conditions = isArrayValid(report.conditions, require('../schemas/condition.schema'));
       sectionsCompleted.medications = isArrayValid(report.medications, require('../schemas/medication.schema'));

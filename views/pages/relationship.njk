@@ -1,5 +1,9 @@
 {% extends "layouts/layout.njk" %}
 
+{% block scripts %}
+    <script type="text/javascript" src="/build/assets/js/relationship.js"></script>
+{% endblock %}
+
 {% block content %}
 
     <h1>{{ __('section3.title') }}</h1>
@@ -17,20 +21,22 @@
 
             {{ textInput('lastVisitDate', 'section3.form.last_visit_date.desc', { hint: 'For example: Nov 15, 2019', required: true }) }}
 
-            {{ 
-                radioButtons('stopWorking', 
-                    { 
+            {{
+                radioButtons('stopWorking',
+                    {
                         '1': 'Yes',
                         '2': 'No',
                         '3': 'Did not discuss'
-                    }, 
-                data.stopWorking, 
+                    },
+                data.stopWorking,
                 __('section3.form.stopWorking.desc', patientName(data)),
                 errors,
-                { required: true }) 
+                { required: true })
             }}
 
+          <div id="no_working_details">
             {{ textInput('stopWorkingWhen', 'section3.form.stop_working_when.desc', { required: true }) }}
+          </div>
 
             {{ formButtons() }}
         </form>

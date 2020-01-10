@@ -37,7 +37,7 @@ module.exports = {
       req.session.medicalReport.stopWorkingWhen = req.body.stopWorkingWhen;
       dataStore.storeMedicalReport(req.session.medicalReport);
 
-      res.redirect(sails.route('expedited'));
+      res.redirect(sails.route('dashboard'));
     }
   }
 };
