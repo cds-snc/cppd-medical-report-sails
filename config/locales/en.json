@@ -486,5 +486,6 @@
 	"declaration.billing_sin": "Your SIN",
 	"declaration.billing_id": "Your identification number",
 	"errors.missing_billing_id_type": "You must choose an identification number type",
-	"errors.missing_billing_id": "You must enter an identication number"
+	"errors.missing_billing_id": "You must enter an identication number",
+	"declaration.billing_invoice": "Optionally, you may upload an invoice if your billing process requires it."
 }
