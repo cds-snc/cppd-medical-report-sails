@@ -60,7 +60,6 @@ module.exports = {
     }
 
     const sectionsCompleted = getSectionsCompleted(data);
-    console.log('index: ' + sectionsCompleted);
 
     res.view('pages/dashboard', {
       sectionsCompleted: sectionsCompleted,
