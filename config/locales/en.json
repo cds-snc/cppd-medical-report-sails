@@ -480,7 +480,7 @@
 	"dashboard.view_download_consent": "View their consent",
 	"return_to_dashboard": "Save",
 	"show_consent.title": "Patient Consent",
-	"show_consent.preamble": "Your patient has indicated the following level of consent:",
+	"show_consent.description": "Your patient has indicated the following level of consent:",
 	"show_consent.witness_information": "Witness information",
 	"show_consent.witness_name": "Witness name",
 	"show_consent.witness_signature": "Witness signature",
