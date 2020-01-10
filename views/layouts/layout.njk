@@ -1,6 +1,8 @@
 {%- from 'macros/validationMessage.njk' import validationMessage as validationMessage with context -%}
 {%- from 'macros/input-text.njk' import textInput as textInput with context -%}
+{%- from 'macros/input-text-raw.njk' import textInputRaw as textInputRaw with context -%}
 {%- from 'macros/input-textarea.njk' import textArea as textArea with context -%}
+{%- from 'macros/input-textarea-raw.njk' import textAreaRaw as textAreaRaw with context -%}
 {%- from 'macros/radios.njk' import radioButtons as radioButtons with context -%}
 {%- from 'macros/checkboxes.njk' import checkBoxes as checkBoxes with context -%}
 {%- from 'macros/buttons.njk' import formButtons as formButtons with context -%}
@@ -50,8 +52,8 @@
         </div>
     </body>
     {% include "_includes/script.njk" %}
-    
+
     <script type="text/javascript" src="/build/assets/js/app.js"></script>
-    
+
     {% block scripts %}{% endblock %}
 </html>

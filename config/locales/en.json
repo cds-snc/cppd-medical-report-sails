@@ -485,5 +485,16 @@
 	"dashboard.not-completed": "Not Completed",
 	"dashboard.consent": "has given consent for Service Canada to obtain personal information about them.",
 	"dashboard.view_download_consent": "View or download their consent as a PDF for your records.",
-	"return_to_dashboard": "Save"
+	"return_to_dashboard": "Save",
+	"functional.title": "Functional limitations and restrictions",
+	"functional.limitations": "In regard to seeking and maintaining employment, does %s currently experience any functional limitations or restrictions?",
+	"functional.limitations_hint": "Provide as much detail as you can about the following domains:<br/><ul><li>mobility or physical abilities (e.g. walking, gripping, driving, staring at a screen etc.)</li><li>communication and thinking abilities (e.g. listening, recall, concentrating, learning etc.)</li><li>behavioural or emotional abilities (e.g. impulse control, energy and drive, trust etc.)</li><li> activities of daily living (e.g. feeding, toileting, grooming, taking meds etc.)</li></ul>",
+	"functional.plannedTreatments": "Are there any treatments planned that you reasonably expect will improve or further restrict %s's functional abilities?",
+	"functional.weight": "%s's current weight",
+	"functional.height": "%s's current height",
+	"errors.functional.limitations.length": "Enter as much information as you can about [patient's name]'s functional limitations and restrictions.",
+	"errors.functional.plannedTreatments.length": "Tell us if you have planned future treatments that might improve or restrict [patient's name]'s functional abilities.",
+	"errors.functional.height.length": "Enter your patient's current height.",
+	"errors.functional.weight.length": "Enter your patient's current weight.",
+	"functional.save_data": "Save"
 }
