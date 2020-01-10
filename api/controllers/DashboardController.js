@@ -49,6 +49,7 @@ function isArrayValid (arr, schema){
 
 module.exports = {
   index: function(req, res) {
+
     let data = req.session.medicalReport;
 
     /**
