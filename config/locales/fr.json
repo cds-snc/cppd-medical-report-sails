@@ -474,6 +474,6 @@
 	"functional.height": "La hauteur actuelle de %s",
 	"errors.functional.limitations.length": "Donnez le plus d'informations possible sur les restricitions et limitations fonctionnelles de [Nom du patient].",
 	"errors.functional.plannedTreatments.length": "Y a-t-il des traitements prévus dont vous pouvez raisonnablement vous attendre à ce qu'ils améliorent ou restreignent davantage les capacités fonctionnelles de [Nom du patient]?",
-	"errors.functional.height.length": "errors.functional.height.length",
-	"errors.functional.weight.length": "errors.functional.weight.length"
+	"errors.functional.height.length": "Entrez la taille actuelle de votre patient.",
+	"errors.functional.weight.length": "Entrez le poids actuel de votre patient."
 }
