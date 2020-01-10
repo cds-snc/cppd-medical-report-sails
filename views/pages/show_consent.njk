@@ -15,25 +15,30 @@
             {% endif %}
         </em></p>
 
+        <h2>{{ __('show_consent.patient_name') }}</h2>
+        <!-- TODO add logic to show signature image or typed signature -->
+        <p>{{ data.firstName }} {{ data.middleName }} {{ data.lastName }}</p>
+
         <h2>{{ __('show_consent.patient_signature') }}</h2>
         <!-- TODO add logic to show signature image or typed signature -->
         <p class="signature">{{ data.signature }}</p>
     </div>
 
-    <hr/><br/>
+    {% if data.witnessFirst %}
+        <hr/><br/>
 
-    <div>
-        <h2>{{ __('show_consent.witness_information') }}</h2>
+        
+        <div>
+            <h3>{{ __('show_consent.witness_name') }}</h3>
+            <p>{{ data.witnessFirst }}  {{ data.witnessMiddle }} {{ data.witnessLast }}</p>
 
-        <h3>{{ __('show_consent.witness_name') }}</h3>
-        <p>{{ data.witnessFirst }}  {{ data.witnessMiddle }} {{ data.witnessLast }}</p>
+            <h2>{{ __('show_consent.witness_signature') }}</h2>
+            <!-- TODO add logic to show signature image or typed signature -->
+            <p class="signature">{{ data.witnessSignature }}</p>
 
-        <h3>{{ _('Telephone') }}</h3>
-        <p>{{ data.witnessPhone }}</p>
-
-        <h2>{{ __('show_consent.witness_signature') }}</h2>
-        <!-- TODO add logic to show signature image or typed signature -->
-        <p class="signature">{{ data.witnessSignature }}</p>
-    </div>
+            <h3>{{ _('show_consent.witness_telephone') }}</h3>
+            <p>{{ data.witnessPhone }}</p>
+        </div>
+    {% endif %}
 
 {% endblock %}
