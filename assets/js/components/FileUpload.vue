@@ -36,7 +36,7 @@ export default {
   },
   props: {
     files: {
-      type: Array,
+      type: String,
       required: true
     },
     fieldName: {

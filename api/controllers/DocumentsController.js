@@ -11,7 +11,7 @@ const documentsHelper = require('../utils/DocumentsHelper');
 module.exports = {
   index: function (req, res) {
     let data = req.session.medicalReport;
-
+    // data.supportingDocuments = [];
     /**
      * If we're returning to the form with flash data in locals,
      * merge it with the rest of the medicalReport in the session.
@@ -32,7 +32,7 @@ module.exports = {
 
     if (valid) {
       // save the model
-      req.session.medicalReport.supportingDocuments = req.body.supportingDocuments;
+      documentsHelper.saveDocuments(req.session.medicalReport, req.body.supportingDocuments);
       dataStore.storeMedicalReport(req.session.medicalReport);
 
       res.redirect(sails.route('dashboard'));

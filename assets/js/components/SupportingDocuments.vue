@@ -1,6 +1,5 @@
 <template>
   <div class="file">
-    <input type="hidden" :name="fieldName" v-bind:value="uploaded_files" />
     <form enctype="multipart/form-data">
       <div class>
         <label
@@ -26,7 +25,7 @@
             class="border-t border-gray-300"
           >
             <td class="py-4 px-4">
-              {{ file }}
+              {{ file.name }}
               <br />
               <a
                 href="#"
@@ -39,7 +38,12 @@
                 <ul class="list-none pl-0">
                   <li class="my-4" v-for="(condition, key) in conditions" v-bind:key="key">
                     <div class="multiple-choice__item">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        :name="'supportingDocuments[]name[' + file.name + ']conditions'"
+                        :value="key"
+                        :checked="isSelected(key, file.conditions)"
+                      />
                       <label>{{ condition.conditionName }}</label>
                     </div>
                   </li>
@@ -60,7 +64,7 @@ export default {
       uploaded_files: [],
       allConditions: []
     };
-  },
+  }, // file.conditions.indexOf(key) != -1
   props: {
     files: {
       type: Array,
@@ -68,10 +72,6 @@ export default {
     },
     conditions: {
       type: Array,
-      required: true
-    },
-    fieldName: {
-      type: String,
       required: true
     },
     uploadLabel: {
@@ -86,10 +86,16 @@ export default {
   methods: {
     onSelect() {
       const file = this.$refs.file.files[0];
-      this.uploaded_files.push(file.name);
+      this.uploaded_files.push({
+        name: file.name,
+        conditions: []
+      });
     },
     removeFile(file) {
       this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+    },
+    isSelected(conditionId, selectedConditions) {
+      return selectedConditions.indexOf(conditionId) >= 0;
     }
   },
   mounted() {
