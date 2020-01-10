@@ -383,7 +383,7 @@
 	"section9.confirm_statement_other": "other physician specialist (please specify below)",
 	"section9.confirm_statement_rn": "registered nurse in a geographically isolated community (not urban or rural)",
 	"section9.other_specify": "Other physician specialist",
-	"section9.title": "Section 9 - Declaration",
+	"section9.title": "Declaration",
 	"skip_section": "Skip this section",
 	"specialist's report(s)": "specialist's report(s)",
 	"start.applicant_instruction_1": "complete the Application for a Canada Pension Plan Disability Benefit (ISP1151). The application\ncan be found at www.canada.ca/esdc-forms.",
@@ -486,6 +486,15 @@
 	"dashboard.consent": "has given consent for Service Canada to obtain personal information about them.",
 	"dashboard.view_download_consent": "View or download their consent as a PDF for your records.",
 	"return_to_dashboard": "Save",
+	"declaration.billing_instructions": "To compensate you for completing the report, Service Canada will pay up to $85 directly to you. For income tax purposes, your invoice must include one identification number.",
+	"declaration.billing_id_type": "Which type of identification number would you like to enter?",
+	"declaration.billing_bn": "Business Number",
+	"delcaration.billing_gst_hst": "Goods and Services Tax (GST) / Harmonized Sales Tax (HST) number",
+	"declaration.billing_sin": "Your SIN",
+	"declaration.billing_id": "Your identification number",
+	"errors.missing_billing_id_type": "You must choose an identification number type",
+	"errors.missing_billing_id": "You must enter an identication number",
+	"declaration.billing_invoice": "Optionally, you may upload an invoice if your billing process requires it.",
 	"functional.title": "Functional limitations and restrictions",
 	"functional.limitations": "In regard to seeking and maintaining employment, does %s currently experience any functional limitations or restrictions?",
 	"functional.limitations_hint": "Provide as much detail as you can about the following domains:<br/><ul><li>mobility or physical abilities (e.g. walking, gripping, driving, staring at a screen etc.)</li><li>communication and thinking abilities (e.g. listening, recall, concentrating, learning etc.)</li><li>behavioural or emotional abilities (e.g. impulse control, energy and drive, trust etc.)</li><li> activities of daily living (e.g. feeding, toileting, grooming, taking meds etc.)</li></ul>",
@@ -498,3 +507,4 @@
 	"errors.functional.weight.length": "Enter your patient's current weight.",
 	"functional.save_data": "Save"
 }
+
