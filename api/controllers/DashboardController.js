@@ -7,6 +7,18 @@
 
 const validate = require('../hooks/validate/validator');
 
+function getSectionsCompleted(report) {
+  return {
+    personal: isValid(report, require('../schemas/personal.schema')),
+    functional: false,
+    conditions: isArrayValid(report.conditions, require('../schemas/condition.schema')),
+    medications: isArrayValid(report.medications, require('../schemas/medication.schema')),
+    treatments: isArrayValid(report.treatments, require('../schemas/treatment.schema')),
+    futureWork: false,
+    supportingDocuments: isValid(report.supportingDocuments,require('../schemas/documents.schema'))
+  };
+}
+
 function ableToSubmit (sections) {
   return sections.personal &&
          sections.functional &&
@@ -14,8 +26,7 @@ function ableToSubmit (sections) {
          sections.medications &&
          sections.treatments &&
          sections.futureWork &&
-         sections.supportingDocs &&
-         sections.declaration;
+         sections.supportingDocuments;
 }
 
 function isValid (obj, schema){
@@ -38,30 +49,6 @@ function isArrayValid (arr, schema){
 
 module.exports = {
   index: function(req, res) {
-    const sectionsCompleted = {
-      personal: false,
-      functional: false,
-      conditions: false,
-      medications: false,
-      treatments: false,
-      futureWork: false,
-      supportingDocs: false,
-      declaration: false
-    };
-
-    if (req.session.medicalReport !== undefined) {
-      const report = req.session.medicalReport;
-      sectionsCompleted.personal = isValid(report,require('../schemas/personal.schema'));
-      sectionsCompleted.supportingDocs = isValid(report.supportingDocuments,require('../schemas/documents.schema'));
-      sectionsCompleted.conditions = isArrayValid(report.conditions, require('../schemas/condition.schema'));
-      sectionsCompleted.medications = isArrayValid(report.medications, require('../schemas/medication.schema'));
-      sectionsCompleted.treatments = isArrayValid(report.treatments, require('../schemas/treatment.schema'));
-      sectionsCompleted.declaration = isValid(report, require('../schemas/declaration.schema'));
-
-    } else {
-      req.session.medicalReport = {};
-    }
-
     let data = req.session.medicalReport;
 
     /**
@@ -72,10 +59,20 @@ module.exports = {
       data = _.merge(res.locals.data, req.session.medicalReport);
     }
 
+    const sectionsCompleted = getSectionsCompleted(data);
+    console.log('index: ' + sectionsCompleted);
+
     res.view('pages/dashboard', {
       sectionsCompleted: sectionsCompleted,
       ableToSubmit: ableToSubmit(sectionsCompleted),
       data: data
     });
+  },
+
+  ready: function(req, res) {
+    if(ableToSubmit(getSectionsCompleted(req.session.medicalReport))) {
+      return res.redirect(sails.route('declaration'));
+    }
+    return res.redirect('back');
   }
 };

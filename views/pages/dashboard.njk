@@ -57,12 +57,10 @@
     <hr class="my-4"/>
     {{ sectionLink('dashboard','dashboard.future-work-capacity', sectionsCompleted.futureWork) }}
     <hr class="my-4"/>
-    {{ sectionLink('documents','dashboard.supporting-docs', sectionsCompleted.supportingDocs) }}
-    <hr class="my-4"/>
-    {{ sectionLink('declaration','dashboard.declaration', sectionsCompleted.declaration) }}
+    {{ sectionLink('documents','dashboard.supporting-docs', sectionsCompleted.supportingDocuments) }}
     <hr class="my-4"/>
   </div>
-  <form action="post">
+  <form action="{{ route('dashboard.ready') }}" method="post">
 
     <div class="buttons">
       <div class="buttons--left">
