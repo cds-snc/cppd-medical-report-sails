@@ -42,7 +42,7 @@
           </svg>
           {{ patientName(data) }} {{ __('dashboard.consent')}}
           <br/>
-          <a href="about/blank">{{__('dashboard.view_download_consent')}}</a>
+          <a href="{{ route('consent.show') }}">{{__('dashboard.view_download_consent')}}</a>
         </p>
       </div>
     </div>

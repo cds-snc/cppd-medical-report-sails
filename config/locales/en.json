@@ -477,6 +477,13 @@
 	"dashboard.completed": "Completed",
 	"dashboard.not-completed": "Not Completed",
 	"dashboard.consent": "has given consent for Service Canada to obtain personal information about them.",
-	"dashboard.view_download_consent": "View or download their consent as a PDF for your records.",
-	"return_to_dashboard": "Save"
+	"dashboard.view_download_consent": "View their consent",
+	"return_to_dashboard": "Save",
+	"show_consent.title": "Patient Consent",
+	"show_consent.preamble": "Your patient has indicated the following level of consent.",
+	"show_consent.consent_indicated": "Consent indicated",
+	"show_consent.witness_information": "Witness information",
+	"show_consent.witness_name": "Name",
+	"show_consent.witness_signature": "Signature",
+	"show_consent.patient_signature": "Patient signature"
 }

@@ -43,5 +43,20 @@ module.exports = {
 
       res.redirect(sails.route('dashboard')); // TODO This should eventually go to page that shows the invitation, not the dashboard
     }
+  },
+  show: function(req, res) {
+    let data = req.session.medicalReport;
+
+    /**
+     * If we're returning to the form with flash data in locals,
+     * merge it with the rest of the medicalReport in the session.
+     */
+    if (res.locals.data) {
+      data = _.merge(res.locals.data, req.session.medicalReport);
+    }
+
+    res.view('pages/show_consent', {
+      data: data
+    });    
   }
 };
