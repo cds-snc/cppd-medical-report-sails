@@ -1,9 +1,15 @@
 module.exports = {
-  numYearsWasPatient: {
+  relationshipStarted: {
     presence: {
       allowEmpty: false,
-      message: '^Must pick an option'
+      message: '^When did they come into your care is required'
     }
+  },
+  firstTreatmentDate: {
+    presence: {
+      allowEmpty: false,
+      message: '^Date of first treatment is required'
+    },
   },
   visitNumber: {
     presence: {
@@ -12,40 +18,22 @@ module.exports = {
     },
     numericality: true,
   },
-  lastVisitDate: function (value) {
-    if (value) {
-      return {
-        validateDateFormat: {
-          message: '^Date of last office visit is not formatted correctly'
-        },
-        validateDateExists: {
-          message: '^Date of last office visit is not a valid date'
-        }
-      };
-    }
-    return {
-      presence: {
-        allowEmpty: false,
-        message: '^Date of last office visit is required'
-      },
-    };
+  lastVisitDate: {
+    presence: {
+      allowEmpty: false,
+      message: '^Date of last office visit is required'
+    },
   },
-  firstTreatmentDate: function (value) {
-    if (value) {
-      return {
-        validateDateFormat: {
-          message: '^Date of first treatment is not formatted correctly'
-        },
-        validateDateExists: {
-          message: '^Date of first treatment is not a valid date'
-        }
-      };
+  stopWorking: {
+    presence: {
+      allowEmpty: false,
+      message: '^Stopped working is required'
     }
-    return {
-      presence: {
-        allowEmpty: false,
-        message: '^Date of first treatment is required'
-      },
-    };
+  },
+  stopWorkingWhen: {
+    presence: {
+      allowEmpty: false,
+      message: '^When they stopped working is required'
+    }
   }
 };

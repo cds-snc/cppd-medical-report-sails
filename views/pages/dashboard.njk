@@ -27,11 +27,6 @@
 
         <div class="border-l-4 border-solid border-blue-800 bg-blue-200 p-4 ">
           <p>{{ __('dashboard.pay') | safe }}</p>
-          <a href="about:blank">
-          <svg class="h-4 w-4 inline fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                          <path d="M16 10c0 .553-.048 1-.601 1H11v4.399c0 .552-.447.601-1 .601-.553 0-1-.049-1-.601V11H4.601C4.049 11 4 10.553 4 10c0-.553.049-1 .601-1H9V4.601C9 4.048 9.447 4 10 4c.553 0 1 .048 1 .601V9h4.399c.553 0 .601.447.601 1z"/>
-                      </svg>
-                      {{ __('dashboard.pay_link') }} </a>
         </div>
       </div>
 
@@ -50,9 +45,9 @@
   <div class="lg:w-4/5">
     <h2> {{ __('dashboard.complete-sections') }} </h2>
     <hr class="my-4"/>
-    {{ sectionLink('dashboard','dashboard.basic_info', sectionsCompleted.personal) }}
+    {{ sectionLink('relationship','dashboard.basic_info', sectionsCompleted.personal) }}
     <hr class="my-4"/>
-    {{ sectionLink('dashboard','dashboard.functional-limits', sectionsCompleted.functional)}}
+    {{ sectionLink('functional','dashboard.functional-limits', sectionsCompleted.functional)}}
     <hr class="my-4"/>
     {{ sectionLink('conditions','dashboard.medical-conditions', sectionsCompleted.conditions) }}
     <hr class="my-4"/>
@@ -62,12 +57,10 @@
     <hr class="my-4"/>
     {{ sectionLink('dashboard','dashboard.future-work-capacity', sectionsCompleted.futureWork) }}
     <hr class="my-4"/>
-    {{ sectionLink('documents','dashboard.supporting-docs', sectionsCompleted.supportingDocs) }}
-    <hr class="my-4"/>
-    {{ sectionLink('declaration','dashboard.declaration', sectionsCompleted.declaration) }}
+    {{ sectionLink('documents','dashboard.supporting-docs', sectionsCompleted.supportingDocuments) }}
     <hr class="my-4"/>
   </div>
-  <form action="post">
+  <form action="{{ route('dashboard.ready') }}" method="post">
 
     <div class="buttons">
       <div class="buttons--left">
