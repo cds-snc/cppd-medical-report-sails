@@ -4,7 +4,7 @@ const getAllDocuments = (medicalReport) => {
   if (medicalReport.supportingDocuments) {
     return medicalReport.supportingDocuments;
   }
-  return false;
+  return null;
 }
 
 const getDocumentsByCondition = (medicalReport, conditionId) => {
@@ -21,7 +21,7 @@ const getDocumentsByCondition = (medicalReport, conditionId) => {
 
     return conditionDocuments;
   }
-  return false;
+  return null;
 }
 
 const saveDocumentsFromCondition = (medicalReport, condition) => {
