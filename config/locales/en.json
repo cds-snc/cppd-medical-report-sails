@@ -507,6 +507,6 @@
 	"errors.functional.weight.length": "Enter your patient's current weight.",
 	"functional.save_data": "Save",
 	"dashboard.overall-health": "Patient's Overall Health",
-	"dashboard.expedited-processing": "Expedited processing for terminal and grave conditions"
+	"dashboard.expedited-processing": "Expedited processing for terminal and grave conditions",
+	"conditions.incomplete": "Incomplete"
 }
-

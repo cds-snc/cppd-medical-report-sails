@@ -487,5 +487,6 @@
 	"functional.save_data": "Enregistrer",
 	"dashboard.privacy": "Conformément à la Loi sur la protection des renseignements personnels, à la réception d'une demande écrite faite par le demandeur, Service Canada a l'obligation de fournir au demandeur ou à son représentant tous les renseignements au dossier, y compris les rapports médicaux (Fichier de renseignements personnels EDSC PPU 146). <a href='https://laws-lois.justice.gc.ca/fra/lois/P-21/page-3.html#h-387838'>En savoir plus au sujet de la Loi sur la protection des renseignements personnels.</a>",
 	"dashboard.overall-health": "dashboard.overall-health",
-	"dashboard.expedited-processing": "dashboard.expedited-processing"
+	"dashboard.expedited-processing": "dashboard.expedited-processing",
+	"conditions.incomplete": "TRANSLATE Incomplete"
 }
