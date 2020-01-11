@@ -5,7 +5,7 @@
 
   <ul>
     {% for file in files %}
-      <li><a href="">{{ file }}</a></li>
+      <li><a href="{{ route('sessions.download', { session: file }) }}">{{ file }}</a></li>
     {% endfor %}
   </ul>
 

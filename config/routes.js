@@ -547,4 +547,15 @@ module.exports.routes = {
       fr: '/fr/sessions'
     }
   },
+
+  'GET /en/sessions/:session/download': {
+    name: 'sessions.download',
+    controller: 'SessionsController',
+    action: 'download',
+    lang: 'en',
+    i18n: {
+      en: '/en/sessions/:session/download',
+      fr: '/fr/sessions/:session/download'
+    }
+  },
 };
