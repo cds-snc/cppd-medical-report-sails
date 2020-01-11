@@ -7,6 +7,7 @@
 
 module.exports = {
   index: function(req, res) {
+    req.session.medicalReport = {};
     res.view('pages/start');
   }
 };
