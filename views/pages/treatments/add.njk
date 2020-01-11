@@ -7,7 +7,11 @@
 {% block content %}
     {%- from 'pages/treatments/treatment-form.njk' import treatmentForm with context -%}
 
-    {{ backButton('treatments') }}
+    {% if medicalReport.treatments|length > 0 %}
+      {{ backButton('treatments') }}
+    {% else %}
+      {{ backButton('dashboard') }}
+    {% endif %}
 
     <h1>{{ __('treatments.title') }}<br/> <span class="text-base">{{ __('patient_type')}} {{ patientName(medicalReport) }}</span></h1>
 
@@ -22,7 +26,7 @@
                 <div class="">
                     <button type="submit" name="save_and" value="add_another">{{ __('treatments.save_treatment') }}</button>
                 </div>
-                
+
                 <div class="ml-4">
                     <button type="submit" name="save_and" value="continue">{{ __('treatments.save_and_return') }}</button>
                 </div>
