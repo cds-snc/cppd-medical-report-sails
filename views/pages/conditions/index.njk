@@ -1,6 +1,8 @@
 {% extends "layouts/layout.njk" %}
 
 {% block content %}
+  
+  {{ backButton('dashboard') }}
 
   <h1 class="border-gray-400 border-b">{{ __('conditions.title') }}<br/> <span class="text-base">{{ __('conditions.patient')}} {{ patientName(data) }}</span></h1>
 
@@ -9,7 +11,7 @@
           <div class="flex border-t border-b">
               <div class="w-1/2">
                   <p>{{ condition.conditionName }}</p>
-                  <p class="text-base">{{ __('conditions.icd_code') }} XXXX</p>
+                  <p class="text-base">{{ __('conditions.icd_code') }} {{ condition.icdCode }}</p>
                   <p class="text-base">{{ __('conditions.symptoms_began') }} {{ condition.symptomsBegan }}</p>
               </div>
               <div class="w-1/2">
