@@ -514,6 +514,8 @@
 	"errors.functional.plannedTreatments.length": "Tell us if you have planned future treatments that might improve or restrict [patient's name]'s functional abilities.",
 	"errors.functional.height.length": "Enter your patient's current height.",
 	"errors.functional.weight.length": "Enter your patient's current weight.",
-	"functional.save_data": "Save"
+	"functional.save_data": "Save",
+	"dashboard.overall-health": "Patient's Overall Health",
+	"dashboard.expedited-processing": "Expedited processing for terminal and grave conditions"
 }
 
