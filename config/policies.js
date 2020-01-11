@@ -73,4 +73,8 @@ module.exports.policies = {
   TreatmentsController: {
     'index': defaultPlusReportExists,
   },
+
+  FutureWorkCapacityController: {
+    'index': defaultPlusReportExists
+  }
 };
