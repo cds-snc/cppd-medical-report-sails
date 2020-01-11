@@ -6,6 +6,7 @@
  */
 
 const dataStore = require('../utils/DataStore');
+const Documents = require('../utils/DocumentsHelper');
 
 module.exports = {
   edit: function (req, res) {
@@ -28,10 +29,13 @@ module.exports = {
       condition = _.merge(condition, res.locals.data);
     }
 
+    let documents = Documents.getDocumentsByCondition(req.session.medicalReport, req.params.id - 1).join(',');
+
     res.view('pages/conditions/edit', {
       id: req.params.id,
       condition: condition,
-      medicalReport: req.session.medicalReport
+      medicalReport: req.session.medicalReport,
+      documents: documents
     });
   },
 
@@ -47,6 +51,8 @@ module.exports = {
     if (valid) {
       // replace the contents of the condition on the array
       req.session.medicalReport.conditions[conditionId] = body;
+
+      Documents.saveDocumentsFromCondition(req.session.medicalReport, body);
       dataStore.storeMedicalReport(req.session.medicalReport);
 
       res.redirect(sails.route('conditions'));
