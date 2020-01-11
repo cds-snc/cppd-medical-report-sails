@@ -20,8 +20,14 @@ module.exports = {
     const applicationCode = req.session.medicalReport.applicationCode;
     req.session.medicalReport = {};
 
+    // Get full URL
+    const protocol = req.connection.encrypted? 'https' : 'http';
+    const medicalProfessionalRoute = sails.config.routes['GET /en/medical-professional'].i18n[req.i18n.locale];
+    let medicalProfessionalUrl = protocol + '://' + req.headers.host + medicalProfessionalRoute;    
+
     res.view('pages/invite',{
-      applicationCode: applicationCode
+      applicationCode: applicationCode,
+      medicalProfessionalUrl: medicalProfessionalUrl,
     });
   },
 };
