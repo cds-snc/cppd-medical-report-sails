@@ -75,7 +75,7 @@ module.exports.routes = {
     }
   },
 
-  ... require('./routes/dashboard'),
+  ...require('./routes/dashboard'),
 
   /**
    * PERSONAL ROUTES
@@ -492,6 +492,31 @@ module.exports.routes = {
     i18n: {
       en: '/en/declaration',
       fr: '/fr/declaration'
+    }
+  },
+
+  /**
+   * WORK ROUTES
+   */
+  'GET /en/work': {
+    name: 'work',
+    controller: 'FutureWorkCapacityController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/work',
+      fr: '/fr/work'
+    }
+  },
+
+  'POST /en/work': {
+    name: 'work.store',
+    controller: 'FutureWorkCapacityController',
+    action: 'store',
+    lang: 'en',
+    i18n: {
+      en: '/en/work',
+      fr: '/fr/work'
     }
   },
 
