@@ -29,7 +29,7 @@ module.exports = {
 
       if (ok) {
         req.session.medicalReport = getApplication(applicationCode);
-        return res.redirect(sails.route('relationship'));
+        return res.redirect(sails.route('dashboard'));
       }
 
       req.flash('error', 'errors.no_application_found');
