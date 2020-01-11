@@ -1,10 +1,4 @@
-function castArray(...args) {
-  if (!args.length) {
-    return [];
-  }
-  const value = args[0];
-  return Array.isArray(value) ? value : [value];
-}
+const castArray = require('./ArrayHelpers').castArray;
 
 const addConditions = (req, body, selectedArray) => {
   /**
