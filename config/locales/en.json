@@ -508,6 +508,6 @@
 	"functional.save_data": "Save",
 	"section6.more_details": "Provide more details where possible",
 	"dashboard.overall-health": "Patient's Overall Health",
-	"dashboard.expedited-processing": "Expedited processing for terminal and grave conditions"
+	"dashboard.expedited-processing": "Expedited processing for terminal and grave conditions",
+	"conditions.incomplete": "Incomplete"
 }
-
