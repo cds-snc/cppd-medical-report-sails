@@ -45,7 +45,8 @@ module.exports.webpack = {
         styles: './assets/styles/app.scss',
         condition: './assets/js/pages/condition.js',
         relationship: './assets/js/pages/relationship.js',
-        conditionAdder: './assets/js/pages/conditionAdder.js'
+        conditionAdder: './assets/js/pages/conditionAdder.js',
+        work: './assets/js/pages/work.js',
       },
       output: {
         filename: 'assets/js/[name].js',
