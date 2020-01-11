@@ -1,6 +1,9 @@
 {% extends "layouts/layout.njk" %}
 
 {% block content %}
+
+    {{ backButton('dashboard') }}
+    
     <h1 class="border-gray-400 border-b">{{ __('treatments.title') }}<br/> <span class="text-base">{{ __('patient_type')}} {{ patientName(data) }}</span></h1>
 
     <div class="mt-10">

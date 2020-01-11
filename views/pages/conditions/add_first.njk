@@ -8,14 +8,16 @@
     {%- from 'pages/conditions/condition-form.njk' import conditionForm with context -%}
     {%- from 'pages/conditions/condition-name.njk' import conditionName with context -%}
 
+    {{ backButton('dashboard') }}
+
     <h1>{{ __('conditions.title') }}<br/> <span class="text-base">{{ __('conditions.patient')}} {{ patientName(medicalReport) }}</span></h1>
 
     <div>
         <form action="{{ route('conditions.add') }}" method="post">
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
-            
+
             {# NOTE: the conditionName is out here because the label changes
-             # different depending on context (see add_first). The rest of 
+             # different depending on context (see add_first). The rest of
              # the form stays the same, so it's in a macro.
              #}
             {{ conditionName('conditionName', 'add_condition.name_of_condition.first', patientName(data), { required: true, "autocomplete": "off", value: data.conditionName }) }}
