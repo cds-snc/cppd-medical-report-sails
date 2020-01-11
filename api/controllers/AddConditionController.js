@@ -6,9 +6,16 @@
  */
 
 const dataStore = require('../utils/DataStore');
+const Documents = require('../utils/DocumentsHelper');
 
 module.exports = {
   create: function (req, res) {
+    if (!res.locals.data) {
+      res.locals.data = {
+        conditionFiles: ''
+      }
+    }
+
     if (_.has(req.session.medicalReport, 'conditions') && req.session.medicalReport.conditions.length) {
       return res.view('pages/conditions/add', {
         medicalReport: req.session.medicalReport
@@ -38,6 +45,8 @@ module.exports = {
         req.session.medicalReport.conditions = [];
       }
       req.session.medicalReport.conditions.push(body);
+
+      Documents.saveDocumentsFromCondition(req.session.medicalReport, body);
       dataStore.storeMedicalReport(req.session.medicalReport);
 
       if (action === 'add_another') {
