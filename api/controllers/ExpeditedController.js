@@ -35,7 +35,7 @@ module.exports = {
       req.session.medicalReport.onsetDate = req.body.onsetDate;
       dataStore.storeMedicalReport(req.session.medicalReport);
 
-      res.redirect(sails.route('conditions'));
+      res.redirect(sails.route('dashboard'));
     }
   }
 };
