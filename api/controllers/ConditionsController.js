@@ -34,7 +34,6 @@ module.exports = {
     let medicalReport = req.session.medicalReport;
     if (_.has(medicalReport, 'conditions') && medicalReport.conditions.length) {
       let incompleteConditions = getIncompleteConditions(medicalReport.conditions);
-      console.log(incompleteConditions);
       return res.view('pages/conditions/index', {
         data: req.session.medicalReport,
         incompleteConditions: incompleteConditions,

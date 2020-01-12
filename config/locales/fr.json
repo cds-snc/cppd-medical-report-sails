@@ -489,7 +489,7 @@
 	"dashboard.privacy": "Conformément à la Loi sur la protection des renseignements personnels, à la réception d'une demande écrite faite par le demandeur, Service Canada a l'obligation de fournir au demandeur ou à son représentant tous les renseignements au dossier, y compris les rapports médicaux (Fichier de renseignements personnels EDSC PPU 146). <a href='https://laws-lois.justice.gc.ca/fra/lois/P-21/page-3.html#h-387838'>En savoir plus au sujet de la Loi sur la protection des renseignements personnels.</a>",
 	"dashboard.overall-health": "dashboard.overall-health",
 	"dashboard.expedited-processing": "dashboard.expedited-processing",
-	"conditions.incomplete": "TRANSLATE Incomplete",
+	"conditions.incomplete": "Non Rempli",
 	"invite.title": "TRANSLATE Form submitted",
 	"invite.give_code": "TRANSLATE To finish your application, give this code and link to your doctor or nurse practioner:",
 	"invite.medical_professional_instruction": "TRANSLATE Your doctor or nurse practioner will use this unique code to fill out a report about your medical condition(s), and how they impact your ability to work.",
