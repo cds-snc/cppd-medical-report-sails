@@ -511,6 +511,5 @@
 	"section6.more_details": "Provide more details where possible",
 	"dashboard.overall-health": "Patient's Overall Health",
 	"dashboard.expedited-processing": "Expedited processing for terminal and grave conditions",
-	"conditions.incomplete": "Incomplete",
-	"conditions.patient_treatments": "conditions.patient_treatments"
+	"conditions.incomplete": "Incomplete"
 }
