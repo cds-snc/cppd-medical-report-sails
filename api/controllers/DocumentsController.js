@@ -32,6 +32,7 @@ module.exports = {
 
     if (valid) {
       // save the model
+      req.session.medicalReport.attachLater = req.body.attachLater;
       documentsHelper.saveDocuments(req.session.medicalReport, req.body.supportingDocuments);
       dataStore.storeMedicalReport(req.session.medicalReport);
 
