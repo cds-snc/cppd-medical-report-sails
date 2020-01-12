@@ -185,6 +185,17 @@ module.exports.routes = {
     }
   },
 
+  'POST /en/medications': {
+    name: 'medications.save',
+    controller: 'MedicationsController',
+    action: 'save',
+    lang: 'en',
+    i18n: {
+      en: '/en/medications',
+      fr: '/fr/medications'
+    }
+  },
+
   'GET /en/medications/add': {
     name: 'medications.add',
     controller: 'AddMedicationController',

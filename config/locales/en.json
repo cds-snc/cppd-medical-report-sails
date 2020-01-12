@@ -186,6 +186,7 @@
 	"conditions.medical_conditions": "Medical conditions",
 	"conditions.next_medications": "Next: Medications",
 	"conditions.patient": "Patient:",
+	"conditions.patient_conditions": "Is your patient currently receiving medication for their condition(s)?",
 	"conditions.remove_condition": "Remove condition",
 	"conditions.save_condition": "Save condition",
 	"conditions.symptoms_began": "Symptoms began: ",
