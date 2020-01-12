@@ -40,7 +40,11 @@
             {{ textInput('stopWorkingWhen', 'section3.form.stop_working_when.desc', { required: true }) }}
           </div>
 
-            {{ formButtons() }}
+            <div class="w-full">
+                <div class="w-1/3">
+                    <button type="submit">{{ __('return_to_dashboard') }}</button>
+                </div>
+            </div>
         </form>
     </div>
 
