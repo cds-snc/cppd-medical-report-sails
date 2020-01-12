@@ -265,6 +265,17 @@ module.exports.routes = {
     }
   },
 
+  'POST /en/treatments': {
+    name: 'treatments.save',
+    controller: 'TreatmentsController',
+    action: 'save',
+    lang: 'en',
+    i18n: {
+      en: '/en/treatments',
+      fr: '/fr/treatments'
+    }
+  },
+
   'GET /en/treatments/add': {
     name: 'treatments.add',
     controller: 'AddTreatmentController',
