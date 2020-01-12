@@ -13,24 +13,45 @@
 
 
 {% block content %}
-    <h1>{{ __('dashboard.title') }}<br/> <span class="text-base">{{ __('dashboard.patient')}} {{ patientName(data) }} </span></h1>
+  <h1>{{ __('dashboard.title') }}<br/> <span class="text-base">{{ __('dashboard.patient')}} {{ patientName(data) }} </span></h1>
 
-  <div class="w-full">
-    <div class="lg:flex w-full">
-      <div class="lg:w-4/5">
-        <p>
-          {{ __('dashboard.intro1' )}} {{ patientName(data) }} {{ __('dashboard.intro2')}}
-        </p>
-        <p>
-          {{ __('dashboard.intro3' )}} {{ patientName(data) }} {{ __('dashboard.intro4') }}
-        </p>
+  <div class="w-full flex">
+    <div class="w-9/12">
+      <p>
+        {{ __('dashboard.intro1' )}} {{ patientName(data) }} {{ __('dashboard.intro2')}}
+      </p>
+      <p>
+        {{ __('dashboard.intro3' )}} {{ patientName(data) }} {{ __('dashboard.intro4') }}
+      </p>
 
-        <div class="border-l-4 border-solid border-blue-800 bg-blue-200 p-4 ">
-          <p>{{ __('dashboard.pay') | safe }}</p>
-        </div>
+      <div class="border-l-4 border-solid border-blue-800 bg-blue-200 p-4 ">
+        <p>{{ __('dashboard.pay') | safe }}</p>
       </div>
 
-      <div class="border-2 border-black p-5 lg:w-1/5 my-2 lg:mt-0 lg:ml-5 ">
+      <h2 class="mt-8"> {{ __('dashboard.complete-sections') }} </h2>
+      <hr class="my-4"/>
+      {{ sectionLink('relationship','dashboard.basic_info', sectionsCompleted.personal) }}
+      <hr class="my-4"/>
+      {{ sectionLink('expedited','dashboard.expedited-processing', sectionsCompleted.expedited)}}
+      <hr class="my-4"/>
+      {{ sectionLink('functional','dashboard.functional-limits', sectionsCompleted.functional)}}
+      <hr class="my-4"/>
+      {{ sectionLink('conditions','dashboard.medical-conditions', sectionsCompleted.conditions) }}
+      <hr class="my-4"/>
+      {{ sectionLink('medications','dashboard.medications', sectionsCompleted.medications) }}
+      <hr class="my-4"/>
+      {{ sectionLink('treatments','dashboard.treatments', sectionsCompleted.treatments) }}
+      <hr class="my-4"/>
+      {{ sectionLink('work','dashboard.future-work-capacity', sectionsCompleted.futureWork) }}
+      <hr class="my-4"/>
+      {{ sectionLink('documents','dashboard.supporting-docs', sectionsCompleted.supportingDocuments) }}
+      <hr class="my-4"/>
+      {{ sectionLink('health','dashboard.overall-health', sectionsCompleted.overallHealth) }}
+      <hr class="my-4"/>
+    </div>
+
+    <div class="w-3/12">
+      <div class="border-2 border-black p-5  my-2 lg:mt-0 lg:ml-5 ">
         <p>
         <svg class="h-4 w-4 inline fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
             <path d="M8.294 16.998c-.435 0-.847-.203-1.111-.553L3.61 11.724a1.392 1.392 0 0 1 .27-1.951 1.392 1.392 0 0 1 1.953.27l2.351 3.104 5.911-9.492a1.396 1.396 0 0 1 1.921-.445c.653.406.854 1.266.446 1.92L9.478 16.34a1.39 1.39 0 0 1-1.12.656c-.022.002-.042.002-.064.002z"/>
@@ -41,46 +62,24 @@
         </p>
       </div>
     </div>
-
-  <div class="lg:w-4/5">
-    <h2> {{ __('dashboard.complete-sections') }} </h2>
-    <hr class="my-4"/>
-    {{ sectionLink('relationship','dashboard.basic_info', sectionsCompleted.personal) }}
-    <hr class="my-4"/>
-    {{ sectionLink('expedited','dashboard.expedited-processing', sectionsCompleted.expedited)}}
-    <hr class="my-4"/>
-    {{ sectionLink('functional','dashboard.functional-limits', sectionsCompleted.functional)}}
-    <hr class="my-4"/>
-    {{ sectionLink('conditions','dashboard.medical-conditions', sectionsCompleted.conditions) }}
-    <hr class="my-4"/>
-    {{ sectionLink('medications','dashboard.medications', sectionsCompleted.medications) }}
-    <hr class="my-4"/>
-    {{ sectionLink('treatments','dashboard.treatments', sectionsCompleted.treatments) }}
-    <hr class="my-4"/>
-    {{ sectionLink('work','dashboard.future-work-capacity', sectionsCompleted.futureWork) }}
-    <hr class="my-4"/>
-    {{ sectionLink('documents','dashboard.supporting-docs', sectionsCompleted.supportingDocuments) }}
-    <hr class="my-4"/>
-    {{ sectionLink('health','dashboard.overall-health', sectionsCompleted.overallHealth) }}
-    <hr class="my-4"/>
   </div>
-  <form action="{{ route('dashboard.ready') }}" method="post">
 
+  <form action="{{ route('dashboard.ready') }}" method="post" class="mt-0">
     <div class="buttons">
       <div class="buttons--left">
         <a href="about/blank" class="button-link">{{ __('dashboard.save-and-return') }}</a>
       </div>
       <div class="buttons--right">
         {% if ableToSubmit %}
-        <button type="submit" >{{ __('dashboard.submit') }}</button>
+          <button type="submit" >{{ __('dashboard.submit') }}</button>
         {% else %}
-        <button type="submit" disabled aria-disabled="true" class="text-black bg-gray-300 shadow-none hover:bg-gray-400 cursor-not-allowed" >{{ __('dashboard.submit') }}</button>
+          <button type="submit" disabled aria-disabled="true" class="text-black bg-gray-300 shadow-none hover:bg-gray-400 cursor-not-allowed" >{{ __('dashboard.submit') }}</button>
         {% endif %}
       </div>
     </div>
   </form>
-  <p>
+  <p class="mt-12">
     {{ __("dashboard.privacy") | safe}}
   </p>
-  </div>
+
 {% endblock %}
