@@ -35,7 +35,7 @@ const generateApplicationCode = () => {
   // Create the file
   fs.openSync(fileName, 'w');
 
-  return code;
+  return code.toUpperCase();
 };
 
 const storeMedicalReport = (medicalReportData) => {
