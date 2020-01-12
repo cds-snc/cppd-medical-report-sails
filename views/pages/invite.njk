@@ -1,0 +1,15 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+    <h1>{{ __('invite.title') }}</h1>
+
+    <div class="w-4/5 block border border-gray-500 border-solid p-5">
+        <p>{{ __('invite.give_code') }}</p>
+        <p class="font-bold text-6xl">{{ applicationCode }}</p>
+        <!-- TODO Dynamically generate the URL, rather than pulling in from translation -->
+        <p class="font-bold">{{ medicalProfessionalUrl }}</p>
+        <p>{{ __('invite.medical_professional_instruction') }}</p>
+        <a href="javascript:window.print()" class="button-link w-2/5">{{ __('invite.print_button') }}</a>
+    </div>
+
+{% endblock %}

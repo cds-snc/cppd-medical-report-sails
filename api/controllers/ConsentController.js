@@ -36,12 +36,27 @@ module.exports = {
       req.session.medicalReport.witnessLast = req.body.witnessLast;
       req.session.medicalReport.witnessPhone = req.body.witnessPhone;
       req.session.medicalReport.witnessSignature = req.body.witnessSignature;
-      req.session.medicalReport.applicationCode = dataStore.generateApplicationCode();
+      req.session.medicalReport.applicationCode = dataStore.generateApplicationCode(); 
 
       dataStore.storeMedicalReport(req.session.medicalReport);
 
 
-      res.redirect(sails.route('dashboard')); // TODO This should eventually go to page that shows the invitation, not the dashboard
+      res.redirect(sails.route('invite'));
     }
+  },
+  show: function(req, res) {
+    let data = req.session.medicalReport;
+
+    /**
+     * If we're returning to the form with flash data in locals,
+     * merge it with the rest of the medicalReport in the session.
+     */
+    if (res.locals.data) {
+      data = _.merge(res.locals.data, req.session.medicalReport);
+    }
+
+    res.view('pages/show_consent', {
+      data: data
+    });    
   }
 };

@@ -7,18 +7,32 @@
 
 const validate = require('../hooks/validate/validator');
 
+function checkMedications(report) {
+  if (report.patientMedications === 'no') {
+    return true;
+  }
+  return isArrayValid(report.medications, require('../schemas/medication.schema'));
+}
+
+function checkTreatements(report) {
+  if (report.patientTreatments === 'no') {
+    return true;
+  }
+  return isArrayValid(report.treatments, require('../schemas/treatment.schema'));
+}
+
 function getSectionsCompleted(report) {
   return {
     personal: isValid(report, require('../schemas/relationship.schema')),
     expedited : isValid(report, require('../schemas/expedited.schema')),
     functional: isValid(report,require('../schemas/functional.schema')),
     conditions: isArrayValid(report.conditions, require('../schemas/condition.schema')),
-    medications: isArrayValid(report.medications, require('../schemas/medication.schema')),
-    treatments: isArrayValid(report.treatments, require('../schemas/treatment.schema')),
+    medications: checkMedications(report),
+    treatments: checkTreatements(report),
     overallHealth : isValid(report, require('../schemas/health.schema')),
     futureWork: isValid(report, require('../schemas/work.schema')),
 
-    supportingDocuments: isValid(report.supportingDocuments,require('../schemas/documents.schema'))
+    supportingDocuments: isValid(report, require('../schemas/documents.schema'))
   };
 }
 
@@ -45,6 +59,10 @@ function isValid(obj, schema) {
 
 function isArrayValid(arr, schema) {
   if (arr === undefined) {
+    return false;
+  }
+
+  if (arr.length === 0) {
     return false;
   }
 

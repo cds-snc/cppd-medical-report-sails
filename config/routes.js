@@ -185,6 +185,17 @@ module.exports.routes = {
     }
   },
 
+  'POST /en/medications': {
+    name: 'medications.save',
+    controller: 'MedicationsController',
+    action: 'save',
+    lang: 'en',
+    i18n: {
+      en: '/en/medications',
+      fr: '/fr/medications'
+    }
+  },
+
   'GET /en/medications/add': {
     name: 'medications.add',
     controller: 'AddMedicationController',
@@ -247,6 +258,17 @@ module.exports.routes = {
     name: 'treatments',
     controller: 'TreatmentsController',
     action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/treatments',
+      fr: '/fr/treatments'
+    }
+  },
+
+  'POST /en/treatments': {
+    name: 'treatments.save',
+    controller: 'TreatmentsController',
+    action: 'save',
     lang: 'en',
     i18n: {
       en: '/en/treatments',
@@ -383,6 +405,31 @@ module.exports.routes = {
       fr: '/fr/consent'
     }
   },
+  'GET /en/show_consent': {
+    name: 'consent.show',
+    controller: 'ConsentController',
+    action: 'show',
+    lang: 'en',
+    i18n: {
+      en: '/en/show_consent',
+      fr: '/fr/show_consent'
+    }
+  },
+
+
+  /**
+   * INVITE CODE ROUTES
+   */
+  'GET /en/invite': {
+    name: 'invite',
+    controller: 'InviteController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/invite',
+      fr: '/fr/invite'
+    }
+  },  
 
   /**
    * RELATIONSHIP ROUTES
