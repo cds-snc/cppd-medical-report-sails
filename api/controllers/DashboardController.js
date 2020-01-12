@@ -29,10 +29,9 @@ function getSectionsCompleted(report) {
     conditions: isArrayValid(report.conditions, require('../schemas/condition.schema')),
     medications: checkMedications(report),
     treatments: checkTreatements(report),
-    overallHealth : isValid(report, require('../schemas/health.schema')),
     futureWork: isValid(report, require('../schemas/work.schema')),
-
-    supportingDocuments: isValid(report, require('../schemas/documents.schema'))
+    supportingDocuments: isValid(report, require('../schemas/documents.schema')),
+    overallHealth : isValid(report, require('../schemas/health.schema')),
   };
 }
 
@@ -44,9 +43,8 @@ function ableToSubmit (sections) {
          sections.medications &&
          sections.treatments &&
          sections.futureWork &&
-         sections.supportingDocs &&
-         sections.overallHealth &&
-         sections.declaration;
+         sections.supportingDocuments &&
+         sections.overallHealth;
 }
 
 function isValid(obj, schema) {

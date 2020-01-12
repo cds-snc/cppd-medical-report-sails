@@ -38,7 +38,7 @@ module.exports = {
       req.session.medicalReport.billingId = req.body.billingId;
       dataStore.storeMedicalReport(req.session.medicalReport);
 
-      res.redirect(sails.route('dashboard'));
+      res.redirect(sails.route('confirmation'));
     }
   }
 };
