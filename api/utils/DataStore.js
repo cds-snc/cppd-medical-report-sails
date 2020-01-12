@@ -28,14 +28,14 @@ const generateApplicationCode = () => {
   let code = null;
   let fileName = null;
   do {
-    code = crypto.randomBytes(3).toString('hex');
+    code = crypto.randomBytes(3).toString('hex').toUpperCase();
     fileName = getDataFilePath(code);
   } while(fs.existsSync(fileName));
 
   // Create the file
   fs.openSync(fileName, 'w');
 
-  return code.toUpperCase();
+  return code;
 };
 
 const storeMedicalReport = (medicalReportData) => {

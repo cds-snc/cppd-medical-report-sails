@@ -24,7 +24,7 @@ module.exports = {
 
     if (valid) {
       // Validate whether or not the application code exists and, if so, matches the birthdate
-      const applicationCode = req.body.applicationCode;
+      const applicationCode = req.body.applicationCode.toUpperCase();
       let ok = applicationExists(applicationCode, req.body.birthdate);
 
       if (ok) {
