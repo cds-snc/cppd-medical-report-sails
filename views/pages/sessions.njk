@@ -1,0 +1,12 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+  <h1>Sessions</h1>
+
+  <ul>
+    {% for file in files %}
+      <li><a href="{{ route('sessions.download', { session: file }) }}">{{ file }}</a></li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}
