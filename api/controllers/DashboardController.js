@@ -18,7 +18,7 @@ function getSectionsCompleted(report) {
     overallHealth : isValid(report, require('../schemas/health.schema')),
     futureWork: isValid(report, require('../schemas/work.schema')),
 
-    supportingDocuments: isValid(report.supportingDocuments,require('../schemas/documents.schema'))
+    supportingDocuments: isValid(report, require('../schemas/documents.schema'))
   };
 }
 
