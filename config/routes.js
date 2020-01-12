@@ -20,7 +20,7 @@ module.exports.routes = {
    *                                                                          *
    ***************************************************************************/
 
-  ... require('./routes/functional'),
+  ...require('./routes/functional'),
 
   '/': '/en/start', // redirect to start
 
@@ -185,6 +185,17 @@ module.exports.routes = {
     }
   },
 
+  'POST /en/medications': {
+    name: 'medications.save',
+    controller: 'MedicationsController',
+    action: 'save',
+    lang: 'en',
+    i18n: {
+      en: '/en/medications',
+      fr: '/fr/medications'
+    }
+  },
+
   'GET /en/medications/add': {
     name: 'medications.add',
     controller: 'AddMedicationController',
@@ -247,6 +258,17 @@ module.exports.routes = {
     name: 'treatments',
     controller: 'TreatmentsController',
     action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/treatments',
+      fr: '/fr/treatments'
+    }
+  },
+
+  'POST /en/treatments': {
+    name: 'treatments.save',
+    controller: 'TreatmentsController',
+    action: 'save',
     lang: 'en',
     i18n: {
       en: '/en/treatments',
@@ -542,6 +564,31 @@ module.exports.routes = {
     i18n: {
       en: '/en/confirmation',
       fr: '/fr/confirmation'
+    }
+  },
+
+  /**
+   * SESSIONS ROUTES
+   */
+  'GET /en/sessions': {
+    name: 'sessions',
+    controller: 'SessionsController',
+    action: 'index',
+    lang: 'en',
+    i18n: {
+      en: '/en/sessions',
+      fr: '/fr/sessions'
+    }
+  },
+
+  'GET /en/sessions/:session/download': {
+    name: 'sessions.download',
+    controller: 'SessionsController',
+    action: 'download',
+    lang: 'en',
+    i18n: {
+      en: '/en/sessions/:session/download',
+      fr: '/fr/sessions/:session/download'
     }
   },
 };
