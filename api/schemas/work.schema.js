@@ -2,7 +2,7 @@ module.exports = {
   returnToWork: {
     presence: {
       allowEmpty: false,
-      message: '^Return to work is required'
+      message: '^errors.work.return_to_work'
     }
   },
   returnToWorkWhen: function (value, attributes) {
@@ -10,7 +10,7 @@ module.exports = {
       return {
         presence: {
           allowEmpty: false,
-          message: '^Required if return to work is yes'
+          message: '^errors.work.return_to_work_timeframe'
         }
       }
     }
@@ -20,7 +20,7 @@ module.exports = {
       return {
         presence: {
           allowEmpty: false,
-          message: '^Required if return to work is yes'
+          message: '^errors.work.return_to_work_type'
         }
       }
     }
