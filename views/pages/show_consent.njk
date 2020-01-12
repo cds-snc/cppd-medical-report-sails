@@ -1,0 +1,50 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+
+    <h1>{{ __('show_consent.title') }}</h1>
+ 
+    <div>
+        <p>{{ __('show_consent.agreement') | safe }}</p>
+    </div>
+
+    <hr><br/>
+
+    <div>
+        <p>{{ __('show_consent.description') | safe }}</p>
+
+        <p><em>
+            {% if data.consent === 'consent' %}
+                {{ __('section2.i_consent') | safe }}
+            {% else %}
+                {{ __('section2.i_dont_consent') | safe }}
+            {% endif %}
+        </em></p>
+
+        <h2>{{ __('show_consent.patient_name') }}</h2>
+        <!-- TODO add logic to show signature image or typed signature -->
+        <p>{{ data.firstName }} {{ data.middleName }} {{ data.lastName }}</p>
+
+        <h2>{{ __('show_consent.patient_signature') }}</h2>
+        <!-- TODO add logic to show signature image or typed signature -->
+        <p class="signature">{{ data.signature }}</p>
+    </div>
+
+    {% if data.witnessFirst %}
+        <hr/><br/>
+
+        
+        <div>
+            <h3>{{ __('show_consent.witness_name') }}</h3>
+            <p>{{ data.witnessFirst }}  {{ data.witnessMiddle }} {{ data.witnessLast }}</p>
+
+            <h2>{{ __('show_consent.witness_signature') }}</h2>
+            <!-- TODO add logic to show signature image or typed signature -->
+            <p class="signature">{{ data.witnessSignature }}</p>
+
+            <h3>{{ _('show_consent.witness_telephone') }}</h3>
+            <p>{{ data.witnessPhone }}</p>
+        </div>
+    {% endif %}
+
+{% endblock %}
