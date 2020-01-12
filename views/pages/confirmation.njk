@@ -6,17 +6,6 @@
 
     <div>
         <p>{{ __('confirmation.thank_you_participating') }}</p>
-
-        <form method="post">
-            <input type="hidden" name="_csrf" value="{{ _csrf }}">
-
-            <div class="buttons">
-                <div class="buttons--left">
-                    <button type="submit" class="w-1/3">{{ __('confirmation.save_data') }}</button>
-                </div>
-            </div>
-        </form>
-
     </div>
 
 {% endblock %}
