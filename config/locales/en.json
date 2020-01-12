@@ -102,8 +102,6 @@
 	"Please use one page per medical condition. List the medical conditions in order of greatest functional impact.": "Please use one page per medical condition. List the medical conditions in order of greatest functional impact.",
 	"Prognosis": "Prognosis",
 	"Response (e.g. efficacy, side effects etc.) and other remarks": "Response (e.g. efficacy, side effects etc.) and other remarks",
-	"Return to work is required": "Return to work is required",
-	"Return to work timeframe is required if return to work is yes": "Return to work timeframe is required if return to work is yes",
 	"SMS": "SMS",
 	"Section 1 - Get started": "Section 1 - Get started",
 	"Section 4 - Expedited processing for terminal and grave conditions": "Section 4 - Expedited processing for terminal and grave conditions",
@@ -525,5 +523,8 @@
 	"invite.give_code": "To finish your application, give this code and link to your doctor or nurse practioner:",
 	"invite.medical_professional_instruction": "Your doctor or nurse practioner will use this unique code to fill out a report about your medical condition(s), and how they impact your ability to work.",
 	"invite.print_button": "Print this code",
-	"invite.url": "https://cppd-medical-report-stage.herokuapp.com/en/doctor"
+	"invite.url": "https://cppd-medical-report-stage.herokuapp.com/en/doctor",
+	"errors.work.return_to_work": "Select an option to tell us if you think [patient's name] will be able to return to work.",
+	"errors.work.return_to_work_timeframe": "Select an estimate of when you think [patient's name] will return to work.",
+	"errors.work.return_to_work_type": "Select an option to tell us if [patient's name] will be able to return to the same type of work, or something different."
 }
