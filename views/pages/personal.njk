@@ -1,7 +1,7 @@
 {% extends "layouts/layout.njk" %}
 
 {% block content %}
-    <h1>Personal</h1>
+    <h1>{{ __('personal.title') }}</h1>
     
     <form action="{{ route('personal.store') }}" method="post">        
         {{ textInput('socialInsuranceNumber', 'section1.sin', { hint: 'section1.sin_example', class: "w-3-4", required: true }) }}
@@ -18,7 +18,7 @@
         {{ textArea('address', 'section1.mailing_address', { hint: 'section1.mailing_address_hint', required: true}) }}
 
         {{ textInput('telephone', 'section1.telephone', { hint: 'telephone_format', required: true }) }}
-        {{ textInput('alternateTelephone', 'section1.alternate_telephone', { hint: 'telephone_hint' }) }}
+        {{ textInput('alternateTelephone', 'section1.alternate_telephone', { hint: 'telephone_format' }) }}
 
         {{ radioButtons('contactTime', { 'morning':'section1.contact_time_morning','afternoon':'section1.contact_time_afternoon', 'letters_only':'section1.contact_time_letters_only'}, data.contactTime, 'section1.contact_time', errors, { required: true }) }}
     
