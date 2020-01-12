@@ -524,13 +524,5 @@
 	"invite.title": "Form submitted",
 	"invite.give_code": "To finish your application, give this code and link to your doctor or nurse practioner:",
 	"invite.medical_professional_instruction": "Your doctor or nurse practioner will use this unique code to fill out a report about your medical condition(s), and how they impact your ability to work.",
-	"invite.print_button": "Print this code",
-	"invite.url": "https://cppd-medical-report-stage.herokuapp.com/en/doctor",
-	"When did \n    Bob Dude\n come into your care?": "When did \n    Bob Dude\n come into your care?",
-	"When did you first start treating \n    Bob Dude\n's primary medical condition?": "When did you first start treating \n    Bob Dude\n's primary medical condition?",
-	"How many times has \n    Bob Dude\n visted your office in the past 12 months?": "How many times has \n    Bob Dude\n visted your office in the past 12 months?",
-	"Did you recommend that \n    Bob Dude\n stops working?": "Did you recommend that \n    Bob Dude\n stops working?",
-	"Do you expect \n    Bob Dude\n to return to any type of work in the future?": "Do you expect \n    Bob Dude\n to return to any type of work in the future?",
-	"When do you expect \n    Bob Dude\n to return to work?": "When do you expect \n    Bob Dude\n to return to work?",
-	"What type of work do you expect \n    Bob Dude\n will be able to do?": "What type of work do you expect \n    Bob Dude\n will be able to do?"
+	"invite.print_button": "Print this code"
 }
