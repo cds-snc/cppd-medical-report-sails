@@ -1,4 +1,4 @@
-module.exports = {
+module.exports.routes = {
   'GET /en/dashboard': {
     name: 'dashboard',
     controller: 'DashboardController',
