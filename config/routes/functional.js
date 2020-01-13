@@ -1,4 +1,4 @@
-module.exports = {
+module.exports.routes = {
   'GET /en/functional': {
     name: 'functional',
     controller: 'FunctionalController',
