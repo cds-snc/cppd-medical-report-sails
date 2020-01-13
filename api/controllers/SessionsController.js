@@ -26,7 +26,7 @@ module.exports = {
   download: function (req, res) {
     const filename = req.params.session;
     const sessionFile = path.resolve(__dirname, '../../sessions/' + filename);
-    
+
     var SkipperDisk = require('skipper-disk');
     var fileAdapter = SkipperDisk(/* optional opts */);
 
@@ -35,10 +35,23 @@ module.exports = {
 
     // Stream the file down
     fileAdapter.read(sessionFile)
-    .on('error', (err) => {
-      return res.serverError(err);
-    })
-    .pipe(res);
+      .on('error', (err) => {
+        return res.serverError(err);
+      })
+      .pipe(res);
+  },
+
+  view: function (req, res) {
+    const filename = req.params.session;
+    const sessionFile = path.resolve(__dirname, '../../sessions/' + filename);
+
+    const medicalReport = JSON.parse(fs.readFileSync(sessionFile));
+
+    console.log(medicalReport);
+
+    res.view('pages/sessions/view', {
+      data: medicalReport
+    });
   }
 };
 

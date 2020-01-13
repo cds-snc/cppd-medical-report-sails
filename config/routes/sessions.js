@@ -23,4 +23,15 @@ module.exports.routes = {
       fr: '/fr/sessions/:session/download'
     }
   },
+
+  'GET /en/sessions/:session/view': {
+    name: 'sessions.view',
+    controller: 'SessionsController',
+    action: 'view',
+    lang: 'en',
+    i18n: {
+      en: '/en/sessions/:session/view',
+      fr: '/fr/sessions/:session/view'
+    }
+  },
 }
