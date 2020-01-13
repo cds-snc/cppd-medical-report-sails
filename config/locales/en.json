@@ -149,7 +149,7 @@
 	"add_condition.attach_later": "I will attach supporting documents later",
 	"add_condition.attach_notes": "Attach any notes or documents that are relevant to this condition",
 	"add_condition.attach_notes_hint": "These could include: clinical notes, specialist reports, or hospital discharge reports, etc",
-	"add_condition.clinically_impair": "How does this condition clinically impair your patient?",
+	"add_condition.clinically_impair": "What are your main clinical findings since the start of this condition?",
 	"add_condition.clinically_impair_hint": "For example: ‘poor cardiopulmonary function’, ‘severe mood distubance’ etc",
 	"add_condition.condition_last": "How long do you expect the condition to last?",
 	"add_condition.condition_last_1_year": "Less than 1 year",
