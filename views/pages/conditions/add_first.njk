@@ -1,9 +1,5 @@
 {% extends "layouts/layout.njk" %}
 
-{% block scripts %}
-    <script type="text/javascript" src="/build/assets/js/condition.js"></script>
-{% endblock %}
-
 {% block content %}
     {%- from 'pages/conditions/condition-form.njk' import conditionForm with context -%}
     {%- from 'pages/conditions/condition-name.njk' import conditionName with context -%}
