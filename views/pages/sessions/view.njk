@@ -2,7 +2,10 @@
 
 {% block content %}
 
-    <h1>{{ __('section2.title') }}</h1>
+    <h1>{{ __('Medical report for %s', data.firstName + ' ' + data.lastName) }}</h1>
+    <div>Date of birth: {{ data.birthdate }} (XX years old)</div>
+
+    <h2>Applicant profile</h2>
 
     {{ data | dump }}
 

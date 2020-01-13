@@ -47,8 +47,6 @@ module.exports = {
 
     const medicalReport = JSON.parse(fs.readFileSync(sessionFile));
 
-    console.log(medicalReport);
-
     res.view('pages/sessions/view', {
       data: medicalReport
     });
