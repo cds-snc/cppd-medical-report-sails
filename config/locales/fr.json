@@ -151,7 +151,7 @@
 	"add_condition.attach_later": "Je joindrai des documents à l'appui plus tard",
 	"add_condition.attach_notes": "Joignez toutes les notes ou tous les documents pertinents à ce problème",
 	"add_condition.attach_notes_hint": "Ces derniers peuvent inclure : notes cliniques, rapports de spécialistes, rapports de congé d'hôpital, etc.",
-	"add_condition.clinically_impair": "Comment ce problème affecte-t-il votre patient sur le plan clinique?",
+	"add_condition.clinically_impair": "Quelles sont vos principales observations cliniques depuis l'apparition de ce problème de santé?",
 	"add_condition.clinically_impair_hint": "Par exemple : « faibles fonctions cardiorespiratoires », « perturbation grave de l'humeur », etc.",
 	"add_condition.condition_last": "Combien de temps croyez-vous que durera ce problème?",
 	"add_condition.condition_last_1_year": "Moins d’un an",
