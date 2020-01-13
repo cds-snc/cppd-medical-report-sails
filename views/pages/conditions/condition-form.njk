@@ -7,15 +7,12 @@
 
     {{ radioButtons('conditionOutlook', { '1':'add_condition.condition_outlook_improve','2':'add_condition.condition_outlook_deteriorate', '3':'add_condition.condition_outlook_staysame', '4':'add_condition.condition_outlook_unknown'}, condition.conditionOutlook, 'add_condition.condition_outlook', errors, { required: true }) }}
 
-    <div id="unknown_outlook_details" class="ml-4">
-        {{ textArea('conditionOutlookUnknown', 'add_condition.prognosis_unknown', { required: true, value: condition.conditionOutlookUnknown }) }}
-    </div>
+    {{ textArea('conditionOutlookUnknown', 'add_condition.prognosis_unknown', { value: condition.conditionOutlookUnknown }) }}
 
     {{ radioButtons('conditionLast', { '1':'add_condition.condition_last_1_year', '2':'add_condition.condition_last_more' }, condition.conditionLast, 'add_condition.condition_last', errors, { required: true }) }}
 
     {{ radioButtons('symptomsOccur', { '1':'add_condition.symptoms_occur_periodically', '2':'add_condition.symptoms_occur_continuously', '3':'add_condition.symptoms_occur_unknown'}, condition.symptomsOccur, 'add_condition.symptoms_occur', errors, { required: true }) }}
 
-    <div id="unknown_symptoms_occur_details" class="ml-4">
-        {{ textArea('symptomsOccurUnknown', 'add_condition.symptoms_occur_unknown_label', { required: true, value: condition.symptomsOccurUnknown }) }}
-    </div>
+    {{ textArea('symptomsOccurUnknown', 'add_condition.symptoms_occur_unknown_label', { value: condition.symptomsOccurUnknown }) }}
+
 {% endmacro %}
