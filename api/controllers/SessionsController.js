@@ -7,6 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const conditionHelper = require('../utils/ConditionHelper');
 
 module.exports = {
   index: function (req, res) {
@@ -46,9 +47,14 @@ module.exports = {
     const sessionFile = path.resolve(__dirname, '../../sessions/' + filename);
 
     const medicalReport = JSON.parse(fs.readFileSync(sessionFile));
+    console.log(medicalReport);
+    const conditions = conditionHelper.getConditionsWithMedicationsAndTreatments(medicalReport);
+
+    console.log(conditions);
 
     res.view('pages/sessions/view', {
-      data: medicalReport
+      data: medicalReport,
+      conditions: conditions
     });
   }
 };
