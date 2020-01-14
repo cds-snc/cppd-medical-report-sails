@@ -58,6 +58,7 @@ module.exports = {
       returnToWorkWhen: require('../utils/support/returnToWorkWhen'),
       typeOfWork: require('../utils/support/typeOfWork'),
       getDocumentsByCondition: require('../utils/DocumentsHelper').getDocumentsByCondition,
+      moment: require('moment')
     });
   }
 };

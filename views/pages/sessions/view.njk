@@ -3,15 +3,15 @@
 {% block content %}
 
 <h1>{{ __('ma.view.medical_report_for', data.firstName + ' ' + data.lastName) }}</h1>
-{{ __('ma.view.date_of_birth') }}: {{ data.birthdate }} (XX years old)<br>
-{{ __('ma.view.label.consent') }} <a href="">{{ __('ma.view.view_and_download_consent') }}</a><br>
+{{ __('ma.view.date_of_birth') }}: {{ data.birthdate }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}<br>
+{{ __('ma.view.label.consent') }} <a href="{{ route('consent.show') }}">{{ __('ma.view.view_and_download_consent') }}</a><br>
 
 
 <details class="mt-4" open>
   <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.applicant_profile') }}</h2></summary>
   <h3>{{ __('ma.view.applicant') }}</h3>
   <p>
-    {{ __('ma.view.label.date_of_birth') }} {{ data.birthdate }} (XX years old)<br>
+    {{ __('ma.view.label.date_of_birth') }} {{ data.birthdate }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}<br>
     {{ __('ma.view.label.sin') }} {{ data.socialInsuranceNumber }}<br>
     {{ __('ma.view.label.last_name_at_birth') }} {{ data.birthLastName }}<br>
     {{ __('ma.view.label.address') }} {{ data.address }}<br>

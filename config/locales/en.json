@@ -529,6 +529,7 @@
 	"errors.work.return_to_work_type": "Select an option to tell us if your patient will be able to return to the same type of work, or something different.",
 	"ma.view.medical_report_for": "Medical report for %s",
 	"ma.view.date_of_birth": "Date of birth",
+	"ma.view.years_old": "(%s years old)",
 	"ma.view.applicant_profile": "Applicant profile",
 	"ma.view.hide": "Hide",
 	"ma.view.applicant": "Applicant",
