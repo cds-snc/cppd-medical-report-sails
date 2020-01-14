@@ -25,7 +25,14 @@ module.exports = {
   },
 
   store: function (req, res) {
-    let valid = req.validate(req, res, require('../schemas/work.schema'));
+
+    let valid = false;
+
+    if (require('../../config/featureflags').disableValidation) {
+      valid = true;
+    } else {
+      valid = req.validate(req, res, require('../schemas/work.schema'));
+    }
 
     if (valid) {
       // save the model

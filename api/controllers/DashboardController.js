@@ -36,15 +36,19 @@ function getSectionsCompleted(report) {
 }
 
 function ableToSubmit (sections) {
-  return sections.personal &&
-         sections.expedited &&
-         sections.functional &&
-         sections.conditions &&
-         sections.medications &&
-         sections.treatments &&
-         sections.futureWork &&
-         sections.supportingDocuments &&
-         sections.overallHealth;
+  if (require('../../config/featureflags').disableValidation) {
+    return true;
+  } else {
+    return sections.personal &&
+          sections.expedited &&
+          sections.functional &&
+          sections.conditions &&
+          sections.medications &&
+          sections.treatments &&
+          sections.futureWork &&
+          sections.supportingDocuments &&
+          sections.overallHealth;
+  }
 }
 
 function isValid(obj, schema) {

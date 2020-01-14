@@ -40,7 +40,13 @@ module.exports = {
       req.body = ConditionHelper.addConditions(req, body, 'treatmentTreatedCondition');
     }
 
-    let valid = req.validate(req, res, require('../schemas/treatment.schema'));
+    let valid = false;
+
+    if (require('../../config/featureflags').disableValidation) {
+      valid = true;
+    } else {
+      valid = req.validate(req, res, require('../schemas/treatment.schema'));
+    }
 
     if (valid) {
       // save model here

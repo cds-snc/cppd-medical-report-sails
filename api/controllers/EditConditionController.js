@@ -46,7 +46,14 @@ module.exports = {
     // the conditions array is 0 indexed
     const conditionId = req.params.id - 1;
 
-    let valid = req.validate(req, res, require('../schemas/condition.schema'));
+
+    let valid = false;
+
+    if (require('../../config/featureflags').disableValidation) {
+      valid = true;
+    } else {
+      valid = req.validate(req, res, require('../schemas/condition.schema'));
+    }
 
     if (valid) {
       // replace the contents of the condition on the array

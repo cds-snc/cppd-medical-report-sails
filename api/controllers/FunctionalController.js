@@ -22,7 +22,13 @@ module.exports = {
     });
   },
   store: function (req, res) {
-    let valid = req.validate(req, res, require('../schemas/functional.schema'));
+    let valid = false;
+
+    if (require('../../config/featureflags').disableValidation) {
+      valid = true;
+    } else {
+      valid = req.validate(req, res, require('../schemas/functional.schema'));
+    }
 
     if (valid) {
       // save the model, but not yet to the datastore
