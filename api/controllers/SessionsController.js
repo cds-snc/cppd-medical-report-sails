@@ -47,15 +47,17 @@ module.exports = {
     const sessionFile = path.resolve(__dirname, '../../sessions/' + filename);
 
     const medicalReport = JSON.parse(fs.readFileSync(sessionFile));
-    // console.log(medicalReport);
     const conditions = conditionHelper.getConditionsWithMedicationsAndTreatments(medicalReport);
-
-    // console.log(conditions);
-
+    // console.log(require('../utils/support/symptomsOccur')[1]);
     res.view('pages/sessions/view', {
       data: medicalReport,
-      conditions: conditions
+      conditions: conditions,
+      symptomsOccur: require('../utils/support/symptomsOccur'),
+      conditionOutlook: require('../utils/support/conditionOutlook'),
+      stopWorking: require('../utils/support/stopWorking'),
+      returnToWorkWhen: require('../utils/support/returnToWorkWhen'),
+      typeOfWork: require('../utils/support/typeOfWork'),
+      getDocumentsByCondition: require('../utils/DocumentsHelper').getDocumentsByCondition,
     });
   }
 };
-

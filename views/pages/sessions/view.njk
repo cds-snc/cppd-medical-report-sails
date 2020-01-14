@@ -47,7 +47,7 @@
 
 
   <dt>{{ __('ma.view.label.bmi') }}</dt>
-  <dd>[TODO]</dd>
+  <dd>26.8</dd>
 </dl>
 
 {% for condition in conditions %}
@@ -61,13 +61,13 @@
       <dd>{{ condition.symptomsBegan }}</dd>
     
       <dt>{{ __('ma.view.label.symptom_frequency') }}</dt>
-      <dd>{{ condition.symptomsOccur }}</dd>
+      <dd>{{ __(symptomsOccur[condition.symptomsOccur]) }}</dd>
     
       <dt>{{ __('ma.view.label.symptom_detail') }}</dt>
       <dd>{{ condition.symptomsOccurUnknown }}</dd>
     
       <dt>{{ __('ma.view.label.prognosis') }}</dt>
-      <dd>{{ condition.conditionOutlook }}</dd>
+      <dd>{{ __(conditionOutlook[condition.conditionOutlook]) }}</dd>
     
       <dt>{{ __('ma.view.label.prognosis_detail') }}</dt>
       <dd>{{ condition.conditionOutlookUnknown }}</dd>
@@ -76,7 +76,11 @@
       <dd>{{ condition.clinicallyImpair }}</dd>
 
       <dt>{{ __('ma.view.label.supporting_documents') }}</dt>
-      <dd>[TODO]</dd>
+      <dd>
+        {% for document in getDocumentsByCondition(data, loop.index0) %}
+          {{ document }}<br>
+        {% endfor %}
+      </dd>
     </dl>
     
     {% if condition.medications.length %}
@@ -136,13 +140,13 @@
   <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.work_capacity') }}</h2></summary>
   <dl>
     <dt>{{ __('ma.view.label.told_to_cease_work') }}</td>
-    <dd>{{ data.stopWorking }}
+    <dd>{{ __(stopWorking[data.stopWorking]) }}
 
     <dt>{{ __('ma.view.label.expected_to_return_to_work') }}
-    <dd>{{ data.returnToWorkWhen }}
+    <dd>{{ __(returnToWorkWhen[data.returnToWorkWhen]) }}
 
     <dt>{{ __('ma.view.label.type_of_work') }}</dt>
-    <dd>{{ data.typeOfWork }}</dd>
+    <dd>{{ __(typeOfWork[data.typeOfWork]) }}</dd>
 
     <dt>{{ __('ma.view.label.type_of_work_detail') }}</dt>
     <dd>{{ data.workDetails }}
