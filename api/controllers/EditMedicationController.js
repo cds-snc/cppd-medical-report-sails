@@ -64,7 +64,14 @@ module.exports = {
     // the medications array is 0 indexed
     const medicationId = req.params.id - 1;
 
-    let valid = req.validate(req, res, require('../schemas/medication.schema'));
+
+    let valid = false;
+
+    if (require('../../config/featureflags').disableValidation) {
+      valid = true;
+    } else {
+      valid = req.validate(req, res, require('../schemas/medication.schema'));
+    }
 
     if (valid) {
       // replace the contents of the medication on the array

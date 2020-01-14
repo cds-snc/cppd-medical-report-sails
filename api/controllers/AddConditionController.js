@@ -36,8 +36,13 @@ module.exports = {
     // delete stuff we don't want to save
     delete body._csrf;
     delete body.save_and;
+    let valid = false;
 
-    let valid = req.validate(req, res, require('../schemas/condition.schema'));
+    if (require('../../config/featureflags').disableValidation) {
+      valid = true;
+    } else {
+      valid = req.validate(req, res, require('../schemas/condition.schema'));
+    }
 
     if (valid) {
       // save model here

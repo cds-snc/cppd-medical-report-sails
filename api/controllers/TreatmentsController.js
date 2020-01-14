@@ -15,14 +15,21 @@ module.exports = {
   },
 
   save: function (req, res) {
-    let valid = req.validate(req, res, {
-      patientTreatments: {
-        presence: {
-          allowEmpty: false,
-          message: '^Please make a selection'
-        }
-      },
-    });
+
+    let valid = false;
+
+    if (require('../../config/featureflags').disableValidation) {
+      valid = true;
+    } else {
+      valid = req.validate(req, res, {
+        patientTreatments: {
+          presence: {
+            allowEmpty: false,
+            message: '^Please make a selection'
+          }
+        },
+      });
+    }
 
     if (valid) {
       // save the model
