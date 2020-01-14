@@ -3,36 +3,38 @@
 {% block content %}
 
 <h1>{{ __('ma.view.medical_report_for', data.firstName + ' ' + data.lastName) }}</h1>
-<div>{{ __('ma.view.date_of_birth') }}: {{ data.birthdate }} (XX years old)</div>
+{{ __('ma.view.date_of_birth') }}: {{ data.birthdate }} (XX years old)<br>
+{{ __('ma.view.label.consent') }} <a href="">{{ __('ma.view.view_and_download_consent') }}</a><br>
 
-<h2>{{ __('ma.view.applicant_profile') }}</h2>
 
-<h3>{{ __('ma.view.applicant') }}</h3>
+<details class="mt-4" open>
+  <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.applicant_profile') }}</h2></summary>
+  <h3>{{ __('ma.view.applicant') }}</h3>
+  <p>
+    {{ __('ma.view.label.date_of_birth') }} {{ data.birthdate }} (XX years old)<br>
+    {{ __('ma.view.label.sin') }} {{ data.socialInsuranceNumber }}<br>
+    {{ __('ma.view.label.last_name_at_birth') }} {{ data.birthLastName }}<br>
+    {{ __('ma.view.label.address') }} {{ data.address }}<br>
+    {{ __('ma.view.label.phone') }} {{ data.telephone }}<br>
+  </p>
+</details>
 
-<p>
-  {{ __('ma.view.label.date_of_birth') }} {{ data.birthdate }} (XX years old)<br>
-  {{ __('ma.view.label.sin') }} {{ data.socialInsuranceNumber }}<br>
-  {{ __('ma.view.label.consent') }} <a href="">{{ __('ma.view.view_and_download_consent') }}</a><br>
-  {{ __('ma.view.label.last_name_at_birth') }} {{ data.birthLastName }}<br>
-  {{ __('ma.view.label.address') }} {{ data.address }}<br>
-  {{ __('ma.view.label.phone') }} {{ data.telephone }}<br>
-</p>
+<details class="mt-4" open>
+  <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.relationship_with_applicant') }}</h2></summary>
+  <dl>
+    <dt>{{ __('ma.view.label.first_visit') }}</dt>
+    <dd>{{ data.relationshipStarted }}</dd>
 
-<h2>{{ __('ma.view.relationship_with_applicant') }}</h2>
+    <dt>{{ __('ma.view.label.started_treating_condition') }}</dt>
+    <dd>{{ data.firstTreatmentDate }}</dd>
 
-<dl>
-  <dt>{{ __('ma.view.label.first_visit') }}</dt>
-  <dd>{{ data.relationshipStarted }}</dd>
+    <dt>{{ __('ma.view.label.visits_in_past_year') }}</dt>
+    <dd>{{ data.visitNumber }}</dd>
 
-  <dt>{{ __('ma.view.label.started_treating_condition') }}</dt>
-  <dd>{{ data.firstTreatmentDate }}</dd>
-
-  <dt>{{ __('ma.view.label.visits_in_past_year') }}</dt>
-  <dd>{{ data.visitNumber }}</dd>
-
-  <dt>{{ __('ma.view.label.last_visit') }}</dt>
-  <dd>{{ data.lastVisitDate }}</dd>
-</dl>
+    <dt>{{ __('ma.view.label.last_visit') }}</dt>
+    <dd>{{ data.lastVisitDate }}</dd>
+  </dl>
+</details>
 
 <h2 class="mt-4 text-4xl">{{ __('ma.view.medical_conditions_and_treatments') }}</h2>
 <dl>

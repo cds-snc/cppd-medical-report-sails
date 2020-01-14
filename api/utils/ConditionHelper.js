@@ -38,7 +38,7 @@ const getMedicationsByCondition = (medicalReport, condition) => {
   if (!_.has(medicalReport, 'medications')) {
     return [];
   }
-  const conditionId = medicalReport.conditions.indexOf(condition);
+  const conditionId = medicalReport.conditions.indexOf(condition).toString();
   let medications = [];
 
   medicalReport.medications.forEach((medication) => {
@@ -54,7 +54,7 @@ const getTreatmentsByCondition = (medicalReport, condition) => {
   if (!_.has(medicalReport, 'treatments')) {
     return [];
   }
-  const conditionId = medicalReport.conditions.indexOf(condition);
+  const conditionId = medicalReport.conditions.indexOf(condition).toString();
   let treatments = [];
 
   medicalReport.treatments.forEach((treatment) => {
@@ -66,7 +66,6 @@ const getTreatmentsByCondition = (medicalReport, condition) => {
   return treatments;
 }
 
-// 56C15B
 const getConditionsWithMedicationsAndTreatments = (medicalReport) => {
   // bail out if there are no conditions
   if (!_.has(medicalReport, 'conditions')) {

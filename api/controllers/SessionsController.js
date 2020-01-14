@@ -47,10 +47,10 @@ module.exports = {
     const sessionFile = path.resolve(__dirname, '../../sessions/' + filename);
 
     const medicalReport = JSON.parse(fs.readFileSync(sessionFile));
-    console.log(medicalReport);
+    // console.log(medicalReport);
     const conditions = conditionHelper.getConditionsWithMedicationsAndTreatments(medicalReport);
 
-    console.log(conditions);
+    // console.log(conditions);
 
     res.view('pages/sessions/view', {
       data: medicalReport,
