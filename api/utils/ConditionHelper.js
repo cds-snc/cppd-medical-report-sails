@@ -34,6 +34,61 @@ const addConditions = (req, body, selectedArray) => {
   return body;
 }
 
+const getMedicationsByCondition = (medicalReport, condition) => {
+  if (!_.has(medicalReport, 'medications')) {
+    return [];
+  }
+  const conditionId = medicalReport.conditions.indexOf(condition).toString();
+  let medications = [];
+
+  medicalReport.medications.forEach((medication) => {
+    if (medication.medicationTreatedCondition.indexOf(conditionId) !== -1) {
+      medications.push(medication);
+    }
+  });
+
+  return medications;
+}
+
+const getTreatmentsByCondition = (medicalReport, condition) => {
+  if (!_.has(medicalReport, 'treatments')) {
+    return [];
+  }
+  const conditionId = medicalReport.conditions.indexOf(condition).toString();
+  let treatments = [];
+
+  medicalReport.treatments.forEach((treatment) => {
+    if (treatment.treatmentTreatedCondition.indexOf(conditionId) !== -1) {
+      treatments.push(treatment);
+    }
+  });
+
+  return treatments;
+}
+
+const getConditionsWithMedicationsAndTreatments = (medicalReport) => {
+  // bail out if there are no conditions
+  if (!_.has(medicalReport, 'conditions')) {
+    return false;
+  }
+
+  medicalReport.conditions.forEach((condition) => {
+    condition.medications = [];
+    condition.treatments = [];
+
+    if (_.has(medicalReport, 'medications')) {
+      condition.medications = getMedicationsByCondition(medicalReport, condition);
+    }
+
+    if (_.has(medicalReport, 'treatments')) {
+      condition.treatments = getTreatmentsByCondition(medicalReport, condition);
+    }
+  });
+
+  return medicalReport.conditions;
+}
+
 module.exports = {
   addConditions,
+  getConditionsWithMedicationsAndTreatments
 }
