@@ -2,18 +2,44 @@
 
 module.exports = {
   attributes: {
-
-    sin: Sequelize.STRING,
-    title: Sequelize.STRING,
+    applicationCode: { type: Sequelize.STRING, unique: true },
+    socialInsuranceNumber: Sequelize.STRING,
+    preferredTitle: Sequelize.STRING,
     firstName: Sequelize.STRING,
     middleName: Sequelize.STRING,
     lastName: Sequelize.STRING,
-    lastNameAtBirth: Sequelize.STRING,
-    birthDate: Sequelize.DATEONLY,
+    birthLastName: Sequelize.STRING,
+    birthdate: Sequelize.DATEONLY,
     address: Sequelize.STRING,
-    telephoneNumber: Sequelize.STRING,
-    altTelephoneNumber: Sequelize.STRING,
-    contactPeriod: Sequelize.ENUM('morning','afternoon','letters_only'),
+    telephone: Sequelize.STRING,
+    alternateTelephone: Sequelize.STRING,
+    contactTime: Sequelize.STRING,
+    consent: Sequelize.BOOLEAN,
+    signature: Sequelize.STRING,
+    witnessFirst: Sequelize.STRING,
+    witnessMiddle: Sequelize.STRING,
+    witnessLast: Sequelize.STRING,
+    witnessPhone: Sequelize.STRING,
+    witnessSignature: Sequelize.STRING,
+    relationshipStarted: Sequelize.STRING,
+    firstTreatmentDate: Sequelize.STRING,
+    visitNumber: Sequelize.INTEGER,
+    lastVisitDate: Sequelize.STRING,
+    conditionType: Sequelize.STRING,
+    diagnosis: Sequelize.TEXT,
+    icdCode: Sequelize.STRING,
+    onsetDate: Sequelize.STRING,
+    limitations: Sequelize.TEXT,
+    plannedTreatments: Sequelize.TEXT,
+    height: Sequelize.STRING,
+    weight: Sequelize.STRING,
+    stopWorking: Sequelize.INTEGER, // fk to support
+    stopWorkingWhen: Sequelize.STRING,
+    returnToWork: Sequelize.INTEGER, // fk to support
+    returnToWorkWhen: Sequelize.INTEGER, // fk to support
+    typeOfWork: Sequelize.INTEGER, // fk to support
+    workDetails: Sequelize.TEXT,
+    overallHealth: Sequelize.TEXT,
   },
   options: {
     tableName: 'MedicalReports'
