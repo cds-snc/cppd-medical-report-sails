@@ -20,6 +20,14 @@ module.exports = {
         }
       });
 
+      /**
+       * If we're returning to the form with flash data in locals,
+       * merge it with the rest of the medicalReport in the session.
+       */
+      if (res.locals.data) {
+        medicalReport = _.merge(res.locals.data, medicalReport);
+      }
+
       return res.view('pages/personal', {
         data: medicalReport
       });
