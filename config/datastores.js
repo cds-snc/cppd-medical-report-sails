@@ -35,7 +35,7 @@ module.exports.datastores = {
   default: {
     user: process.env.DB_USERNAME || 'postgres',
     password: process.env.DB_PASSWORD || null,
-    database: process.env.DB_DATABASE || 'cppd',
+    database: process.env.DB_DATABASE || 'postgres',
     dialect: 'postgres',
     options: {
       dialect: 'postgres',
