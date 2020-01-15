@@ -5,42 +5,59 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const dataStore = require('../utils/DataStore');
+
 module.exports = {
-  index: function (req, res) {
+  index: async function (req, res) {
     /**
-     * If there is a medical report in the session, load it
+     * If there is an applicationCode in the session,
+     * load the report from the database.
      */
-    if (req.session.medicalReport) {
-      res.locals.data = req.session.medicalReport;
+    if (req.session.applicationCode) {
+      let medicalReport = await MedicalReport.findOne({
+        where: {
+          applicationCode: req.session.applicationCode
+        }
+      });
+
+      return res.view('pages/personal', {
+        data: medicalReport
+      });
     }
 
-    res.view('pages/personal');
+    /**
+     * If there's no applicationCode in the session,
+     * no need to query the db, just return the view
+     */
+    return res.view('pages/personal');
   },
 
-  store: function (req, res) {
+  store: async function (req, res) {
     let valid = req.validate(req, res, require('../schemas/personal.schema'));
 
     if (valid) {
-      // save the model, but not yet to the datastore
-      req.session.medicalReport = req.body;
-      res.redirect(sails.route('consent'));
+      // if we don't have an applicationCode yet, make one
+      if (!req.session.applicationCode) {
+        req.session.applicationCode = dataStore.generateApplicationCode();
+      }
 
-      /* Commenting out for now -ds
-      MedicalReport.create({
-        sin: req.body.social,
-        title: req.body.preferred_title,
-        first_name: req.body.first_name,
-        middle_name: req.body.middle_name,
-        last_name: req.body.last_name,
-        last_name_at_birth: req.body.birth_last_name,
-        birth_date: req.body.birthdate,
+      // Update existing, or create a new one!
+      await MedicalReport.upsert({
+        applicationCode: req.session.applicationCode,
+        socialInsuranceNumber: req.body.socialInsuranceNumber,
+        preferredTitle: req.body.preferredTitle,
+        firstName: req.body.firstName,
+        middleName: req.body.middleName,
+        lastName: req.body.lastName,
+        birthLastName: req.body.birthLastName,
+        birthdate: req.body.birthdate,
         address: req.body.address,
-        telephone_number: req.body.telephone,
-        alt_telephone_number: req.body.alternate_telephone,
-        contact_period: req.body.contact_time
+        telephone: req.body.telephone,
+        alternateTelephone: req.body.alternateTelephone,
+        contactTime: req.body.contactTime
       });
-      res.redirect('/en/start');
-      */
+
+      res.redirect(sails.route('consent'));
     }
   }
 };
