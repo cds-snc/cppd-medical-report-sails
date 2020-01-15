@@ -10,10 +10,10 @@ const { applicationExists, getApplication } = require('../utils/DataStore');
 module.exports = {
   index: function (req, res) {
     /**
-     * If there is a medical report in the session, clear it
+     * If there is an applicationCode in the session, clear it
      */
-    if (req.session.medicalReport) {
-      req.session.medicalReport = null;
+    if (req.session.applicationCode) {
+      req.session.applicationCode = null;
     }
     res.view('pages/medical-professional');
   },
