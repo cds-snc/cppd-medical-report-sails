@@ -42,6 +42,10 @@ module.exports.policies = {
     'index': defaultPlusReportExists,
   },
 
+  DashboardController: {
+    'index': defaultPlusReportExists,
+  },
+
   DeclarationController: {
     'index': defaultPlusReportExists,
   },
