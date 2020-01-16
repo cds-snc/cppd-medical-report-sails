@@ -5,19 +5,10 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const { applicationExists, getApplication } = require('../utils/DataStore');
-
 module.exports = {
-  index: function (req, res) {
-    /**
-     * If there is a medical report in the session, load it
-     */
-    if (req.session.medicalReport) {
-      res.locals.data = req.session.medicalReport;
-    }
-
+  index: async function (req, res) {
     // Get code, then clear session
-    const applicationCode = req.session.medicalReport.applicationCode;
+    const applicationCode = req.session.applicationCode;
     req.session.medicalReport = {};
 
     // Get full URL
