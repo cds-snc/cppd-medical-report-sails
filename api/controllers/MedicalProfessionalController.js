@@ -5,8 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const { applicationExists, getApplication } = require('../utils/DataStore');
-
 module.exports = {
   index: function (req, res) {
     /**
