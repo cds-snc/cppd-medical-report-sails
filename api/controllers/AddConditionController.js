@@ -13,12 +13,12 @@ module.exports = {
         applicationCode: req.session.applicationCode
       }
     });
-    
+
     // TODO: Will circle back to handle the Documents later
     if (!res.locals.data) {
       res.locals.data = {
         conditionFiles: ''
-      }
+      };
     }
 
     if (medicalReport.Conditions) {
