@@ -1,5 +1,7 @@
 'use strict';
 
+const validate = require('validate.js');
+
 module.exports = {
   attributes: {
     treatmentType: Sequelize.STRING,
@@ -14,6 +16,11 @@ module.exports = {
     });
   },
   options: {
-    tableName: 'Treatments'
+    tableName: 'Treatments',
+    instanceMethods: {
+      checkValid: function() {
+        return validate(this, require('../schemas/treatment.schema'));
+      }
+    }
   }
 };

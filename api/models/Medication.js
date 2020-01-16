@@ -1,5 +1,7 @@
 'use strict';
 
+const validate = require('validate.js');
+
 module.exports = {
   attributes: {
     medicationName: Sequelize.STRING,
@@ -15,6 +17,11 @@ module.exports = {
     });
   },
   options: {
-    tableName: 'Medications'
+    tableName: 'Medications',
+    instanceMethods: {
+      checkValid: function() {
+        return validate(this, require('../schemas/medication.schema'));
+      }
+    }
   }
 };

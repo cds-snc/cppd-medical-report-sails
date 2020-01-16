@@ -1,7 +1,10 @@
 'use strict';
 
+const validate = require('validate.js');
+
 module.exports = {
   attributes: {
+    conditionName: Sequelize.STRING,
     icdCode: Sequelize.STRING,
     symptomsBegan: Sequelize.STRING,
     clinicallyImpair: Sequelize.STRING,
@@ -21,6 +24,11 @@ module.exports = {
     });
   },
   options: {
-    tableName: 'Conditions'
+    tableName: 'Conditions',
+    instanceMethods: {
+      checkValid: function() {
+        return validate(this, require('../schemas/condition.schema'));
+      }
+    }
   }
 };
