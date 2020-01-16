@@ -46,9 +46,13 @@ module.exports = {
     let valid = req.validate(req, res, require('../schemas/condition.schema'));
 
     if (valid) {
-      // save model here
+      /**
+       * Not crazy about this, but can't figure out how to create
+       * a related model from base, ie, medicalReport.Condition.create()
+       */
       Condition.create({
         MedicalReportId: medicalReport.id,
+        conditionName: req.body.conditionName,
         icdCode: req.body.icdCode,
         symptomsBegan: req.body.symptomsBegan,
         clinicallyImpair: req.body.clinicallyImpair,
