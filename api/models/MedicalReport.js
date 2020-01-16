@@ -42,7 +42,9 @@ module.exports = {
     overallHealth: Sequelize.TEXT,
   },
   associations: function() {
-    MedicalReport.hasMany(Condition);
+    MedicalReport.hasMany(Condition, {
+      as: 'Conditions'
+    });
   },
   options: {
     tableName: 'MedicalReports',
