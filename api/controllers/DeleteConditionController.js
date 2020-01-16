@@ -32,4 +32,3 @@ module.exports = {
     res.redirect(sails.route('conditions'));
   }
 };
-
