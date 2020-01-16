@@ -14,10 +14,10 @@ module.exports = {
   associations: function () {
     Condition.belongsTo(MedicalReport);
     Condition.belongsToMany(Treatment, {
-      through: 'ConditionTreatment',
+      through: 'ConditionTreatments',
     });
     Condition.belongsToMany(Medication, {
-      through: 'ConditionMedication',
+      through: 'ConditionMedications',
     });
   },
   options: {

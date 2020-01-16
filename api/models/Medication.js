@@ -11,7 +11,7 @@ module.exports = {
   },
   associations: function() {
     Medication.belongsToMany(Condition, {
-      through: 'ConditionMedication',
+      through: 'ConditionMedications',
     });
   },
   options: {

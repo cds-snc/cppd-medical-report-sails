@@ -10,7 +10,7 @@ module.exports = {
   },
   associations: function() {
     Treatment.belongsToMany(Condition, {
-      through: 'ConditionTreatment',
+      through: 'ConditionTreatments',
     });
   },
   options: {
