@@ -22,6 +22,11 @@ module.exports = {
       checkValid: function() {
         return validate(this, require('../schemas/medication.schema'));
       }
-    }
+    },
+    getterMethods: {
+      isValid: function () {
+        return !this.checkValid();
+      }
+    },
   }
 };

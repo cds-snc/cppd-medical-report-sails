@@ -29,6 +29,11 @@ module.exports = {
       checkValid: function() {
         return validate(this, require('../schemas/condition.schema'));
       }
-    }
+    },
+    getterMethods: {
+      isValid: function () {
+        return !this.checkValid();
+      }
+    },
   }
 };
