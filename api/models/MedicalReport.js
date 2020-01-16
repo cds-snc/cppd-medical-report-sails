@@ -45,6 +45,11 @@ module.exports = {
     MedicalReport.hasMany(Condition);
   },
   options: {
-    tableName: 'MedicalReports'
+    tableName: 'MedicalReports',
+    getterMethods: {
+      fullName: function () {
+        return this.firstName + ' ' + this.lastName;
+      }
+    },
   }
 };
