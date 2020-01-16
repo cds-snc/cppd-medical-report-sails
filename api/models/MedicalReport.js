@@ -40,6 +40,8 @@ module.exports = {
     typeOfWork: Sequelize.INTEGER, // fk to support
     workDetails: Sequelize.TEXT,
     overallHealth: Sequelize.TEXT,
+    patientMedications: Sequelize.BOOLEAN,
+    patientTreatments: Sequelize.BOOLEAN,
   },
   associations: function() {
     MedicalReport.hasMany(Condition, {
