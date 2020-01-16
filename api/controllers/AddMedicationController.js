@@ -5,22 +5,38 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const {
-  conditionReducer,
-  oneAttribute,
-} = require('../utils/condition.mapper');
-
 const dataStore = require('../utils/DataStore');
 const ConditionHelper = require('../utils/ConditionHelper');
 
 module.exports = {
-  create: function (req, res) {
-    let medicalReport = req.session.medicalReport;
-    const conditionList = conditionReducer(medicalReport.conditions);
+  create: async function (req, res) {
+    // load the medical report
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+
+    let conditions = await Condition.findAll({
+      where: {
+        MedicalReportId: medicalReport.id
+      },
+      attributes: [ 'id', 'conditionName' ],
+      raw: true
+    });
+
+    let conditionList = _.reduce(
+      conditions,
+      (outList, condition) => {
+        outList[condition.id] = condition.conditionName;
+        return outList;
+      },
+      {},
+    );
 
     res.view('pages/medications/add', {
       conditionList: conditionList,
-      oneValue: oneAttribute(conditionList),
+      oneValue: Object.keys(conditionList).length === 1,
       medicalReport: medicalReport,
     });
   },

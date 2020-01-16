@@ -8,13 +8,20 @@
 const dataStore = require('../utils/DataStore');
 
 module.exports = {
-  index: function (req, res) {
+  index: async function (req, res) {
+    // Load the report from the database.
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+
     res.view('pages/medications/index', {
-      data: req.session.medicalReport
+      data: medicalReport
     });
   },
 
-  save: function (req, res) {
+  save: async function (req, res) {
     let valid = req.validate(req, res, {
       patientMedications: {
         presence: {
@@ -26,10 +33,15 @@ module.exports = {
 
     if (valid) {
       // save the model
-      req.session.medicalReport.patientMedications = req.body.patientMedications;
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      await MedicalReport.update({
+        patientMedications: req.body.patientMedications,
+      }, {
+        where: {
+          applicationCode: req.session.applicationCode
+        }
+      });
 
-      if (req.body.patientMedications === 'yes') {
+      if (req.body.patientMedications) {
         return res.redirect(sails.route('medications.add'));
       }
 
