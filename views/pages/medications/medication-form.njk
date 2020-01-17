@@ -30,10 +30,10 @@
 {% if oneValue %}
     {% set selectedValues = ["0"] %}
 {% else %}
-    {% set selectedValues = medication.medicationTreatedCondition %}
+    {% set selectedValues = medication.Conditions %}
 {% endif %}
 
-{{ rawCheckBoxes('medicationTreatedCondition', 
+{{ rawCheckBoxes('selectedConditions', 
     conditionList,
     selectedValues, 
     'form.medication_treated_conditions.question',{},
