@@ -26,12 +26,12 @@ module.exports = {
 
     if (medicalReport.Conditions) {
       return res.view('pages/conditions/add', {
-        medicalReport: req.session.medicalReport
+        medicalReport: medicalReport
       });
     }
 
     res.view('pages/conditions/add_first', {
-      medicalReport: req.session.medicalReport
+      medicalReport: medicalReport
     });
   },
 
