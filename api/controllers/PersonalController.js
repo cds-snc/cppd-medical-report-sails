@@ -5,7 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
+const applicationCodeHelper = require('../utils/ApplicationCodeHelper');
 
 module.exports = {
   index: async function (req, res) {
@@ -46,7 +46,7 @@ module.exports = {
     if (valid) {
       // if we don't have an applicationCode yet, make one
       if (!req.session.applicationCode) {
-        req.session.applicationCode = dataStore.generateApplicationCode();
+        req.session.applicationCode = await applicationCodeHelper.generate();
       }
 
       // Update existing, or create a new one!
