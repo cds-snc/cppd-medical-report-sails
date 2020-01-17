@@ -5,55 +5,96 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
-const Documents = require('../utils/DocumentsHelper');
-
 module.exports = {
-  edit: function (req, res) {
-    // redirect back if there are no conditions
-    if (!_.has(req.session.medicalReport, 'conditions')) {
+  edit: async function (req, res) {
+    /**
+     * Grab the medicalReport and the associated condition.
+     * This is an AND query, so the object will be null
+     * if either the applicationCode or conditionId
+     * don't exist.
+     */
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        {
+          model: Condition,
+          as: 'Conditions',
+          where: { id: req.params.id }
+        }
+      ]
+    });
+
+    if (!medicalReport) {
+      // TODO: should probably flash a message 'condition not found'
       return res.redirect(sails.route('conditions'));
     }
 
-    let condition = { ...req.session.medicalReport.conditions[req.params.id - 1] };
-
-    if (!condition) {
-      return res.redirect(sails.route('conditions'));
-    }
+    // the condition comes back as the first index of an array
+    let condition = _.first(medicalReport.Conditions);
 
     /**
      * If we're returning to the form with flash data in locals,
-     * merge it with the rest of the medication from the session.
+     * merge it with the rest of the condition from the db.
      */
     if (res.locals.data) {
       condition = _.merge(condition, res.locals.data);
     }
 
-    let documents = Documents.getDocumentsByCondition(req.session.medicalReport, req.params.id - 1).join(',');
+    // TODO: let documents = Documents.getDocumentsByCondition(req.session.medicalReport, req.params.id - 1).join(',');
 
     res.view('pages/conditions/edit', {
       id: req.params.id,
       condition: condition,
-      medicalReport: req.session.medicalReport,
-      documents: documents
+      medicalReport: medicalReport,
+      documents: []
     });
   },
 
-  update: function (req, res) {
-    const body = Object.assign({}, req.body);
-    delete body._csrf;
+  update: async function (req, res) {
+    /**
+     * Grab the medicalReport and the associated condition.
+     * This is an AND query, so the object will be null
+     * if either the applicationCode or conditionId
+     * don't exist.
+     */
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        {
+          model: Condition,
+          as: 'Conditions',
+          where: { id: req.params.id }
+        }
+      ]
+    });
 
-    // the conditions array is 0 indexed
-    const conditionId = req.params.id - 1;
+    if (!medicalReport) {
+      // TODO: should probably flash a message 'condition not found'
+      return res.redirect(sails.route('conditions'));
+    }
+
+    let condition = _.first(medicalReport.Conditions);
 
     let valid = req.validate(req, res, require('../schemas/condition.schema'));
 
     if (valid) {
-      // replace the contents of the condition on the array
-      req.session.medicalReport.conditions[conditionId] = body;
+      condition.update({
+        conditionName: req.body.conditionName,
+        icdCode: req.body.icdCode,
+        symptomsBegan: req.body.symptomsBegan,
+        clinicallyImpair: req.body.clinicallyImpair,
+        conditionOutlook: req.body.conditionOutlook,
+        conditionOutlookUnknown: req.body.conditionOutlookUnknown,
+        conditionLast: req.body.conditionLast,
+        symptomsOccur: req.body.symptomsOccur,
+        symptomsOccurUnknown: req.body.symptomsOccurUnknown
+      });
 
-      Documents.saveDocumentsFromCondition(req.session.medicalReport, body);
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      // TODO: Documents.saveDocumentsFromCondition(req.session.medicalReport, body);
 
       res.redirect(sails.route('conditions'));
     }
