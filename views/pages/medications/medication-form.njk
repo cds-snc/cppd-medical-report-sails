@@ -27,15 +27,9 @@
     { required: true, hint: 'form.medication_results.hint', value: medication.medicationResults, class: 'w-full' }
 ) }}
 
-{% if oneValue %}
-    {% set selectedValues = ["0"] %}
-{% else %}
-    {% set selectedValues = medication.Conditions %}
-{% endif %}
-
 {{ rawCheckBoxes('selectedConditions', 
     conditionList,
-    selectedValues, 
+    medication.selectedConditions, 
     'form.medication_treated_conditions.question',{},
     {required: true}) 
 }}

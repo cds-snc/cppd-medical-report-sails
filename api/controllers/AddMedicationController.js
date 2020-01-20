@@ -25,7 +25,7 @@ module.exports = {
 
     res.view('pages/medications/add', {
       conditionList: conditionList,
-      oneValue: Object.keys(conditionList).length === 1,
+      oneValue: Object.keys(conditionList).length === 1, // TODO - just force the selected condition?
       medicalReport: medicalReport,
     });
   },
