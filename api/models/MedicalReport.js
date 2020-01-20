@@ -48,6 +48,11 @@ module.exports = {
       as: 'Conditions'
     });
   },
+  associations: function() {
+    MedicalReport.hasMany(Condition, {
+      as: 'Conditions'
+    });
+  },
   options: {
     tableName: 'MedicalReports',
     getterMethods: {
