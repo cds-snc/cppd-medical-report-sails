@@ -11,7 +11,7 @@ const {
 } = require('../utils/condition.mapper');
 
 const dataStore = require('../utils/DataStore');
-const ConditionHelper = require('../utils/ConditionHelper');
+const ConditionHelper = require('../utils/ConditionHelpers');
 
 module.exports = {
   edit: function (req, res) {

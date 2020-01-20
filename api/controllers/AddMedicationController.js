@@ -6,7 +6,7 @@
  */
 
 const castArray = require('../utils/ArrayHelpers').castArray;
-const conditionReducer = require('../utils/ConditionHelper').conditionReducer;
+const conditionReducer = require('../utils/ConditionHelpers').conditionReducer;
 
 module.exports = {
   create: async function (req, res) {
