@@ -69,7 +69,8 @@ module.exports = {
         medicationFrequency: req.body.medicationFrequency,
         medicationStartDate: req.body.medicationStartDate,
         medicationEndDate: req.body.medicationEndDate,
-        medicationResults: req.body.medicationResults
+        medicationResults: req.body.medicationResults,
+        MedicalReportId: medicalReport.id,
       });
 
       /**
@@ -89,7 +90,7 @@ module.exports = {
       }
 
       /**
-       * Associate the selected conditions
+       * Associate the selected existing conditions
        */
       if (req.body.selectedConditions) {
         // It won't be an array if only one checkbox is checked
