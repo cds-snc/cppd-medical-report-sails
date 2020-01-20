@@ -24,15 +24,9 @@
         { required: true, hint: 'treatments.form.results.hint', value: treatment.treatmentResults }
     ) }}
 
-    {% if oneValue %}
-        {% set selectedValues = ["0"] %}
-    {% else %}
-        {% set selectedValues = treatment.treatmentTreatedCondition %}
-    {% endif %}
-
-    {{ rawCheckBoxes('treatmentTreatedCondition',
+    {{ rawCheckBoxes('selectedConditions',
         conditionList,
-        selectedValues, 
+        treatment.selectedConditions, 
         'treatments.form.treated_conditions.question',{},
         {required: true}) 
     }}
