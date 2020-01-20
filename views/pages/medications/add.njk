@@ -7,7 +7,7 @@
 {% block content %}
     {%- from 'pages/medications/medication-form.njk' import medicationForm with context -%}
 
-    {% if medicalReport.medications|length > 0 %}
+    {% if medicalReport.Medications|length > 0 %}
       {{ backButton('medications') }}
     {% else %}
       {{ backButton('dashboard') }}

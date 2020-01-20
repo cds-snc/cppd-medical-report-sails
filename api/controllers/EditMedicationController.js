@@ -10,7 +10,10 @@ const arrayHelpers = require('../utils/ArrayHelpers');
 
 module.exports = {
   edit: async function (req, res) {
-    // load the medical report and associated conditions
+    /**
+     * Load the medical report and associated conditions
+     * to populate the checkbox list
+     */
     let medicalReport = await MedicalReport.findOne({
       where: {
         applicationCode: req.session.applicationCode
@@ -27,7 +30,11 @@ module.exports = {
     // get a list suitable for the checkboxes component
     const conditionList = conditionReducer(medicalReport.Conditions);
 
-    // load the medication (include medical report to ensure this medication belongs to current)
+    /**
+     * Load the medication we're editing. Include the MedicalReport
+     * model to ensure we're allowed to edit this medication. Also
+     * include seleccted Conditions.
+     */
     let medication = await Medication.findOne({
       where: {
         id: req.params.id,
@@ -51,7 +58,10 @@ module.exports = {
       return res.redirect(sails.route('medications'));
     }
 
-    // get an array of selected ids, assign it back to the medication object
+    /**
+     * Get an array of selected ids, assign it back to the
+     * medication object for convenience.
+     */
     medication.selectedConditions = arrayHelpers.pluckIds(medication.Conditions);
 
     /**
@@ -66,13 +76,14 @@ module.exports = {
       id: req.params.id,
       medication: medication,
       conditionList: conditionList,
-      // oneValue: Object.keys(conditionList).length === 1, // TODO: just set this in selectedConditions
       medicalReport: medicalReport
     });
   },
 
   update: async function (req, res) {
-    // load the medical report
+    /**
+     * Load the medical report, include the selected medication
+     */
     let medicalReport = await MedicalReport.findOne({
       where: {
         applicationCode: req.session.applicationCode

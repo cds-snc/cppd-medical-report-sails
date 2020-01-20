@@ -5,7 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const castArray = require('../utils/ArrayHelpers').castArray;
+const arrayHelpers = require('../utils/ArrayHelpers');
 const conditionReducer = require('../utils/ConditionHelpers').conditionReducer;
 
 module.exports = {
@@ -23,9 +23,12 @@ module.exports = {
     // get a list suitable for checkbox list component
     let conditionList = conditionReducer(medicalReport.Conditions);
 
+    if (Object.keys(conditionList).length === 1) {
+      _.set(res.locals, 'data.selectedConditions', conditionList);
+    }
+
     res.view('pages/medications/add', {
       conditionList: conditionList,
-      oneValue: Object.keys(conditionList).length === 1, // TODO - just force the selected condition?
       medicalReport: medicalReport,
     });
   },
@@ -76,7 +79,7 @@ module.exports = {
        */
       if (req.body.selectedConditions) {
         // It won't be an array if only one checkbox is checked
-        let selectedConditions = castArray(req.body.selectedConditions);
+        let selectedConditions = arrayHelpers.castArray(req.body.selectedConditions);
 
         selectedConditions.forEach(async (conditionId) => {
           // Get an instance of the condition
@@ -100,4 +103,3 @@ module.exports = {
     }
   }
 };
-
