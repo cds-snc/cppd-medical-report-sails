@@ -5,37 +5,48 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
-
 module.exports = {
-  index: function (req, res) {
-    let data = req.session.medicalReport;
+  index: async function (req, res) {
+    // Load the report from the database.
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
 
     /**
      * If we're returning to the form with flash data in locals,
      * merge it with the rest of the medicalReport in the session.
      */
     if (res.locals.data) {
-      data = _.merge(res.locals.data, req.session.medicalReport);
+      medicalReport = _.merge(res.locals.data, medicalReport);
     }
 
     res.view('pages/relationship', {
-      data: data
+      data: medicalReport
     });
   },
 
-  store: function (req, res) {
+  store: async function (req, res) {
+    // Load the report from the database.
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+
     let valid = req.validate(req, res, require('../schemas/relationship.schema'));
 
     if (valid) {
       // save the model
-      req.session.medicalReport.relationshipStarted = req.body.relationshipStarted;
-      req.session.medicalReport.firstTreatmentDate = req.body.firstTreatmentDate;
-      req.session.medicalReport.visitNumber = req.body.visitNumber;
-      req.session.medicalReport.lastVisitDate = req.body.lastVisitDate;
-      req.session.medicalReport.stopWorking = req.body.stopWorking;
-      req.session.medicalReport.stopWorkingWhen = req.body.stopWorkingWhen;
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      medicalReport.update({
+        relationshipStarted: req.body.relationshipStarted,
+        firstTreatmentDate: req.body.firstTreatmentDate,
+        visitNumber: req.body.visitNumber,
+        lastVisitDate: req.body.lastVisitDate,
+        stopWorking: req.body.stopWorking,
+        stopWorkingWhen: req.body.stopWorkingWhen,
+      });
 
       res.redirect(sails.route('dashboard'));
     }
