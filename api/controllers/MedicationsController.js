@@ -5,15 +5,16 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
-
 module.exports = {
   index: async function (req, res) {
     // Load the report from the database.
     let medicalReport = await MedicalReport.findOne({
       where: {
         applicationCode: req.session.applicationCode
-      }
+      },
+      include: [
+        { model: Medication, as: 'Medications' }
+      ]
     });
 
     res.view('pages/medications/index', {
