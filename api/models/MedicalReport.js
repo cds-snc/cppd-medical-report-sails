@@ -43,14 +43,12 @@ module.exports = {
     patientMedications: Sequelize.BOOLEAN,
     patientTreatments: Sequelize.BOOLEAN,
   },
-  associations: function() {
+  associations: function () {
     MedicalReport.hasMany(Condition, {
       as: 'Conditions'
     });
-  },
-  associations: function() {
-    MedicalReport.hasMany(Condition, {
-      as: 'Conditions'
+    MedicalReport.hasMany(Medication, {
+      as: 'Medications'
     });
   },
   options: {
