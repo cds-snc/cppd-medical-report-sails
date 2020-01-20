@@ -6,6 +6,7 @@
  */
 
 const castArray = require('../utils/ArrayHelpers').castArray;
+const conditionReducer = require('../utils/ConditionHelper').conditionReducer;
 
 module.exports = {
   create: async function (req, res) {
@@ -13,33 +14,14 @@ module.exports = {
     let medicalReport = await MedicalReport.findOne({
       where: {
         applicationCode: req.session.applicationCode
-      }
+      },
+      include: [
+        { model: Condition, as: 'Conditions' }
+      ]
     });
 
-    /**
-     * Get conditions that belong to current
-     * medicalReport for the checkbox list
-     */
-    let conditions = await Condition.findAll({
-      where: {
-        MedicalReportId: medicalReport.id
-      },
-      attributes: ['id', 'conditionName'],
-      raw: true
-    });
-
-    /**
-     * We just want to get an array collection of objects
-     * like { id: name } for the checkbox list
-     */
-    let conditionList = _.reduce(
-      conditions,
-      (outList, condition) => {
-        outList[condition.id] = condition.conditionName;
-        return outList;
-      },
-      {},
-    );
+    // get a list suitable for checkbox list component
+    let conditionList = conditionReducer(medicalReport.Conditions);
 
     res.view('pages/medications/add', {
       conditionList: conditionList,
