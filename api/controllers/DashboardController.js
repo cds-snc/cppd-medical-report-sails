@@ -35,7 +35,11 @@ module.exports = {
           as: 'Medications',
           include: [{ model: Condition, as: 'Conditions' }]
         },
-        { model: Treatment, as: 'Treatments' }
+        {
+          model: Treatment,
+          as: 'Treatments',
+          include: [{ model: Condition, as: 'Conditions' }]
+        }
       ]
     });
 
