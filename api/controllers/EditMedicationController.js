@@ -5,29 +5,64 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const {
-  conditionReducer,
-  oneAttribute,
-} = require('../utils/condition.mapper');
-
-const dataStore = require('../utils/DataStore');
-const ConditionHelper = require('../utils/ConditionHelper');
+const conditionReducer = require('../utils/ConditionHelpers').conditionReducer;
+const arrayHelpers = require('../utils/ArrayHelpers');
 
 module.exports = {
-  edit: function (req, res) {
-    const medicalReport = req.session.medicalReport;
-    const conditionList = conditionReducer(medicalReport.conditions);
+  edit: async function (req, res) {
+    /**
+     * Load the medical report and associated conditions
+     * to populate the checkbox list
+     */
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        {
+          model: Condition,
+          as: 'Conditions',
+          attributes: ['id', 'conditionName'],
+        }
+      ]
+    });
 
-    // redirect back if there are no medications
-    if (!_.has(req.session.medicalReport, 'medications')) {
-      return res.redirect(sails.route('medications'));
-    }
+    // get a list suitable for the checkboxes component
+    const conditionList = conditionReducer(medicalReport.Conditions);
 
-    let medication = { ...medicalReport.medications[req.params.id - 1] };
+    /**
+     * Load the medication we're editing. Include the MedicalReport
+     * model to ensure we're allowed to edit this medication. Also
+     * include seleccted Conditions.
+     */
+    let medication = await Medication.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: MedicalReport,
+          as: 'MedicalReport',
+          where: { applicationCode: req.session.applicationCode }
+        },
+        {
+          model: Condition,
+          as: 'Conditions',
+          attributes: ['id']
+        }
+      ]
+    });
 
     if (!medication) {
+      // TODO: maybe flash a message
       return res.redirect(sails.route('medications'));
     }
+
+    /**
+     * Get an array of selected ids, assign it back to the
+     * medication object for convenience.
+     */
+    medication.selectedConditions = arrayHelpers.pluckIds(medication.Conditions);
 
     /**
      * If we're returning to the form with flash data in locals,
@@ -41,35 +76,90 @@ module.exports = {
       id: req.params.id,
       medication: medication,
       conditionList: conditionList,
-      oneValue: oneAttribute(conditionList),
       medicalReport: medicalReport
     });
   },
 
-  update: function (req, res) {
-    const body = Object.assign({}, req.body);
-    delete body._csrf;
-
-    // use the value of the submit button to determine redirect
-    const action = body.save_and;
-
+  update: async function (req, res) {
     /**
-     * If there are newConditions, create them pre-validation
-     * and auto-select them
+     * Load the medical report, include the selected medication
      */
-    if (body.newConditions) {
-      req.body = ConditionHelper.addConditions(req, body, 'medicationTreatedCondition');
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        {
+          model: Medication,
+          as: 'Medications',
+          where: { id: req.params.id }
+        }
+      ]
+    });
+
+    if (!medicalReport) {
+      // TODO: should probably flash a message 'condition not found'
+      return res.redirect(sails.route('medications'));
     }
 
-    // the medications array is 0 indexed
-    const medicationId = req.params.id - 1;
+    // use the value of the submit button to determine redirect
+    const action = req.body.save_and;
+
+    // the medication comes back as the first index of an array
+    let medication = _.first(medicalReport.Medications);
 
     let valid = req.validate(req, res, require('../schemas/medication.schema'));
 
     if (valid) {
       // replace the contents of the medication on the array
-      req.session.medicalReport.medications[medicationId] = body;
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      medication.update({
+        medicationName: req.body.medicationName,
+        medicationDosage: req.body.medicationDosage,
+        medicationFrequency: req.body.medicationFrequency,
+        medicationStartDate: req.body.medicationStartDate,
+        medicationEndDate: req.body.medicationEndDate,
+        medicationResults: req.body.medicationResults
+      });
+
+      // clear out condition associations
+      medication.removeConditions();
+
+      /**
+       * Create any newConditions and associate them
+       * to the medication.
+       */
+      if (req.body.newConditions) {
+        req.body.newConditions.forEach(async (item) => {
+          if (item) {
+            let condition = await Condition.create({
+              MedicalReportId: medicalReport.id,
+              conditionName: item
+            });
+            medication.addCondition(condition);
+          }
+        });
+      }
+
+      /**
+       * Associate the selected existing conditions
+       */
+      if (req.body.selectedConditions) {
+        // It won't be an array if only one checkbox is checked
+        let selectedConditions = arrayHelpers.castArray(req.body.selectedConditions);
+
+        selectedConditions.forEach(async (conditionId) => {
+          // Get an instance of the condition
+          let condition = await Condition.findOne({
+            where: {
+              id: conditionId
+            }
+          });
+
+          if (condition) {
+            medication.addCondition(condition);
+          }
+        });
+      }
 
       if (action === 'add_another') {
         return res.redirect(sails.route('medications.add'));

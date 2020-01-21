@@ -5,14 +5,30 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
-
 module.exports = {
-  delete: function (req, res) {
-    const index = req.params.id - 1; // array is zero-indexed
+  delete: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        {
+          model: Medication,
+          as: 'Medications',
+          where: { id: req.params.id }
+        }
+      ]
+    });
 
-    req.session.medicalReport.medications.splice(index, 1);
-    dataStore.storeMedicalReport(req.session.medicalReport);
+    if (!medicalReport) {
+      // TODO: should probably flash a message 'condition not found'
+      return res.redirect(sails.route('medications'));
+    }
+
+    // medication comes back as the first index of the array
+    let medication = _.first(medicalReport.Medications);
+
+    medication.destroy();
 
     res.redirect(sails.route('medications'));
   }

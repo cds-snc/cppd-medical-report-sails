@@ -7,7 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const conditionHelper = require('../utils/ConditionHelper');
+const conditionHelper = require('../utils/ConditionHelpers');
 
 module.exports = {
   index: function (req, res) {
