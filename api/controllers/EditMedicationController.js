@@ -99,7 +99,7 @@ module.exports = {
 
     if (!medicalReport) {
       // TODO: should probably flash a message 'condition not found'
-      return res.redirect(sails.route('conditions'));
+      return res.redirect(sails.route('medications'));
     }
 
     // use the value of the submit button to determine redirect

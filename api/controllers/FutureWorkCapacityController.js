@@ -8,32 +8,44 @@
 const dataStore = require('../utils/DataStore');
 
 module.exports = {
-  index: function (req, res) {
-    let data = req.session.medicalReport;
+  index: async function (req, res) {
+    // Load the report from the database.
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
 
     /**
      * If we're returning to the form with flash data in locals,
      * merge it with the rest of the medicalReport in the session.
      */
     if (res.locals.data) {
-      data = _.merge(res.locals.data, req.session.medicalReport);
+      medicalReport = _.merge(res.locals.data, medicalReport);
     }
 
     res.view('pages/work', {
-      data: data
+      data: medicalReport
     });
   },
 
-  store: function (req, res) {
+  store: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+
     let valid = req.validate(req, res, require('../schemas/work.schema'));
 
     if (valid) {
       // save the model
-      req.session.medicalReport.returnToWork = req.body.returnToWork;
-      req.session.medicalReport.returnToWorkWhen = req.body.returnToWorkWhen;
-      req.session.medicalReport.typeOfWork = req.body.typeOfWork;
-      req.session.medicalReport.workDetails = req.body.workDetails;
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      medicalReport.update({
+        returnToWork: req.body.returnToWork,
+        returnToWorkWhen: req.body.returnToWorkWhen,
+        typeOfWork: req.body.typeOfWork,
+        workDetails: req.body.workDetails,
+      });
 
       res.redirect(sails.route('dashboard'));
     }
