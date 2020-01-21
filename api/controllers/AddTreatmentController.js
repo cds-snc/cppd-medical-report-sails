@@ -86,7 +86,14 @@ module.exports = {
           let condition = await Condition.findOne({
             where: {
               id: conditionId
-            }
+            },
+            include: [
+              { // ensures this condition belongs to current mr
+                model: MedicalReport,
+                as: 'MedicalReport',
+                where: { applicationCode: req.session.applicationCode }
+              },
+            ]
           });
 
           if (condition) {
