@@ -50,6 +50,9 @@ module.exports = {
     MedicalReport.hasMany(Medication, {
       as: 'Medications'
     });
+    MedicalReport.hasMany(Document, {
+      as: 'Documents'
+    });
   },
   options: {
     tableName: 'MedicalReports',

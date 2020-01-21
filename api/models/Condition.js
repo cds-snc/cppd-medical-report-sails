@@ -22,11 +22,14 @@ module.exports = {
     Condition.belongsToMany(Medication, {
       through: 'ConditionMedications',
     });
+    Condition.belongsToMany(Document, {
+      through: 'ConditionDocuments',
+    });
   },
   options: {
     tableName: 'Conditions',
     instanceMethods: {
-      checkValid: function() {
+      checkValid: function () {
         return validate(this, require('../schemas/condition.schema'));
       }
     },
