@@ -23,7 +23,7 @@ module.exports = {
       allowEmpty: false,
     },
   },
-  selectedConditions: function (value, attributes) {
+  Conditions: function (value, attributes) {
     /**
      * This should also be valid if we've added new conditions,
      * but we'll need to clear out any empty conditions from
