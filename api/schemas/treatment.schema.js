@@ -17,7 +17,7 @@ module.exports = {
       allowEmpty: false,
     },
   },
-  selectedConditions: {
+  Conditions: {
     presence: {
       message: '^errors.treatment_treated_condition.is_checked',
       allowEmpty: false

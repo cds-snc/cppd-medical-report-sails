@@ -77,9 +77,9 @@ module.exports = {
       /**
        * Associate the selected existing conditions
        */
-      if (req.body.selectedConditions) {
+      if (req.body.Conditions) {
         // It won't be an array if only one checkbox is checked
-        let selectedConditions = arrayHelpers.castArray(req.body.selectedConditions);
+        let selectedConditions = arrayHelpers.castArray(req.body.Conditions);
 
         selectedConditions.forEach(async (conditionId) => {
           // Get an instance of the condition
