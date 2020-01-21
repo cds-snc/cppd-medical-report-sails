@@ -23,15 +23,18 @@ module.exports = {
       allowEmpty: false,
     },
   },
-  selectedConditions: function (value, attributes) {
+  Conditions: function (value, attributes) {
     /**
      * This should also be valid if we've added new conditions,
      * but we'll need to clear out any empty conditions from
      * the newConditions array.
      */
-    const newConditions = attributes.newConditions.filter(Boolean);
-    if (newConditions && newConditions.length) {
-      return true;
+    if (attributes.newConditions) {
+      const newConditions = attributes.newConditions.filter(Boolean);
+
+      if (newConditions && newConditions.length) {
+        return true;
+      }
     }
     return {
       presence: {
