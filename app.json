@@ -1,10 +1,16 @@
 {
     "name": "cppd-medical-report-starter",
     "stack": "container",
-    "addons": ["heroku-postgresql:hobby-dev"],
+    "addons": [
+        "heroku-postgresql:hobby-dev",
+        "heroku-redis:hobby-dev"
+    ],
     "environments": {
         "review": {
-            "addons": ["heroku-postgresql:hobby-dev"]
+            "addons": [
+                "heroku-postgresql:hobby-dev",
+                "heroku-redis:hobby-dev"
+            ]
         }
     }
 }
