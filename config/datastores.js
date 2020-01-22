@@ -13,6 +13,80 @@
  * https://sailsjs.com/config/datastores
  */
 
+const CONNECTION_STRING_REGEX = /^(?<type>.+?):\/\/(?<user>.+?):(?<password>.+)@(?<host>.+?):(?<port>.+?)\/(?<database>.+)$/;
+
+function getDbUser() {
+  let connectionStringMatch = CONNECTION_STRING_REGEX.exec(process.env.DATABASE_URL);
+  if(connectionStringMatch) {
+    return connectionStringMatch.groups.user;
+  }
+  else if(process.env.DB_USER) {
+    return process.env.DB_USER;
+  }
+
+  return 'postgres'; // development default
+}
+
+function getDbPassword() {
+  let connectionStringMatch = CONNECTION_STRING_REGEX.exec(process.env.DATABASE_URL);
+  if(connectionStringMatch) {
+    return connectionStringMatch.groups.password;
+  }
+  else if(process.env.DB_PASSWORD) {
+    return process.env.DB_PASSWORD;
+  }
+
+  return null; // development default
+}
+
+function getDbName() {
+  let connectionStringMatch = CONNECTION_STRING_REGEX.exec(process.env.DATABASE_URL);
+  if(connectionStringMatch) {
+    return connectionStringMatch.groups.database;
+  }
+  else if(process.env.DB_DATABASE) {
+    return process.env.DB_DATABASE;
+  }
+
+  return 'postgres'; // development default
+}
+
+function getDbHost() {
+  let connectionStringMatch = CONNECTION_STRING_REGEX.exec(process.env.DATABASE_URL);
+  if(connectionStringMatch) {
+    return connectionStringMatch.groups.host;
+  }
+  else if(process.env.DB_HOST) {
+    return process.env.DB_HOST;
+  }
+
+  return 'postgres'; // development default
+}
+
+function getDbPort() {
+  let connectionStringMatch = CONNECTION_STRING_REGEX.exec(process.env.DATABASE_URL);
+  if(connectionStringMatch) {
+    return connectionStringMatch.groups.port;
+  }
+  else if(process.env.DB_PORT) {
+    return process.env.DB_PORT;
+  }
+
+  return '5432'; // development default
+}
+
+function getDbType() {
+  let connectionStringMatch = CONNECTION_STRING_REGEX.exec(process.env.DATABASE_URL);
+  if(connectionStringMatch) {
+    return connectionStringMatch.groups.type;
+  }
+  else if(process.env.DB_TYPE) {
+    return process.env.DB_TYPE;
+  }
+
+  return 'postgres'; // development default
+}
+
 module.exports.datastores = {
 
 
@@ -33,14 +107,14 @@ module.exports.datastores = {
   ***************************************************************************/
 
   default: {
-    user: process.env.DB_USERNAME || 'postgres',
-    password: process.env.DB_PASSWORD || null,
-    database: process.env.DB_DATABASE || 'postgres',
-    dialect: 'postgres',
+    user: getDbUser(),
+    password: getDbPassword(),
+    database: getDbName(),
+    dialect: getDbType(),
     options: {
-      dialect: 'postgres',
-      host: process.env.DB_HOST || 'localhost',
-      port: process.env.DB_PORT || '5432',
+      dialect: getDbType(),
+      host: getDbHost(),
+      port: getDbPort(),
       logging: console.log        // or specify sails log level to use ('info', 'warn', 'verbose', etc)
     }
     /***************************************************************************
