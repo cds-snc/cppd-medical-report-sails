@@ -13,7 +13,7 @@
       {{ backButton('dashboard') }}
     {% endif %}
 
-    <h1>{{ __('treatments.title') }}<br/> <span class="text-base">{{ __('patient_type')}} {{ patientName(medicalReport) }}</span></h1>
+    <h1>{{ __('treatments.title') }}<br/> <span class="text-base">{{ __('patient_type')}} {{ medicalReport.fullName }}</span></h1>
 
     <div>
 
