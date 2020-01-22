@@ -12,5 +12,11 @@
                 "heroku-redis:hobby-dev"
             ]
         }
+    },
+    "env": {
+        "AUTO_MIGRATE_MODE": {
+            "description": "Either 'safe' or 'alter'. Use 'alter' to automigrate.",
+            "value": "alter"
+        }
     }
 }
