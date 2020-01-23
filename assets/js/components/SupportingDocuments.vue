@@ -11,7 +11,7 @@
       </div>
     </form>
     <div class="mt-4">
-      <table class="table-fixed">
+      <table class="table-fixed" v-show="uploaded_files.length > 0">
         <thead>
           <tr>
             <th class="w-1/2 text-left">Document</th>
@@ -20,12 +20,12 @@
         </thead>
         <tbody>
           <tr
-            v-for="(file, key) in uploaded_files"
-            v-bind:key="key"
+            v-for="(file) in uploaded_files"
+            v-bind:key="file.id"
             class="border-t border-gray-300"
           >
             <td class="py-4 px-4">
-              {{ file.name }}
+              {{ file.fileName }}
               <br />
               <a
                 href="#"
