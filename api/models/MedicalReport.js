@@ -53,6 +53,9 @@ module.exports = {
     MedicalReport.hasMany(Document, {
       as: 'Documents'
     });
+    MedicalReport.hasMany(Treatment, {
+      as: 'Treatments'
+    });
   },
   options: {
     tableName: 'MedicalReports',

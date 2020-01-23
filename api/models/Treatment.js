@@ -10,15 +10,16 @@ module.exports = {
     treatmentEndDate: Sequelize.STRING,
     treatmentResults: Sequelize.TEXT
   },
-  associations: function() {
+  associations: function () {
     Treatment.belongsToMany(Condition, {
       through: 'ConditionTreatments',
     });
+    Treatment.belongsTo(MedicalReport);
   },
   options: {
     tableName: 'Treatments',
     instanceMethods: {
-      checkValid: function() {
+      checkValid: function () {
         return validate(this, require('../schemas/treatment.schema'));
       }
     },

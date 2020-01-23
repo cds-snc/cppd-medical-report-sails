@@ -5,34 +5,68 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const {
-  conditionReducer,
-  oneAttribute,
-} = require('../utils/condition.mapper');
-
-const dataStore = require('../utils/DataStore');
-const ConditionHelper = require('../utils/ConditionHelpers');
+const conditionReducer = require('../utils/ConditionHelpers').conditionReducer;
+const arrayHelpers = require('../utils/ArrayHelpers');
 
 module.exports = {
-  edit: function (req, res) {
-    let medicalReport = req.session.medicalReport;
-    const conditionList = conditionReducer(medicalReport.conditions);
+  edit: async function (req, res) {
+    /**
+     * Load the medical report and associated conditions
+     * to populate the checkbox list
+     */
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        {
+          model: Condition,
+          as: 'Conditions',
+          attributes: ['id', 'conditionName'],
+        }
+      ]
+    });
 
-    // redirect back if there are no treatments
-    if (!_.has(req.session.medicalReport, 'treatments')) {
-      return res.redirect(sails.route('treatments'));
-    }
+    // get a list suitable for the checkboxes component
+    const conditionList = conditionReducer(medicalReport.Conditions);
 
-    // Grab this treatment from the array by index
-    let treatment = { ...medicalReport.treatments[req.params.id - 1] };
+    /**
+     * Load the treatment we're editing. Include the MedicalReport
+     * model to ensure we're allowed to edit this treatment. Also
+     * include seleccted Conditions.
+     */
+    let treatment = await Treatment.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: MedicalReport,
+          as: 'MedicalReport',
+          where: { applicationCode: req.session.applicationCode }
+        },
+        {
+          model: Condition,
+          as: 'Conditions',
+          attributes: ['id']
+        }
+      ]
+    });
 
     if (!treatment) {
+      // TODO: maybe flash a message
       return res.redirect(sails.route('treatments'));
     }
 
     /**
+     * Get an array of selected ids, assign it back to locals
+     * data for convenience.
+     */
+    _.set(res.locals, 'data.selectedConditions', arrayHelpers.pluckIds(treatment.Conditions));
+
+    /**
      * If we're returning to the form with flash data in locals,
-     * merge it with the rest of the condition from the array.
+     * merge it with the rest of the medication from the session.
      */
     if (res.locals.data) {
       treatment = _.merge(treatment, res.locals.data);
@@ -42,35 +76,95 @@ module.exports = {
       id: req.params.id,
       treatment: treatment,
       conditionList: conditionList,
-      oneValue: oneAttribute(conditionList),
-      medicalReport: req.session.medicalReport,
+      medicalReport: medicalReport,
     });
   },
 
-  update: function (req, res) {
-    const body = Object.assign({}, req.body);
-    delete body._csrf;
-
-    // use the value of the submit button to determine redirect
-    const action = body.save_and;
-
+  update: async function (req, res) {
     /**
-     * If there are newConditions, create them pre-validation
-     * and auto-select them
+     * Load the medical report, include the selected medication
      */
-    if (body.newConditions) {
-      req.body = ConditionHelper.addConditions(req, body, 'treatmentTreatedCondition');
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        {
+          model: Treatment,
+          as: 'Treatments',
+          where: { id: req.params.id }
+        }
+      ]
+    });
+
+    if (!medicalReport) {
+      // TODO: should probably flash a message 'condition not found'
+      return res.redirect(sails.route('treatments'));
     }
 
-    // the medications array is 0 indexed
-    const treatmentId = req.params.id - 1;
+    // use the value of the submit button to determine redirect
+    const action = req.body.save_and;
+
+    // the medication comes back as the first index of an array
+    let treatment = _.first(medicalReport.Treatments);
 
     let valid = req.validate(req, res, require('../schemas/treatment.schema'));
 
     if (valid) {
-      // replace the contents of the medication on the array
-      req.session.medicalReport.treatments[treatmentId] = body;
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      treatment.update({
+        treatmentType: req.body.treatmentType,
+        treatmentFrequency: req.body.treatmentFrequency,
+        treatmentStartDate: req.body.treatmentStartDate,
+        treatmentEndDate: req.body.treatmentEndDate,
+        treatmentResults: req.body.treatmentResults,
+      });
+
+      // clear out condition associations
+      treatment.removeConditions();
+
+      /**
+       * Create any newConditions and associate them
+       * to the medication.
+       */
+      if (req.body.newConditions) {
+        req.body.newConditions.forEach(async (item) => {
+          if (item) {
+            let condition = await Condition.create({
+              MedicalReportId: medicalReport.id,
+              conditionName: item
+            });
+            treatment.addCondition(condition);
+          }
+        });
+      }
+
+      /**
+       * Associate the selected existing conditions
+       */
+      if (req.body.Conditions) {
+        // It won't be an array if only one checkbox is checked
+        let selectedConditions = arrayHelpers.castArray(req.body.Conditions);
+
+        selectedConditions.forEach(async (conditionId) => {
+          // Get an instance of the condition
+          let condition = await Condition.findOne({
+            where: {
+              id: conditionId
+            },
+            include: [
+              { // ensures this condition belongs to current mr
+                model: MedicalReport,
+                as: 'MedicalReport',
+                where: { applicationCode: req.session.applicationCode }
+              },
+            ]
+          });
+
+          if (condition) {
+            treatment.addCondition(condition);
+          }
+        });
+      }
 
       if (action === 'add_another') {
         return res.redirect(sails.route('treatments.add'));
