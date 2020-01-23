@@ -36,13 +36,13 @@
             <td class="pb-4 px-4">
               <div class="multiple-choice multiple-choice--checkboxes">
                 <ul class="list-none pl-0">
-                  <li class="my-4" v-for="(condition, key) in conditions" v-bind:key="key">
+                  <li class="my-4" v-for="(condition) in conditions" v-bind:key="condition.id">
                     <div class="multiple-choice__item">
                       <input
                         type="checkbox"
-                        :name="'supportingDocuments[]name[' + file.name + ']conditions'"
-                        :value="key"
-                        :checked="isSelected(key, file.conditions)"
+                        :name="'supportingDocuments[][' + file.id.toString() + '][' + file.fileName + ']Conditions'"
+                        :value="condition.id"
+                        :checked="isSelected(condition.id, file.Conditions)"
                       />
                       <label>{{ condition.conditionName }}</label>
                     </div>
@@ -64,7 +64,7 @@ export default {
       uploaded_files: [],
       allConditions: []
     };
-  }, // file.conditions.indexOf(key) != -1
+  },
   props: {
     files: {
       type: Array,
@@ -87,15 +87,16 @@ export default {
     onSelect() {
       const file = this.$refs.file.files[0];
       this.uploaded_files.push({
-        name: file.name,
-        conditions: []
+        fileName: file.name,
+        Conditions: []
       });
     },
     removeFile(file) {
       this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
     },
     isSelected(conditionId, selectedConditions) {
-      return selectedConditions.indexOf(conditionId) >= 0;
+      let selectedIds = selectedConditions.map(condition => condition.id);
+      return selectedIds.indexOf(conditionId) !== -1;
     }
   },
   mounted() {

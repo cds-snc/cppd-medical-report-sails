@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const castArray = require('../utils/ArrayHelpers').castArray;
+
 module.exports = {
   index: async function (req, res) {
     // Load the report from the database.
@@ -18,7 +20,7 @@ module.exports = {
           as: 'Documents',
           attributes: ['id', 'fileName'],
           include: [
-            { 
+            {
               model: Condition,
               as: 'Conditions'
             }
@@ -54,16 +56,29 @@ module.exports = {
       }
     });
 
-    console.log(req.body.supportingDocuments);
-
     let valid = req.validate(req, res, require('../schemas/documents.schema'));
 
     if (valid) {
-      // save the model
-      // req.session.medicalReport.attachLater = req.body.attachLater;
-      // documentsHelper.saveDocuments(req.session.medicalReport, req.body.supportingDocuments);
-      // dataStore.storeMedicalReport(req.session.medicalReport);
-
+      // console.log(req.body.supportingDocuments);
+      _.forIn(req.body.supportingDocuments, async (docConditions, docId) => {
+        // console.log(docId);
+        // if id, find in db and attach conditions
+        if (docId !== 'undefined') {
+          let document = await Document.findOne({
+            where: {
+              id: docId
+            }
+          });
+          if (document) {
+            let selectedConditions = castArray(_.values(docConditions));
+            // console.log(selectedConditions);
+            selectedConditions = _.first(selectedConditions).map(Number);
+            // console.log('integers: ' + selectedConditions);
+            document.setConditions(selectedConditions);
+          }
+        }
+        // if undefined, create in db and attach condtions
+      });
       res.redirect(sails.route('dashboard'));
     }
   }
