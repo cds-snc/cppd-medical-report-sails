@@ -22,7 +22,8 @@ module.exports = {
           include: [
             {
               model: Condition,
-              as: 'Conditions'
+              as: 'Conditions',
+              attributes: ['id']
             }
           ]
         },
@@ -42,6 +43,8 @@ module.exports = {
       medicalReport = _.merge(res.locals.data, medicalReport);
     }
 
+    console.log(_.first(medicalReport.toJSON().Documents));
+
     res.view('pages/documents', {
       data: medicalReport,
       documents: medicalReport.toJSON().Documents || [],
@@ -59,9 +62,9 @@ module.exports = {
     let valid = req.validate(req, res, require('../schemas/documents.schema'));
 
     if (valid) {
-      // console.log(req.body.supportingDocuments);
+      console.log(req.body.supportingDocuments);
       _.forIn(req.body.supportingDocuments, async (docConditions, docId) => {
-        // console.log(docId);
+        docId = _.trimLeft(docId, 'docId:');
         // if id, find in db and attach conditions
         if (docId !== 'undefined') {
           let document = await Document.findOne({
@@ -71,13 +74,12 @@ module.exports = {
           });
           if (document) {
             let selectedConditions = castArray(_.values(docConditions));
-            // console.log(selectedConditions);
-            selectedConditions = _.first(selectedConditions).map(Number);
-            // console.log('integers: ' + selectedConditions);
+            selectedConditions = selectedConditions.map(Number);
             document.setConditions(selectedConditions);
           }
         }
         // if undefined, create in db and attach condtions
+
       });
       res.redirect(sails.route('dashboard'));
     }

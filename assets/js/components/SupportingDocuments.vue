@@ -40,7 +40,7 @@
                     <div class="multiple-choice__item">
                       <input
                         type="checkbox"
-                        :name="'supportingDocuments[][' + file.id.toString() + '][' + file.fileName + ']Conditions'"
+                        :name="'supportingDocuments[' + file.fileName + ']Conditions'"
                         :value="condition.id"
                         :checked="isSelected(condition.id, file.Conditions)"
                       />
@@ -87,9 +87,11 @@ export default {
     onSelect() {
       const file = this.$refs.file.files[0];
       this.uploaded_files.push({
+        id: null,
         fileName: file.name,
         Conditions: []
       });
+      console.log(this.uploaded_files);
     },
     removeFile(file) {
       this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
