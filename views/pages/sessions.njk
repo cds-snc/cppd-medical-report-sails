@@ -2,11 +2,42 @@
 
 {% block content %}
   <h1>Sessions</h1>
+  <form class="w-full max-w-full">
+    <div >
+      <div class="relative">
+        <label for="search" class="sr-only">{{__("sessions.searchApplications")}}</label>
+        <input id="search" class="placeholder-gray-600 rounded-lg  pl-10 block w-full appearance-none leading-normal mb-10" type="text" placeholder="{{__("sessions.searchApplications")}}">
+        <div class="pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center">
+          <svg class="fill-current pointer-events-none text-gray-600 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
+        </div>
+      </div>
+    </div>
+  </form>
+  <table class="w-full">
+    <thead class="border-solid border-b-2 text-left">
+      <tr class="flex" >
+        <th class="w-1/4">Date Recieved</th>
+        <th class="w-2/4">Applicant</th>
+        <th class="w-1/4">Last opened</th>
+      </tr>
+    </thead>
+    <tbody >
+      {% for report in reports %}
+        <tr class="flex p-2 {{ 'bg-gray-200' if loop.index % 2 == 0  }}">
+          <td class="w-1/4 ">{{ report.dateRecieved}}</td>
+          <td class="w-2/4 "><a href="about/blank">{{ report.applicant}}</a> ({{report.sin }})</td>
+          <td class="w-1/4 ">{{ report.lastViewed}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-  <ul>
-    {% for file in files %}
-      <li>{{ file }} <a href="{{ route('sessions.download', { session: file }) }}">Download</a> | <a href="{{ route('sessions.view', { session: file }) }}">View</a></li>
-    {% endfor %}
-  </ul>
-
+  <div class="my-4">
+    {% set pages = ((total/8)|round(0,'ceil')) %}
+    {% if total > 8 %}
+      {% for i in range(0, pages) %}
+        <a href="about/blank" class="m-1"><span class="sr-only">Navigate to page </span>{{ i + 1 }}<span class="sr-only"> of {{ pages }}</span></a>
+      {% endfor %}
+    {% endif %}
+  </div>
 {% endblock %}

@@ -12,15 +12,16 @@ const conditionHelper = require('../utils/ConditionHelpers');
 module.exports = {
   index: function (req, res) {
 
-    let directory = path.resolve(__dirname, '../../sessions');
+    const reports = MedicalReport.findAll({limit: 10});
+    sails.log(`Found Items ${JSON.stringify(reports)}`);
 
-    fs.readdir(directory, (err, files) => {
-      if (!err) {
-        _.pull(files, '.gitignore');
-        res.view('pages/sessions', {
-          files: files
-        });
-      }
+    return res.view('pages/sessions', {
+      reports:[
+        { dateRecieved: '0001-01-01', applicant: 'John Doe', sin: '111 111 118', lastViewed: 'Now'},
+        { dateRecieved: '2001-01-01', applicant: 'Jane Doe', sin: '111 111 118', lastViewed: 'Now'},
+        { dateRecieved: '1999-01-01', applicant: 'Pierre Poutine', sin: '111 111 118', lastViewed: '0001-01-01'}
+      ],
+      total: 100
     });
   },
 
@@ -43,6 +44,7 @@ module.exports = {
   },
 
   view: function (req, res) {
+
     const filename = req.params.session;
     const sessionFile = path.resolve(__dirname, '../../sessions/' + filename);
 
