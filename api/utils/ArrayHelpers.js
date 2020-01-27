@@ -10,11 +10,9 @@ const pluckIds = (items) => {
   return _.map(items, (item) => {
     return item.id.toString();
   });
-}
-
-
+};
 
 module.exports = {
   castArray,
   pluckIds,
-}
+};
