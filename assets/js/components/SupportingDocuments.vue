@@ -9,51 +9,66 @@
           <input type="file" ref="file" @change="onSelect" class="hidden" />
         </label>
       </div>
+
+      <div class="mt-4">
+        <table class="table-fixed" v-show="uploaded_files.length > 0">
+          <thead>
+            <tr>
+              <th class="w-1/2 text-left">Document</th>
+              <th class="w-1/2 text-left">Which condition does this refer to?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="(file) in uploaded_files"
+              v-bind:key="file.id"
+              class="border-t border-gray-300"
+            >
+              <td class="py-4 px-4">
+                {{ file.fileName }}
+                <br />
+                {{ file.conditions }}
+                <br />
+                <a
+                  href="#"
+                  class="flex-auto remove-file underline text-base cursor-pointer w-4"
+                  @click="removeFile(file.id)"
+                >{{ removeLabel }}</a>
+              </td>
+              <td class="pb-4 px-4">
+                <div class="multiple-choice multiple-choice--checkboxes">
+                  <ul class="list-none pl-0">
+                    <li class="my-4" v-for="(condition) in conditions" v-bind:key="condition.id">
+                      <div class="multiple-choice__item">
+                        <input
+                          type="checkbox"
+                          :name="'supportingDocuments[' + file.fileName + ']Conditions'"
+                          :value="condition.id"
+                          v-model="file.conditions"
+                        />
+                        <label>{{ condition.conditionName }}</label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="multiple-choice multiple-choice--checkboxes">
+        <div class="multiple-choice__item">
+          <input id="attachLater" name="attachLater" type="checkbox" value="attachLater" />
+          <label for="attachLater">{{ attachLaterLabel }}</label>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <div class="buttons--left">
+          <button type="submit" class="w-1/3">{{ nextButtonLabel }}</button>
+        </div>
+      </div>
     </form>
-    <div class="mt-4">
-      <table class="table-fixed" v-show="uploaded_files.length > 0">
-        <thead>
-          <tr>
-            <th class="w-1/2 text-left">Document</th>
-            <th class="w-1/2 text-left">Which condition does this refer to?</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="(file) in uploaded_files"
-            v-bind:key="file.id"
-            class="border-t border-gray-300"
-          >
-            <td class="py-4 px-4">
-              {{ file.fileName }}
-              <br />
-              <a
-                href="#"
-                class="flex-auto remove-file underline text-base cursor-pointer w-4"
-                @click="removeFile(file)"
-              >{{ removeLabel }}</a>
-            </td>
-            <td class="pb-4 px-4">
-              <div class="multiple-choice multiple-choice--checkboxes">
-                <ul class="list-none pl-0">
-                  <li class="my-4" v-for="(condition) in conditions" v-bind:key="condition.id">
-                    <div class="multiple-choice__item">
-                      <input
-                        type="checkbox"
-                        :name="'supportingDocuments[' + file.fileName + ']Conditions'"
-                        :value="condition.id"
-                        :checked="isSelected(condition.id, file.Conditions)"
-                      />
-                      <label>{{ condition.conditionName }}</label>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
   </div>
 </template>
 
@@ -62,18 +77,10 @@ export default {
   data() {
     return {
       uploaded_files: [],
-      allConditions: []
+      conditions: []
     };
   },
   props: {
-    files: {
-      type: Array,
-      required: true
-    },
-    conditions: {
-      type: Array,
-      required: true
-    },
     uploadLabel: {
       type: String,
       required: true
@@ -81,31 +88,52 @@ export default {
     removeLabel: {
       type: String,
       required: true
+    },
+    attachLaterLabel: {
+      type: String,
+      required: true
+    },
+    nextButtonLabel: {
+      type: String,
+      required: true
     }
   },
   methods: {
     onSelect() {
       const file = this.$refs.file.files[0];
-      this.uploaded_files.push({
-        id: null,
-        fileName: file.name,
-        Conditions: []
+      this.addFile(file.name);
+    },
+    addFile(file) {
+      axios
+        .post("/api/documents", {
+          file: file
+        })
+        .then(response => {
+          this.updateFiles();
+        });
+    },
+    removeFile(fileId) {
+      axios
+        .delete("/api/documents", {
+          data: {
+            id: fileId
+          }
+        })
+        .then(response => {
+          this.updateFiles();
+        });
+    },
+    updateFiles() {
+      axios.get("/api/documents").then(response => {
+        this.uploaded_files = response.data;
       });
-      console.log(this.uploaded_files);
-    },
-    removeFile(file) {
-      this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
-    },
-    isSelected(conditionId, selectedConditions) {
-      let selectedIds = selectedConditions.map(condition => condition.id);
-      return selectedIds.indexOf(conditionId) !== -1;
     }
   },
   mounted() {
-    if (this.files) {
-      console.log(this.files);
-      this.uploaded_files = this.files;
-    }
+    this.updateFiles();
+    axios.get("/api/conditions").then(response => {
+      this.conditions = response.data;
+    });
   }
 };
 </script>
