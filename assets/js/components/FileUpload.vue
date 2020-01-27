@@ -35,9 +35,9 @@ export default {
     };
   },
   props: {
-    files: {
+    conditionId: {
       type: String,
-      required: true
+      required: false
     },
     fieldName: {
       type: String,
@@ -62,9 +62,17 @@ export default {
     }
   },
   mounted() {
+    axios
+      .get("/api/conditions/" + this.conditionId + "/documents")
+      .then(response => {
+        console.log(response.data);
+        this.uploaded_files = response.data;
+      });
+    /* 
     if (typeof this.files === "string") {
       this.uploaded_files = this.files ? this.files.split(",") : [];
     }
+    */
   }
 };
 </script>

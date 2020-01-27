@@ -27,5 +27,11 @@ module.exports.routes = {
     name: 'api.conditions',
     controller: 'API/ConditionsController',
     action: 'index',
-  }
+  },
+
+  'GET /api/conditions/:id/documents': {
+    controller: 'API/ConditionDocumentsController',
+    action: 'index',
+  },
+
 };

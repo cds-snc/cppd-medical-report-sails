@@ -23,7 +23,7 @@
             <p class="text-gray-600">{{ __('add_condition.attach_notes_hint') }}</p>
 
             <div id="app">
-                <file-upload :files="{{ data.conditionFiles | dump }}" field-name="conditionFiles" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
+                <file-upload field-name="conditionFiles" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
             </div>
 
             <div class="multiple-choice multiple-choice--checkboxes">
