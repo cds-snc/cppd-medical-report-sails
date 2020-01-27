@@ -103,6 +103,7 @@ export default {
   },
   mounted() {
     if (this.files) {
+      console.log(this.files);
       this.uploaded_files = this.files;
     }
   }

@@ -5,7 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const castArray = require('../utils/ArrayHelpers').castArray;
+const arrayHelpers = require('../utils/ArrayHelpers');
 
 module.exports = {
   index: async function (req, res) {
@@ -63,6 +63,7 @@ module.exports = {
 
     if (valid) {
       console.log(req.body.supportingDocuments);
+      /*
       _.forIn(req.body.supportingDocuments, async (docConditions, docId) => {
         docId = _.trimLeft(docId, 'docId:');
         // if id, find in db and attach conditions
@@ -81,6 +82,7 @@ module.exports = {
         // if undefined, create in db and attach condtions
 
       });
+      */
       res.redirect(sails.route('dashboard'));
     }
   }
