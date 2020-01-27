@@ -11,6 +11,12 @@ module.exports.routes = {
     action: 'add',
   },
 
+  'PATCH /api/documents/:id': {
+    name: 'api.documents.update',
+    controller: 'API/DocumentsController',
+    action: 'save',
+  },
+
   'DELETE /api/documents': {
     name: 'api/documents.delete',
     controller: 'API/DocumentsController',

@@ -62,10 +62,19 @@ module.exports = {
     res.send('created');
   },
 
+  save: async function (req, res) {
+    let document = await Document.findOne({
+      where: {
+        id: req.params.id
+      },
+    });
+
+    await document.setConditions(req.body.conditions);
+
+    res.send('ok');
+  },
+
   delete: async function (req, res) {
-
-    console.log(req.body);
-
     let document = await Document.findOne({
       where: {
         id: req.body.id
