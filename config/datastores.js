@@ -33,16 +33,6 @@ module.exports.datastores = {
   ***************************************************************************/
 
   default: {
-    user: process.env.DB_USERNAME || 'postgres',
-    password: process.env.DB_PASSWORD || null,
-    database: process.env.DB_DATABASE || 'postgres',
-    dialect: 'postgres',
-    options: {
-      dialect: 'postgres',
-      host: process.env.DB_HOST || 'localhost',
-      port: process.env.DB_PORT || '5432',
-      logging: console.log        // or specify sails log level to use ('info', 'warn', 'verbose', etc)
-    }
     /***************************************************************************
     *                                                                          *
     * Want to use a different database during development?                     *
@@ -57,8 +47,7 @@ module.exports.datastores = {
     *    (See https://sailsjs.com/config/datastores for help.)                 *
     *                                                                          *
     ***************************************************************************/
-    // adapter: 'sails-mysql',
-    // url: 'mysql://user:password@host:port/database',
+    url: process.env.DATABASE_URL || 'postgresql://postgres@db:5432/postgres',
 
   },
 
