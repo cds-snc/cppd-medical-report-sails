@@ -5,8 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const arrayHelpers = require('../utils/ArrayHelpers');
-
 module.exports = {
   index: async function (req, res) {
     // Load the report from the database.
@@ -45,16 +43,14 @@ module.exports = {
 
     res.view('pages/documents', {
       data: medicalReport,
-      documents: medicalReport.toJSON().Documents || [],
-      conditions: medicalReport.toJSON().Conditions || []
     });
   },
 
   store: async function (req, res) {
-    // let valid = req.validate(req, res, require('../schemas/documents.schema'));
+    let valid = req.validate(req, res, require('../schemas/documents.schema'));
 
-    // if (valid) {
-    res.redirect(sails.route('dashboard'));
-    // }
+    if (valid) {
+      res.redirect(sails.route('dashboard'));
+    }
   }
 };

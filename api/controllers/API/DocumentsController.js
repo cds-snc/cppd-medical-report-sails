@@ -59,7 +59,7 @@ module.exports = {
       fileName: req.body.file
     });
 
-    res.send('created');
+    res.send('ok');
   },
 
   save: async function (req, res) {

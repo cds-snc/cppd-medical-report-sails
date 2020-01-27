@@ -39,7 +39,7 @@
                     <div class="multiple-choice__item">
                       <input
                         type="checkbox"
-                        :name="'supportingDocuments[' + file.fileName + ']Conditions'"
+                        name="supportingDocuments"
                         :value="condition.id"
                         v-model="file.conditions"
                         @change="saveConditions(file)"
