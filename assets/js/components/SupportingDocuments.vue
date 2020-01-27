@@ -136,15 +136,6 @@ export default {
     },
     saveDocuments(e) {
       e.submit();
-      /* console.log(this.uploaded_files);
-      axios
-        .patch("/api/documents", {
-          documents: this.uploaded_files
-        })
-        .then(response => {
-          this.updateFiles();
-        });
-        */
     }
   },
   mounted() {
