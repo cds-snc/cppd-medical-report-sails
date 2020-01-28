@@ -5,7 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const path = require('path');
 const conditionHelper = require('../utils/ConditionHelpers');
 
 module.exports = {
