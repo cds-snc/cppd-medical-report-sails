@@ -5,7 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const fs = require('fs');
 const path = require('path');
 const conditionHelper = require('../utils/ConditionHelpers');
 
@@ -56,7 +55,6 @@ module.exports = {
     sails.log(`medicalReport: ${JSON.stringify(medicalReport, 2)}`);
 
     const conditions = conditionHelper.getConditionsWithMedicationsAndTreatments(medicalReport);
-    // console.log(require('../utils/support/symptomsOccur')[1]);
     res.view('pages/sessions/view', {
       data:medicalReport,
       conditions: conditions,
