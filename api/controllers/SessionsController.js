@@ -31,24 +31,6 @@ module.exports = {
     });
   },
 
-  download: function (req, res) {
-    const filename = req.params.session;
-    const sessionFile = path.resolve(__dirname, '../../sessions/' + filename);
-
-    var SkipperDisk = require('skipper-disk');
-    var fileAdapter = SkipperDisk(/* optional opts */);
-
-    // set the filename to the same file as the user uploaded
-    res.set('Content-disposition', 'attachment; filename=' + filename);
-
-    // Stream the file down
-    fileAdapter.read(sessionFile)
-      .on('error', (err) => {
-        return res.serverError(err);
-      })
-      .pipe(res);
-  },
-
   view: async function (req, res) {
 
     const medicalReport = await MedicalReport.findOne({ where: {id: req.params.session}});
