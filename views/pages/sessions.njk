@@ -25,7 +25,7 @@
       {% for report in reports %}
         <tr class="flex p-2 {{ 'bg-gray-200' if loop.index % 2 == 0  }}">
           <td class="w-1/4 ">{{ report.dateRecieved}}</td>
-          <td class="w-2/4 "><a href="about/blank">{{ report.applicant}}</a> ({{report.sin }})</td>
+          <td class="w-2/4 "><a href={{ route('sessions.view', { session: report.id})}}>{{ report.applicant}}</a> ({{report.sin }})</td>
           <td class="w-1/4 ">{{ report.lastViewed}}</td>
         </tr>
       {% endfor %}
