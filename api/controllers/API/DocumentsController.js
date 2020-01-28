@@ -54,12 +54,14 @@ module.exports = {
       },
     });
 
-    medicalReport.createDocument({
+    let document = await medicalReport.createDocument({
       originalFileName: req.body.file,
       fileName: req.body.file
     });
 
-    res.send('ok');
+    console.log(document);
+
+    res.send(document);
   },
 
   save: async function (req, res) {

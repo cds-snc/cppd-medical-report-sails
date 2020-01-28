@@ -24,6 +24,8 @@ module.exports = {
       };
     }
 
+    console.log(res.locals.data.conditionFiles);
+
     if (medicalReport.Conditions) {
       return res.view('pages/conditions/add', {
         medicalReport: medicalReport
