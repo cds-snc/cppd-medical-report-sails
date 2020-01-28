@@ -17,10 +17,10 @@
                 {% if errors and errors[key] %}
                     {{ validationMessage(errors[key].msg, key) }}
                 {% endif %}
-                {% for index, val in values %}
+                {% for val in values %}
                     <div class="multiple-choice__item">
-                        <input id="{{ key }}{{ val }}" name="{{ key }}" type="radio" value="{{ index }}" {% if value == index %} checked="checked" {% endif %} {% if errors and errors[key] %} aria-describedby="{{ key + '-error' }}" aria-invalid="true" {% endif %}>
-                        <label for="{{ key }}{{ val }}">{{ __(val) | safe }}</label>
+                        <input id="{{ key }}{{ val.text }}" name="{{ key }}" type="radio" value="{{ val.key }}" {% if value == index %} checked="checked" {% endif %} {% if errors and errors[key] %} aria-describedby="{{ key + '-error' }}" aria-invalid="true" {% endif %}>
+                        <label for="{{ key }}{{ val.text }}">{{ __(val.text) | safe }}</label>
                     </div>
                 {% endfor %}
             </div>

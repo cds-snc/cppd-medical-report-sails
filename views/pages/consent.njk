@@ -9,7 +9,16 @@
     <form action="{{ route('consent.store') }}" method="post">
         <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
-        {{ medicalConsent('consent', { '1':'section2.i_consent','0':'section2.i_dont_consent'}, data.consent, 'section2.consent_preamble', errors, {required: true}) }}
+        {{ medicalConsent('consent', [
+          {
+            key: '1',
+            text: 'section2.i_consent'
+          },
+          {
+            key: '0',
+            text: 'section2.i_dont_consent'
+          }
+        ], data.consent, 'section2.consent_preamble', errors, {required: true}) }}
 
         <p>{{ __('section2.delay_warning_preamble') }}</p>
         <ul>
