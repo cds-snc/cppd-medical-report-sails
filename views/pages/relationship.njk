@@ -7,7 +7,7 @@
 {% block content %}
 
     {{ backButton('dashboard') }}
-    
+
     <h1>{{ __('section3.title') }}</h1>
 
     <div>
@@ -25,11 +25,11 @@
 
             {{
                 radioButtons('stopWorking',
-                    {
-                        '1': 'Yes',
-                        '2': 'No',
-                        '3': 'Did not discuss'
-                    },
+                    [
+                        {value: '1', text: 'Yes'},
+                        {value: '2', text: 'No'},
+                        {value: '3', text: 'Did not discuss'}
+                    ],
                 data.stopWorking,
                 __('section3.form.stopWorking.desc', patientName(data)),
                 errors,

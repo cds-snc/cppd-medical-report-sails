@@ -15,11 +15,11 @@
 
             {{
                 radioButtons('returnToWork',
-                    {
-                        '1': 'Yes',
-                        '2': 'No',
-                        '3': 'Unknown'
-                    },
+                    [
+                      {value: '1', text: 'Yes'},
+                      {value: '2', text: 'No'},
+                      {value: '3', text: 'Unknown'}
+                    ],
                 data.returnToWork,
                 __('section6.return_work_question', patientName(data)),
                 errors,
@@ -30,12 +30,12 @@
                 <div class="my-10">
                 {{
                     radioButtons('returnToWorkWhen',
-                        {
-                            '1': 'section6.return_work_6_to_12_months',
-                            '2': 'section6.return_work_12_to_24_months',
-                            '3': 'section6.return_work_more_than_24_months',
-                            '4': 'section6.return_work_unknown'
-                        },
+                        [
+                          {value: '1', text: 'section6.return_work_6_to_12_months'},
+                          {value: '2', text: 'section6.return_work_12_to_24_months'},
+                          {value: '3', text: 'section6.return_work_more_than_24_months'},
+                          {value: '4', text: 'section6.return_work_unknown'}
+                        ],
                     data.returnToWorkWhen,
                     __('section6.return_work_timeframe_question', patientName(data)),
                     errors,
@@ -46,12 +46,12 @@
                 <div class="my-10">
                 {{
                     radioButtons('typeOfWork',
-                        {
-                            '1': 'section6.type_work_usual',
-                            '2': 'section6.type_work_modified',
-                            '3': 'section6.type_work_training',
-                            '4': 'section6.type_work_other'
-                        },
+                        [
+                            {value: '1', text : 'section6.type_work_usual'},
+                            {value: '2', text : 'section6.type_work_modified'},
+                            {value: '3', text : 'section6.type_work_training'},
+                            {value: '4', text : 'section6.type_work_other'}
+                        ],
                     data.typeOfWork,
                     __('section6.type_work_question', patientName(data)),
                     errors,

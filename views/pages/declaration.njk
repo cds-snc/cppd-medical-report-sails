@@ -13,16 +13,37 @@
 
         <form method="post">
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
-            {{ radioButtons('practitionerType', { '1':'section9.confirm_statement_ccfp','other':'section9.confirm_statement_other', '2':'section9.confirm_statement_np', '3':'section9.confirm_statement_rn'}, data.practitionerType, 'section9.confirm_statement_2', errors, { required: true }) }}
+            {{ radioButtons('practitionerType',
+              [
+                { value: '1', text:'section9.confirm_statement_ccfp'},
+                { value: '2', text:'section9.confirm_statement_np'},
+                { value: '3', text:'section9.confirm_statement_rn'},
+                { value: 'other', text:'section9.confirm_statement_other'}
+              ],
+              data.practitionerType,
+              'section9.confirm_statement_2',
+              errors,
+              { required: true })
+            }}
 
             {{ textInput('otherSpecify', 'section9.other_specify')}}
 
             {{ textInput('name', 'Name', { required: true }) }}
             {{ textInput('date', 'Date', { hint: 'year_month_day_format', required: true }) }}
             {{ textArea('physicianAddress', 'section9.address_and_phone', { required: true}) }}
-            
+
             <p>{{ __('declaration.billing_instructions') }}</p>
-            {{ radioButtons('billingIdType', { 'bn':'declaration.billing_bn','gstHst':'delcaration.billing_gst_hst', 'sin':'declaration.billing_sin' }, data.billingIdType, 'declaration.billing_id_type', errors, { required: true }) }}
+            {{ radioButtons('billingIdType',
+              [
+                {value: 'bn', text:'declaration.billing_bn'},
+                {value: 'gstHst', text:'delcaration.billing_gst_hst'},
+                {value: 'sin', text:'declaration.billing_sin' }
+              ],
+              data.billingIdType,
+              'declaration.billing_id_type',
+              errors,
+              { required: true })
+            }}
             {{ textInput('billingId', 'declaration.billing_id', { required: true }) }}
 
             <p>{{ __('declaration.billing_invoice') }}</p>
