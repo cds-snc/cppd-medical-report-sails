@@ -1,6 +1,6 @@
 <template>
   <div class="file">
-    <input type="hidden" :name="fieldName" :value="uploaded_files" />
+    <input type="hidden" :name="fieldName" :value="JSON.stringify(uploaded_files)" />
     <div class>
       <label
         class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
@@ -15,7 +15,7 @@
         v-bind:key="file.id"
         class="border-t border-gray-300 py-4 px-4 flex"
       >
-        <div class="flex-auto">{{ file }}</div>
+        <div class="flex-auto">{{ file.fileName }}</div>
         <div
           class="flex-auto remove-file underline text-base align-middle text-right pr-4 cursor-pointer"
           @click="removeFile(file.id)"
@@ -39,7 +39,7 @@ export default {
     },
     files: {
       type: String,
-      required: true
+      required: false
     },
     fieldName: {
       type: String,
@@ -85,7 +85,6 @@ export default {
     }
     if (this.files) {
       this.uploaded_files = JSON.parse(this.files);
-      console.log(this.uploaded_files);
     }
   }
 };
