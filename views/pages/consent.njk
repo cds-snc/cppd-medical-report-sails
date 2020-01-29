@@ -1,5 +1,15 @@
 {% extends "layouts/layout.njk" %}
 
+{% block scripts %}
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/build/assets/js/jSignature.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#applicant_signature").jSignature()
+        })
+    </script>
+{% endblock %}
+
 {% block content %}
 
     <h1>{{ __('section2.title') }}</h1>
@@ -17,6 +27,8 @@
             <li>{{ __('section2.delay_warning_2') }}</li>
             <li>{{ __('section2.delay_warning_3') }}</li>
         </ul>
+
+        <span>X</span><div id="applicant_signature"></div>
 
         {{ textInput('signature', 'section2.form.signature') }}
 

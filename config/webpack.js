@@ -42,6 +42,7 @@ module.exports.webpack = {
       },
       entry: {
         app: './assets/js/app.js',
+        jSignature: './assets/js/jSignature.min.js', // https://github.com/brinley/jSignature/blob/master/libs/jSignature.min.js (MIT License)
         styles: './assets/styles/app.scss',
         relationship: './assets/js/pages/relationship.js',
         conditionAdder: './assets/js/pages/conditionAdder.js',
