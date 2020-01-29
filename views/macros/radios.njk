@@ -1,5 +1,5 @@
-{% macro radioButtons(key, values, value, question, errors, attributes) %}
-    <div class="{{ 'has-error' if errors and errors[key] }}">
+{% macro radioButtons(id, values, selectedValue, question, errors, attributes) %}
+    <div class="{{ 'has-error' if errors and errors[id] }}">
         <fieldset class="fieldset">
             <legend class="fieldset__legend">
             {% if attributes.required %}
@@ -13,14 +13,23 @@
             {% if attributes.hint %}
                 <span class="form-message">{{ __(attributes.hint) }}</span>
             {% endif %}
-            <div class="multiple-choice multiple-choice--radios" id="{{ key }}">
-                {% if errors and errors[key] %}
-                    {{ validationMessage(errors[key], key) }}
+            <div class="multiple-choice multiple-choice--radios" id="{{ id }}">
+                {% if errors and errors[id] %}
+                    {{ validationMessage(errors[id], id) }}
                 {% endif %}
                 {% for index, val in values %}
                     <div class="multiple-choice__item">
-                        <input id="{{ key }}{{ val }}" name="{{ key }}" type="radio" value="{{ index }}" {% if value == index %} checked="checked" {% endif %} {% if errors and errors[key] %} aria-describedby="{{ key + '-error' }}" aria-invalid="true" {% endif %}>
-                        <label for="{{ key }}{{ val }}">{{ __(val) }}</label>
+                        <input
+                          id="{{ id }}{{ val }}"
+                              name="{{ id }}"
+                              type="radio"
+                              value="{{ index }}"
+                              {% if selectedValue == index %} checked="checked" {% endif %}
+                              {% if errors and errors[id] %}
+                                aria-describedby="{{ id + '-error' }}"
+                                aria-invalid="true"
+                              {% endif %}>
+                        <label for="{{ id }}{{ val }}">{{ __(val) }}</label>
                     </div>
                 {% endfor %}
             </div>
