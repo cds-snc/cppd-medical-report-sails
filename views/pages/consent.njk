@@ -4,8 +4,10 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="/build/assets/js/jSignature.js"></script>
     <script>
+        var signaturePad = null;
         $(document).ready(function() {
-            $("#applicant_signature_pad").jSignature({width: 250, height: 200})
+            signaturePad = $("#applicant_signature_pad");
+            signaturePad.jSignature({width: 600, height: 200});
         })
     </script>
 {% endblock %}
@@ -28,12 +30,14 @@
             <li>{{ __('section2.delay_warning_3') }}</li>
         </ul>
 
-        <div class="relative w-3-4 border-2 border-black overflow-visible">
-            <div id="applicant_signature_pad" ></div>
+        <div class="relative w-3-4 border-2 border-black">
+            <div id="applicant_signature_clear" class="bottom-0 w-full text-right pr-4 pt-4 leading-none">
+                <a onclick="signaturePad.jSignature('clear')" class="no-underline text-gray-500">Clear</a>
+            </div>
+            <div id="applicant_signature_pad" class="overflow-hidden"></div>
             <div id="applicant_signature_line" class="absolute bottom-0 p-4 pointer-events-none w-full">
                 <div class="border-b border-gray-500 text-gray-500">x</div>
             </div>
-            <div id="applicant_signature_clear" class="absolute bottom-0 pointer-events-none w-full text-right text-gray-500 pr-4 pb-40"><a href="#">Clear</a></div>
         </div>
 
         {{ textInput('signature', 'section2.form.signature') }}
