@@ -5,7 +5,7 @@
     <script src="/build/assets/js/jSignature.js"></script>
     <script>
         $(document).ready(function() {
-            $("#applicant_signature").jSignature()
+            $("#applicant_signature_pad").jSignature()
         })
     </script>
 {% endblock %}
@@ -28,7 +28,13 @@
             <li>{{ __('section2.delay_warning_3') }}</li>
         </ul>
 
-        <span>X</span><div id="applicant_signature"></div>
+        <div class="relative w-3-4 border-2 border-black">
+            <div id="applicant_signature_pad"></div>
+            <div id="applicant_signature_line" class="absolute bottom-0 p-4 pointer-events-none w-full">
+                <div class="border-b border-gray-500 text-gray-500">x</div>
+            </div>
+            <div id="applicant_signature_clear" class="absolute bottom-0 pointer-events-none w-full text-right text-gray-500 pr-4 md:pb-24 pb-4 ">Clear</div>
+        </div>
 
         {{ textInput('signature', 'section2.form.signature') }}
 
