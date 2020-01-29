@@ -38,5 +38,4 @@ module.exports.routes = {
     controller: 'API/ConditionDocumentsController',
     action: 'delete'
   },
-
 };

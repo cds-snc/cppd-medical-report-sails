@@ -47,10 +47,12 @@ module.exports = {
   },
 
   store: async function (req, res) {
-    let valid = req.validate(req, res, require('../schemas/documents.schema'));
+    /**
+     * We don't validate here because we need to be able to
+     * upload files even if conditions haven't been added yet.
+     * Validate on the Dashboard only.
+     */
 
-    if (valid) {
-      res.redirect(sails.route('dashboard'));
-    }
+    res.redirect(sails.route('dashboard'));
   }
 };
