@@ -17,8 +17,7 @@ module.exports = {
       allowEmpty: false,
     },
   },
-  // DOUBLE CHECK THIS VALIDATION RULE
-  treatmentTreatedCondition: {
+  Conditions: {
     presence: {
       message: '^errors.treatment_treated_condition.is_checked',
       allowEmpty: false

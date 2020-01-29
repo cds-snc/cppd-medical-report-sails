@@ -5,32 +5,42 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
-
 module.exports = {
-  index: function (req, res) {
-    let data = req.session.medicalReport;
+  index: async function (req, res) {
+    // Load the report from the database.
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
 
     /**
      * If we're returning to the form with flash data in locals,
      * merge it with the rest of the medicalReport in the session.
      */
     if (res.locals.data) {
-      data = _.merge(res.locals.data, req.session.medicalReport);
+      medicalReport = _.merge(res.locals.data, medicalReport);
     }
 
     res.view('pages/health', {
-      data: data
+      data: medicalReport
     });
   },
 
-  store: function (req, res) {
+  store: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+
     let valid = req.validate(req, res, require('../schemas/health.schema'));
 
     if (valid) {
       // save the model
-      req.session.medicalReport.overallHealth = req.body.overallHealth;
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      medicalReport.update({
+        overallHealth: req.body.overallHealth,
+      });
 
       res.redirect(sails.route('dashboard'));
     }

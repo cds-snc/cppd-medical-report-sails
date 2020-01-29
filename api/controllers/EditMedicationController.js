@@ -62,7 +62,7 @@ module.exports = {
      * Get an array of selected ids, assign it back to the
      * medication object for convenience.
      */
-    medication.selectedConditions = arrayHelpers.pluckIds(medication.Conditions);
+    _.set(res.locals, 'data.selectedConditions', arrayHelpers.pluckIds(medication.Conditions));
 
     /**
      * If we're returning to the form with flash data in locals,
@@ -143,9 +143,9 @@ module.exports = {
       /**
        * Associate the selected existing conditions
        */
-      if (req.body.selectedConditions) {
+      if (req.body.Conditions) {
         // It won't be an array if only one checkbox is checked
-        let selectedConditions = arrayHelpers.castArray(req.body.selectedConditions);
+        let selectedConditions = arrayHelpers.castArray(req.body.Conditions);
 
         selectedConditions.forEach(async (conditionId) => {
           // Get an instance of the condition
