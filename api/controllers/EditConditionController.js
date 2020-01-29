@@ -44,6 +44,10 @@ module.exports = {
       condition = _.merge(condition, res.locals.data);
     }
 
+    /**
+     * Placeholder for files that get sent back in a
+     * validation post-back.
+     */
     if (!res.locals.data) {
       res.locals.data = {
         conditionFiles: ''
