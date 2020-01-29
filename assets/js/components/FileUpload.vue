@@ -18,7 +18,7 @@
         <div class="flex-auto">{{ file.fileName }}</div>
         <div
           class="flex-auto remove-file underline text-base align-middle text-right pr-4 cursor-pointer"
-          @click="removeFile(file.id)"
+          @click="removeFile(file)"
         >{{ removeLabel }}</div>
       </div>
     </div>
@@ -72,24 +72,36 @@ export default {
         });
     },
     removeFile(file) {
-      // this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+      // if we're editing vs creating
+      axios
+        .delete("/api/conditions/" + this.conditionId + "/documents", {
+          data: {
+            docId: file.id
+          }
+        })
+        .then(response => {
+          this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+        });
+    },
+    getFiles(conditionId) {
+      axios
+        .get("/api/conditions/" + conditionId + "/documents")
+        .then(response => {
+          this.uploaded_files = response.data;
+        });
     }
   },
   mounted() {
     /**
      * If we're editing, we'll get a conditionId which we can use
-     * to request the documents from the api.
+     * to request the documents from the api, unless this is a
+     * validation post-back.
      */
-    if (this.conditionId) {
-      axios
-        .get("/api/conditions/" + this.conditionId + "/documents")
-        .then(response => {
-          this.uploaded_files = response.data;
-        });
+    if (this.conditionId && !this.files) {
+      this.getFiles(this.conditionId);
     }
     /**
-     * this.files will be set if this is a post-back on validation
-     * errors.
+     * this.files will be set if this is a validation post-back.
      */
     if (this.files) {
       this.uploaded_files = JSON.parse(this.files);

@@ -44,7 +44,11 @@ module.exports = {
       condition = _.merge(condition, res.locals.data);
     }
 
-    // TODO: let documents = Documents.getDocumentsByCondition(req.session.medicalReport, req.params.id - 1).join(',');
+    if (!res.locals.data) {
+      res.locals.data = {
+        conditionFiles: ''
+      };
+    }
 
     res.view('pages/conditions/edit', {
       id: req.params.id,

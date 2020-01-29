@@ -19,7 +19,10 @@ module.exports = {
       ]
     });
 
-    // TODO: Will circle back to handle the Documents later
+    /**
+     * Placeholder for files that get sent back in a
+     * validation post-back.
+     */
     if (!res.locals.data) {
       res.locals.data = {
         conditionFiles: ''
@@ -69,7 +72,6 @@ module.exports = {
       });
 
       if (req.body.conditionFiles) {
-        console.log(req.body.conditionFiles);
         let fileIds = arrayHelpers.pluckIds(JSON.parse(req.body.conditionFiles));
         condition.setDocuments(fileIds);
       }

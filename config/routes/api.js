@@ -34,4 +34,9 @@ module.exports.routes = {
     action: 'index',
   },
 
+  'DELETE /api/conditions/:id/documents': {
+    controller: 'API/ConditionDocumentsController',
+    action: 'delete'
+  },
+
 };

@@ -59,8 +59,6 @@ module.exports = {
       fileName: req.body.file
     });
 
-    console.log(document);
-
     res.send(document);
   },
 
