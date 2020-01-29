@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const arrayHelpers = require('../utils/ArrayHelpers');
+
 module.exports = {
   edit: async function (req, res) {
     /**
@@ -94,7 +96,10 @@ module.exports = {
         symptomsOccurUnknown: req.body.symptomsOccurUnknown
       });
 
-      // TODO: Documents.saveDocumentsFromCondition(req.session.medicalReport, body);
+      if (req.body.conditionFiles) {
+        let fileIds = arrayHelpers.pluckIds(JSON.parse(req.body.conditionFiles));
+        condition.setDocuments(fileIds);
+      }
 
       res.redirect(sails.route('conditions'));
     }

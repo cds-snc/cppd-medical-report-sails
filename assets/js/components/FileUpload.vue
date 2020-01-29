@@ -76,6 +76,10 @@ export default {
     }
   },
   mounted() {
+    /**
+     * If we're editing, we'll get a conditionId which we can use
+     * to request the documents from the api.
+     */
     if (this.conditionId) {
       axios
         .get("/api/conditions/" + this.conditionId + "/documents")
@@ -83,6 +87,10 @@ export default {
           this.uploaded_files = response.data;
         });
     }
+    /**
+     * this.files will be set if this is a post-back on validation
+     * errors.
+     */
     if (this.files) {
       this.uploaded_files = JSON.parse(this.files);
     }
