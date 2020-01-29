@@ -1,5 +1,5 @@
-{% macro medicalConsent(key, values, value, question, errors, attributes) %}
-    <div class="{{ 'has-error' if errors and errors[key] }}">
+{% macro medicalConsent(id, items, selectedValue, question, errors, attributes) %}
+    <div class="{{ 'has-error' if errors and errors[id] }}">
         <fieldset class="fieldset">
             <legend class="noto-sans">
             {% if attributes.required %}
@@ -13,14 +13,26 @@
             {% if attributes.hint %}
                 <span class="form-message">{{ __(attributes.hint) }}</span>
             {% endif %}
-            <div class="multiple-choice multiple-choice--radios" id="{{ key }}">
-                {% if errors and errors[key] %}
-                    {{ validationMessage(errors[key].msg, key) }}
+            <div class="multiple-choice multiple-choice--radios" id="{{ id }}">
+                {% if errors and errors[id] %}
+                    {{ validationMessage(errors[id].msg, id) }}
                 {% endif %}
-                {% for val in values %}
+                {% for  item in values %}
+                {% set itemId %} {{ id }}{{ item.value }} {%endset%}
                     <div class="multiple-choice__item">
-                        <input id="{{ key }}{{ val.text }}" name="{{ key }}" type="radio" value="{{ val.key }}" {% if value == index %} checked="checked" {% endif %} {% if errors and errors[key] %} aria-describedby="{{ key + '-error' }}" aria-invalid="true" {% endif %}>
-                        <label for="{{ key }}{{ val.text }}">{{ __(val.text) | safe }}</label>
+                        <input
+                          id="{{ itemId }}"
+                            name="{{ id }}"
+                            type="radio"
+                            value="{{ item.value}}"
+                            {% if selectedValue == loop.index %}
+                                checked="checked"
+                            {% endif %}
+                            {% if errors and errors[id] %}
+                                aria-describedby="{{ id + '-error' }}"
+                                aria-invalid="true"
+                            {% endif %}>
+                        <label for="{{ itemId }}">{{ __(item.text) }}</label>
                     </div>
                 {% endfor %}
             </div>

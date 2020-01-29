@@ -17,19 +17,22 @@
                 {% if errors and errors[id] %}
                     {{ validationMessage(errors[id], id) }}
                 {% endif %}
-                {% for index, val in values %}
+                {% for  item in values %}
+                {% set itemId %} {{ id }}{{ item.value }} {%endset%}
                     <div class="multiple-choice__item">
                         <input
-                          id="{{ id }}{{ val }}"
-                              name="{{ id }}"
-                              type="radio"
-                              value="{{ index }}"
-                              {% if selectedValue == index %} checked="checked" {% endif %}
-                              {% if errors and errors[id] %}
+                          id="{{ itemId }}"
+                            name="{{ id }}"
+                            type="radio"
+                            value="{{ item.value}}"
+                            {% if selectedValue == loop.index %}
+                                checked="checked"
+                            {% endif %}
+                            {% if errors and errors[id] %}
                                 aria-describedby="{{ id + '-error' }}"
                                 aria-invalid="true"
-                              {% endif %}>
-                        <label for="{{ id }}{{ val }}">{{ __(val) }}</label>
+                            {% endif %}>
+                        <label for="{{ itemId }}">{{ __(item.text) }}</label>
                     </div>
                 {% endfor %}
             </div>
