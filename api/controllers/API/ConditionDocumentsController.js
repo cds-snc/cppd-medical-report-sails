@@ -6,6 +6,12 @@
  */
 
 module.exports = {
+  /**
+   * Get all documents related to a condition
+   * @route GET /api/conditions/:id/documents
+   * @param {number} id The id of the condition
+   * @return {Array.Documents} Associated documents
+   */
   index: async function (req, res) {
     /**
      * Grab the medicalReport and the associated condition.
@@ -32,11 +38,22 @@ module.exports = {
       ]
     });
 
+    /**
+     * In the previous query the Conditions relationship
+     * is returned as an array with a single item.
+     */
     let condition = _.first(medicalReport.Conditions);
 
     res.send(condition.Documents);
   },
 
+  /**
+   * Remove a document from a condition
+   * @route DELETE /api/conditions/:id/documents
+   * @param {number} id The id of the condition
+   * @param {number} docId The id of the document
+   * @return 200 ok
+   */
   delete: async function (req, res) {
     /**
      * Grab the medicalReport and the associated condition.
