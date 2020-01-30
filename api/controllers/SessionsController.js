@@ -31,14 +31,28 @@ module.exports = {
   },
 
   view: async function (req, res) {
+    const reportId = req.params.session;
+    sails.log.silly(`Requesing medical report: ${reportId}`);
+    const medicalReport = await MedicalReport.findOne({
+      where: {id: reportId},
+      include: [{
+        model: Condition,
+        as: 'Conditions',
+        include: [ {
+          model: Treatment,
+          as: 'Treatments'
+        }, {
+          model: Medication,
+          as: 'Medications'
+        }
+        ]
 
-    const medicalReport = await MedicalReport.findOne({ where: {id: req.params.session}});
+      }]
+    });
     sails.log.silly(`medicalReport: ${JSON.stringify(medicalReport.toJSON(), null, 2)}`);
 
-    const conditions = conditionHelper.getConditionsWithMedicationsAndTreatments(medicalReport);
     res.view('pages/sessions/view', {
       data:medicalReport,
-      conditions: conditions,
       symptomsOccur: require('../utils/support/symptomsOccur'),
       conditionOutlook: require('../utils/support/conditionOutlook'),
       stopWorking: require('../utils/support/stopWorking'),
