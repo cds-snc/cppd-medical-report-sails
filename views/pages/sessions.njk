@@ -21,9 +21,10 @@
         <th class="w-1/4">Last opened</th>
       </tr>
     </thead>
-    <tbody >
+    <tbody class="" >
+      {% set zebra = cycler("", "bg-gray-200") %}
       {% for report in reports %}
-        <tr class="flex p-2 {{ 'bg-gray-200' if loop.index % 2 == 0  }}">
+        <tr class="flex p-2 {{zebra.next()}}">
           <td class="w-1/4 ">{{ report.dateRecieved}}</td>
           <td class="w-2/4 "><a href={{ route('sessions.view', { session: report.id})}}>{{ report.applicant}}</a> ({{report.sin }})</td>
           <td class="w-1/4 ">{{ report.lastViewed}}</td>
