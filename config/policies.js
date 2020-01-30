@@ -54,10 +54,6 @@ module.exports.policies = {
     'index': defaultPlusReportExists,
   },
 
-  EmploymentController: {
-    'index': defaultPlusReportExists,
-  },
-
   ExpeditedController: {
     'index': defaultPlusReportExists,
   },
