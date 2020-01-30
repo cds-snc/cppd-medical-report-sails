@@ -44,8 +44,10 @@ module.exports = {
         }, {
           model: Medication,
           as: 'Medications'
-        }
-        ]
+        },{
+          model: Document,
+          as: 'Documents'
+        }]
 
       }]
     });
@@ -58,7 +60,6 @@ module.exports = {
       stopWorking: require('../utils/support/stopWorking'),
       returnToWorkWhen: require('../utils/support/returnToWorkWhen'),
       typeOfWork: require('../utils/support/typeOfWork'),
-      getDocumentsByCondition: require('../utils/DocumentsHelper').getDocumentsByCondition,
       moment: require('moment')
     });
   }

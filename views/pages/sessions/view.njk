@@ -76,16 +76,16 @@
 
       <dt>{{ __('ma.view.label.supporting_documents') }}</dt>
       <dd>
-        {% for document in getDocumentsByCondition(data, loop.index0) %}
-          {{ document }}<br>
+        {% for document in condition.Documents %}
+          {{ document.fileName }}<br>
         {% endfor %}
       </dd>
     </dl>
 
-    {% if condition.medications.length %}
+    {% if condition.Medications.length %}
       <details>
         <summary><h4 class="mt-4 text-2xl inline">Medications</h4></summary>
-        {% for medication in condition.medications %}
+        {% for medication in condition.Medications %}
           <dl>
               <dt>{{ __('ma.view.label.medication') }}</dt>
               <dd>{{ medication.medicationName }}</dd>
@@ -109,10 +109,10 @@
       </details>
     {% endif %}
 
-    {% if condition.treatments.length %}
+    {% if condition.Treatments.length %}
       <details>
         <summary><h4 class="mt-4 text-2xl inline">Treatments</h4></summary>
-        {% for treatment in condition.treatments %}
+        {% for treatment in condition.Treatments %}
           <dl>
             <dt>{{ __('ma.view.label.treatment_type') }}</dt>
             <dd>{{ treatment.treatmentType }}</dd>
