@@ -14,21 +14,53 @@
 
 {% block content %}
 
-    <h1>{{ __('section2.title') }}</h1>
+    <h1>{{ __('consent.title') }}</h1>
 
-    <p>{{ __('section2.preamble') | safe }}</p>
+    <p>{{ __('consent.preamble') }}</p>
+    
+    <p class="font-bold">{{ __('consent.may_contact_preamble') }}</p>
+    <ul>
+        <li>{{ __('consent.practioners') }}</li>
+        <li>{{ __('consent.facilities') }}</li>
+        <li>{{ __('consent.government') }}</li>
+        <li>{{ __('consent.compensation_boards') }}</li>
+        <li>{{ __('consent.employers') }}</li>
+        <li>{{ __('consent.insurers') }}</li>
+    </ul>
 
     <form action="{{ route('consent.store') }}" method="post">
         <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
-        {{ medicalConsent('consent', { 'consent':'section2.i_consent','no_consent':'section2.i_dont_consent'}, data.consent, 'section2.consent_preamble', errors, {required: true}) }}
+        {# {{ medicalConsent('consent', { 'consent':'section2.i_consent','no_consent':'section2.i_dont_consent'}, data.consent, 'section2.consent_preamble', errors, {required: true}) }} #}
 
-        <p>{{ __('section2.delay_warning_preamble') }}</p>
+        {{ 
+            checkBoxes(
+                'consent.optional_parties', 
+                {
+                    'education': 'consent.education', 
+                    'accountant':'consent.accountant',
+                    'financial': 'consent.financial',
+                    'volunteer': 'consent.volunteer',
+                    'employees': 'consent.employees'
+                }, 
+                [
+                    'education', 
+                    'accountant',
+                    'financial',
+                    'volunteer',
+                    'employees'
+                ], 
+                'consent.optional_parties_preamble', 
+                errors, 
+                {}) 
+        }}
+
+        {# <p>{{ __('section2.delay_warning_preamble') }}</p>
         <ul>
             <li>{{ __('section2.delay_warning_1') }}</li>
             <li>{{ __('section2.delay_warning_2') }}</li>
             <li>{{ __('section2.delay_warning_3') }}</li>
-        </ul>
+        </ul> #}
 
         <div class="relative w-3-4 border-2 border-black">
             <div id="applicant_signature_clear" class="bottom-0 w-full text-right pr-4 pt-4 leading-none">
@@ -41,16 +73,6 @@
         </div>
 
         {{ textInput('signature', 'section2.form.signature') }}
-
-        <fieldset>
-            <legend>{{__('section2.witness_legend')}}</legend>
-            <p> {{__('section2.witness_preamble')}} </p>
-            {{ textInput('witnessFirst', 'section2.form.witness_first') }}
-            {{ textInput('witnessMiddle', 'section2.form.witness_middle') }}
-            {{ textInput('witnessLast', 'section2.form.witness_last') }}
-            {{ textInput('witnessPhone', 'section2.form.witness_phone') }}
-            {{ textInput('witnessSignature', 'section2.form.witness_signature') }}
-        </fieldset>
 
         <p>{{ __('section2.consent_valid_period') | safe }}</p>
 
