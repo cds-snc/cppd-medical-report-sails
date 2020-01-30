@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const arrayHelpers = require('../utils/ArrayHelpers');
+
 module.exports = {
   create: async function (req, res) {
     // load the medical report
@@ -17,7 +19,10 @@ module.exports = {
       ]
     });
 
-    // TODO: Will circle back to handle the Documents later
+    /**
+     * Placeholder for files that get sent back in a
+     * validation post-back.
+     */
     if (!res.locals.data) {
       res.locals.data = {
         conditionFiles: ''
@@ -53,7 +58,7 @@ module.exports = {
        * Not crazy about this, but can't figure out how to create
        * a related model from base, ie, medicalReport.Condition.create()
        */
-      Condition.create({
+      let condition = await Condition.create({
         MedicalReportId: medicalReport.id,
         conditionName: req.body.conditionName,
         icdCode: req.body.icdCode,
@@ -66,7 +71,10 @@ module.exports = {
         symptomsOccurUnknown: req.body.symptomsOccurUnknown
       });
 
-      // Documents.saveDocumentsFromCondition(req.session.medicalReport, body);
+      if (req.body.conditionFiles) {
+        let fileIds = arrayHelpers.pluckIds(JSON.parse(req.body.conditionFiles));
+        condition.setDocuments(fileIds);
+      }
 
       if (action === 'add_another') {
         return res.redirect(sails.route('conditions.add'));

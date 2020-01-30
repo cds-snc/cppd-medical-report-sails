@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const arrayHelpers = require('../utils/ArrayHelpers');
+
 module.exports = {
   edit: async function (req, res) {
     /**
@@ -42,7 +44,15 @@ module.exports = {
       condition = _.merge(condition, res.locals.data);
     }
 
-    // TODO: let documents = Documents.getDocumentsByCondition(req.session.medicalReport, req.params.id - 1).join(',');
+    /**
+     * Placeholder for files that get sent back in a
+     * validation post-back.
+     */
+    if (!res.locals.data) {
+      res.locals.data = {
+        conditionFiles: ''
+      };
+    }
 
     res.view('pages/conditions/edit', {
       id: req.params.id,
@@ -94,7 +104,10 @@ module.exports = {
         symptomsOccurUnknown: req.body.symptomsOccurUnknown
       });
 
-      // TODO: Documents.saveDocumentsFromCondition(req.session.medicalReport, body);
+      if (req.body.conditionFiles) {
+        let fileIds = arrayHelpers.pluckIds(JSON.parse(req.body.conditionFiles));
+        condition.setDocuments(fileIds);
+      }
 
       res.redirect(sails.route('conditions'));
     }

@@ -6,6 +6,11 @@
  */
 
 module.exports = {
+  /**
+   * Get all conditions related to the current MR
+   * @route GET /api/conditions
+   * @return {Array<Condition>} Associated documents
+   */
   index: async function (req, res) {
     let medicalReport = await MedicalReport.findOne({
       where: {
