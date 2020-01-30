@@ -18,14 +18,14 @@ const isCollectionValid = (models) => {
 }
 
 function checkMedications(medicalReport) {
-  if (!medicalReport.patientMedications) {
+  if (medicalReport.patientMedications === false) {
     return true;
   }
   return isCollectionValid(medicalReport.Medications);
 }
 
 function checkTreatements(medicalReport) {
-  if (!medicalReport.patientTreatments) {
+  if (!medicalReport.patientTreatments === false) {
     return true;
   }
   return isCollectionValid(medicalReport.Treatments);
