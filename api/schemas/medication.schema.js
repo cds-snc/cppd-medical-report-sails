@@ -29,9 +29,12 @@ module.exports = {
      * but we'll need to clear out any empty conditions from
      * the newConditions array.
      */
-    const newConditions = attributes.newConditions.filter(Boolean);
-    if (newConditions && newConditions.length) {
-      return true;
+    if (attributes.newConditions) {
+      const newConditions = attributes.newConditions.filter(Boolean);
+
+      if (newConditions && newConditions.length) {
+        return true;
+      }
     }
     return {
       presence: {
