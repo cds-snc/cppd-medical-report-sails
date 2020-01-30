@@ -11,11 +11,11 @@ module.exports = {
   index: async function (req, res) {
 
     const reports = await MedicalReport.findAll({limit: 10, attributes: ['id', 'firstName', 'lastName', 'socialInsuranceNumber']});
-    sails.log(`Query returned: ${JSON.stringify(reports)}`);
+    sails.log.silly(`Query returned: ${JSON.stringify(reports, null,  2)}`);
     const viewModel = reports.map(x =>  {
       return {
         id: x.id,
-        dateRecieved: 'Not Implemented',
+        dateReceived: 'Not Implemented',
         applicant: `${x.lastName}, ${x.firstName}`,
         sin: x.socialInsuranceNumber,
         lastViewed: 'Not Implemented'
@@ -23,7 +23,7 @@ module.exports = {
     });
 
     const totalReports = await MedicalReport.count();
-    sails.log(`totalReports: ${totalReports}`);
+    sails.log.silly(`totalReports: ${totalReports}`);
     return res.view('pages/sessions', {
       reports: viewModel,
       total: totalReports
@@ -33,7 +33,7 @@ module.exports = {
   view: async function (req, res) {
 
     const medicalReport = await MedicalReport.findOne({ where: {id: req.params.session}});
-    sails.log(`medicalReport: ${JSON.stringify(medicalReport, 2)}`);
+    sails.log.silly(`medicalReport: ${JSON.stringify(medicalReport.toJSON(), null, 2)}`);
 
     const conditions = conditionHelper.getConditionsWithMedicationsAndTreatments(medicalReport);
     res.view('pages/sessions/view', {

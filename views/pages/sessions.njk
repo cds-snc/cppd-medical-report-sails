@@ -5,7 +5,7 @@
   <form class="w-full max-w-full">
     <div >
       <div class="relative">
-        <label for="search" class="sr-only">{{__("sessions.searchApplications")}}</label>
+        <label for="search" class="sr-only">{{ __("sessions.searchApplications") }}</label>
         <input id="search" class="placeholder-gray-600 rounded-lg  pl-10 block w-full appearance-none leading-normal mb-10" type="text" placeholder="{{__("sessions.searchApplications")}}">
         <div class="pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center">
           <svg class="fill-current pointer-events-none text-gray-600 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/></svg>
@@ -13,21 +13,21 @@
       </div>
     </div>
   </form>
-  <table class="w-full">
+  <table class="w-full table-full">
     <thead class="border-solid border-b-2 text-left">
-      <tr class="flex" >
+      <tr  >
         <th class="w-1/4">Date Recieved</th>
         <th class="w-2/4">Applicant</th>
         <th class="w-1/4">Last opened</th>
       </tr>
     </thead>
-    <tbody class="" >
+    <tbody >
       {% set zebra = cycler("", "bg-gray-200") %}
       {% for report in reports %}
-        <tr class="flex p-2 {{zebra.next()}}">
-          <td class="w-1/4 ">{{ report.dateRecieved}}</td>
-          <td class="w-2/4 "><a href={{ route('sessions.view', { session: report.id})}}>{{ report.applicant}}</a> ({{report.sin }})</td>
-          <td class="w-1/4 ">{{ report.lastViewed}}</td>
+        <tr class=" {{ zebra.next() }}">
+          <td class="w-1/4 py-2">{{ report.dateReceived }}</td>
+          <td class="w-2/4 py-2"><a href={{ route('sessions.view', { session: report.id }) }}>{{ report.applicant }}</a> ({{ report.sin }})</td>
+          <td class="w-1/4 py-2">{{ report.lastViewed }}</td>
         </tr>
       {% endfor %}
     </tbody>
@@ -37,7 +37,7 @@
     {% set pages = ((total/8)|round(0,'ceil')) %}
     {% if total > 8 %}
       {% for i in range(0, pages) %}
-        <a href="about/blank" class="m-1"><span class="sr-only">Navigate to page </span>{{ i + 1 }}<span class="sr-only"> of {{ pages }}</span></a>
+        <a href="#" class="m-1"><span class="sr-only">Page </span>{{ i + 1 }}<span class="sr-only"> of {{ pages }}</span></a>
       {% endfor %}
     {% endif %}
   </div>
