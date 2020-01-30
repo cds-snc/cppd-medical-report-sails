@@ -31,8 +31,6 @@
     <form action="{{ route('consent.store') }}" method="post">
         <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
-        {# {{ medicalConsent('consent', { 'consent':'section2.i_consent','no_consent':'section2.i_dont_consent'}, data.consent, 'section2.consent_preamble', errors, {required: true}) }} #}
-
         {{ 
             checkBoxes(
                 'consent.optional_parties', 
@@ -55,7 +53,7 @@
                 {}) 
         }}
 
-        <div class="relative w-3-4 border-2 border-black">
+        <div id="signature_draw" class="relative w-3-4 border-2 border-black">
             <div id="applicant_signature_clear" class="bottom-0 w-full text-right pr-4 pt-4 leading-none">
                 <a onclick="signaturePad.jSignature('clear')" class="no-underline text-gray-500">Clear</a>
             </div>
@@ -65,9 +63,11 @@
             </div>
         </div>
 
-        {{ textInput('signature', 'section2.form.signature') }}
+        <div id="signature_type" class="hidden">
+            {{ textInput('signature', 'section2.form.signature') }}
+        </div>
 
-        <p>{{ __('section2.consent_valid_period') | safe }}</p>
+        <p>{{ __('section2.consent_valid_period') }}</p>
 
         {{ formButtons() }}
     </form>
