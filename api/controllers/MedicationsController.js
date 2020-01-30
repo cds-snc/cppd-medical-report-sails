@@ -42,7 +42,7 @@ module.exports = {
         }
       });
 
-      if (req.body.patientMedications) {
+      if (req.body.patientMedications === '1') {
         return res.redirect(sails.route('medications.add'));
       }
 

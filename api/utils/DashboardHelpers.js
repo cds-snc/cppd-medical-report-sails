@@ -25,7 +25,7 @@ function checkMedications(medicalReport) {
 }
 
 function checkTreatements(medicalReport) {
-  if (!medicalReport.patientTreatments === false) {
+  if (medicalReport.patientTreatments === false) {
     return true;
   }
   return isCollectionValid(medicalReport.Treatments);
