@@ -15,4 +15,4 @@ const conditionReducer = (conditions) => {
 
 module.exports = {
   conditionReducer
-}
+};

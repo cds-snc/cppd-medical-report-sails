@@ -14,8 +14,8 @@ const generate = async () => {
   );
 
   return code;
-}
+};
 
 module.exports = {
   generate
-}
+};
