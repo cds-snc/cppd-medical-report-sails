@@ -56,8 +56,34 @@ module.exports = {
     });
   },
 
-  ready: function (req, res) {
-    if (ableToSubmit(getSectionsCompleted(req.session.medicalReport))) {
+  ready: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        {
+          model: Condition,
+          as: 'Conditions',
+        },
+        {
+          model: Medication,
+          as: 'Medications',
+          include: [{ model: Condition, as: 'Conditions' }]
+        },
+        {
+          model: Treatment,
+          as: 'Treatments',
+          include: [{ model: Condition, as: 'Conditions' }]
+        },
+        {
+          model: Document,
+          as: 'Documents',
+        }
+      ]
+    });
+
+    if (ableToSubmit(dashboardHelpers.getValidationStatus(medicalReport))) {
       return res.redirect(sails.route('declaration'));
     }
     return res.redirect('back');
