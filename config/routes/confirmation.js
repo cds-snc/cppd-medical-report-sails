@@ -12,15 +12,4 @@ module.exports.routes = {
       fr: '/fr/confirmation'
     }
   },
-
-  'POST /en/confirmation': {
-    name: 'confirmation.store',
-    controller: 'ConfirmationController',
-    action: 'store',
-    lang: 'en',
-    i18n: {
-      en: '/en/confirmation',
-      fr: '/fr/confirmation'
-    }
-  },
 };

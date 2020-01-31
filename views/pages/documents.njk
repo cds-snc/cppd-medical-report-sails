@@ -12,24 +12,11 @@
         </p>
         <p class="text-gray-600">{{ __('documents.sub') }}</p>
 
-        <form method="post">
+        <form enctype="multipart/form-data" method="post">
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
             
             <div id="app">
-                <supporting-documents :files="{{ documents | dump }}" :conditions="{{ conditions | dump }}" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
-            </div>
-            
-            <div class="multiple-choice multiple-choice--checkboxes">
-                <div class="multiple-choice__item">
-                    <input id="attachLater" name="attachLater" type="checkbox" value="attachLater">
-                    <label for="attachLater">{{ __('add_condition.attach_later') }}</label>
-                </div>
-            </div>
-
-            <div class="buttons">
-                <div class="buttons--left">
-                    <button type="submit" class="w-1/3">{{ __('documents.next_button') }}</button>
-                </div>
+                <supporting-documents upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}" attach-later-label="{{ __('add_condition.attach_later') }}" next-button-label="{{ __('documents.next_button') }}"></file-upload>
             </div>
         </form>
     </div>

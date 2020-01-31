@@ -7,7 +7,7 @@
 {% block content %}
 
     {{ backButton('dashboard') }}
-    
+
     <h1>{{ __('section3.title') }}</h1>
 
     <div>
@@ -15,16 +15,16 @@
 
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
-            {{ textInput('relationshipStarted', __('section3.form.relationship_started.desc', patientName(data)), { required: true, hint: 'For example: Feb 2008' }) }}
+            {{ textInputRaw('relationshipStarted', __('section3.form.relationship_started.desc', patientName(data)), { required: true, hint: 'For example: Feb 2008' }) }}
 
-            {{ textInput('firstTreatmentDate', __('section3.form.first_treatment_date.desc', patientName(data)), { hint: 'For example: Feb 3, 2016', required: true }) }}
+            {{ textInputRaw('firstTreatmentDate', __('section3.form.first_treatment_date.desc', patientName(data)), { hint: 'For example: Feb 3, 2016', required: true }) }}
 
-            {{ textInput('visitNumber', __('section3.form.visit_number.desc', patientName(data)), { required: true }) }}
+            {{ textInputRaw('visitNumber', __('section3.form.visit_number.desc', patientName(data)), { required: true }) }}
 
             {{ textInput('lastVisitDate', 'section3.form.last_visit_date.desc', { hint: 'For example: Nov 15, 2019', required: true }) }}
 
             {{
-                radioButtons('stopWorking',
+                radioButtonsRaw('stopWorking',
                     {
                         '1': 'Yes',
                         '2': 'No',

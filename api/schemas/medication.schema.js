@@ -23,11 +23,25 @@ module.exports = {
       allowEmpty: false,
     },
   },
-  medicationTreatedCondition: {
-    presence: {
-      message: '^errors.medication_treated_condition.is_checked',
-      allowEmpty: false,
-    },
+  Conditions: function (value, attributes) {
+    /**
+     * This should also be valid if we've added new conditions,
+     * but we'll need to clear out any empty conditions from
+     * the newConditions array.
+     */
+    if (attributes.newConditions) {
+      const newConditions = attributes.newConditions.filter(Boolean);
+
+      if (newConditions && newConditions.length) {
+        return true;
+      }
+    }
+    return {
+      presence: {
+        message: '^errors.medication_treated_condition.is_checked',
+        allowEmpty: false,
+      },
+    };
   },
   medicationResults: {
     presence: {

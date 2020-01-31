@@ -42,15 +42,15 @@ module.exports.policies = {
     'index': defaultPlusReportExists,
   },
 
+  DashboardController: {
+    'index': defaultPlusReportExists,
+  },
+
   DeclarationController: {
     'index': defaultPlusReportExists,
   },
 
   DocumentsController: {
-    'index': defaultPlusReportExists,
-  },
-
-  EmploymentController: {
     'index': defaultPlusReportExists,
   },
 

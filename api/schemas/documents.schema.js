@@ -1,5 +1,5 @@
 module.exports = {
-  supportingDocuments: function (value, attributes) {
+  Documents: function (value, attributes) {
     const attachLater = attributes.attachLater;
     if (!attachLater) {
       return {

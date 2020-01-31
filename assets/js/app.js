@@ -1,5 +1,9 @@
 import Vue from 'vue';
 
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 /**
  * Automatically register your Vue components.  Recursively scan this directory for the Vue
  * components and automatically register them with their "basename".

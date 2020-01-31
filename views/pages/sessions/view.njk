@@ -18,7 +18,6 @@
     {{ __('ma.view.label.phone') }} {{ data.telephone }}<br>
   </p>
 </details>
-
 <details class="mt-4" open>
   <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.relationship_with_applicant') }}</h2></summary>
   <dl>
@@ -50,70 +49,70 @@
   <dd>26.8</dd>
 </dl>
 
-{% for condition in conditions %}
+{% for condition in data.Conditions %}
   <details class="mt-4" open>
     <summary><h3 class="mt-4 inline">{{ condition.conditionName }}</h3></summary>
     <dl>
       <dt>{{ __('ma.view.label.icd_code') }}</dt>
       <dd>{{ condition.icdCode }}</dd>
-    
+
       <dt>{{ __('ma.view.label.symptoms_began') }}</dt>
       <dd>{{ condition.symptomsBegan }}</dd>
-    
+
       <dt>{{ __('ma.view.label.symptom_frequency') }}</dt>
       <dd>{{ __(symptomsOccur[condition.symptomsOccur]) }}</dd>
-    
+
       <dt>{{ __('ma.view.label.symptom_detail') }}</dt>
       <dd>{{ condition.symptomsOccurUnknown }}</dd>
-    
+
       <dt>{{ __('ma.view.label.prognosis') }}</dt>
       <dd>{{ __(conditionOutlook[condition.conditionOutlook]) }}</dd>
-    
+
       <dt>{{ __('ma.view.label.prognosis_detail') }}</dt>
       <dd>{{ condition.conditionOutlookUnknown }}</dd>
-    
+
       <dt>{{ __('ma.view.label.clinical_findings') }}</dt>
       <dd>{{ condition.clinicallyImpair }}</dd>
 
       <dt>{{ __('ma.view.label.supporting_documents') }}</dt>
       <dd>
-        {% for document in getDocumentsByCondition(data, loop.index0) %}
-          {{ document }}<br>
+        {% for document in condition.Documents %}
+          {{ document.fileName }}<br>
         {% endfor %}
       </dd>
     </dl>
-    
-    {% if condition.medications.length %}
+
+    {% if condition.Medications.length %}
       <details>
         <summary><h4 class="mt-4 text-2xl inline">Medications</h4></summary>
-        {% for medication in condition.medications %}
+        {% for medication in condition.Medications %}
           <dl>
               <dt>{{ __('ma.view.label.medication') }}</dt>
               <dd>{{ medication.medicationName }}</dd>
-            
+
               <dt>{{ __('ma.view.label.start_date') }}</dt>
               <dd>{{ medication.medicationStartDate }}</dd>
-            
+
               <dt>{{ __('ma.view.label.end_date') }}</dt>
               <dd>{{ medication.medicationEndDate }}</dd>
-            
+
               <dt>{{ __('ma.view.label.dosage') }}</dt>
               <dd>{{ medication.medicationDosage }}</dd>
-            
+
               <dt>{{ __('ma.view.label.frequency') }}</dt>
               <dd>{{ medication.medicationFrequency }}</dd>
-            
+
               <dt>{{ __('ma.view.label.patient_response') }}</dt>
               <dd>{{ medication.medicationResults }}</dd>
           </dl>
         {% endfor %}
       </details>
     {% endif %}
-    
-    {% if condition.treatments.length %}
+
+    {% if condition.Treatments.length %}
       <details>
         <summary><h4 class="mt-4 text-2xl inline">Treatments</h4></summary>
-        {% for treatment in condition.treatments %}
+        {% for treatment in condition.Treatments %}
           <dl>
             <dt>{{ __('ma.view.label.treatment_type') }}</dt>
             <dd>{{ treatment.treatmentType }}</dd>
@@ -136,17 +135,17 @@
   </details>
 {% endfor %}
 
-<details class="mt-4" open>
+ <details class="mt-4" open>
   <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.work_capacity') }}</h2></summary>
   <dl>
     <dt>{{ __('ma.view.label.told_to_cease_work') }}</td>
-    <dd>{{ __(stopWorking[data.stopWorking]) }}
+    <dd>{{ __(stopWorking[data.stopWorking]) if data.stopWorking }}
 
     <dt>{{ __('ma.view.label.expected_to_return_to_work') }}
-    <dd>{{ __(returnToWorkWhen[data.returnToWorkWhen]) }}
+    <dd>{{ __(returnToWorkWhen[data.returnToWorkWhen] if data.returnToWorkWhen) }}
 
     <dt>{{ __('ma.view.label.type_of_work') }}</dt>
-    <dd>{{ __(typeOfWork[data.typeOfWork]) }}</dd>
+    <dd>{{ __(typeOfWork[data.typeOfWork]) if data.typeOfWork }}</dd>
 
     <dt>{{ __('ma.view.label.type_of_work_detail') }}</dt>
     <dd>{{ data.workDetails }}

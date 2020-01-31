@@ -5,35 +5,45 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
-
 module.exports = {
-  index: function (req, res) {
-    let data = req.session.medicalReport;
+  index: async function (req, res) {
+    // Load the report from the database.
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
 
     /**
      * If we're returning to the form with flash data in locals,
      * merge it with the rest of the medicalReport in the session.
      */
     if (res.locals.data) {
-      data = _.merge(res.locals.data, req.session.medicalReport);
+      medicalReport = _.merge(res.locals.data, medicalReport);
     }
 
     res.view('pages/expedited', {
-      data: data
+      data: medicalReport
     });
   },
 
-  store: function (req, res) {
+  store: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+
     let valid = req.validate(req, res, require('../schemas/expedited.schema'));
 
     if (valid) {
       // save the model
-      req.session.medicalReport.conditionType = req.body.conditionType;
-      req.session.medicalReport.diagnosis = req.body.diagnosis;
-      req.session.medicalReport.icdCode = req.body.icdCode;
-      req.session.medicalReport.onsetDate = req.body.onsetDate;
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      medicalReport.update({
+        conditionType: req.body.conditionType,
+        diagnosis: req.body.diagnosis,
+        icdCode: req.body.icdCode,
+        onsetDate: req.body.onsetDate
+      });
 
       res.redirect(sails.route('dashboard'));
     }
