@@ -14,7 +14,7 @@
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
             {{
-                radioButtons('returnToWork',
+                radioButtonsRaw('returnToWork',
                     {
                         '1': 'Yes',
                         '2': 'No',
@@ -29,7 +29,7 @@
             <div id="additional_fields">
                 <div class="my-10">
                 {{
-                    radioButtons('returnToWorkWhen',
+                    radioButtonsRaw('returnToWorkWhen',
                         {
                             '1': 'section6.return_work_6_to_12_months',
                             '2': 'section6.return_work_12_to_24_months',
@@ -45,7 +45,7 @@
 
                 <div class="my-10">
                 {{
-                    radioButtons('typeOfWork',
+                    radioButtonsRaw('typeOfWork',
                         {
                             '1': 'section6.type_work_usual',
                             '2': 'section6.type_work_modified',
