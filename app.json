@@ -14,7 +14,16 @@
             "env": {
                 "AUTO_MIGRATE_MODE": "alter"
             }
-        }
+        },
+        "staging": {
+            "addons": [
+                "heroku-postgresql:hobby-dev",
+                "heroku-redis:hobby-dev"
+            ],
+            "env": {
+                "AUTO_MIGRATE_MODE": "alter"
+            }
+        },
     },
     "env": {
         "AUTO_MIGRATE_MODE": "alter"
