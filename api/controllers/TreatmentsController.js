@@ -42,7 +42,7 @@ module.exports = {
         }
       });
 
-      if (req.body.patientTreatments) {
+      if (req.body.patientTreatments === '1') {
         return res.redirect(sails.route('treatments.add'));
       }
 
