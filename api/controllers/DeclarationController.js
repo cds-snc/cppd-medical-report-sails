@@ -5,38 +5,47 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
-
 module.exports = {
-  index: function (req, res) {
-    let data = req.session.medicalReport;
+  index: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
 
     /**
      * If we're returning to the form with flash data in locals,
      * merge it with the rest of the medicalReport in the session.
      */
     if (res.locals.data) {
-      data = _.merge(res.locals.data, req.session.medicalReport);
+      medicalReport = _.merge(res.locals.data, medicalReport);
     }
 
     res.view('pages/declaration', {
-      data: data
+      data: medicalReport
     });
   },
 
-  store: function (req, res) {
+  store: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+
     let valid = req.validate(req, res, require('../schemas/declaration.schema'));
 
     if (valid) {
       // save the model
-      req.session.medicalReport.practitionerType = req.body.practitionerType;
-      req.session.medicalReport.otherSpecify = req.body.otherSpecify;
-      req.session.medicalReport.name = req.body.name;
-      req.session.medicalReport.date = req.body.date;
-      req.session.medicalReport.physicianAddress = req.body.physicianAddress;
-      req.session.medicalReport.billingIdType = req.body.billingIdType;
-      req.session.medicalReport.billingId = req.body.billingId;
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      await medicalReport.update({
+        practitionerType: req.body.practitionerType,
+        otherSpecify: req.body.otherSpecify,
+        name: req.body.name,
+        date: req.body.date,
+        physicianAddress: req.body.physicianAddress,
+        billingIdType: req.body.billingIdType,
+        billingId: req.body.billingId,
+      });
 
       res.redirect(sails.route('confirmation'));
     }
