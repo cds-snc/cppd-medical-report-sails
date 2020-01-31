@@ -5,8 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
-
 module.exports = {
   index: async function (req, res) {
     // Load the report from the database.
