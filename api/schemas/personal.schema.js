@@ -29,6 +29,39 @@ module.exports = {
       message: '^Mailing address is required'
     }
   },
+  city: {
+    presence: {
+      allowEmpty: false,
+      message: '^City is required'
+    }
+  },
+  province: {
+    presence: {
+      allowEmpty: false,
+      message: '^Province is required'
+    }
+  },
+  country: {
+    presence: {
+      allowEmpty: false,
+      message: '^Country is required'
+    }
+  },
+  postal: {
+    presence: {
+      allowEmpty: false,
+      message: '^Postal code is required'
+    }
+  },
+  email: {
+    presence: {
+      allowEmpty: false,
+      message: '^Email is required'
+    },
+    email: {
+      message: '^Does not seem to be a valid email'
+    }
+  },
   telephone: function (value) {
     if (value) {
       return {
@@ -55,13 +88,4 @@ module.exports = {
       };
     }
   },
-  contactTime: {
-    presence: {
-      message: '^Best time to contact you is required'
-    },
-    inclusion: {
-      within: ['morning', 'afternoon', 'letters_only'],
-      message: '^Invalid selection'
-    }
-  }
 };

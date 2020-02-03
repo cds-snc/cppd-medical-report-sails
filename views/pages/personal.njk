@@ -5,8 +5,6 @@
     
     <form action="{{ route('personal.store') }}" method="post">        
         {{ textInput('socialInsuranceNumber', 'section1.sin', { hint: 'section1.sin_example', class: "w-3-4", required: true }) }}
-
-        {{ radioButtons('preferredTitle', { '1':'section1.preferred_title_mr','2':'section1.preferred_title_mrs','3':'section1.preferred_title_miss','4':'section1.preferred_title_ms'}, data.preferredTitle, 'section1.preferred_title', errors) }}
         
         {{ textInput('firstName', 'section1.first_name', { required: true }) }}
         {{ textInput('middleName', 'section1.middle_name') }}
@@ -15,13 +13,16 @@
 
         {{ textInput('birthdate', 'section1.birthdate', { hint: 'year_month_day_format', required: true }) }}
 
-        {{ textArea('address', 'section1.mailing_address', { hint: 'section1.mailing_address_hint', required: true}) }}
+        {{ textInput('address', 'section1.mailing_address', { required: true}) }}
+        {{ textInput('city', 'section1.city', { required: true}) }}
+        {{ textInput('province', 'section1.province', { required: true}) }}
+        {{ textInput('country', 'section1.country', { required: true}) }}
+        {{ textInput('postal', 'section1.postal', { required: true}) }}
+        {{ textInput('email', 'section1.email', { hint: 'section1.email.hint', required: true}) }}
 
         {{ textInput('telephone', 'section1.telephone', { hint: 'telephone_format', required: true }) }}
         {{ textInput('alternateTelephone', 'section1.alternate_telephone', { hint: 'telephone_format' }) }}
 
-        {{ radioButtons('contactTime', { 'morning':'section1.contact_time_morning','afternoon':'section1.contact_time_afternoon', 'letters_only':'section1.contact_time_letters_only'}, data.contactTime, 'section1.contact_time', errors, { required: true }) }}
-    
         <div class="w-full">
             <div class="w-1/3">
                 <button type="submit">{{ __('Continue') }}</button>

@@ -301,7 +301,13 @@
 	"section1.contact_time_morning": "Morning",
 	"section1.first_name": "First name",
 	"section1.last_names": "Last name(s)",
-	"section1.mailing_address": "Mailing address",
+	"section1.mailing_address": "Street and number",
+	"section1.city": "City",
+	"section1.province": "Province",
+	"section1.country": "Country",
+	"section1.postal": "Postal code",
+	"section1.email": "Email address",
+	"section1.email.hint": "This will only be used to send you updates on your application",
 	"section1.mailing_address_hint": "(No., Street, Apt., PO Box, RR), City/Town, Province/Territory, Country (if not Canada), Postal code",
 	"section1.middle_name": "Middle name",
 	"section1.preferred_title": "Title",
@@ -564,5 +570,7 @@
 	"ma.view.label.type_of_work": "Type of work:",
 	"ma.view.label.type_of_work_detail": "Type of work detail:",
 	"ma.view.label.functional_limitations": "Functional limitations:",
-	"ma.view.label.future_treatments": "Future treatments/impact on functional abilities:"
+	"ma.view.label.future_treatments": "Future treatments/impact on functional abilities:",
+	"Email is required": "Email is required",
+	"Does not seem to be a valid email": "Does not seem to be a valid email"
 }

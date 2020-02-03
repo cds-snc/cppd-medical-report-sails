@@ -53,16 +53,19 @@ module.exports = {
       await MedicalReport.upsert({
         applicationCode: req.session.applicationCode,
         socialInsuranceNumber: req.body.socialInsuranceNumber,
-        preferredTitle: req.body.preferredTitle,
         firstName: req.body.firstName,
         middleName: req.body.middleName,
         lastName: req.body.lastName,
         birthLastName: req.body.birthLastName,
-        birthdate: req.body.birthdate,
+        birthdate: req.body.birthdate, // gonna have to build this
         address: req.body.address,
+        city: req.body.city,
+        province: req.body.province,
+        country: req.body.country,
+        postal: req.body.postal,
+        email: req.body.email,
         telephone: req.body.telephone,
         alternateTelephone: req.body.alternateTelephone,
-        contactTime: req.body.contactTime
       });
 
       res.redirect(sails.route('consent'));
