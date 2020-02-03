@@ -6,9 +6,16 @@
         class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
       >
         <span>{{ this.uploadLabel }}</span>
-        <input type="file" ref="file" @change="handleFileUpload" class="hidden" />
+        <input
+          type="file"
+          ref="file"
+          @change="handleFileUpload"
+          class="hidden"
+          :aria-describedby="uploadError.length > 0 ? 'file-error' : ''"
+          :aria-invalid="uploadError.length > 0"
+        />
       </label>
-      <span v-show="uploadError.length" class="validation-message" id="file-error" role="alert">
+      <span v-if="uploadError.length" class="validation-message" id="file-error" role="alert">
         <span class="visually-hidden">Error:</span>
         {{ uploadError }}
       </span>
