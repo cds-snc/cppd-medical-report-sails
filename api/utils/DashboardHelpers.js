@@ -15,7 +15,7 @@ const isCollectionValid = (models) => {
     }
   }
   return true;
-}
+};
 
 function checkMedications(medicalReport) {
   if (medicalReport.patientMedications === false) {
@@ -49,4 +49,4 @@ module.exports = {
   getValidationStatus,
   isValid,
   isCollectionValid
-}
+};

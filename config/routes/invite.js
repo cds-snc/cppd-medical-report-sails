@@ -12,4 +12,4 @@ module.exports.routes = {
       fr: '/fr/invite'
     }
   },
-}
+};
