@@ -7,7 +7,7 @@ module.exports = {
   },
   otherSpecify: function (value, attributes) {
     const practitionerType = attributes.practitionerType;
-    if (practitionerType === 'other') {
+    if (practitionerType === '4') {
       return {
         presence: {
           message: '^Other is required if Other is selected',
