@@ -1,13 +1,24 @@
 <template>
   <div class="file">
     <input type="hidden" :name="fieldName" :value="JSON.stringify(uploaded_files)" />
-    <div class>
+    <div :class="uploadError.length ? 'pl-8 border-l-4 border-red-700' : ''">
       <label
         class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
       >
         <span>{{ this.uploadLabel }}</span>
-        <input type="file" ref="file" @change="onSelect" class="hidden" />
+        <input
+          type="file"
+          ref="file"
+          @change="handleFileUpload"
+          class="hidden"
+          :aria-describedby="uploadError.length > 0 ? 'file-error' : ''"
+          :aria-invalid="uploadError.length > 0"
+        />
       </label>
+      <span v-if="uploadError.length" class="validation-message" id="file-error" role="alert">
+        <span class="visually-hidden">Error:</span>
+        {{ uploadError }}
+      </span>
     </div>
     <div class="mt-4">
       <div
@@ -29,7 +40,8 @@
 export default {
   data() {
     return {
-      uploaded_files: []
+      uploaded_files: [],
+      uploadError: []
     };
   },
   props: {
@@ -55,33 +67,57 @@ export default {
     }
   },
   methods: {
-    onSelect() {
+    handleFileUpload() {
+      this.uploadError = [];
       const file = this.$refs.file.files[0];
-      this.addFile(file.name);
+      this.addFile(file);
     },
     addFile(file) {
+      let formData = new FormData();
+      formData.append("file", file);
+
+      // TODO: validate file is a file
+
       axios
-        .post("/api/documents", {
-          file: file
-        })
-        .then(response => {
-          this.uploaded_files.push({
-            id: response.data.id,
-            fileName: response.data.originalFileName
-          });
-        });
-    },
-    removeFile(file) {
-      // if we're editing vs creating
-      axios
-        .delete("/api/conditions/" + this.conditionId + "/documents", {
-          data: {
-            docId: file.id
+        .post("/api/documents", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
           }
         })
         .then(response => {
-          this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+          this.uploaded_files.push({
+            id: response.data.document.id,
+            fileName: response.data.document.originalFileName
+          });
+        })
+        .catch(err => {
+          this.uploadError = err.response.data;
         });
+    },
+    removeFile(file) {
+      if (this.conditionId) {
+        // on edit, we need to detach from the current condition
+        axios
+          .delete("/api/conditions/" + this.conditionId + "/documents", {
+            data: {
+              docId: file.id
+            }
+          })
+          .then(response => {
+            this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+          });
+      } else {
+        // on create, there is no Condition
+        axios
+          .delete("/api/documents", {
+            data: {
+              id: file.id
+            }
+          })
+          .then(response => {
+            this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+          });
+      }
     },
     getFiles(conditionId) {
       axios

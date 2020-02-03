@@ -1,1 +1,1 @@
-module.exports = { '1': 'add_condition.condition_outlook_improve', '2': 'add_condition.condition_outlook_deteriorate', '3': 'add_condition.condition_outlook_staysame', '4': 'add_condition.condition_outlook_unknown' }
+module.exports = { '1': 'add_condition.condition_outlook_improve', '2': 'add_condition.condition_outlook_deteriorate', '3': 'add_condition.condition_outlook_staysame', '4': 'add_condition.condition_outlook_unknown' };
