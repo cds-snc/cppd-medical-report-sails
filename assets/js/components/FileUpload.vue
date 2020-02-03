@@ -1,13 +1,17 @@
 <template>
   <div class="file">
     <input type="hidden" :name="fieldName" :value="JSON.stringify(uploaded_files)" />
-    <div class>
+    <div :class="uploadError.length ? 'pl-8 border-l-4 border-red-700' : ''">
       <label
         class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
       >
         <span>{{ this.uploadLabel }}</span>
         <input type="file" ref="file" @change="handleFileUpload" class="hidden" />
       </label>
+      <span v-show="uploadError.length" class="validation-message" id="file-error" role="alert">
+        <span class="visually-hidden">Error:</span>
+        {{ uploadError }}
+      </span>
     </div>
     <div class="mt-4">
       <div
@@ -29,7 +33,8 @@
 export default {
   data() {
     return {
-      uploaded_files: []
+      uploaded_files: [],
+      uploadError: []
     };
   },
   props: {
@@ -56,6 +61,7 @@ export default {
   },
   methods: {
     handleFileUpload() {
+      this.uploadError = [];
       const file = this.$refs.file.files[0];
       this.addFile(file);
     },
@@ -77,8 +83,8 @@ export default {
             fileName: response.data.document.originalFileName
           });
         })
-        .catch(error => {
-          console.log(error);
+        .catch(err => {
+          this.uploadError = err.response.data;
         });
     },
     removeFile(file) {
