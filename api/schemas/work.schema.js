@@ -12,7 +12,7 @@ module.exports = {
           allowEmpty: false,
           message: '^errors.work.return_to_work_timeframe'
         }
-      }
+      };
     }
   },
   typeOfWork: function (value, attributes) {
@@ -22,7 +22,7 @@ module.exports = {
           allowEmpty: false,
           message: '^errors.work.return_to_work_type'
         }
-      }
+      };
     }
   }
-}
+};
