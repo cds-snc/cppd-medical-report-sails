@@ -382,6 +382,15 @@
 	"section9.confirm_statement_rn": "Registered nurse in a geographically isolated community (not urban or rural)",
 	"section9.other_specify": "What is your specialty?",
 	"section9.title": "Your information",
+	"section9.street_and_number": "Street and number",
+	"section9.city": "City",
+	"section9.province_territory": "Province/Territory",
+	"section9.country": "Country",
+	"section9.postal": "Postal code",
+	"section9.email": "Email address",
+	"section9.phone": "Phone number",
+	"section9.first_name": "First name",
+	"section9.last_name": "Last name",
 	"skip_section": "Skip this section",
 	"specialist's report(s)": "specialist's report(s)",
 	"start.applicant_instruction_1": "complete the Application for a Canada Pension Plan Disability Benefit (ISP1151). The application\ncan be found at www.canada.ca/esdc-forms.",
@@ -570,5 +579,11 @@
 	"ma.view.label.type_of_work": "Type of work:",
 	"ma.view.label.type_of_work_detail": "Type of work detail:",
 	"ma.view.label.functional_limitations": "Functional limitations:",
-	"ma.view.label.future_treatments": "Future treatments/impact on functional abilities:"
+	"ma.view.label.future_treatments": "Future treatments/impact on functional abilities:",
+	"dashboard.practitioner": "Your information",
+	"errors.city_required": "City is required",
+	"errors.province_required": "Province is required",
+	"errors.country_required": "Country is required",
+	"errors.postal_required": "Postal is required",
+	"errors.phone_required": "Phone is required"
 }
