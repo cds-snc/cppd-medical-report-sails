@@ -1,12 +1,16 @@
 <template>
   <div class="file">
-    <div class>
+    <div :class="uploadError.length ? 'pl-8 border-l-4 border-red-700' : ''">
       <label
         class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
       >
         <span>{{ this.uploadLabel }}</span>
         <input type="file" ref="file" @change="onSelect" class="hidden" />
       </label>
+      <span v-show="uploadError.length" class="validation-message" id="file-error" role="alert">
+        <span class="visually-hidden">Error:</span>
+        {{ uploadError }}
+      </span>
     </div>
 
     <div class="mt-4">
@@ -74,7 +78,8 @@ export default {
   data() {
     return {
       uploaded_files: [],
-      conditions: []
+      conditions: [],
+      uploadError: []
     };
   },
   props: {
@@ -97,16 +102,25 @@ export default {
   },
   methods: {
     onSelect() {
+      this.uploadError = [];
       const file = this.$refs.file.files[0];
-      this.addFile(file.name);
+      this.uploadFile(file);
     },
-    addFile(file) {
+    uploadFile(file) {
+      let formData = new FormData();
+      formData.append("file", file);
+
       axios
-        .post("/api/documents", {
-          file: file
+        .post("/api/documents", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         })
         .then(response => {
           this.updateFiles();
+        })
+        .catch(err => {
+          this.uploadError = err.response.data;
         });
     },
     removeFile(fileId) {

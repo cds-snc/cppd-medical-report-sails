@@ -65,8 +65,23 @@ module.exports = {
       },
     });
 
-    req.file('file').upload(async (err, uploadedFiles) => {
-      if (err) { return res.serverError(err); }
+    var settings = {
+      maxBytes: 10000000,
+    };
+
+    req.file('file').upload(settings, async (err, uploadedFiles) => {
+      if (err) {
+        if (err.code === 'E_EXCEEDS_UPLOAD_LIMIT') {
+          res.status(413);
+          return res.json(err.code);
+        }
+
+        return res.serverError(err);
+      }
+
+      if (uploadedFiles.length === 0) {
+        return res.badRequest('No file was uploaded');
+      }
 
       let file = uploadedFiles[0];
       let filename = path.basename(file.fd);
