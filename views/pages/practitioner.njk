@@ -1,0 +1,41 @@
+{% extends "layouts/layout.njk" %}
+
+{% block scripts %}
+    <script type="text/javascript" src="/build/assets/js/declaration.js"></script>
+{% endblock %}
+
+{% block content %}
+
+    {{ backButton('dashboard') }}
+
+    <h1>{{ __('section9.title') }}</h1>
+
+    <form method="post">
+        <input type="hidden" name="_csrf" value="{{ _csrf }}">
+        {{ radioButtons('practitionerType', { '1':'section9.confirm_statement_ccfp','4':'section9.confirm_statement_other', '2':'section9.confirm_statement_np', '3':'section9.confirm_statement_rn'}, data.practitionerType, 'section9.confirm_statement_2', errors, { required: true }) }}
+        
+        <div id="otherPractitionerType" class="ml-12">
+            {{ textArea('practitionerTypeOtherSpecify', 'section9.other_specify')}}
+        </div>
+
+        {{ textInput('practitionerFirstName', 'section9.first_name', { required: true }) }}
+        {{ textInput('practitionerLastName', 'section9.last_name', { required: true }) }}
+        
+        {{ textInput('practitionerAddress', 'section9.street_and_number', { required: true}) }}
+
+        {{ textInput('practitionerCity', 'section9.city', { required: true}) }}
+
+        {{ textInput('practitionerProvince', 'section9.province_territory', { required: true}) }}
+
+        {{ textInput('practitionerCountry', 'section9.country', { required: true}) }}
+
+        {{ textInput('practitionerPostal', 'section9.postal', { required: true}) }}
+
+        {{ textInput('practitionerEmail', 'section9.email') }}
+
+        {{ textInput('practitionerPhone', 'section9.phone', { required: true}) }}
+
+        {{ formButtons('return_to_dashboard', route('dashboard')) }}
+    </form>
+
+{% endblock %}
