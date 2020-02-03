@@ -23,7 +23,7 @@
             "env": {
                 "AUTO_MIGRATE_MODE": "alter"
             }
-        },
+        }
     },
     "env": {
         "AUTO_MIGRATE_MODE": "alter"
