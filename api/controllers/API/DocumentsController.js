@@ -6,6 +6,8 @@
  */
 
 const arrayHelpers = require('../../utils/ArrayHelpers');
+const path = require('path');
+const fs = require('fs');
 
 module.exports = {
   /**
@@ -22,7 +24,7 @@ module.exports = {
         {
           model: Document,
           as: 'Documents',
-          attributes: ['id', 'fileName'],
+          attributes: ['id', 'fileName', 'originalFileName'],
           include: [
             {
               model: Condition,
@@ -38,15 +40,13 @@ module.exports = {
       return res.send('Sorry, no report found. You may not be logged in.');
     }
 
-    let documents = [];
-
     // massage the data a bit
-    medicalReport.Documents.forEach((document) => {
-      documents.push({
+    let documents = medicalReport.Documents.map(document => {
+      return {
         id: document.id,
-        fileName: document.fileName,
+        fileName: document.originalFileName,
         conditions: arrayHelpers.pluckIds(document.Conditions)
-      });
+      };
     });
 
     res.send(documents);
@@ -65,12 +65,38 @@ module.exports = {
       },
     });
 
-    let document = await medicalReport.createDocument({
-      originalFileName: req.body.file,
-      fileName: req.body.file
-    });
+    var settings = {
+      maxBytes: 10000000,
+    };
 
-    res.send(document);
+    req.file('file').upload(settings, async (err, uploadedFiles) => {
+      if (err) {
+        if (err.code === 'E_EXCEEDS_UPLOAD_LIMIT') {
+          res.status(413);
+          return res.json(err.code);
+        }
+
+        return res.serverError(err);
+      }
+
+      if (uploadedFiles.length === 0) {
+        return res.badRequest('No file was uploaded');
+      }
+
+      let file = uploadedFiles[0];
+      let filename = path.basename(file.fd);
+
+      let document = await medicalReport.createDocument({
+        originalFileName: file.filename,
+        fileName: filename
+      });
+
+      return res.json({
+        message: uploadedFiles.length + ' file(s) uploaded successfully!',
+        files: uploadedFiles,
+        document: document
+      });
+    });
   },
 
   /**
@@ -105,9 +131,16 @@ module.exports = {
       },
     });
 
-    await document.destroy();
+    const filePath = path.join(process.cwd(), '.tmp/uploads', document.fileName);
 
-    res.send('ok');
+    // delete from filesystem
+    fs.unlink(filePath, async (err) => {
+      if (err) { return console.log(err); }
+
+      await document.destroy();
+
+      res.ok();
+    });
   }
 };
 

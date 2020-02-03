@@ -23,4 +23,4 @@ module.exports.routes = {
       fr: '/fr/sessions/:session/view'
     }
   },
-}
+};
