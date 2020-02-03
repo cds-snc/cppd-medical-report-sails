@@ -5,6 +5,9 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const path = require('path');
+const fs = require('fs');
+
 module.exports = {
   /**
    * Get all documents related to a condition
@@ -44,7 +47,15 @@ module.exports = {
      */
     let condition = _.first(medicalReport.Conditions);
 
-    res.send(condition.Documents);
+    // massage the data a bit
+    let documents = condition.Documents.map(document => {
+      return {
+        id: document.id,
+        fileName: document.originalFileName
+      };
+    });
+
+    res.send(documents);
   },
 
   /**
@@ -85,13 +96,38 @@ module.exports = {
     let document = await Document.findOne({
       where: {
         id: req.body.docId
-      }
+      },
+      include: [
+        {
+          model: Condition,
+          as: 'Conditions'
+        }
+      ]
     });
 
-    condition.removeDocument(document);
+    // remove the document from this condition
+    await condition.removeDocument(document);
 
-    res.send('ok');
-    // If this is the only Condition this is associated with, then delete Document?
+    // refresh the document model
+    await document.reload();
+
+    /**
+     * If this was the only condition the document was
+     * associated with, delete the document.
+     */
+    if (!document.Conditions.length) {
+      const filePath = path.join(process.cwd(), '.tmp/uploads', document.fileName);
+
+      fs.unlink(filePath, async (err) => {
+        if (err) { return console.log(err); }
+
+        await document.destroy();
+
+        return res.ok();
+      });
+    } else {
+      res.ok();
+    }
   }
 };
 
