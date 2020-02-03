@@ -1,12 +1,23 @@
 <template>
   <div class="file">
-    <div class>
+    <div :class="uploadError.length ? 'pl-8 border-l-4 border-red-700' : ''">
       <label
         class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
       >
         <span>{{ this.uploadLabel }}</span>
-        <input type="file" ref="file" @change="onSelect" class="hidden" />
+        <input
+          type="file"
+          ref="file"
+          @change="onSelect"
+          class="hidden"
+          :aria-describedby="uploadError.length > 0 ? 'file-error' : ''"
+          :aria-invalid="uploadError.length > 0"
+        />
       </label>
+      <span v-if="uploadError.length" class="validation-message" id="file-error" role="alert">
+        <span class="visually-hidden">Error:</span>
+        {{ uploadError }}
+      </span>
     </div>
 
     <div class="mt-4">
@@ -39,12 +50,14 @@
                     <div class="multiple-choice__item">
                       <input
                         type="checkbox"
-                        name="supportingDocuments"
+                        :id="'supportingDocuments_' + file.id + '_' + condition.id"
                         :value="condition.id"
                         v-model="file.conditions"
                         @change="saveConditions(file)"
                       />
-                      <label>{{ condition.conditionName }}</label>
+                      <label
+                        :for="'supportingDocuments_' + file.id + '_' + condition.id"
+                      >{{ condition.conditionName }}</label>
                     </div>
                   </li>
                 </ul>
@@ -74,7 +87,8 @@ export default {
   data() {
     return {
       uploaded_files: [],
-      conditions: []
+      conditions: [],
+      uploadError: []
     };
   },
   props: {
@@ -97,16 +111,25 @@ export default {
   },
   methods: {
     onSelect() {
+      this.uploadError = [];
       const file = this.$refs.file.files[0];
-      this.addFile(file.name);
+      this.uploadFile(file);
     },
-    addFile(file) {
+    uploadFile(file) {
+      let formData = new FormData();
+      formData.append("file", file);
+
       axios
-        .post("/api/documents", {
-          file: file
+        .post("/api/documents", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
         })
         .then(response => {
           this.updateFiles();
+        })
+        .catch(err => {
+          this.uploadError = err.response.data;
         });
     },
     removeFile(fileId) {
