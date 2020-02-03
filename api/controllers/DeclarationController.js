@@ -27,27 +27,6 @@ module.exports = {
   },
 
   store: async function (req, res) {
-    let medicalReport = await MedicalReport.findOne({
-      where: {
-        applicationCode: req.session.applicationCode
-      }
-    });
-
-    let valid = req.validate(req, res, require('../schemas/declaration.schema'));
-
-    if (valid) {
-      // save the model
-      await medicalReport.update({
-        practitionerType: req.body.practitionerType,
-        otherSpecify: req.body.otherSpecify,
-        name: req.body.name,
-        date: req.body.date,
-        physicianAddress: req.body.physicianAddress,
-        billingIdType: req.body.billingIdType,
-        billingId: req.body.billingId,
-      });
-
-      res.redirect(sails.route('confirmation'));
-    }
+    // placeholder
   }
 };

@@ -1,37 +1,9 @@
 {% extends "layouts/layout.njk" %}
 
-{% block scripts %}
-    <script type="text/javascript" src="/build/assets/js/declaration.js"></script>
-{% endblock %}
-
 {% block content %}
 
     {{ backButton('dashboard') }}
 
-    <h1>{{ __('section9.title') }}</h1>
-
-    <form method="post">
-        <input type="hidden" name="_csrf" value="{{ _csrf }}">
-        {{ radioButtons('practitionerType', { '1':'section9.confirm_statement_ccfp','4':'section9.confirm_statement_other', '2':'section9.confirm_statement_np', '3':'section9.confirm_statement_rn'}, data.practitionerType, 'section9.confirm_statement_2', errors, { required: true }) }}
-        
-        <div id="otherPractitionerType" class="ml-12">
-            {{ textArea('otherSpecify', 'section9.other_specify')}}
-        </div>
-
-        {{ textInput('name', 'Name', { required: true }) }}
-        {{ textInput('date', 'Date', { hint: 'year_month_day_format', required: true }) }}
-        {{ textArea('physicianAddress', 'section9.address_and_phone', { required: true}) }}
-        
-        <p>{{ __('declaration.billing_instructions') }}</p>
-        {{ radioButtons('billingIdType', { 'bn':'declaration.billing_bn','gstHst':'delcaration.billing_gst_hst', 'sin':'declaration.billing_sin' }, data.billingIdType, 'declaration.billing_id_type', errors, { required: true }) }}
-        {{ textInput('billingId', 'declaration.billing_id', { required: true }) }}
-
-        <p>{{ __('declaration.billing_invoice') }}</p>
-        <div id="app">
-            <file-upload files="{{ data.billingInvoice }}" field-name="billingInvoice" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
-        </div>
-
-        {{ formButtons('return_to_dashboard', route('dashboard')) }}
-    </form>
+    This is going to be something else
 
 {% endblock %}
