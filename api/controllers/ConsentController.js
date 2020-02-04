@@ -5,6 +5,23 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+function getSignatureDrawData(req) {
+  if(req.body.signature_mode === 'draw') {
+    return req.body.signature_draw_data;
+  }
+
+  return undefined;
+}
+
+function getSignatureTypedData(req) {
+  if(req.body.signature_mode === 'type') {
+    return req.body.signature_typed;
+  }
+
+  return undefined;
+}
+
+
 module.exports = {
   index: async function (req, res) {
     // Load the report from the database.
@@ -28,18 +45,23 @@ module.exports = {
   },
 
   store: async function (req, res) {
+
+    console.log(req);
+
     let valid = req.validate(req, res, require('../schemas/consent.schema'));
 
     if (valid) {
       // Update existing, or create a new one!
       await MedicalReport.update({
-        consent: req.body.consent === '1',
-        signature: req.body.signature,
-        witnessFirst: req.body.witnessFirst,
-        witnessMiddle: req.body.witnessMiddle,
-        witnessLast: req.body.witnessLast,
-        witnessPhone: req.body.witnessPhone,
-        witnessSignature: req.body.witnessSignature,
+        consent: req.body.consent === 'yes',
+        consentEducation: req.body.consent_optional_parties.includes('education'),
+        consentAccountant: req.body.consent_optional_parties.includes('accountant'),
+        consentFinancial: req.body.consent_optional_parties.includes('financial'),
+        consentVolunteer: req.body.consent_optional_parties.includes('volunteer'),
+        consentEmployees: req.body.consent_optional_parties.includes('employees'),
+        signatureMode: req.body.signature_mode,
+        signatureDraw: getSignatureDrawData(req),
+        signatureType: getSignatureTypedData(req),
       }, {
         where: {
           applicationCode: req.session.applicationCode
