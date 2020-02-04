@@ -7,7 +7,13 @@
 
 function getSignatureDrawData(req) {
   if(req.body.signature_mode === 'draw') {
-    return req.body.signature_draw_data;
+    let drawData = req.body.signature_draw_data;
+    let match = /(<svg.+<\/svg>)/.exec(drawData);
+    if(match == null) {
+      return undefined;
+    }
+        
+    return match[1];
   }
 
   return undefined;
