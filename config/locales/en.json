@@ -580,5 +580,6 @@
 	"ma.view.label.type_of_work": "Type of work:",
 	"ma.view.label.type_of_work_detail": "Type of work detail:",
 	"ma.view.label.functional_limitations": "Functional limitations:",
-	"ma.view.label.future_treatments": "Future treatments/impact on functional abilities:"
+	"ma.view.label.future_treatments": "Future treatments/impact on functional abilities:",
+	"Signature is required": "Signature is required"
 }
