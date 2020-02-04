@@ -11,7 +11,7 @@
         {{ textInput('lastName', 'section1.last_names', { required: true }) }}
         {{ textInput('birthLastName', 'section1.birth_last_name') }}
 
-        {{ textInput('birthdate', 'section1.birthdate', { hint: 'year_month_day_format', required: true }) }}
+        {{ dateInput('birthdate', data.birthdate, __('section1.birthdate')) }}
 
         {{ textInput('address', 'section1.mailing_address', { required: true}) }}
         {{ textInput('city', 'section1.city', { required: true}) }}
