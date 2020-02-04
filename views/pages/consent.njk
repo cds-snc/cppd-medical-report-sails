@@ -74,7 +74,7 @@
                     'volunteer': 'consent.volunteer',
                     'employees': 'consent.employees'
                 }, 
-                [
+                data.consent_optional_parties if data.consent_optional_parties else [
                     'education', 
                     'accountant',
                     'financial',
@@ -94,7 +94,7 @@
                         'yes': 'consent.yes',
                         'no': 'consent.no'
                     },
-                    null,
+                    data.consent,
                     'consent.question',
                     errors,
                     {
@@ -127,7 +127,7 @@
                         'draw': 'consent.signature_draw',
                         'type': 'consent.signature_type'
                     },
-                    'draw',
+                    data.signature_mode if data.signature_mode else 'draw',
                     'consent.signature_option',
                     errors,
                     {
