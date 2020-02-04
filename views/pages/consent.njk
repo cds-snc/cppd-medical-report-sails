@@ -1,16 +1,12 @@
 {% extends "layouts/layout.njk" %}
 
 {% block scripts %}
-    
+    {# The signature pad uses jQuery and a jQuery plugin called jSignature #}
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/build/assets/js/jSignature.min.js"></script>
+    
+    {# These scripts control showing/hiding of signature modes, and collecting drawing data #}
     <script>
-        var signaturePad = null;
-        $(document).ready(function() {
-            signaturePad = $("#signature_pad");
-            signaturePad.jSignature({width: 600, height: 200});
-        })
-
         function signatureDraw() {
             $('#signature_draw').show();
             $('#signature_type').hide();
@@ -31,8 +27,12 @@
             }    
         };
 
-        $('input[type=radio][name=signature_mode]').change(switchSignatureMode);
-        switchSignatureMode();
+        $(document).ready(function() {
+            $("#signature_pad").jSignature({width: 600, height: 200});
+            
+            $('input[type=radio][name=signature_mode]').change(switchSignatureMode);
+            switchSignatureMode();
+        })
 
     </script>
 {% endblock %}
