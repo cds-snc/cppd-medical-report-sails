@@ -39,7 +39,7 @@ module.exports.views = {
 
   getRenderFn: () => {
     const nunjucks = require('nunjucks');
-    const dateFilter = require('nunjucks-date-filter');
+    const datePart = require('../views/filters/date-part');
 
     const env = nunjucks.configure(['views', 'views/macros'], {
       autoescape: true,
@@ -48,7 +48,7 @@ module.exports.views = {
 
     nunjucks.installJinjaCompat();
 
-    env.addFilter('date', dateFilter);
+    env.addFilter('datePart', datePart);
 
     return nunjucks.render;
   }
