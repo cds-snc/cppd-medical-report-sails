@@ -13,17 +13,6 @@ module.exports.routes = {
     }
   },
 
-  'GET /en/sessions/:session/download': {
-    name: 'sessions.download',
-    controller: 'SessionsController',
-    action: 'download',
-    lang: 'en',
-    i18n: {
-      en: '/en/sessions/:session/download',
-      fr: '/fr/sessions/:session/download'
-    }
-  },
-
   'GET /en/sessions/:session/view': {
     name: 'sessions.view',
     controller: 'SessionsController',
@@ -34,4 +23,4 @@ module.exports.routes = {
       fr: '/fr/sessions/:session/view'
     }
   },
-}
+};

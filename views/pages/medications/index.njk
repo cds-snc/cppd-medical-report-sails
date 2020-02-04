@@ -6,18 +6,18 @@
     
     <h1 class="border-gray-400 border-b">{{ __('medication.title') }}<br/> <span class="text-base">{{ __('patient_name')}} {{ patientName(data) }}</span></h1>
 
-    {% if (not data.medications.length) %}
+    {% if (not data.Medications.length) %}
         <form method="post">
-            {{ radioButtons('patientMedications', { 'yes':'Yes', 'no':'No' }, data.patientMedications, 'medications.patient_medications', errors, { required: true }) }}
+            {{ radioButtons('patientMedications', { '1':'Yes', '0':'No' }, data.patientMedications, 'medications.patient_medications', errors, { required: true }) }}
             <div class="mt-4 w-1/3">
                 <button type="submit">{{ __('Save') }}</button>
             </div>
         </form>
     {% endif %}
 
-    {% if (data.medications.length) %}
+    {% if (data.Medications.length) %}
         <div class="mt-10">
-            {% for medication in data.medications %}  
+            {% for medication in data.Medications %}  
                 <div class="flex border-t border-b">
                     <div class="w-1/2">
                         <p>{{ medication.medicationName }}</p>
@@ -25,11 +25,11 @@
                         <p class="text-base">{{ medication.medicationStartDate }} - {{ medication.medicationEndDate }}</p>
                     </div>
                     <div class="w-1/2">
-                        <a href="{{ route('medications.edit', { id: loop.index }) }}" class="text-sm">
+                        <a href="{{ route('medications.edit', { id: medication.id }) }}" class="text-sm">
                             <svg class="w-4 h-4 inline fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M17.561 2.439c-1.442-1.443-2.525-1.227-2.525-1.227L8.984 7.264 2.21 14.037 1.2 18.799l4.763-1.01 6.774-6.771 6.052-6.052c-.001 0 .216-1.083-1.228-2.527zM5.68 17.217l-1.624.35a3.71 3.71 0 0 0-.69-.932 3.742 3.742 0 0 0-.932-.691l.35-1.623.47-.469s.883.018 1.881 1.016c.997.996 1.016 1.881 1.016 1.881l-.471.468z"/></svg>
                             {{ __('medications.edit_medication') }}<span class="sr-only"> {{ medication.medicationName }}</span>
                         </a><br>
-                        <form action="{{ route('medications.delete', { id: loop.index }) }}" method="POST" class="mt-0">
+                        <form action="{{ route('medications.delete', { id: medication.id }) }}" method="POST" class="mt-0">
                             <input type="hidden" name="_csrf" value="{{ _csrf }}">
                             <a href="#" role="button" onclick="this.parentNode.submit();" class="text-sm">
                                 <svg class="w-4 h-4 inline fill-current mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 1.6a8.4 8.4 0 100 16.8 8.4 8.4 0 000-16.8zm5 9.4H5V9h10v2z"/></svg>

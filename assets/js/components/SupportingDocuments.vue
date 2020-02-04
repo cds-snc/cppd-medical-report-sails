@@ -1,17 +1,27 @@
 <template>
   <div class="file">
-    <form enctype="multipart/form-data">
-      <div class>
-        <label
-          class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
-        >
-          <span>{{ this.uploadLabel }}</span>
-          <input type="file" ref="file" @change="onSelect" class="hidden" />
-        </label>
-      </div>
-    </form>
+    <div :class="uploadError.length ? 'pl-8 border-l-4 border-red-700' : ''">
+      <label
+        class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
+      >
+        <span>{{ this.uploadLabel }}</span>
+        <input
+          type="file"
+          ref="file"
+          @change="onSelect"
+          class="hidden"
+          :aria-describedby="uploadError.length > 0 ? 'file-error' : ''"
+          :aria-invalid="uploadError.length > 0"
+        />
+      </label>
+      <span v-if="uploadError.length" class="validation-message" id="file-error" role="alert">
+        <span class="visually-hidden">Error:</span>
+        {{ uploadError }}
+      </span>
+    </div>
+
     <div class="mt-4">
-      <table class="table-fixed">
+      <table class="table-fixed" v-show="uploaded_files.length > 0">
         <thead>
           <tr>
             <th class="w-1/2 text-left">Document</th>
@@ -20,31 +30,34 @@
         </thead>
         <tbody>
           <tr
-            v-for="(file, key) in uploaded_files"
-            v-bind:key="key"
+            v-for="(file) in uploaded_files"
+            v-bind:key="file.id"
             class="border-t border-gray-300"
           >
             <td class="py-4 px-4">
-              {{ file.name }}
+              {{ file.fileName }}
               <br />
               <a
                 href="#"
                 class="flex-auto remove-file underline text-base cursor-pointer w-4"
-                @click="removeFile(file)"
+                @click.prevent="removeFile(file.id)"
               >{{ removeLabel }}</a>
             </td>
             <td class="pb-4 px-4">
               <div class="multiple-choice multiple-choice--checkboxes">
                 <ul class="list-none pl-0">
-                  <li class="my-4" v-for="(condition, key) in conditions" v-bind:key="key">
+                  <li class="my-4" v-for="(condition) in conditions" v-bind:key="condition.id">
                     <div class="multiple-choice__item">
                       <input
                         type="checkbox"
-                        :name="'supportingDocuments[]name[' + file.name + ']conditions'"
-                        :value="key"
-                        :checked="isSelected(key, file.conditions)"
+                        :id="'supportingDocuments_' + file.id + '_' + condition.id"
+                        :value="condition.id"
+                        v-model="file.conditions"
+                        @change="saveConditions(file)"
                       />
-                      <label>{{ condition.conditionName }}</label>
+                      <label
+                        :for="'supportingDocuments_' + file.id + '_' + condition.id"
+                      >{{ condition.conditionName }}</label>
                     </div>
                   </li>
                 </ul>
@@ -54,6 +67,18 @@
         </tbody>
       </table>
     </div>
+    <div class="multiple-choice multiple-choice--checkboxes">
+      <div class="multiple-choice__item">
+        <input id="attachLater" name="attachLater" type="checkbox" value="attachLater" />
+        <label for="attachLater">{{ attachLaterLabel }}</label>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <div class="buttons--left">
+        <button type="submit" class="w-1/3">{{ nextButtonLabel }}</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -62,18 +87,11 @@ export default {
   data() {
     return {
       uploaded_files: [],
-      allConditions: []
+      conditions: [],
+      uploadError: []
     };
-  }, // file.conditions.indexOf(key) != -1
+  },
   props: {
-    files: {
-      type: Array,
-      required: true
-    },
-    conditions: {
-      type: Array,
-      required: true
-    },
     uploadLabel: {
       type: String,
       required: true
@@ -81,27 +99,73 @@ export default {
     removeLabel: {
       type: String,
       required: true
+    },
+    attachLaterLabel: {
+      type: String,
+      required: true
+    },
+    nextButtonLabel: {
+      type: String,
+      required: true
     }
   },
   methods: {
     onSelect() {
+      this.uploadError = [];
       const file = this.$refs.file.files[0];
-      this.uploaded_files.push({
-        name: file.name,
-        conditions: []
+      this.uploadFile(file);
+    },
+    uploadFile(file) {
+      let formData = new FormData();
+      formData.append("file", file);
+
+      axios
+        .post("/api/documents", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
+        .then(response => {
+          this.updateFiles();
+        })
+        .catch(err => {
+          this.uploadError = err.response.data;
+        });
+    },
+    removeFile(fileId) {
+      axios
+        .delete("/api/documents", {
+          data: {
+            id: fileId
+          }
+        })
+        .then(response => {
+          this.updateFiles();
+        });
+    },
+    updateFiles() {
+      axios.get("/api/documents").then(response => {
+        this.uploaded_files = response.data;
       });
     },
-    removeFile(file) {
-      this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+    saveConditions(file) {
+      axios
+        .patch("/api/documents/" + file.id, {
+          conditions: file.conditions
+        })
+        .then(response => {
+          this.updateFiles();
+        });
     },
-    isSelected(conditionId, selectedConditions) {
-      return selectedConditions.indexOf(conditionId) >= 0;
+    saveDocuments(e) {
+      e.submit();
     }
   },
   mounted() {
-    if (this.files) {
-      this.uploaded_files = this.files;
-    }
+    this.updateFiles();
+    axios.get("/api/conditions").then(response => {
+      this.conditions = response.data;
+    });
   }
 };
 </script>

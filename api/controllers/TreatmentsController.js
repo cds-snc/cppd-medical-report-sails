@@ -5,16 +5,24 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const dataStore = require('../utils/DataStore');
-
 module.exports = {
-  index: function (req, res) {
+  index: async function (req, res) {
+    // Load the report from the database.
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        { model: Treatment, as: 'Treatments' }
+      ]
+    });
+
     res.view('pages/treatments/index', {
-      data: req.session.medicalReport
+      data: medicalReport
     });
   },
 
-  save: function (req, res) {
+  save: async function (req, res) {
     let valid = req.validate(req, res, {
       patientTreatments: {
         presence: {
@@ -26,10 +34,15 @@ module.exports = {
 
     if (valid) {
       // save the model
-      req.session.medicalReport.patientTreatments = req.body.patientTreatments;
-      dataStore.storeMedicalReport(req.session.medicalReport);
+      await MedicalReport.update({
+        patientTreatments: req.body.patientTreatments,
+      }, {
+        where: {
+          applicationCode: req.session.applicationCode
+        }
+      });
 
-      if (req.body.patientTreatments === 'yes') {
+      if (req.body.patientTreatments === '1') {
         return res.redirect(sails.route('treatments.add'));
       }
 
