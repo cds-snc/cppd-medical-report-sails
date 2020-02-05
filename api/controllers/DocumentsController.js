@@ -70,7 +70,7 @@ module.exports = {
     const SkipperDisk = require('skipper-disk');
     const fileAdapter = SkipperDisk();
 
-    res.set("Content-disposition", "attachment; filename=" + document.originalFileName);
+    res.set('Content-disposition', 'attachment; filename=' + document.originalFileName);
 
     fileAdapter.read(filePath).pipe(res);
   }
