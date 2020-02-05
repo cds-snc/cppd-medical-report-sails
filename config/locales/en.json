@@ -533,6 +533,11 @@
 	"invite.medical_professional_instruction": "Your doctor or nurse practioner will use this unique code to fill out a report about your medical condition(s), and how they impact your ability to work.",
 	"invite.print_button": "Print this code",
 	"invite.url": "https://cppd-medical-report-stage.herokuapp.com/en/doctor",
+	"invite.no_consent_1": "You did not give consent for Service Canada to request more information.",
+	"invite.no_consent_2": "Service Canada will make a decision on your application based only on the information you have given in your application form.",
+	"invite.no_consent_3": " if you change your mind and would like to give your consent.",
+	"invite.no_consent_3_link_text": "Contact Service Canada",
+	"invite.no_consent_3_link_href": "https://catalogue.servicecanada.gc.ca/content/EForms/en/ReturningtheForm/IspCpp.html",
 	"errors.work.return_to_work": "Select an option to tell us if you think your patient will be able to return to work.",
 	"errors.work.return_to_work_timeframe": "Select an estimate of when you think your patient will return to work.",
 	"errors.work.return_to_work_type": "Select an option to tell us if your patient will be able to return to the same type of work, or something different.",
@@ -581,5 +586,6 @@
 	"ma.view.label.type_of_work_detail": "Type of work detail:",
 	"ma.view.label.functional_limitations": "Functional limitations:",
 	"ma.view.label.future_treatments": "Future treatments/impact on functional abilities:",
-	"Signature is required": "Signature is required"
+	"Signature is required": "Signature is required",
+	"section2.i_dont_consent": "section2.i_dont_consent"
 }

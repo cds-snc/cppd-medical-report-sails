@@ -57,22 +57,34 @@ module.exports = {
     let valid = req.validate(req, res, require('../schemas/consent.schema'));
 
     if (valid) {
+
       // Update existing, or create a new one!
-      await MedicalReport.update({
-        consent: req.body.consent === 'yes',
-        consentEducation: req.body.consent_optional_parties.includes('education'),
-        consentAccountant: req.body.consent_optional_parties.includes('accountant'),
-        consentFinancial: req.body.consent_optional_parties.includes('financial'),
-        consentVolunteer: req.body.consent_optional_parties.includes('volunteer'),
-        consentEmployees: req.body.consent_optional_parties.includes('employees'),
-        signatureMode: req.body.signature_mode,
-        signatureDraw: getSignatureDrawData(req),
-        signatureType: getSignatureTypedData(req),
-      }, {
-        where: {
-          applicationCode: req.session.applicationCode
-        }
-      });
+      if( req.body.consent === 'no') {
+        await MedicalReport.update({
+          consent: false,
+        }, {
+          where: {
+            applicationCode: req.session.applicationCode
+          }
+        });
+      }
+      else {
+        await MedicalReport.update({
+          consent: true,
+          consentEducation: req.body.consent_optional_parties.includes('education'),
+          consentAccountant: req.body.consent_optional_parties.includes('accountant'),
+          consentFinancial: req.body.consent_optional_parties.includes('financial'),
+          consentVolunteer: req.body.consent_optional_parties.includes('volunteer'),
+          consentEmployees: req.body.consent_optional_parties.includes('employees'),
+          signatureMode: req.body.signature_mode,
+          signatureDraw: getSignatureDrawData(req),
+          signatureType: getSignatureTypedData(req),
+        }, {
+          where: {
+            applicationCode: req.session.applicationCode
+          }
+        });
+      }
 
       res.redirect(sails.route('invite'));
     }
