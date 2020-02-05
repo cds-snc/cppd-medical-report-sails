@@ -2,10 +2,19 @@
 
 {% block content %}
 
-    <h1>{{ __('confirmation.thank_you') }}</h1>
+    <h1>{{ __('confirmation.title', data.fullName) }}</h1>
 
     <div>
-        <p>{{ __('confirmation.thank_you_participating') }}</p>
+        <p>{{ __('confirmation.you_have_submitted', data.fullName) }}</p>
+
+        <h2 class="text-2xl mb-2">{{ __('confirmation.what_happens_next') }}</h2>
+
+        <p>{{ __('confirmation.what_happens_next_1', data.fullName) }}</p>
+        <p>{{ __('confirmation.what_happens_next_2') }}</p>
+
+        <a class="button-link" href="" role="button">
+            {{ __('confirmation.download_the_medical_report') }}
+        </a>
     </div>
 
 {% endblock %}
