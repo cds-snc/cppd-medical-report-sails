@@ -7,20 +7,20 @@
     {% if data.consent %}
         <p>{{ data.firstName }} {{ data.lastName }} ({{ data.socialInsuranceNumber }}) {{ __('show_consent.intro') }}</p>
 
-        <ul class="list-none">
-            {{ checkmarkListItem( 'consent.practioners',  true )}}
-            {{ checkmarkListItem( 'consent.facilities',  true )}}
-            {{ checkmarkListItem( 'consent.government',  true )}}
-            {{ checkmarkListItem( 'consent.compensation_boards',  true )}}
-            {{ checkmarkListItem( 'consent.employers',  true )}}
-            {{ checkmarkListItem( 'consent.insurers',  true )}}
-            {# Things that are sometimes not selected #}
-            {{ checkmarkListItem( 'consent.education',  data.consentEducation )}}
-            {{ checkmarkListItem( 'consent.accountant',  data.consentAccountant )}}
-            {{ checkmarkListItem( 'consent.financial',  data.consentFinancial )}}
-            {{ checkmarkListItem( 'consent.volunteer',  data.consentVolunteer )}}
-            {{ checkmarkListItem( 'consent.employees',  data.consentEmployees )}}
-        </ul>
+        
+        {{ checkmarkList([
+            ['consent.practioners',  true],
+            ['consent.facilities',  true],
+            ['consent.government',  true],
+            ['consent.compensation_boards',  true],
+            ['consent.employers',  true],
+            ['consent.insurers',  true],
+            ['consent.education',  data.consentEducation],
+            ['consent.accountant',  data.consentAccountant],
+            ['consent.financial',  data.consentFinancial],
+            ['consent.volunteer',  data.consentVolunteer],
+            ['consent.employees',  data.consentEmployees]
+        ])}}
 
     {% else %}
          <p>{{ data.firstName }} {{ data.lastName }} ({{ data.socialInsuranceNumber }}) {{ __('show_consent.no_consent_intro') | safe }}</p>    
