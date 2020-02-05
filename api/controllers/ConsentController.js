@@ -9,12 +9,7 @@ const moment = require('moment');
 
 function getSignatureDrawData(req) {
   if(req.body.signatureMode === 'draw') {
-    let drawData = req.body.signatureDrawData;
-    let match = /(<svg.+<\/svg>)/.exec(drawData);
-    if(match === null) {
-      return undefined;
-    }
-    return match[1];
+    return req.body.signatureDrawData;
   }
 
   return undefined;

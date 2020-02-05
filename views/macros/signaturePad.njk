@@ -1,0 +1,103 @@
+{#
+    Allows signatures to be collected either by drawing on the screen or typing.
+
+    Form inputs are collected with the following named fields (i.e. Can get from request at `req.body.<name>`):
+        - signatureMode: String, either "draw" or "type"
+        - signatureDrawData: <svg> data representing a drawn signature
+        - signatureTyped: String containing a typed signature
+
+    Technical details:
+        - This modifies the `scripts` section on the main `layout` page, but injecting jQuery and some JS functions
+#}
+
+{% macro signaturePad() %}
+
+    {{ radioButtons(
+            'signatureMode',
+            {
+                'draw': 'consent.signature_draw',
+                'type': 'consent.signature_type'
+            },
+            data.signatureMode if data.signatureMode else 'draw',
+            'consent.signature_option',
+            errors,
+            {
+                'required': true
+            }
+        )
+    }}
+
+    <br/>
+    <div id="signature_draw" class="{{ 'has-error' if errors and errors['signatureDrawData'] }}">
+        <label>
+            <span aria-hidden="true" class="required">*</span>
+            {{ __('consent.signature_draw_instructions') }}
+            <span class="required">{{ __('required') }}</span>
+        </label>
+        {% if errors and errors['signatureDrawData'] %}
+            {{ validationMessage(errors['signatureDrawData'], 'signatureDrawData') }}
+        {% endif %}
+        <div id="signature_draw" class="relative w-3-4 border-2 border-black">
+            <div id="signature_pad_clear" class="bottom-0 w-full text-right pr-4 pt-4 leading-none bg-white">
+                <a onclick="$('#signature_pad').jSignature('clear')" class="no-underline text-gray-700">Clear</a>
+            </div>
+            <div id="signature_pad" class="overflow-hidden bg-white"></div>
+            <div id="signature_pad_line" class="absolute bottom-0 p-4 pb-16 pointer-events-none w-full">
+                <div class="border-b border-gray-500 text-gray-500">x</div>
+            </div>
+        </div>
+        <input id="signature_draw_data" name="signatureDrawData" type="hidden"/>
+    </div>
+
+    <div id="signature_type" class="hidden">
+        {{ textInput('signatureTyped', 'consent.signature_type_instructions', {'required': true} ) }}
+    </div>
+
+    {% block scripts %}
+        {# The signature pad uses jQuery and a jQuery plugin called jSignature #}
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="/build/assets/js/jSignature.min.js"></script> <!-- https://github.com/brinley/jSignature -->
+        
+        {# These scripts control showing/hiding of signature modes, and collecting drawing data #}
+        <script>
+            function signatureDraw() {
+                $('#signature_draw').show();
+                $('#signature_type').hide();
+            };
+
+            function signatureType() {
+                $('#signature_draw').hide();
+                $('#signature_type').show();
+            };
+
+            function switchSignatureMode() {
+                let value = $('input[type=radio][name=signatureMode]:checked')[0].value;
+                if(value === 'draw'){
+                    signatureDraw();
+                }
+                else {
+                    signatureType();
+                }    
+            };
+
+            function encodeSignatureDrawing() {
+                let data = $('#signature_pad').jSignature('getData', 'svg');
+                let match = /(<svg.+<\/svg>)/.exec(data);
+                if(match === null) {
+                    return undefined;
+                }
+                $('#signature_draw_data').val(match[1]);
+            };
+
+            $(document).ready(function() {
+                let signaturePad = $("#signature_pad");
+                signaturePad.jSignature({width: 600, height: 200});
+
+                $('input[type=radio][name=signatureMode]').change(switchSignatureMode);
+                switchSignatureMode();
+
+                signaturePad.change(encodeSignatureDrawing);
+            });
+        </script>
+    {% endblock %}
+{% endmacro %}
