@@ -61,7 +61,7 @@ module.exports = {
         middleName: req.body.middleName,
         lastName: req.body.lastName,
         birthLastName: req.body.birthLastName,
-        birthdate: req.body.birthdate, // gonna have to build this
+        birthdate: req.body.birthdate,
         address: req.body.address,
         city: req.body.city,
         province: req.body.province,
