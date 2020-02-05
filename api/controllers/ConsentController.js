@@ -8,13 +8,12 @@
 const moment = require('moment');
 
 function getSignatureDrawData(req) {
-  if(req.body.signature_mode === 'draw') {
-    let drawData = req.body.signature_draw_data;
+  if(req.body.signatureMode === 'draw') {
+    let drawData = req.body.signatureDrawData;
     let match = /(<svg.+<\/svg>)/.exec(drawData);
     if(match === null) {
       return undefined;
     }
-        
     return match[1];
   }
 
@@ -22,8 +21,8 @@ function getSignatureDrawData(req) {
 }
 
 function getSignatureTypedData(req) {
-  if(req.body.signature_mode === 'type') {
-    return req.body.signature_typed;
+  if(req.body.signatureMode === 'type') {
+    return req.body.signatureTyped;
   }
 
   return undefined;
@@ -75,7 +74,7 @@ module.exports = {
           consentFinancial: req.body.consent_optional_parties.includes('financial'),
           consentVolunteer: req.body.consent_optional_parties.includes('volunteer'),
           consentEmployees: req.body.consent_optional_parties.includes('employees'),
-          signatureMode: req.body.signature_mode,
+          signatureMode: req.body.signatureMode,
           signatureDraw: getSignatureDrawData(req),
           signatureType: getSignatureTypedData(req),
           applicantSubmittedAt: moment().format()

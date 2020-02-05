@@ -5,14 +5,14 @@ module.exports = {
       allowEmpty: false,
     },
   },
-  signature_mode: {
+  signatureMode: {
     presence: {
       message: '^You must select an option',
       allowEmpty: false,
     },
   },
-  signature_draw_data: function (value, attributes) {
-    const mode = attributes.signature_mode;
+  signatureDrawData: function (value, attributes) {
+    const mode = attributes.signatureMode;
     if (mode === 'draw') {
       return {
         presence: {
@@ -22,8 +22,8 @@ module.exports = {
       };
     }
   },
-  signature_typed: function (value, attributes) {
-    const mode = attributes.signature_mode;
+  signatureTyped: function (value, attributes) {
+    const mode = attributes.signatureMode;
     if (mode === 'type') {
       return {
         presence: {

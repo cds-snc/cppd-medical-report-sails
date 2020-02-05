@@ -23,8 +23,8 @@ module.exports = {
     signatureMode: Sequelize.STRING, // 'draw' or 'type'
     signatureDraw: Sequelize.TEXT, // SVG data
     signatureType: Sequelize.STRING, // Full name
-    relationshipStarted: Sequelize.STRING, 
-    firstTreatmentDate: Sequelize.STRING, 
+    relationshipStarted: Sequelize.STRING,
+    firstTreatmentDate: Sequelize.STRING,
     visitNumber: Sequelize.INTEGER,
     lastVisitDate: Sequelize.STRING,
     conditionType: Sequelize.STRING,

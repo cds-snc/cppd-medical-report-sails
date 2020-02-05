@@ -9,16 +9,16 @@
     <script>
         function signatureDraw() {
             $('#signature_draw').show();
-            $('#signature_type').hide();
+            $('#signatureType').hide();
         };
 
         function signatureType() {
             $('#signature_draw').hide();
-            $('#signature_type').show();
+            $('#signatureType').show();
         };
 
         function switchSignatureMode() {
-            let value = $('input[type=radio][name=signature_mode]:checked')[0].value;
+            let value = $('input[type=radio][name=signatureMode]:checked')[0].value;
             if(value === 'draw'){
                 signatureDraw();
             }
@@ -29,14 +29,14 @@
 
         function encodeSignatureDrawing() {
             let data = $('#signature_pad').jSignature('getData', 'svg');
-            $('#signature_draw_data').val(data);
+            $('#signatureDrawData').val(data);
         };
 
         $(document).ready(function() {
             let signaturePad = $("#signature_pad");
             signaturePad.jSignature({width: 600, height: 200});
 
-            $('input[type=radio][name=signature_mode]').change(switchSignatureMode);
+            $('input[type=radio][name=signatureMode]').change(switchSignatureMode);
             switchSignatureMode();
 
             signaturePad.change(encodeSignatureDrawing);
@@ -122,12 +122,12 @@
             <br/>
 
             {{ radioButtons(
-                    'signature_mode',
+                    'signatureMode',
                     {
                         'draw': 'consent.signature_draw',
                         'type': 'consent.signature_type'
                     },
-                    data.signature_mode if data.signature_mode else 'draw',
+                    data.signatureMode if data.signatureMode else 'draw',
                     'consent.signature_option',
                     errors,
                     {
@@ -138,14 +138,14 @@
 
             <br/>
 
-            <div id="signature_draw" class="{{ 'has-error' if errors and errors['signature_draw_data'] }}">
+            <div id="signature_draw" class="{{ 'has-error' if errors and errors['signatureDrawData'] }}">
                 <label>
                     <span aria-hidden="true" class="required">*</span>
                     {{ __('consent.signature_draw_instructions') }}
                     <span class="required">{{ __('required') }}</span>
                 </label>
-                {% if errors and errors['signature_draw_data'] %}
-                    {{ validationMessage(errors['signature_draw_data'], 'signature_draw_data') }}
+                {% if errors and errors['signatureDrawData'] %}
+                    {{ validationMessage(errors['signatureDrawData'], 'signatureDrawData') }}
                 {% endif %}
                 <div id="signature_draw" class="relative w-3-4 border-2 border-black">
                     <div id="signature_pad_clear" class="bottom-0 w-full text-right pr-4 pt-4 leading-none bg-white">
@@ -156,11 +156,11 @@
                         <div class="border-b border-gray-500 text-gray-500">x</div>
                     </div>
                 </div>
-                <input id="signature_draw_data" name="signature_draw_data" type="hidden"/>
+                <input id="signatureDrawData" name="signatureDrawData" type="hidden"/>
             </div>
 
-            <div id="signature_type" class="hidden">
-                {{ textInput('signature_typed', 'consent.signature_type_instructions', {'required': true} ) }}
+            <div id="signatureType" class="hidden">
+                {{ textInput('signatureTyped', 'consent.signature_type_instructions', {'required': true} ) }}
             </div>
         </div>
 
