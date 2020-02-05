@@ -6,6 +6,7 @@
  */
 
 const path = require('path');
+const fs = require('fs');
 
 module.exports = {
   index: async function (req, res) {
@@ -66,6 +67,10 @@ module.exports = {
     });
 
     const filePath = path.join(process.cwd(), '.tmp/uploads', document.fileName);
+
+    if (!fs.existsSync(filePath)) {
+      return res.notFound();
+    }
 
     const SkipperDisk = require('skipper-disk');
     const fileAdapter = SkipperDisk();
