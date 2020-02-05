@@ -14,8 +14,7 @@ function ableToSubmit(sections) {
     sections.medications &&
     sections.treatments &&
     sections.futureWork &&
-    sections.supportingDocuments &&
-    sections.overallHealth;
+    sections.supportingDocuments;
 }
 
 const dashboardHelpers = require('../utils/DashboardHelpers');
