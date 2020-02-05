@@ -572,5 +572,15 @@
 	"ma.view.label.functional_limitations": "Functional limitations:",
 	"ma.view.label.future_treatments": "Future treatments/impact on functional abilities:",
 	"Email is required": "Email is required",
-	"Does not seem to be a valid email": "Does not seem to be a valid email"
+	"Does not seem to be a valid email": "Does not seem to be a valid email",
+	"City is required": "City is required",
+	"Province is required": "Province is required",
+	"Country is required": "Country is required",
+	"Postal code is required": "Postal code is required",
+	"Birthdate birthdate": "Birthdate birthdate",
+	"Birthdate is not a valid date": "Birthdate is not a valid date",
+	"Birthdate is not formatted correctly": "Birthdate is not formatted correctly",
+	"Month": "Month",
+	"Day": "Day",
+	"Year": "Year"
 }
