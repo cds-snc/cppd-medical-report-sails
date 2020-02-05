@@ -12,11 +12,11 @@ module.exports = {
     req.session.medicalReport = {};
 
     // Get full URL
-    const protocol = req.connection.encrypted? 'https' : 'http';
-    const medicalProfessionalRoute = sails.config.routes['GET /en/medical-professional'].i18n[req.i18n.locale];
+    const protocol = req.connection.encrypted ? 'https' : 'http';
+    const medicalProfessionalRoute = sails.route('medical-professional');
     let medicalProfessionalUrl = protocol + '://' + req.headers.host + medicalProfessionalRoute;
 
-    res.view('pages/invite',{
+    res.view('pages/invite', {
       applicationCode: applicationCode,
       medicalProfessionalUrl: medicalProfessionalUrl,
     });

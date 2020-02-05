@@ -4,12 +4,21 @@
     <h1>{{ __('invite.title') }}</h1>
 
     <div class="w-4/5 block border border-gray-500 border-solid p-5">
-        <p>{{ __('invite.give_code') }}</p>
+        <p class="font-semi-bold">{{ __('invite.give_code') }}</p>
+        <p>{{ __('invite.give_code_details') }}</p>
         <p class="font-bold text-6xl">{{ applicationCode }}</p>
-        <!-- TODO Dynamically generate the URL, rather than pulling in from translation -->
-        <p class="font-bold">{{ medicalProfessionalUrl }}</p>
-        <p>{{ __('invite.medical_professional_instruction') }}</p>
+        <p>{{ __('invite.expires', '[PLACEHOLDER DATE]') }}</p>
+        <p>{{ __('invite.code_loss_instruction') }}</p>
         <a href="javascript:window.print()" class="button-link w-2/5">{{ __('invite.print_button') }}</a>
+    </div>
+
+    <div class="mt-8">
+        <p>{{ __('invite.for_medical_professionals') }}</p>
+        <ol>
+            <li>{{ __('invite.go_to', medicalProfessionalUrl) }}</li>
+            <li>{{ __('invite.enter_the_code', applicationCode) }}</li>
+            <li>{{ __('invite.complete_sections') }}</li>
+        </ol>
     </div>
 
 {% endblock %}
