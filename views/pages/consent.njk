@@ -9,12 +9,12 @@
     <script>
         function signatureDraw() {
             $('#signature_draw').show();
-            $('#signatureType').hide();
+            $('#signature_type').hide();
         };
 
         function signatureType() {
             $('#signature_draw').hide();
-            $('#signatureType').show();
+            $('#signature_type').show();
         };
 
         function switchSignatureMode() {
@@ -29,7 +29,7 @@
 
         function encodeSignatureDrawing() {
             let data = $('#signature_pad').jSignature('getData', 'svg');
-            $('#signatureDrawData').val(data);
+            $('#signature_draw_data').val(data);
         };
 
         $(document).ready(function() {
@@ -156,10 +156,10 @@
                         <div class="border-b border-gray-500 text-gray-500">x</div>
                     </div>
                 </div>
-                <input id="signatureDrawData" name="signatureDrawData" type="hidden"/>
+                <input id="signature_draw_data" name="signatureDrawData" type="hidden"/>
             </div>
 
-            <div id="signatureType" class="hidden">
+            <div id="signature_type" class="hidden">
                 {{ textInput('signatureTyped', 'consent.signature_type_instructions', {'required': true} ) }}
             </div>
         </div>
