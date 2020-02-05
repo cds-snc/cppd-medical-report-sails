@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const moment = require('moment');
+
 function getSignatureDrawData(req) {
   if(req.body.signature_mode === 'draw') {
     let drawData = req.body.signature_draw_data;
@@ -51,17 +53,14 @@ module.exports = {
   },
 
   store: async function (req, res) {
-
-    console.log(req);
-
     let valid = req.validate(req, res, require('../schemas/consent.schema'));
 
     if (valid) {
-
       // Update existing, or create a new one!
       if( req.body.consent === 'no') {
         await MedicalReport.update({
           consent: false,
+          applicantSubmittedAt: moment().format()
         }, {
           where: {
             applicationCode: req.session.applicationCode
@@ -79,6 +78,7 @@ module.exports = {
           signatureMode: req.body.signature_mode,
           signatureDraw: getSignatureDrawData(req),
           signatureType: getSignatureTypedData(req),
+          applicantSubmittedAt: moment().format()
         }, {
           where: {
             applicationCode: req.session.applicationCode
@@ -98,8 +98,14 @@ module.exports = {
       }
     });
 
+    let submissionMoment = moment(medicalReport.applicantSubmittedAt);
+    let submittedAt = submissionMoment.format('H:mm MMMM D[,] YYYY');
+    let validTil = submissionMoment.add(3, 'y').format('LL');
+
     res.view('pages/show_consent', {
-      data: medicalReport
+      data: medicalReport,
+      submittedAt: submittedAt,
+      validTil: validTil
     });
   }
 };

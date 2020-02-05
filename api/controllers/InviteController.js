@@ -7,9 +7,13 @@
 
 module.exports = {
   index: async function (req, res) {
-    // Get code, then clear session
-    const applicationCode = req.session.applicationCode;
-    req.session.medicalReport = {};
+    // Get some data, then clear session
+    const medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+    req.session.destroy();
 
     // Get full URL
     const protocol = req.connection.encrypted? 'https' : 'http';
@@ -17,8 +21,9 @@ module.exports = {
     let medicalProfessionalUrl = protocol + '://' + req.headers.host + medicalProfessionalRoute;
 
     res.view('pages/invite',{
-      applicationCode: applicationCode,
+      applicationCode: medicalReport.applicationCode,
       medicalProfessionalUrl: medicalProfessionalUrl,
+      consent: medicalReport.consent,
     });
   },
 };

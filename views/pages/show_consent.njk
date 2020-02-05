@@ -34,6 +34,7 @@
     {% endif %}
 
     <!-- TODO -->
-    <p><em>TODO Implement submission date stamping and formatted</em></p>
+    <p>{{ __('show_consent.submitted') }} {{ submittedAt }}</p>
+    <p>{{ __('show_consent.valid_til') }} {{ validTil }}</p>
 
 {% endblock %}

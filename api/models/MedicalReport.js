@@ -51,6 +51,7 @@ module.exports = {
     physicianAddress: Sequelize.TEXT,
     billingIdType: Sequelize.STRING,
     billingId: Sequelize.STRING,
+    applicantSubmittedAt: Sequelize.DATE,
   },
   associations: function () {
     MedicalReport.hasMany(Condition, {
