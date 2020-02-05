@@ -9,7 +9,7 @@
 var nunjucks = require('nunjucks');
 
 // a date part filter for Nunjucks
-// usage: {{ my_date | date(YYYY|MM|DD) }}
+// usage: {{ my_date | datePart(YYYY|MM|DD) }}
 function datePart(date, part) {
   // [0] = YYYY
   // [1] = MM
