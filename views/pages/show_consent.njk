@@ -8,28 +8,32 @@
         <p>{{ data.firstName }} {{ data.lastName }} ({{ data.socialInsuranceNumber }}) {{ __('show_consent.intro') }}</p>
 
         <ul class="list-none">
-            {{ checkmarkListItem( 'consent.practioners',  true, '', 'h-5 w-5')}}
-            {{ checkmarkListItem( 'consent.facilities',  true, '', 'h-5 w-5')}}
-            {{ checkmarkListItem( 'consent.government',  true, '', 'h-5 w-5')}}
-            {{ checkmarkListItem( 'consent.compensation_boards',  true, '', 'h-5 w-5')}}
-            {{ checkmarkListItem( 'consent.employers',  true, '', 'h-5 w-5')}}
-            {{ checkmarkListItem( 'consent.insurers',  true, '', 'h-5 w-5')}}
+            {{ checkmarkListItem( 'consent.practioners',  true )}}
+            {{ checkmarkListItem( 'consent.facilities',  true )}}
+            {{ checkmarkListItem( 'consent.government',  true )}}
+            {{ checkmarkListItem( 'consent.compensation_boards',  true )}}
+            {{ checkmarkListItem( 'consent.employers',  true )}}
+            {{ checkmarkListItem( 'consent.insurers',  true )}}
             {# Things that are sometimes not selected #}
-            {{ checkmarkListItem( 'consent.education',  data.consentEducation, '', 'h-5 w-5')}}
-            {{ checkmarkListItem( 'consent.accountant',  data.consentAccountant, '', 'h-5 w-5')}}
-            {{ checkmarkListItem( 'consent.financial',  data.consentFinancial, '', 'h-5 w-5')}}
-            {{ checkmarkListItem( 'consent.volunteer',  data.consentVolunteer, '', 'h-5 w-5')}}
-            {{ checkmarkListItem( 'consent.employees',  data.consentEmployees, '', 'h-5 w-5')}}
+            {{ checkmarkListItem( 'consent.education',  data.consentEducation )}}
+            {{ checkmarkListItem( 'consent.accountant',  data.consentAccountant )}}
+            {{ checkmarkListItem( 'consent.financial',  data.consentFinancial )}}
+            {{ checkmarkListItem( 'consent.volunteer',  data.consentVolunteer )}}
+            {{ checkmarkListItem( 'consent.employees',  data.consentEmployees )}}
         </ul>
 
-        <p>{{ data.firstName }} {{ data.lastName }}{{ __('show_consent.signature_intro') }}</p>
-        {% if data.signatureMode === 'draw' %}
-            {{ data.signatureDraw | safe }}
-        {% else %}
-            <span class="signature">{{ data.signatureType }}</span>
-        {% endif %}
     {% else %}
-
+         <p>{{ data.firstName }} {{ data.lastName }} ({{ data.socialInsuranceNumber }}) {{ __('show_consent.no_consent_intro') | safe }}</p>    
     {% endif %}
+
+    <p>{{ data.firstName }} {{ data.lastName }}{{ __('show_consent.signature_intro') }}</p>
+    {% if data.signatureMode === 'draw' %}
+        {{ data.signatureDraw | safe }}
+    {% else %}
+        <span class="signature">{{ data.signatureType }}</span>
+    {% endif %}
+
+    <!-- TODO -->
+    <p><em>TODO Implement submission date stamping and formatted</em></p>
 
 {% endblock %}
