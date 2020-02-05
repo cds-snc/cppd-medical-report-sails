@@ -500,5 +500,8 @@
 	"section1.country": "Pays",
 	"section1.postal": "Code postal",
 	"section1.email": "Courriel",
-	"section1.email.hint": "Cela ne sera utilisé que pour vous envoyer des mises à jour sur votre application"
+	"section1.email.hint": "Cela ne sera utilisé que pour vous envoyer des mises à jour sur votre application",
+	"Month": "Mois",
+	"Day": "Joui",
+	"Year": "Année"
 }
