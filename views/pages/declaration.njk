@@ -4,6 +4,34 @@
 
     {{ backButton('dashboard') }}
 
-    This is going to be something else
+    <p>{{ __('Review and confirm the contents of this medical report before submitting to Service Canada.') }}</p>
+
+    <details class="mt-4 border-none" open>
+        <summary><h2 class="mt-4 text-4xl inline">{{ __('Basic patient information') }}</h2></summary>
+        <table class="table-fixed">
+            <tbody>
+                <tr class="bg-white odd:bg-gray-200">
+                    <th scope="row" class="w-1/3 text-left font-normal p-4">{{ __('section3.form.relationship_started.desc', data.fullName) }}</th>
+                    <td class="w-2/3 p-4">{{ data.relationshipStarted }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-left font-normal p-4">{{ __('section3.form.first_treatment_date.desc', data.fullName) }}</th>
+                    <td class="p-4">{{ data.firstTreatmentDate }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-left font-normal p-4">{{ __('section3.form.visit_number.desc', data.fullName) }}</th>
+                    <td class="p-4">{{ data.visitNumber }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-left font-normal p-4">{{ __('section3.form.last_visit_date.desc') }}</th>
+                    <td class="p-4">{{ data.lastVisitDate }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="text-left font-normal p-4">{{ __('section3.form.stopWorking.desc', data.fullName) }}</th>
+                    <td class="p-4">{{ data.stopWorking }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </details>
 
 {% endblock %}
