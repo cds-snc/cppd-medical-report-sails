@@ -41,7 +41,6 @@ module.exports = {
     returnToWorkWhen: Sequelize.INTEGER, // fk to support
     typeOfWork: Sequelize.INTEGER, // fk to support
     workDetails: Sequelize.TEXT,
-    overallHealth: Sequelize.TEXT,
     patientMedications: Sequelize.BOOLEAN,
     patientTreatments: Sequelize.BOOLEAN,
     practitionerType: Sequelize.INTEGER, // fk to support
