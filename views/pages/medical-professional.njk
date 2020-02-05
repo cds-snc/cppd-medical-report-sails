@@ -8,13 +8,15 @@
     <p>{{ __('medical_professional.instructions_2') }}</p>
 
     <form action="{{ route('medical-professional.store') }}" method="post">        
-        {{ textInput('applicationCode', 'medical_professional.invitation_code', { class: "w-3-4", required: true }) }}
-        {{ textInput('birthdate', 'medical_professional.patient_birth_date', { hint: 'year_month_day_format', required: true }) }}
+        {{ textInput('applicationCode', 'medical_professional.invitation_code', { class: "w-1/3", required: true }) }}
+        {{ dateInput('birthdate', data.birthdate, __('medical_professional.patient_birth_date'), { required: true }) }}
 
         <div class="w-full">
             <div class="w-1/3">
                 <button type="submit">{{ __('medical_professional.start') }}</button>
             </div>
         </div>
+
+        <p class="mt-8">If your patient has lost their unique code, ask them to generate a new one by going to: [SERVICE URL]</p>
     </form>
 {% endblock %}

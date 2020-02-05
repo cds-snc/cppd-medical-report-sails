@@ -17,6 +17,9 @@ module.exports = {
   },
 
   store: async function (req, res) {
+    // combine date parts and reassign to the body for validation
+    req.body.birthdate = req.body.birthdateYear + '-' + req.body.birthdateMonth + '-' + req.body.birthdateDay;
+
     // Validate completion / formatting, this calls res.redirect if invalid
     let valid = req.validate(req, res, require('../schemas/invitation.schema'));
 
