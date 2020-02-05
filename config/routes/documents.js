@@ -25,7 +25,7 @@ module.exports.routes = {
   },
 
   'GET /en/documents/:id': {
-    name: 'documents',
+    name: 'documents.get',
     controller: 'DocumentsController',
     action: 'get',
     lang: 'en',
