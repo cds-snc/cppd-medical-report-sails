@@ -38,6 +38,24 @@ module.exports = {
       },
     };
   },
+  birthdateDay: {
+    presence: {
+      allowEmpty: false,
+      message: '^Birthdate day is required'
+    }
+  },
+  birthdateMonth: {
+    presence: {
+      allowEmpty: false,
+      message: '^Birthdate month is required'
+    }
+  },
+  birthdateYear: {
+    presence: {
+      allowEmpty: false,
+      message: '^Birthdate year is required'
+    }
+  },
   address: {
     presence: {
       allowEmpty: false,
