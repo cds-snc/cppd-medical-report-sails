@@ -5,6 +5,9 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const path = require('path');
+const fs = require('fs');
+
 module.exports = {
   index: async function (req, res) {
     // Load the report from the database.
@@ -54,5 +57,26 @@ module.exports = {
      */
 
     res.redirect(sails.route('dashboard'));
+  },
+
+  get: async function (req, res) {
+    let document = await Document.findOne({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    const filePath = path.join(process.cwd(), '.tmp/uploads', document.fileName);
+
+    if (!fs.existsSync(filePath)) {
+      return res.notFound();
+    }
+
+    const SkipperDisk = require('skipper-disk');
+    const fileAdapter = SkipperDisk();
+
+    res.set('Content-disposition', 'attachment; filename=' + document.originalFileName);
+
+    fileAdapter.read(filePath).pipe(res);
   }
 };
