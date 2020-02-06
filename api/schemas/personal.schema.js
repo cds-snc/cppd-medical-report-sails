@@ -20,24 +20,6 @@ module.exports = {
       message: '^Last name is required'
     }
   },
-  birthdate: function (value) {
-    if (value) {
-      return {
-        validateDateFormat: {
-          message: '^Birthdate is not formatted correctly'
-        },
-        validateDateExists: {
-          message: '^Birthdate is not a valid date'
-        }
-      };
-    }
-    return {
-      presence: {
-        allowEmpty: false,
-        message: '^Birthdate is required'
-      },
-    };
-  },
   birthdateDay: {
     presence: {
       allowEmpty: false,
@@ -55,6 +37,24 @@ module.exports = {
       allowEmpty: false,
       message: '^Birthdate year is required'
     }
+  },
+  birthdate: function (value) {
+    if (value) {
+      return {
+        validateDateFormat: {
+          message: '^Birthdate is not formatted correctly'
+        },
+        validateDateExists: {
+          message: '^Birthdate is not a valid date'
+        }
+      };
+    }
+    return {
+      presence: {
+        allowEmpty: false,
+        message: '^Birthdate is required'
+      },
+    };
   },
   address: {
     presence: {
