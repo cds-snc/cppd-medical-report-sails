@@ -27,8 +27,8 @@
         {% endif %}
         <div class="flex">
           <div class="w-32">
-            <input class="{{ attributes.class if attributes.class }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="text" id="{{ name }}Month" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === name %} autofocus="true" {% endif %} name="{{ name }}Month" value="{{ value | datePart('MM') if value}}"/>
-            <label for="{{ name }}Month" class="text-gray-600">{{ __('Month') }}</label>
+            <input class="{{ attributes.class if attributes.class }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="text" id="{{ name }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === name %} autofocus="true" {% endif %} name="{{ name }}Month" value="{{ value | datePart('MM') if value}}"/>
+            <label for="{{ name }}" class="text-gray-600">{{ __('Month') }}</label>
           </div>
           <div class="w-32 ml-4">
             <input class="{{ attributes.class if attributes.class }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="text" id="{{ name }}Day" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === name %} autofocus="true" {% endif %} name="{{ name }}Day" value="{{ value | datePart('DD') if value }}"/>
