@@ -26,7 +26,7 @@ module.exports = {
     });
   },
 
-  store: async function (req, res) {
+  store: async function () {
     // placeholder
   }
 };
