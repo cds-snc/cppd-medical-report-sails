@@ -5,10 +5,8 @@ function checkPractitionerType() {
   additional.style.display = 'none';
 
   for (var i = 0, len = practitionerType.length; i < len; i++) {
-    if (practitionerType[i].checked) {
-      if (practitionerType[i].value === '4') {
-        additional.style.display = 'block';
-      }
+    if (practitionerType[i].checked && practitionerType[i].value === '4') {
+      additional.style.display = 'block';
     }
     practitionerType[i].onclick = function () {
       if (this.checked && this.value === '4') {
