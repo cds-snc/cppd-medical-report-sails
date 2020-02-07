@@ -514,7 +514,7 @@
 	"invite.url": "https://cppd-medical-report-stage.herokuapp.com/en/doctor",
 	"invite.for_medical_professionals": "For health professionals:",
 	"invite.go_to": "Go to %s",
-	"invite.enter_the_code": "Enter the code %s and your patient's date of birth.",
+	"invite.enter_the_code": "Enter the code '%s' and your patient's date of birth.",
 	"invite.complete_sections": "Complete the sections to provide information about your patient's health and ability to work.",
 	"errors.work.return_to_work": "Select an option to tell us if you think your patient will be able to return to work.",
 	"errors.work.return_to_work_timeframe": "Select an estimate of when you think your patient will return to work.",
