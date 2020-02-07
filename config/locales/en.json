@@ -588,12 +588,10 @@
 	"submit": "Submit",
 	"clear": "Clear",
 	"sessions.searchApplications": "sessions.searchApplications",
-	"": "",
 	"dashboard.practitioner": "Your information",
 	"errors.city_required": "City is required",
 	"errors.province_required": "Province is required",
 	"errors.country_required": "Country is required",
 	"errors.postal_required": "Postal is required",
 	"errors.phone_required": "Phone is required"
-
 }
