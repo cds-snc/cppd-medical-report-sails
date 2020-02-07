@@ -1,7 +1,7 @@
 function checkReturnToWork() {
   const returnToWork = document.getElementsByName('returnToWork');
   const additional = document.getElementById('additional_fields');
-  console.log(returnToWork);
+
   additional.style.display = 'none';
 
   for (var i = 0, len = returnToWork.length; i < len; i++) {

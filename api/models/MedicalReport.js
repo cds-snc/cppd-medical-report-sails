@@ -14,13 +14,14 @@ module.exports = {
     telephone: Sequelize.STRING,
     alternateTelephone: Sequelize.STRING,
     contactTime: Sequelize.STRING,
-    consent: Sequelize.BOOLEAN,
-    signature: Sequelize.STRING,
-    witnessFirst: Sequelize.STRING,
-    witnessMiddle: Sequelize.STRING,
-    witnessLast: Sequelize.STRING,
-    witnessPhone: Sequelize.STRING,
-    witnessSignature: Sequelize.STRING,
+    consent: Sequelize.BOOLEAN, // Overall, for Service Canada, medical professionals, and other gov
+    consentEducation: Sequelize.BOOLEAN, // Educational institutions or other vocational agencies
+    consentAccountant: Sequelize.BOOLEAN, // Accountant or bookkeeper for information on self-employment
+    consentFinancial: Sequelize.BOOLEAN, // Financial institutions (for address updates only)
+    consentVolunteer: Sequelize.BOOLEAN, // Volunteer organizations
+    consentEmployees: Sequelize.BOOLEAN, // Employees (for cases of self-employed persons)
+    signatureDraw: Sequelize.TEXT, // SVG data
+    signatureType: Sequelize.STRING, // Full name
     relationshipStarted: Sequelize.STRING,
     firstTreatmentDate: Sequelize.STRING,
     visitNumber: Sequelize.INTEGER,
@@ -42,12 +43,19 @@ module.exports = {
     patientMedications: Sequelize.BOOLEAN,
     patientTreatments: Sequelize.BOOLEAN,
     practitionerType: Sequelize.INTEGER, // fk to support
-    otherSpecify: Sequelize.STRING,
-    name: Sequelize.STRING,
-    date: Sequelize.DATEONLY,
-    physicianAddress: Sequelize.TEXT,
+    practitionerTypeOtherSpecify: Sequelize.STRING,
+    practitionerFirstName: Sequelize.STRING,
+    practitionerLastName: Sequelize.STRING,
+    practitionerAddress: Sequelize.STRING,
+    practitionerCity: Sequelize.STRING,
+    practitionerProvince: Sequelize.STRING,
+    practitionerCountry: Sequelize.STRING,
+    practitionerPostal: Sequelize.STRING,
+    practitionerEmail: Sequelize.STRING,
+    practitionerPhone: Sequelize.STRING,
     billingIdType: Sequelize.STRING,
     billingId: Sequelize.STRING,
+    applicantSubmittedAt: Sequelize.DATE,
   },
   associations: function () {
     MedicalReport.hasMany(Condition, {
