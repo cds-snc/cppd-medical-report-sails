@@ -6,7 +6,15 @@
  */
 
 module.exports = {
-  index: function (req, res) {
-    res.view('pages/confirmation');
+  index: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+
+    res.view('pages/confirmation', {
+      data: medicalReport
+    });
   },
 };
