@@ -86,13 +86,13 @@ module.exports = {
       message: '^Postal code is required'
     }
   },
-  email: {
-    presence: {
-      allowEmpty: false,
-      message: '^Email is required'
-    },
-    email: {
-      message: '^Does not seem to be a valid email'
+  email: function (value) {
+    if (value) {
+      return {
+        email: {
+          message: '^Does not seem to be a valid email'
+        }
+      };
     }
   },
   telephone: function (value) {
