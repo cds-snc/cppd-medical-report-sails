@@ -95,30 +95,10 @@ module.exports = {
       };
     }
   },
-  telephone: function (value) {
-    if (value) {
-      return {
-        format: {
-          pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
-          message: '^Telephone is incorrectly formatted'
-        }
-      };
-    }
-    return {
-      presence: {
-        allowEmpty: false,
-        message: '^Telephone is required'
-      },
-    };
-  },
-  alternateTelephone: function (value) {
-    if (value) { // makes it optional
-      return {
-        format: {
-          pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
-          message: '^Alternate telephone is incorrectly formatted'
-        }
-      };
-    }
+  telephone: {
+    presence: {
+      allowEmpty: false,
+      message: '^Telephone is required'
+    },
   },
 };
