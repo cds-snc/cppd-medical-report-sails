@@ -4,7 +4,7 @@
     <h1>{{ __('personal.title') }}</h1>
     
     <form action="{{ route('personal.store') }}" method="post">        
-        {{ textInput('socialInsuranceNumber', 'section1.sin', { hint: 'section1.sin_example', class: "w-3-4", required: true }) }}
+        {{ textInput('socialInsuranceNumber', 'section1.sin', { class: "w-3-4", required: true }) }}
         
         {{ textInput('firstName', 'section1.first_name', { required: true }) }}
         {{ textInput('middleName', 'section1.middle_name') }}
