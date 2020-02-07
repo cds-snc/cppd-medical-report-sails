@@ -20,7 +20,13 @@
                 {% for index, val in values %}
                     <div class="multiple-choice__item">
                         <input id="{{ key }}{{ val }}" name="{{ key }}" type="radio" value="{{ index }}" {% if value == index %} checked="checked" {% endif %} {% if errors and errors[key] %} aria-describedby="{{ key + '-error' }}" aria-invalid="true" {% endif %}>
-                        <label for="{{ key }}{{ val }}">{{ __(val) }}</label>
+                        <label for="{{ key }}{{ val }}">
+                            {% if attributes.safe %}
+                                {{ __(val) | safe }}
+                            {% else %}
+                                {{ __(val) }}
+                            {% endif %}
+                        </label>
                     </div>
                 {% endfor %}
             </div>
