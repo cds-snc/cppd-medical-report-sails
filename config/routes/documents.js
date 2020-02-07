@@ -23,4 +23,15 @@ module.exports.routes = {
       fr: '/fr/documents'
     }
   },
+
+  'GET /en/documents/:id': {
+    name: 'documents.get',
+    controller: 'DocumentsController',
+    action: 'get',
+    lang: 'en',
+    i18n: {
+      en: '/en/documents/:id',
+      fr: '/fr/documents/:id'
+    }
+  },
 };

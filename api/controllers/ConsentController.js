@@ -5,6 +5,25 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const moment = require('moment');
+
+function getSignatureDrawData(req) {
+  if(req.body.signatureMode === 'draw') {
+    return req.body.signatureDrawData;
+  }
+
+  return undefined;
+}
+
+function getSignatureTypedData(req) {
+  if(req.body.signatureMode === 'type') {
+    return req.body.signatureTyped;
+  }
+
+  return undefined;
+}
+
+
 module.exports = {
   index: async function (req, res) {
     // Load the report from the database.
@@ -32,34 +51,66 @@ module.exports = {
 
     if (valid) {
       // Update existing, or create a new one!
-      await MedicalReport.update({
-        consent: req.body.consent === '1',
-        signature: req.body.signature,
-        witnessFirst: req.body.witnessFirst,
-        witnessMiddle: req.body.witnessMiddle,
-        witnessLast: req.body.witnessLast,
-        witnessPhone: req.body.witnessPhone,
-        witnessSignature: req.body.witnessSignature,
-      }, {
-        where: {
-          applicationCode: req.session.applicationCode
-        }
-      });
+      if( req.body.consent === 'no') {
+        await MedicalReport.update({
+          consent: false,
+          applicantSubmittedAt: moment().format()
+        }, {
+          where: {
+            applicationCode: req.session.applicationCode
+          }
+        });
+      }
+      else {
+        await MedicalReport.update({
+          consent: true,
+          consentEducation: req.body.consent_optional_parties.includes('education'),
+          consentAccountant: req.body.consent_optional_parties.includes('accountant'),
+          consentFinancial: req.body.consent_optional_parties.includes('financial'),
+          consentVolunteer: req.body.consent_optional_parties.includes('volunteer'),
+          consentEmployees: req.body.consent_optional_parties.includes('employees'),
+          signatureMode: req.body.signatureMode,
+          signatureDraw: getSignatureDrawData(req),
+          signatureType: getSignatureTypedData(req),
+          applicantSubmittedAt: moment().format()
+        }, {
+          where: {
+            applicationCode: req.session.applicationCode
+          }
+        });
+      }
 
       res.redirect(sails.route('invite'));
     }
   },
 
   show: async function (req, res) {
+    let medicalReport = null;
+    if( req.session.applicationCode ) { // For medical professional view
+      medicalReport = await MedicalReport.findOne({
+        where: {
+          applicationCode: req.session.applicationCode
+        }
+      });
+    }
+    else { // For MAs
+      medicalReport = await MedicalReport.findOne({
+        where: {
+          id: req.params.session
+        }
+      });
+    }
+
     // Load the report from the database.
-    let medicalReport = await MedicalReport.findOne({
-      where: {
-        applicationCode: req.session.applicationCode
-      }
-    });
+
+    let submissionMoment = moment(medicalReport.applicantSubmittedAt);
+    let submittedAt = submissionMoment.format('LL');
+    let validTil = submissionMoment.add(3, 'y').format('LL');
 
     res.view('pages/show_consent', {
-      data: medicalReport
+      data: medicalReport,
+      submittedAt: submittedAt,
+      validTil: validTil
     });
   }
 };

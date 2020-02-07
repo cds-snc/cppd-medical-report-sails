@@ -4,7 +4,7 @@
 
 <h1>{{ __('ma.view.medical_report_for', data.firstName + ' ' + data.lastName) }}</h1>
 {{ __('ma.view.date_of_birth') }}: {{ data.birthdate }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}<br>
-{{ __('ma.view.label.consent') }} <a href="{{ route('consent.show') }}">{{ __('ma.view.view_and_download_consent') }}</a><br>
+{{ __('ma.view.label.consent') }} <a href={{ route('sessions.consent', { session: data.id }) }}>{{ __('ma.view.view_and_download_consent') }}</a><br>
 
 
 <details class="mt-4" open>
@@ -77,7 +77,7 @@
       <dt>{{ __('ma.view.label.supporting_documents') }}</dt>
       <dd>
         {% for document in condition.Documents %}
-          {{ document.fileName }}<br>
+          <a href="{{ route('documents.get', { id: document.id }) }}">{{ document.originalFileName }}</a><br>
         {% endfor %}
       </dd>
     </dl>
