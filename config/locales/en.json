@@ -578,5 +578,7 @@
 	"Signature is required": "Signature is required",
 	"section2.i_dont_consent": "section2.i_dont_consent",
 	"submit": "Submit",
-	"clear": "Clear"
+	"clear": "Clear",
+	"sessions.searchApplications": "sessions.searchApplications",
+	"": ""
 }

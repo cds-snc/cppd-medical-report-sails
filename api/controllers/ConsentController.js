@@ -85,12 +85,23 @@ module.exports = {
   },
 
   show: async function (req, res) {
+    let medicalReport = null;
+    if( req.session.applicationCode ) { // For medical professional view
+      medicalReport = await MedicalReport.findOne({
+        where: {
+          applicationCode: req.session.applicationCode
+        }
+      });
+    }
+    else { // For MAs
+      medicalReport = await MedicalReport.findOne({
+        where: {
+          id: req.params.session
+        }
+      });
+    }
+
     // Load the report from the database.
-    let medicalReport = await MedicalReport.findOne({
-      where: {
-        applicationCode: req.session.applicationCode
-      }
-    });
 
     let submissionMoment = moment(medicalReport.applicantSubmittedAt);
     let submittedAt = submissionMoment.format('H:mm MMMM D[,] YYYY');
