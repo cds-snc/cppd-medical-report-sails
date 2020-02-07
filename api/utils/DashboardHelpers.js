@@ -41,7 +41,7 @@ const getValidationStatus = (medicalReport) => {
     treatments: checkTreatements(medicalReport),
     futureWork: isValid(medicalReport, require('../schemas/work.schema')),
     supportingDocuments: isValid(medicalReport, require('../schemas/documents.schema')),
-    overallHealth: isValid(medicalReport, require('../schemas/health.schema')),
+    practitioner: isValid(medicalReport, require('../schemas/practitioner.schema')),
   };
 };
 

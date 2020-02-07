@@ -1,5 +1,5 @@
 /**
- * HealthController
+ * PractitionerController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
@@ -7,7 +7,6 @@
 
 module.exports = {
   index: async function (req, res) {
-    // Load the report from the database.
     let medicalReport = await MedicalReport.findOne({
       where: {
         applicationCode: req.session.applicationCode
@@ -22,7 +21,7 @@ module.exports = {
       medicalReport = _.merge(res.locals.data, medicalReport);
     }
 
-    res.view('pages/health', {
+    res.view('pages/practitioner', {
       data: medicalReport
     });
   },
@@ -34,15 +33,26 @@ module.exports = {
       }
     });
 
-    let valid = req.validate(req, res, require('../schemas/health.schema'));
+    let valid = req.validate(req, res, require('../schemas/practitioner.schema'));
 
     if (valid) {
       // save the model
-      medicalReport.update({
-        overallHealth: req.body.overallHealth,
+      await medicalReport.update({
+        practitionerType: req.body.practitionerType,
+        practitionerTypeOtherSpecify: req.body.practitionerTypeOtherSpecify,
+        practitionerFirstName: req.body.practitionerFirstName,
+        practitionerLastName: req.body.practitionerLastName,
+        practitionerAddress: req.body.practitionerAddress,
+        practitionerCity: req.body.practitionerCity,
+        practitionerProvince: req.body.practitionerProvince,
+        practitionerCountry: req.body.practitionerCountry,
+        practitionerPostal: req.body.practitionerPostal,
+        practitionerEmail: req.body.practitionerEmail,
+        practitionerPhone: req.body.practitionerPhone
       });
 
       res.redirect(sails.route('dashboard'));
     }
   }
 };
+

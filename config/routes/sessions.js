@@ -23,4 +23,14 @@ module.exports.routes = {
       fr: '/fr/sessions/:session/view'
     }
   },
+  'GET /en/sessions/:session/consent': {
+    name: 'sessions.consent',
+    controller: 'ConsentController',
+    action: 'show',
+    lang: 'en',
+    i18n: {
+      en: '/en/sessions/:session/consent',
+      fr: '/fr/sessions/:session/consent'
+    }
+  },
 };
