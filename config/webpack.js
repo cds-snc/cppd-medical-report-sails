@@ -23,6 +23,10 @@ module.exports.webpack = {
           {
             from: './assets/img',
             to: path.resolve(__dirname, '..', '.tmp', 'public', 'img')
+          },
+          {
+            from: './assets/js/jSignature.min.js',
+            to: path.resolve(__dirname, '..', '.tmp', 'public', 'build', 'assets', 'js')
           }
           /* {
             from: "./assets/fonts",
@@ -61,6 +65,7 @@ module.exports.webpack = {
           {
             test: /\.(js|jsx)$/,
             include: [path.resolve(__dirname, 'src')],
+            exclude: /jSignature/,
             loader: 'babel-loader',
             options: {
               plugins: ['syntax-dynamic-import'],
