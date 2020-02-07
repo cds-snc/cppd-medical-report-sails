@@ -504,7 +504,7 @@
 	"dashboard.overall-health": "Patient's Overall Health",
 	"dashboard.expedited-processing": "Expedited processing for terminal and grave conditions",
 	"conditions.incomplete": "Not Completed",
-	"invite.expires": "This code will expire on %s",
+	"invite.expires": "This code will expire on %s.",
 	"invite.code_loss_instruction": "If you lose your code, or it expires, fill out this form again to generate another code",
 	"invite.title": "Form submitted",
 	"invite.give_code": "To finish your medical report, give this code to your doctor or nurse practitioner.",
