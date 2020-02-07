@@ -41,9 +41,6 @@ module.exports = {
   birthdate: function (value) {
     if (value) {
       return {
-        validateDateFormat: {
-          message: '^Birthdate is not formatted correctly'
-        },
         validateDateExists: {
           message: '^Birthdate is not a valid date'
         }
