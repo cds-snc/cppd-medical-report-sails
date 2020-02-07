@@ -4,9 +4,11 @@
     <h1>{{ __('invite.title') }}</h1>
 
     <div class="w-4/5 block border border-gray-500 border-solid p-5">
+        <p class="font-bold text-6xl">{{ applicationCode }}</p>
+        
         <p class="font-semibold">{{ __('invite.give_code') }}</p>
         <p>{{ __('invite.give_code_details') }}</p>
-        <p class="font-bold text-6xl">{{ applicationCode }}</p>
+
         <a href="javascript:window.print()" class="button-link w-2/5">{{ __('invite.print_button') }}</a>
         <p class="mt-8">{{ __('invite.expires', '[PLACEHOLDER DATE]') }}</p>
         <p>{{ __('invite.code_loss_instruction') }}</p>
