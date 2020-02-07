@@ -506,7 +506,7 @@
 	"conditions.incomplete": "Not Completed",
 	"invite.expires": "This code will expire on %s.",
 	"invite.code_loss_instruction": "If you lose your code, or it expires, fill out this form again to generate another code.",
-	"invite.title": "Form submitted",
+	"invite.title": "Give this code to your doctor or nurse practitioner",
 	"invite.give_code": "To finish your medical report, give this code to your doctor or nurse practitioner.",
 	"invite.give_code_details": "They will use this code to fill out their part of the medical report form, and send it to us at Service Canada.",
 	"invite.medical_professional_instruction": "Your doctor or nurse practioner will use this unique code to fill out a report about your medical condition(s), and how they impact your ability to work.",
