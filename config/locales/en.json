@@ -487,7 +487,7 @@
 	"dashboard.consent": "has given consent for Service Canada to obtain personal information about them.",
 	"dashboard.view_download_consent": "View their consent",
 	"return_to_dashboard": "Save",
-	"show_consent.title": "'s file development consent",
+	"show_consent.title": "'s consent",
 	"show_consent.intro": "has given Service Canada permissions to obtain medical and professional information from:",
 	"show_consent.signature_intro": "'s signature:",
 	"show_consent.no_consent_intro": "has <strong>NOT</strong> given Service Canada permissions to obtain medical and personal information.",
