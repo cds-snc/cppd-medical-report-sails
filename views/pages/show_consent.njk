@@ -27,7 +27,7 @@
     {% endif %}
 
     <p>{{ data.firstName }} {{ data.lastName }}{{ __('show_consent.signature_intro') }}</p>
-    {% if data.signatureMode === 'draw' %}
+    {% if data.signatureDraw %}
         {{ data.signatureDraw | safe }}
     {% else %}
         <span class="signature text-4xl">{{ data.signatureType }}</span>

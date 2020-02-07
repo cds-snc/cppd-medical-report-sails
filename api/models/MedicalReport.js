@@ -20,7 +20,6 @@ module.exports = {
     consentFinancial: Sequelize.BOOLEAN, // Financial institutions (for address updates only)
     consentVolunteer: Sequelize.BOOLEAN, // Volunteer organizations
     consentEmployees: Sequelize.BOOLEAN, // Employees (for cases of self-employed persons)
-    signatureMode: Sequelize.STRING, // 'draw' or 'type'
     signatureDraw: Sequelize.TEXT, // SVG data
     signatureType: Sequelize.STRING, // Full name
     relationshipStarted: Sequelize.STRING,

@@ -104,7 +104,7 @@ module.exports = {
     // Load the report from the database.
 
     let submissionMoment = moment(medicalReport.applicantSubmittedAt);
-    let submittedAt = submissionMoment.format('H:mm MMMM D[,] YYYY');
+    let submittedAt = submissionMoment.format('LL');
     let validTil = submissionMoment.add(3, 'y').format('LL');
 
     res.view('pages/show_consent', {
