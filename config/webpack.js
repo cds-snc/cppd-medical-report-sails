@@ -50,6 +50,7 @@ module.exports.webpack = {
         relationship: './assets/js/pages/relationship.js',
         conditionAdder: './assets/js/pages/conditionAdder.js',
         work: './assets/js/pages/work.js',
+        declaration: './assets/js/pages/declaration.js',
       },
       output: {
         filename: 'assets/js/[name].js',
