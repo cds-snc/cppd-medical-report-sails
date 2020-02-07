@@ -332,7 +332,7 @@
 	"section2.delay_warning_3": "can require that I provide the necessary information.",
 	"section2.delay_warning_preamble": "I understand that if I do not give my consent, Service Canada:",
 	"consent.yes": "<strong>Yes</strong>, I give my consent. I understand that this information may help determine if I qualify or continue to qualify for CPP disability benefits.",
-	"consent.no": "<strong>No</strong>. I do not give my consent",
+	"consent.no": "<strong>No</strong>, I do not give my consent.",
 	"consent.title": "Consent for Service Canada to obtain personal information",
 	"consent.signature_draw": "Draw it",
 	"consent.signature_type": "Type it",
