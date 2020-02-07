@@ -337,7 +337,7 @@
 	"consent.signature_draw": "Draw it",
 	"consent.signature_type": "Type it",
 	"consent.signature_option": "How would you like to give your signature?",
-	"consent.signature_draw_instructions": "Draw your signature with your mouse, touchpad, or finger.",
+	"consent.signature_draw_instructions": "Draw your signature with your mouse, touchpad, or screen.",
 	"consent.signature_type_instructions": "Type your full name.",
 	"section3.form.first_treatment_date.desc": "When did you first start treating %s's primary medical condition?",
 	"section3.form.last_visit_date.desc": "When did they last visit you?",
