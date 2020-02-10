@@ -1,6 +1,9 @@
 'use strict';
 
 const stopWorking = require('../utils/support/stopWorking');
+const returnToWork = require('../utils/support/returnToWork');
+const returnToWorkWhen = require('../utils/support/returnToWorkWhen');
+const typeOfWork = require('../utils/support/typeOfWork');
 
 module.exports = {
   attributes: {
@@ -82,6 +85,21 @@ module.exports = {
       stopWorkingText: function () {
         if (this.stopWorking !== null) {
           return sails.__(stopWorking[this.stopWorking]);
+        }
+      },
+      returnToWorkText: function () {
+        if (this.returnToWork !== null) {
+          return sails.__(returnToWork[this.returnToWork]);
+        }
+      },
+      returnToWorkWhenText: function () {
+        if (this.returnToWorkWhen !== null) {
+          return sails.__(returnToWorkWhen[this.returnToWorkWhen]);
+        }
+      },
+      typeOfWorkText: function () {
+        if (this.typeOfWork !== null) {
+          return sails.__(typeOfWork[this.typeOfWork]);
         }
       }
     },

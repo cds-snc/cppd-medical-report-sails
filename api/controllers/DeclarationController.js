@@ -12,7 +12,9 @@ module.exports = {
         applicationCode: req.session.applicationCode
       },
       include: [
-        { model: Condition, as: 'Conditions', include: [ { model: Document, as: 'Documents'} ] }
+        { model: Condition, as: 'Conditions', include: [ { model: Document, as: 'Documents' } ] },
+        { model: Medication, as: 'Medications', include: [ { model: Condition, as: 'Conditions' } ] },
+        { model: Treatment, as: 'Treatments', include: [ { model: Condition, as: 'Conditions' } ] },
       ]
     });
 
