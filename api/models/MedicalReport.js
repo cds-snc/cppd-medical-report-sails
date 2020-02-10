@@ -4,6 +4,7 @@ const stopWorking = require('../utils/support/stopWorking');
 const returnToWork = require('../utils/support/returnToWork');
 const returnToWorkWhen = require('../utils/support/returnToWorkWhen');
 const typeOfWork = require('../utils/support/typeOfWork');
+const practitionerType = require('../utils/support/practitionerType');
 
 module.exports = {
   attributes: {
@@ -82,6 +83,9 @@ module.exports = {
       fullName: function () {
         return this.firstName + ' ' + this.lastName;
       },
+      practitionerFullName: function () {
+        return this.practitionerFirstName + ' ' + this.practitionerLastName;
+      },
       stopWorkingText: function () {
         if (this.stopWorking !== null) {
           return sails.__(stopWorking[this.stopWorking]);
@@ -100,6 +104,11 @@ module.exports = {
       typeOfWorkText: function () {
         if (this.typeOfWork !== null) {
           return sails.__(typeOfWork[this.typeOfWork]);
+        }
+      },
+      practitionerTypeText: function () {
+        if (this.practitionerType !== null) {
+          return sails.__(practitionerType[this.practitionerType]);
         }
       }
     },
