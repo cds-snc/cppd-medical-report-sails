@@ -7,6 +7,11 @@
 
 const applicationCodeHelper = require('../utils/ApplicationCodeHelper');
 
+// remove any non-numeric characters
+const numbersOnly = (txt) => {
+  return txt.replace(/\D/g,'');
+}
+
 module.exports = {
   index: async function (req, res) {
     /**
@@ -43,7 +48,7 @@ module.exports = {
   store: async function (req, res) {
 
     // combine date parts and reassign to the body for validation
-    req.body.birthdate = req.body.birthdateYear + '-' + req.body.birthdateMonth + '-' + req.body.birthdateDay;
+    req.body.birthdate = numbersOnly(req.body.birthdateYear) + '-' + numbersOnly(req.body.birthdateMonth) + '-' + numbersOnly(req.body.birthdateDay);
 
     let valid = req.validate(req, res, require('../schemas/personal.schema'));
 
