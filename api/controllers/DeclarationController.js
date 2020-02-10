@@ -48,7 +48,7 @@ module.exports = {
         // set submitted at?
       });
 
-      res.redirect(sails.route('dashboard'));
+      res.redirect(sails.route('confirmation'));
     }
   }
 };
