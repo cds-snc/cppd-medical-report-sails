@@ -1,5 +1,7 @@
 'use strict';
 
+const stopWorking = require('../utils/support/stopWorking');
+
 module.exports = {
   attributes: {
     applicationCode: { type: Sequelize.STRING, unique: true },
@@ -76,6 +78,11 @@ module.exports = {
     getterMethods: {
       fullName: function () {
         return this.firstName + ' ' + this.lastName;
+      },
+      stopWorkingText: function () {
+        if (this.stopWorking !== null) {
+          return sails.__(stopWorking[this.stopWorking]);
+        }
       }
     },
   }

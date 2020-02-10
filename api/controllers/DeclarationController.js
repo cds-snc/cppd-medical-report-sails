@@ -10,7 +10,10 @@ module.exports = {
     let medicalReport = await MedicalReport.findOne({
       where: {
         applicationCode: req.session.applicationCode
-      }
+      },
+      include: [
+        { model: Condition, as: 'Conditions', include: [ { model: Document, as: 'Documents'} ] }
+      ]
     });
 
     /**
