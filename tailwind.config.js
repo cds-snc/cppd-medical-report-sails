@@ -6,4 +6,4 @@ module.exports = {
     backgroundColor: ['responsive', 'odd', 'hover', 'focus']
   },
   plugins: [],
-}
+};
