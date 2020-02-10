@@ -26,7 +26,7 @@ module.exports = {
       medicalReport = _.merge(res.locals.data, medicalReport);
     }
 
-    res.view('pages/declaration', {
+    res.view('pages/practitioner/declaration', {
       data: medicalReport
     });
   },
@@ -50,5 +50,22 @@ module.exports = {
 
       res.redirect(sails.route('confirmation'));
     }
+  },
+
+  view: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+      include: [
+        { model: Condition, as: 'Conditions', include: [ { model: Document, as: 'Documents' } ] },
+        { model: Medication, as: 'Medications', include: [ { model: Condition, as: 'Conditions' } ] },
+        { model: Treatment, as: 'Treatments', include: [ { model: Condition, as: 'Conditions' } ] },
+      ]
+    });
+
+    res.view('pages/practitioner/view', {
+      data: medicalReport
+    });
   }
 };

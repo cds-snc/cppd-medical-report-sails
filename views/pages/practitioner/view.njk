@@ -340,15 +340,13 @@
         </table>
     </details>
 
-    <form action="{{ route('declaration.store') }}" method="post" class="w-full">
+
         <div class="mt-8 text-lg">
             <p class="font-bold">{{ __('declaration.i_confirm_that') }}</p>
         </div>
 
-        {{ signaturePad() }}
+        {{ data.practitionerSignatureDraw | safe }}
 
-        <div class="md:w-1/2">
-            <button type="submit">{{ __('declaration.submit_to_service_canada') }}</button>
-        </div>
-    </form>
+        {{ data.practitionerSignatureType }}
+
 {% endblock %}
