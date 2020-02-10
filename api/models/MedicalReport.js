@@ -59,6 +59,8 @@ module.exports = {
     practitionerPostal: Sequelize.STRING,
     practitionerEmail: Sequelize.STRING,
     practitionerPhone: Sequelize.STRING,
+    practitionerSignatureDraw: Sequelize.TEXT, // SVG data
+    practitionerSignatureType: Sequelize.STRING, // Full name
     billingIdType: Sequelize.STRING,
     billingId: Sequelize.STRING,
     applicantSubmittedAt: Sequelize.DATE,

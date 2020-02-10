@@ -338,6 +338,17 @@
                 </tr>
             </tbody>
         </table>
-
     </details>
+
+    <form action="{{ route('declaration.store') }}" method="post" class="w-full">
+        <div class="mt-8 text-lg">
+            <p class="font-bold">I confirm that, to the best of my knowledge all of the information I have provided in this report is accurate and complete</p>
+        </div>
+
+        {{ signaturePad() }}
+
+        <div class="md:w-1/2">
+            <button type="submit">{{ __('Submit report to Service Canada') }}</button>
+        </div>
+    </form>
 {% endblock %}

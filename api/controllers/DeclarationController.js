@@ -31,7 +31,24 @@ module.exports = {
     });
   },
 
-  store: async function () {
-    // placeholder
+  store: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
+
+    let valid = req.validate(req, res, require('../schemas/declaration.schema'));
+
+    if (valid) {
+      // save the model
+      medicalReport.update({
+        practitionerSignatureDraw: req.body.signatureMode === 'draw' ? req.body.signatureDrawData : null,
+        practitionerSignatureType: req.body.signatureMode === 'type' ? req.body.signatureTyped : null,
+        // set submitted at?
+      });
+
+      res.redirect(sails.route('dashboard'));
+    }
   }
 };
