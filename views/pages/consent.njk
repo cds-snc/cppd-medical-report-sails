@@ -5,7 +5,7 @@
     <h1>{{ __('consent.title') }}</h1>
 
     <p>{{ __('consent.preamble') }}</p>
-    
+
     <p class="font-bold">{{ __('consent.may_contact_preamble') }}</p>
     <ul>
         <li>{{ __('consent.practioners') }}</li>
@@ -19,36 +19,36 @@
     <form action="{{ route('consent.store') }}" method="post" class="w-full">
         <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
-        {{ 
+        {{
             checkBoxes(
-                'consent_optional_parties', 
+                'consent_optional_parties',
                 {
-                    'education': 'consent.education', 
+                    'education': 'consent.education',
                     'accountant':'consent.accountant',
                     'financial': 'consent.financial',
                     'volunteer': 'consent.volunteer',
                     'employees': 'consent.employees'
-                }, 
+                },
                 data.consent_optional_parties if data.consent_optional_parties else [
-                    'education', 
+                    'education',
                     'accountant',
                     'financial',
                     'volunteer',
                     'employees'
-                ], 
-                'consent.optional_parties_preamble', 
-                errors, 
+                ],
+                'consent.optional_parties_preamble',
+                errors,
                 {}
-            ) 
+            )
         }}
 
         <div class="border border-gray-600 border-solid bg-gray-100 p-8">
             {{ radioButtons(
                     'consent',
-                    {
-                        'yes': 'consent.yes',
-                        'no': 'consent.no'
-                    },
+                    [
+                        {'value': 'yes','text': 'consent.yes'},
+                        {'value': 'no','text': 'consent.no'}
+                    ],
                     data.consent,
                     'consent.question',
                     errors,
