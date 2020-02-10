@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const moment = require('moment');
+
 module.exports = {
   index: async function (req, res) {
     let medicalReport = await MedicalReport.findOne({
@@ -45,7 +47,7 @@ module.exports = {
       medicalReport.update({
         practitionerSignatureDraw: req.body.signatureMode === 'draw' ? req.body.signatureDrawData : null,
         practitionerSignatureType: req.body.signatureMode === 'type' ? req.body.signatureTyped : null,
-        // set submitted at?
+        practitionerSubmittedAt: moment().format()
       });
 
       res.redirect(sails.route('confirmation'));

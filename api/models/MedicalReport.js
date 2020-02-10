@@ -64,6 +64,7 @@ module.exports = {
     billingIdType: Sequelize.STRING,
     billingId: Sequelize.STRING,
     applicantSubmittedAt: Sequelize.DATE,
+    practitionerSubmittedAt: Sequelize.DATE
   },
   associations: function () {
     MedicalReport.hasMany(Condition, {
