@@ -606,5 +606,12 @@
 	"errors.province_required": "Province is required",
 	"errors.country_required": "Country is required",
 	"errors.postal_required": "Postal is required",
-	"errors.phone_required": "Phone is required"
+	"errors.phone_required": "Phone is required",
+	"declaration.review_and_confirm": "Review and confirm the contents of this medical report before submitting to Service Canada.",
+	"edit": "Edit",
+	"declaration.condition_likely_to": "%s's condition is likely to",
+	"declaration.you_are_a": "You are a",
+	"phone_number": "Phone number",
+	"declaration.submit_to_service_canada": "Submit report to Service Canada",
+	"declaration.i_confirm_that": "I confirm that, to the best of my knowledge all of the information I have provided in this report is accurate and complete"
 }
