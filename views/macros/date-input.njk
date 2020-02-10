@@ -42,15 +42,15 @@
         {% endif %}
         <div class="flex">
           <div class="w-32">
-            <input class="{{ attributes.class if attributes.class }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="text" id="{{ monthName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === monthName or firstError === name %} autofocus="true" {% endif %} name="{{ monthName }}" value="{{ value | datePart('MM') if value }}"/>
+            <input class="{{ attributes.class if attributes.class }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="number" pattern="[0-9]*" id="{{ monthName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === monthName or firstError === name %} autofocus="true" {% endif %} name="{{ monthName }}" value="{{ value | datePart('MM') if value }}"/>
             <label for="{{ monthName }}" class="text-gray-600">{{ __('Month') }}</label>
           </div>
           <div class="w-32 ml-4">
-            <input class="{{ attributes.class if attributes.class }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="text" id="{{ dayName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === dayName %} autofocus="true" {% endif %} name="{{ dayName }}" value="{{ value | datePart('DD') if value }}"/>
+            <input class="{{ attributes.class if attributes.class }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="number" pattern="[0-9]*" id="{{ dayName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === dayName %} autofocus="true" {% endif %} name="{{ dayName }}" value="{{ value | datePart('DD') if value }}"/>
             <label for="{{ dayName }}" class="text-gray-600">{{ __('Day') }}</label>
           </div>
           <div class="w-32 ml-4">
-            <input class="{{ attributes.class if attributes.class }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="text" id="{{ yearName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === yearName %} autofocus="true" {% endif %} name="{{ yearName }}" value="{{ value | datePart('YYYY') if value }}"/>
+            <input class="{{ attributes.class if attributes.class }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="number" pattern="[0-9]*" id="{{ yearName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === yearName %} autofocus="true" {% endif %} name="{{ yearName }}" value="{{ value | datePart('YYYY') if value }}"/>
             <label for="{{ yearName }}" class="text-gray-600">{{ __('Year') }}</label>
           </div>
         </div>
