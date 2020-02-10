@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = {
   socialInsuranceNumber: {
     presence: {
@@ -43,6 +45,10 @@ module.exports = {
       return {
         validateDateExists: {
           message: '^Birthdate is not a valid date'
+        },
+        date: {
+          latest: moment.utc().subtract(1, 'days'),
+          message: '^You must have been born before yesterday'
         }
       };
     }
