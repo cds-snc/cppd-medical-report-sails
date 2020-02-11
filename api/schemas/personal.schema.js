@@ -1,4 +1,4 @@
-const { dateValidators } = require('../hooks/validate/validators/dates.validator');
+const moment = require('moment');
 
 module.exports = {
   socialInsuranceNumber: {
@@ -22,46 +22,102 @@ module.exports = {
       message: '^Last name is required'
     }
   },
-  birthdate: dateValidators,
-  address: {
+  birthdateDay: {
     presence: {
       allowEmpty: false,
-      message: '^Mailing address is required'
+      message: '^Birthdate day is required'
+    },
+    numericality: {
+      greaterThan: 0,
+      notGreaterThan: '^Birthdate day must be a number between 1 and 31',
+      lessThanOrEqualTo: 31,
+      notLessThanOrEqualTo: '^Birthdate day be a number between 1 and 31'
     }
   },
-  telephone: function (value) {
+  birthdateMonth: {
+    presence: {
+      allowEmpty: false,
+      message: '^Birthdate month is required'
+    },
+    numericality: {
+      greaterThan: 0,
+      notGreaterThan: '^Birthdate month must be a number between 1 and 12',
+      lessThanOrEqualTo: 12,
+      notLessThanOrEqualTo: '^Birthdate must be a number between 1 and 12'
+    }
+  },
+  birthdateYear: {
+    presence: {
+      allowEmpty: false,
+      message: '^Birthdate year is required'
+    },
+    numericality: {
+      greaterThan: 0,
+      notGreaterThan: '^Birthdate year must be greater than 0'
+    }
+  },
+  birthdate: function (value) {
     if (value) {
       return {
-        format: {
-          pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
-          message: '^Telephone is incorrectly formatted'
+        validateDateExists: {
+          message: '^Birthdate is not a valid date'
+        },
+        date: {
+          latest: moment.utc().subtract(1, 'days'),
+          message: '^You must have been born before yesterday'
         }
       };
     }
     return {
       presence: {
         allowEmpty: false,
-        message: '^Telephone is required'
+        message: '^Birthdate is required'
       },
     };
   },
-  alternateTelephone: function (value) {
-    if (value) { // makes it optional
+  address: {
+    presence: {
+      allowEmpty: false,
+      message: '^Mailing address is required'
+    }
+  },
+  city: {
+    presence: {
+      allowEmpty: false,
+      message: '^City is required'
+    }
+  },
+  province: {
+    presence: {
+      allowEmpty: false,
+      message: '^Province is required'
+    }
+  },
+  country: {
+    presence: {
+      allowEmpty: false,
+      message: '^Country is required'
+    }
+  },
+  postal: {
+    presence: {
+      allowEmpty: false,
+      message: '^Postal code is required'
+    }
+  },
+  email: function (value) {
+    if (value) {
       return {
-        format: {
-          pattern: /^(\+0?1\s)??\(?\d{3}\)?[-]\d{3}[-]\d{4}$/,
-          message: '^Alternate telephone is incorrectly formatted'
+        email: {
+          message: '^Does not seem to be a valid email'
         }
       };
     }
   },
-  contactTime: {
+  telephone: {
     presence: {
-      message: '^Best time to contact you is required'
+      allowEmpty: false,
+      message: '^Telephone is required'
     },
-    inclusion: {
-      within: ['morning', 'afternoon', 'letters_only'],
-      message: '^Invalid selection'
-    }
-  }
+  },
 };
