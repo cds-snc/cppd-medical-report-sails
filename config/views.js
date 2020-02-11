@@ -38,23 +38,18 @@ module.exports.views = {
   extension: 'njk',
 
   getRenderFn: () => {
-    const consolidate = require('consolidate');
     const nunjucks = require('nunjucks');
+    const datePart = require('../views/filters/date-part');
 
-    nunjucks.configure(['views', 'views/macros'], {
-      autoescape: true
+    const env = nunjucks.configure(['views', 'views/macros'], {
+      autoescape: true,
+      watch: true
     });
 
     nunjucks.installJinjaCompat();
 
-    consolidate.requires.nunjucks = nunjucks;
+    env.addFilter('datePart', datePart);
 
-    /* Add filters here if required
-    cons.requires.nunjucks.addFilter("foo", function() {
-      return "bar";
-    });
-    */
-
-    return consolidate.nunjucks;
+    return nunjucks.render;
   }
 };

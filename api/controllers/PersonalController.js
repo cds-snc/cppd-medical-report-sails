@@ -7,6 +7,11 @@
 
 const applicationCodeHelper = require('../utils/ApplicationCodeHelper');
 
+// remove any non-numeric characters
+const numbersOnly = (txt) => {
+  return txt.replace(/\D/g,'');
+}
+
 module.exports = {
   index: async function (req, res) {
     /**
@@ -41,6 +46,10 @@ module.exports = {
   },
 
   store: async function (req, res) {
+
+    // combine date parts and reassign to the body for validation
+    req.body.birthdate = numbersOnly(req.body.birthdateYear) + '-' + numbersOnly(req.body.birthdateMonth) + '-' + numbersOnly(req.body.birthdateDay);
+
     let valid = req.validate(req, res, require('../schemas/personal.schema'));
 
     if (valid) {
@@ -53,16 +62,19 @@ module.exports = {
       await MedicalReport.upsert({
         applicationCode: req.session.applicationCode,
         socialInsuranceNumber: req.body.socialInsuranceNumber,
-        preferredTitle: req.body.preferredTitle,
         firstName: req.body.firstName,
         middleName: req.body.middleName,
         lastName: req.body.lastName,
         birthLastName: req.body.birthLastName,
         birthdate: req.body.birthdate,
         address: req.body.address,
+        city: req.body.city,
+        province: req.body.province,
+        country: req.body.country,
+        postal: req.body.postal,
+        email: req.body.email,
         telephone: req.body.telephone,
         alternateTelephone: req.body.alternateTelephone,
-        contactTime: req.body.contactTime
       });
 
       res.redirect(sails.route('consent'));
