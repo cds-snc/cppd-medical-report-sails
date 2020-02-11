@@ -26,18 +26,34 @@ module.exports = {
     presence: {
       allowEmpty: false,
       message: '^Birthdate day is required'
+    },
+    numericality: {
+      greaterThan: 0,
+      notGreaterThan: '^Birthdate day must be a number between 1 and 31',
+      lessThanOrEqualTo: 31,
+      notLessThanOrEqualTo: '^Birthdate day be a number between 1 and 31'
     }
   },
   birthdateMonth: {
     presence: {
       allowEmpty: false,
       message: '^Birthdate month is required'
+    },
+    numericality: {
+      greaterThan: 0,
+      notGreaterThan: '^Birthdate month must be a number between 1 and 12',
+      lessThanOrEqualTo: 12,
+      notLessThanOrEqualTo: '^Birthdate must be a number between 1 and 12'
     }
   },
   birthdateYear: {
     presence: {
       allowEmpty: false,
       message: '^Birthdate year is required'
+    },
+    numericality: {
+      greaterThan: 0,
+      notGreaterThan: '^Birthdate year must be greater than 0'
     }
   },
   birthdate: function (value) {
