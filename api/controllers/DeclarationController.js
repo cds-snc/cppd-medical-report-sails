@@ -14,9 +14,9 @@ module.exports = {
         applicationCode: req.session.applicationCode
       },
       include: [
-        { model: Condition, as: 'Conditions', include: [ { model: Document, as: 'Documents' } ] },
-        { model: Medication, as: 'Medications', include: [ { model: Condition, as: 'Conditions' } ] },
-        { model: Treatment, as: 'Treatments', include: [ { model: Condition, as: 'Conditions' } ] },
+        { model: Condition, as: 'Conditions', include: [{ model: Document, as: 'Documents' }] },
+        { model: Medication, as: 'Medications', include: [{ model: Condition, as: 'Conditions' }] },
+        { model: Treatment, as: 'Treatments', include: [{ model: Condition, as: 'Conditions' }] },
       ]
     });
 
@@ -44,7 +44,7 @@ module.exports = {
 
     if (valid) {
       // save the model
-      medicalReport.update({
+      await medicalReport.update({
         practitionerSignatureDraw: req.body.signatureMode === 'draw' ? req.body.signatureDrawData : null,
         practitionerSignatureType: req.body.signatureMode === 'type' ? req.body.signatureTyped : null,
         practitionerSubmittedAt: moment().format()
@@ -60,9 +60,9 @@ module.exports = {
         applicationCode: req.session.applicationCode
       },
       include: [
-        { model: Condition, as: 'Conditions', include: [ { model: Document, as: 'Documents' } ] },
-        { model: Medication, as: 'Medications', include: [ { model: Condition, as: 'Conditions' } ] },
-        { model: Treatment, as: 'Treatments', include: [ { model: Condition, as: 'Conditions' } ] },
+        { model: Condition, as: 'Conditions', include: [{ model: Document, as: 'Documents' }] },
+        { model: Medication, as: 'Medications', include: [{ model: Condition, as: 'Conditions' }] },
+        { model: Treatment, as: 'Treatments', include: [{ model: Condition, as: 'Conditions' }] },
       ]
     });
 
