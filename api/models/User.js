@@ -27,6 +27,31 @@ module.exports = {
   },
   options: {
     tableName: 'Users'
+  },
+
+  checkPassword: function (password, cb) {
+    bcrypt.compare(password, this.password, (err, match) => {
+      if (err) { return cb(err); }
+
+      if (match) {
+        return cb(null, true);
+      }
+
+      return cb(err);
+    });
   }
+
+  /*
+  checkPassword: (password, user, cb) => {
+    bcrypt.compare(password, user.password, (err, match) => {
+      if (err) { cb(err); }
+
+      if (match) {
+        cb(null, true);
+      } else {
+        cb(err);
+      }
+    });
+  } */
 };
 
