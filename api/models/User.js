@@ -26,20 +26,23 @@ module.exports = {
     return _.omit(this, ['password'])
   },
   options: {
-    tableName: 'Users'
+    tableName: 'Users',
+    instanceMethods: {
+      checkPassword: function (password, cb) {
+        bcrypt.compare(password, this.password, (err, match) => {
+          if (err) { return cb(err); }
+
+          if (match) {
+            return cb(null, true);
+          }
+
+          return cb(err);
+        });
+      }
+    }
   },
 
-  checkPassword: function (password, cb) {
-    bcrypt.compare(password, this.password, (err, match) => {
-      if (err) { return cb(err); }
 
-      if (match) {
-        return cb(null, true);
-      }
-
-      return cb(err);
-    });
-  }
 
   /*
   checkPassword: (password, user, cb) => {
