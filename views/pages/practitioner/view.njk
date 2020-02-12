@@ -287,7 +287,10 @@
                 {% if data.returnToWork === 1 %}
                     <tr class="odd:bg-gray-300">
                         <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('section6.type_work_question', data.fullName) }}</th>
-                        <td class="p-4 border-2 border-white align-top">{{ data.typeOfWorkText }}</td>
+                        <td class="p-4 border-2 border-white align-top">
+                            {{ data.typeOfWorkText }}<br>
+                            {{ data.workDetails }}
+                        </td>
                     </tr>
                 {% endif %}
             </tbody>
