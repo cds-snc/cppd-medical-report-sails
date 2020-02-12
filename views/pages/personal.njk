@@ -5,7 +5,6 @@
     
     <form action="{{ route('personal.store') }}" method="post">        
         {{ textInput('socialInsuranceNumber', 'section1.sin', { class: "w-3-4", required: true }) }}
-        
         {{ textInput('firstName', 'section1.first_name', { required: true }) }}
         {{ textInput('middleName', 'section1.middle_name') }}
         {{ textInput('lastName', 'section1.last_names', { required: true }) }}

@@ -14,10 +14,10 @@
 
     {{ radioButtons(
             'signatureMode',
-            {
-                'draw': 'consent.signature_draw',
-                'type': 'consent.signature_type'
-            },
+            [
+                {'value': 'draw', 'text': 'consent.signature_draw'},
+                {'value': 'type', 'text': 'consent.signature_type'}
+            ],
             data.signatureMode if data.signatureMode else 'draw',
             'consent.signature_option',
             errors,
