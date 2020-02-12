@@ -37,6 +37,13 @@ module.exports = {
         return res.redirect('back');
       }
 
+      // Was the report submitted already by the medical professional?
+      if (medicalReport.practitionerSubmittedAt !== undefined) {
+        req.flash('error', 'errors.application_submitted_already');
+        req.flash('data', req.body);
+        return res.redirect('back');        
+      }
+
       req.session.applicationCode = applicationCode;
       return res.redirect(sails.route('dashboard'));
     }
