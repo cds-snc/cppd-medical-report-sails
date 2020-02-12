@@ -9,7 +9,8 @@
 
     <p>{{ __('declaration.review_and_confirm') }}</p>
 
-    <h2 class="mt-4 text-4xl inline">{{ __('dashboard.basic_info') }}</h2>
+    <h2 class="mt-8 text-4xl inline">{{ __('dashboard.basic_info') }}</h2>
+
     <table class="table-fixed">
         <tbody class="bg-gray-100">
             <tr class="odd:bg-gray-300">
@@ -35,247 +36,258 @@
         </tbody>
     </table>
 
-    <h2 class="mt-4 text-4xl inline">{{ __('dashboard.functional-limits') }}</h2>
+    <div class="mt-8">
+        <h2 class="text-4xl inline">{{ __('dashboard.functional-limits') }}</h2>
 
-    <table class="table-fixed">
-        <tbody class="bg-gray-100">
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.limitations', data.fullName) }}</th>
-                <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">{{ data.limitations }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.plannedTreatments', data.fullName) }}</th>
-                <td class="p-4 border-2 border-white align-top">{{ data.plannedTreatments }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.weight', data.fullName) }}</th>
-                <td class="p-4 border-2 border-white align-top">{{ data.weight }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.weight', data.fullName) }}</th>
-                <td class="p-4 border-2 border-white align-top">{{ data.height }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-
-    <h2 class="mt-4 text-4xl inline">{{ __('conditions.title') }}</h2>
-
-    {% for condition in data.Conditions %}
-    <table class="table-fixed mt-4">
-        <tbody class="bg-gray-100">
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">
-                    {% if loop.index === 1 %}
-                        {{ __('add_condition.name_of_condition.first', data.fullName) }}
-                    {% else %}
-                        {{ __('add_condition.name_of_condition', data.fullName) }}
-                    {% endif %}
-                </th>
-                <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">{{ condition.conditionName }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('conditions.icd_code') }}</th>
-                <td class="p-4 border-2 border-white align-top">{{ condition.icdCode }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('add_condition.symptoms_began') }}</th>
-                <td class="p-4 border-2 border-white align-top">{{ condition.symptomsBegan }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('add_condition.clinically_impair') }}</th>
-                <td class="p-4 border-2 border-white align-top">{{ condition.clinicallyImpair }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('declaration.condition_likely_to', data.fullName) }}</th>
-                <td class="p-4 border-2 border-white align-top">
-                    {{ __(condition.conditionOutlookText) }}<br>
-                    {{ condition.conditionOutlookUnknown }}
-                </td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('add_condition.symptoms_occur') }}</th>
-                <td class="p-4 border-2 border-white align-top">{{ __(condition.symptomsOccurText) }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('documents.title') }}</th>
-                <td class="p-4 border-2 border-white align-top">
-                    {% for document in condition.Documents %}
-                        {{ document.originalFileName }}<br>
-                    {% endfor %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    {% endfor %}
-
-    <h2 class="mt-4 text-4xl inline">{{ __('medication.title') }}</h2>
-
-    {% for medication in data.Medications %}
-    <table class="table-fixed mt-4">
-        <tbody class="bg-gray-100">
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('form.medication_name.desc') }}
-                </th>
-                <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">{{ medication.medicationName }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('form.medication_dosage.desc') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">{{ medication.medicationDosage }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('form.medication_frequency.desc') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">{{ medication.medicationFrequency }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('form.medication_start_date.text') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">{{ medication.medicationStartDate }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('form.medication_end_date.text') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">{{ medication.medicationEndDate }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('treatments.form.results.desc') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">{{ medication.medicationResults }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('form.medication_treated_conditions.question') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">
-                    {% for condition in medication.Conditions %}
-                        {{ condition.conditionName }}<br>
-                    {% endfor %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    {% endfor %}
-
-    <h2 class="mt-4 text-4xl inline">{{ __('treatments.title') }}</h2>
-            
-    {% for treatment in data.Treatments %}
-    <table class="table-fixed mt-4">
-        <tbody class="bg-gray-100">
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('treatments.form.type.desc') }}
-                </th>
-                <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">{{ treatment.treatmentType }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('treatments.form.start_date.text') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">{{ treatment.treatmentStartDate }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('treatments.form.end_date.text') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">{{ treatment.treatmentEndDate }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('treatments.form.frequency.desc') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">{{ treatment.treatmentFrequency }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('treatments.form.results.desc') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">{{ treatment.treatmentResults }}</td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
-                    {{ __('treatments.form.treated_conditions.question') }}
-                </th>
-                <td class="p-4 border-2 border-white align-top">
-                    {% for condition in treatment.Conditions %}
-                        {{ condition.conditionName }}<br>
-                    {% endfor %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    {% endfor %}
-
-    <h2 class="mt-4 text-4xl inline">{{ __('dashboard.future-work-capacity') }}</h2>
-
-    <table class="table-fixed">
-        <tbody class="bg-gray-100">
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">{{ __('section6.return_work_question', data.fullName) }}</th>
-                <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">
-                    {{ data.returnToWorkText }}
-                    {% if data.returnToWork === 1 %}
-                        - {{ data.returnToWorkWhenText }}
-                    {% endif %}
-                </td>
-            </tr>
-            {% if data.returnToWork === 1 %}
+        <table class="table-fixed">
+            <tbody class="bg-gray-100">
                 <tr class="odd:bg-gray-300">
-                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('section6.type_work_question', data.fullName) }}</th>
+                    <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.limitations', data.fullName) }}</th>
+                    <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">{{ data.limitations }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.plannedTreatments', data.fullName) }}</th>
+                    <td class="p-4 border-2 border-white align-top">{{ data.plannedTreatments }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.weight', data.fullName) }}</th>
+                    <td class="p-4 border-2 border-white align-top">{{ data.weight }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.weight', data.fullName) }}</th>
+                    <td class="p-4 border-2 border-white align-top">{{ data.height }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-8">
+        <h2 class="text-4xl inline">{{ __('conditions.title') }}</h2>
+
+        {% for condition in data.Conditions %}
+        <table class="table-fixed">
+            <tbody class="bg-gray-100">
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">
+                        {% if loop.index === 1 %}
+                            {{ __('add_condition.name_of_condition.first', data.fullName) }}
+                        {% else %}
+                            {{ __('add_condition.name_of_condition', data.fullName) }}
+                        {% endif %}
+                    </th>
+                    <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">{{ condition.conditionName }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('conditions.icd_code') }}</th>
+                    <td class="p-4 border-2 border-white align-top">{{ condition.icdCode }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('add_condition.symptoms_began') }}</th>
+                    <td class="p-4 border-2 border-white align-top">{{ condition.symptomsBegan }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('add_condition.clinically_impair') }}</th>
+                    <td class="p-4 border-2 border-white align-top">{{ condition.clinicallyImpair }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('declaration.condition_likely_to', data.fullName) }}</th>
                     <td class="p-4 border-2 border-white align-top">
-                        {{ data.typeOfWorkText }}<br>
-                        {{ data.workDetails }}
+                        {{ __(condition.conditionOutlookText) }}<br>
+                        {{ condition.conditionOutlookUnknown }}
                     </td>
                 </tr>
-            {% endif %}
-        </tbody>
-    </table>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('add_condition.symptoms_occur') }}</th>
+                    <td class="p-4 border-2 border-white align-top">{{ __(condition.symptomsOccurText) }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('documents.title') }}</th>
+                    <td class="p-4 border-2 border-white align-top">
+                        {% for document in condition.Documents %}
+                            {{ document.originalFileName }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
 
-    <h2 class="mt-4 text-4xl inline">{{ __('section9.title') }}</h2>
+    <div class="mt-8">
+        <h2 class="text-4xl inline">{{ __('medication.title') }}</h2>
 
-    <table class="table-fixed">
-        <tbody class="bg-gray-100">
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">{{ __('declaration.you_are_a') }}</th>
-                <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">
-                    {{ data.practitionerTypeText }}
-                </td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('Name') }}</th>
-                <td class="p-4 border-2 border-white align-top">
-                    {{ data.practitionerFullName }}
-                </td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('Address') }}</th>
-                <td class="p-4 border-2 border-white align-top">
-                    {{ data.practitionerAddress }}<br>
-                    {{ data.practitionerCity }}, {{ data.practitionerProvince }}<br>
-                    {{ data.practitionerPostal }}
-                </td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('Email') }}</th>
-                <td class="p-4 border-2 border-white align-top">
-                    {{ data.practitionerEmail }}
-                </td>
-            </tr>
-            <tr class="odd:bg-gray-300">
-                <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('phone_number') }}</th>
-                <td class="p-4 border-2 border-white align-top">
-                    {{ data.practitionerPhone }}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        {% for medication in data.Medications %}
+        <table class="table-fixed">
+            <tbody class="bg-gray-100">
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('form.medication_name.desc') }}
+                    </th>
+                    <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">{{ medication.medicationName }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('form.medication_dosage.desc') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">{{ medication.medicationDosage }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('form.medication_frequency.desc') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">{{ medication.medicationFrequency }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('form.medication_start_date.text') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">{{ medication.medicationStartDate }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('form.medication_end_date.text') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">{{ medication.medicationEndDate }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('treatments.form.results.desc') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">{{ medication.medicationResults }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('form.medication_treated_conditions.question') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">
+                        {% for condition in medication.Conditions %}
+                            {{ condition.conditionName }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+
+    <div class="mt-8">
+        <h2 class="text-4xl inline">{{ __('treatments.title') }}</h2>
+                
+        {% for treatment in data.Treatments %}
+        <table class="table-fixed">
+            <tbody class="bg-gray-100">
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('treatments.form.type.desc') }}
+                    </th>
+                    <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">{{ treatment.treatmentType }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('treatments.form.start_date.text') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">{{ treatment.treatmentStartDate }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('treatments.form.end_date.text') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">{{ treatment.treatmentEndDate }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('treatments.form.frequency.desc') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">{{ treatment.treatmentFrequency }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('treatments.form.results.desc') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">{{ treatment.treatmentResults }}</td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">
+                        {{ __('treatments.form.treated_conditions.question') }}
+                    </th>
+                    <td class="p-4 border-2 border-white align-top">
+                        {% for condition in treatment.Conditions %}
+                            {{ condition.conditionName }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+    </div>
+
+    <div class="mt-8">
+        <h2 class="text-4xl inline">{{ __('dashboard.future-work-capacity') }}</h2>
+
+        <table class="table-fixed">
+            <tbody class="bg-gray-100">
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">{{ __('section6.return_work_question', data.fullName) }}</th>
+                    <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">
+                        {{ data.returnToWorkText }}
+                        {% if data.returnToWork === 1 %}
+                            - {{ data.returnToWorkWhenText }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if data.returnToWork === 1 %}
+                    <tr class="odd:bg-gray-300">
+                        <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('section6.type_work_question', data.fullName) }}</th>
+                        <td class="p-4 border-2 border-white align-top">
+                            {{ data.typeOfWorkText }}<br>
+                            {{ data.workDetails }}
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-8">
+        <h2 class="text-4xl inline">{{ __('section9.title') }}</h2>
+
+        <table class="table-fixed">
+            <tbody class="bg-gray-100">
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="w-1/3 print:w-1/2 text-left font-normal p-4 border-2 border-white align-top">{{ __('declaration.you_are_a') }}</th>
+                    <td class="w-2/3 print:w-1/2 p-4 border-2 border-white align-top">
+                        {{ data.practitionerTypeText }}
+                    </td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('Name') }}</th>
+                    <td class="p-4 border-2 border-white align-top">
+                        {{ data.practitionerFullName }}
+                    </td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('Address') }}</th>
+                    <td class="p-4 border-2 border-white align-top">
+                        {{ data.practitionerAddress }}<br>
+                        {{ data.practitionerCity }}, {{ data.practitionerProvince }}<br>
+                        {{ data.practitionerPostal }}
+                    </td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('Email') }}</th>
+                    <td class="p-4 border-2 border-white align-top">
+                        {{ data.practitionerEmail }}
+                    </td>
+                </tr>
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('phone_number') }}</th>
+                    <td class="p-4 border-2 border-white align-top">
+                        {{ data.practitionerPhone }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="mt-8 text-lg">
         <p class="font-bold">{{ __('declaration.i_confirm_that') }}</p>
