@@ -12,15 +12,27 @@
 
     <form method="post">
         <input type="hidden" name="_csrf" value="{{ _csrf }}">
-        {{ radioButtons('practitionerType', { '1':'section9.confirm_statement_ccfp','4':'section9.confirm_statement_other', '2':'section9.confirm_statement_np', '3':'section9.confirm_statement_rn'}, data.practitionerType, 'section9.confirm_statement_2', errors, { required: true }) }}
-        
+        {{ radioButtons(
+          'practitionerType',
+          [
+            {'value': '1', 'text':'section9.confirm_statement_ccfp'},
+            {'value': '2', 'text' :'section9.confirm_statement_np'},
+            {'value': '3', 'text' :'section9.confirm_statement_rn'},
+            {'value': '4', 'text' :'section9.confirm_statement_other'}
+          ],
+          data.practitionerType,
+          'section9.confirm_statement_2',
+          errors,
+          { required: true }
+        )}}
+
         <div id="otherPractitionerType" class="ml-12">
             {{ textArea('practitionerTypeOtherSpecify', 'section9.other_specify')}}
         </div>
 
         {{ textInput('practitionerFirstName', 'section9.first_name', { required: true }) }}
         {{ textInput('practitionerLastName', 'section9.last_name', { required: true }) }}
-        
+
         {{ textInput('practitionerAddress', 'section9.street_and_number', { required: true}) }}
 
         {{ textInput('practitionerCity', 'section9.city', { required: true}) }}
