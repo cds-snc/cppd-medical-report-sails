@@ -33,11 +33,11 @@ module.exports = {
           return res.json(401, { err: 'Unauthorized' });
         }
 
-        return res.redirect(route('sessions'));
+        return res.redirect(sails.route('sessions'));
       });
+    } else {
+      return res.json(401, { err: 'Unauthorized' });
     }
-
-    return res.json(401, { err: 'Unauthorized' });
 
 
 
