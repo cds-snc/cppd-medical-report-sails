@@ -10,6 +10,11 @@ const passport = require('passport');
 module.exports = {
 
   index: function (req, res) {
+    // already logged in
+    if (req.session.user && req.session.user !== null) {
+      return res.redirect(sails.route('sessions'));
+    }
+
     res.view('pages/login');
   },
 
@@ -23,55 +28,27 @@ module.exports = {
         email: email
       }
     });
-    console.log(user);
 
-    if (user) {
-      user.checkPassword(password, (err, valid) => {
-        if (err) { return res.send({ message: 'nope' }); }
-
-        if (!valid) {
-          return res.json(401, { err: 'Unauthorized' });
-        }
-
-        return res.redirect(sails.route('sessions'));
-      });
-    } else {
-      return res.json(401, { err: 'Unauthorized' });
+    if (!user) {
+      req.flash('error', 'User not found'); // user doesn't exist
+      return res.redirect('back');
     }
 
-
-
-    // passport.authenticate('local', { failureRedirect: '/en/login' });
-
-    /* passport.authenticate('local', (err, user, info) => {
-      if ((err) || (!user)) {
-        console.log(err);
-        console.log(info);
-        return res.send({ message: info.message, user });
+    user.checkPassword(password, (err, valid) => {
+      if (err) { // some mysterious error
+        req.flash('error', 'Error message');
+        return res.redirect('back');
       }
-      console.log("got here");
-      console.log(user);
 
-      req.logIn(user, (err) => {
-        if (err) { res.send(err); }
-        return res.redirect('/en/sessions');
-      });
-    })(req, res); */
-
-    // res.send({ message: 'noop?' });
-
-    // res.redirect('/en/sessions');
-
-    /* passport.authenticate('local', (err, user, info) => {
-      if ((err) || (!user)) {
-        return res.send({
-          message: info.message,
-          user
-        });
+      if (!valid) { // wrong password
+        req.flash('error', 'Invalid login');
+        return res.redirect('back');
       }
-      console.log(user);
-      console.log(info);
-    }); */
+
+      // we're good
+      req.session.user = user;
+      return res.redirect(sails.route('sessions'));
+    });
   },
 
   logout: function (req, res) {

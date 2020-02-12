@@ -8,8 +8,8 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 
-const defaultPolicies = ['localize', 'route', 'flash'];
-const defaultPlusReportExists = ['localize', 'route', 'flash', 'reportExists'];
+// const defaultPolicies = ['localize', 'route', 'flash'];
+const defaultPolicies = ['localize', 'route', 'flash', 'reportExists'];
 
 module.exports.policies = {
   /***************************************************************************
@@ -22,59 +22,24 @@ module.exports.policies = {
   // '*': true,
   '*': defaultPolicies,
 
-  ConditionsController: {
-    'index': defaultPlusReportExists,
+  SessionsController: {
+    '*': ['localize', 'route', 'flash', 'isAuthenticated'],
   },
 
-  AddConditionController: {
-    'create': defaultPlusReportExists,
+  StartController: {
+    '*': ['localize', 'route', 'flash'],
   },
 
-  AddMedicationController: {
-    'create': defaultPlusReportExists,
-  },
-
-  AddTreatmentController: {
-    'create': defaultPlusReportExists,
+  PersonalController: {
+    '*': ['localize', 'route', 'flash'],
   },
 
   ConsentController: {
-    'index': defaultPlusReportExists,
+    'index': ['localize', 'route', 'flash'],
+    'store': ['localize', 'route', 'flash'],
   },
 
-  DashboardController: {
-    'index': defaultPlusReportExists,
-  },
-
-  DeclarationController: {
-    'index': defaultPlusReportExists,
-  },
-
-  DocumentsController: {
-    'index': defaultPlusReportExists,
-  },
-
-  ExpeditedController: {
-    'index': defaultPlusReportExists,
-  },
-
-  HealthController: {
-    'index': defaultPlusReportExists,
-  },
-
-  MedicationsController: {
-    'index': defaultPlusReportExists,
-  },
-
-  RelationshipController: {
-    'index': defaultPlusReportExists,
-  },
-
-  TreatmentsController: {
-    'index': defaultPlusReportExists,
-  },
-
-  FutureWorkCapacityController: {
-    'index': defaultPlusReportExists
+  MedicalProfessionalController: {
+    '*': ['localize', 'route', 'flash']
   }
 };

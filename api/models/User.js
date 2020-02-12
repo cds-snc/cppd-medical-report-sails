@@ -22,9 +22,6 @@ module.exports = {
       }
     }
   },
-  customToJSON: function () {
-    return _.omit(this, ['password'])
-  },
   options: {
     tableName: 'Users',
     instanceMethods: {
@@ -38,6 +35,12 @@ module.exports = {
 
           return cb(err);
         });
+      },
+      toJSON: function () {
+        let values = Object.assign({}, this.get());
+
+        delete values.password;
+        return values;
       }
     }
   },
