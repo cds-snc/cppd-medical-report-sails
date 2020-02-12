@@ -38,11 +38,12 @@ module.exports = {
 
     if (valid) {
       // save the model
+      const willReturn = req.body.returnToWork === '1';
       medicalReport.update({
         returnToWork: req.body.returnToWork,
-        returnToWorkWhen: req.body.returnToWorkWhen,
-        typeOfWork: req.body.typeOfWork,
-        workDetails: req.body.workDetails,
+        returnToWorkWhen: willReturn ? req.body.returnToWorkWhen : null,
+        typeOfWork: willReturn ? req.body.typeOfWork : null,
+        workDetails: willReturn ? req.body.workDetails : null,
       });
 
       res.redirect(sails.route('dashboard'));
