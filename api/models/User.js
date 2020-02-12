@@ -41,20 +41,5 @@ module.exports = {
       }
     }
   },
-
-
-
-  /*
-  checkPassword: (password, user, cb) => {
-    bcrypt.compare(password, user.password, (err, match) => {
-      if (err) { cb(err); }
-
-      if (match) {
-        cb(null, true);
-      } else {
-        cb(err);
-      }
-    });
-  } */
 };
 
