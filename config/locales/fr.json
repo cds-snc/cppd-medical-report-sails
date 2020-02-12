@@ -486,5 +486,14 @@
 	"invite.give_code": "TRANSLATE To finish your application, give this code and link to your doctor or nurse practioner:",
 	"invite.medical_professional_instruction": "TRANSLATE Your doctor or nurse practioner will use this unique code to fill out a report about your medical condition(s), and how they impact your ability to work.",
 	"invite.print_button": "TRANSLATE Print this code",
-	"invite.url": "https://cppd-medical-report-stage.herokuapp.com/fr/doctor"
+	"invite.url": "https://cppd-medical-report-stage.herokuapp.com/fr/doctor",
+	"section1.city": "Ville",
+	"section1.province": "Province",
+	"section1.country": "Pays",
+	"section1.postal": "Code postal",
+	"section1.email": "Courriel",
+	"section1.email.hint": "Cela ne sera utilisé que pour vous envoyer des mises à jour sur votre application",
+	"Month": "Mois",
+	"Day": "Joui",
+	"Year": "Année"
 }

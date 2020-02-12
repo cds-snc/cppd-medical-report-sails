@@ -143,16 +143,19 @@ if (valid) {
 
 If the request fails validation, the validator will redirect the user back to their previous location. In addition, all of the validation errors and the form data will be flashed to the session. Errors will then be made available to the view as local variable `errors`, and the data will be available to the view as `data`.
 
-## Redis session store
+## Session store
 
-Currently, the application data is stored in the session, and the default session store is in memory which clears out every time the process restarts. It can get annoying pretty quickly in development when the session store gets cleared out every time you make a change to a file.
+There are two Session stores available. The default store is the application database. This is simple and will probably be fine for the forseeable future, but eventually may want to move to either a separate database instance, or a Redis instance.
 
-To mitigate this, you can configure Redis as a persistent session store. If you've already got it running locally, say with homebrew, it's pretty easy to configure by setting an environment variable:
+There is a `session` model in the Models folder. This model is just there to easily create the table required by the session store in development. This should be replaced by a database migration in the future, and that model should be removed.
 
-- `cp .env.example .env`
-- there is no step two (see note)
+To use the database session store, make sure your .env file contains the following configuration:
 
-**Note**: If you're running Redis on a non-standard port, or somewhere other than localhost, then you can set `SESSION_ADAPTER_URL` in that `.env` file.
+```sh
+SESSION_ADAPTER="connect-pg-simple"
+```
+
+There is an example of how to setup a Redis session store in the .env.example file.
 
 ## Database
 

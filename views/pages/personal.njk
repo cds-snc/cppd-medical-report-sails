@@ -2,53 +2,29 @@
 
 {% block content %}
     <h1>{{ __('personal.title') }}</h1>
-
-    <form action="{{ route('personal.store') }}" method="post">
-        {{ textInput('socialInsuranceNumber', 'section1.sin', { hint: 'section1.sin_example', class: "w-3-4", required: true }) }}
-
-        {{
-          radioButtons(
-            'preferredTitle',
-            [
-              {'value': '1', 'text': 'section1.preferred_title_mr'},
-              {'value': '2', 'text': 'section1.preferred_title_mrs'},
-              {'value': '3', 'text': 'section1.preferred_title_miss'},
-              {'value': '4', 'text': 'section1.preferred_title_ms'}
-            ],
-            data.preferredTitle,
-            'section1.preferred_title',
-            errors
-          )
-        }}
-
+    
+    <form action="{{ route('personal.store') }}" method="post">        
+        {{ textInput('socialInsuranceNumber', 'section1.sin', { class: "w-3-4", required: true }) }}
         {{ textInput('firstName', 'section1.first_name', { required: true }) }}
         {{ textInput('middleName', 'section1.middle_name') }}
         {{ textInput('lastName', 'section1.last_names', { required: true }) }}
         {{ textInput('birthLastName', 'section1.birth_last_name') }}
 
-        {{ textInput('birthdate', 'section1.birthdate', { hint: 'year_month_day_format', required: true }) }}
+        {{ dateInput('birthdate', data.birthdate, __('section1.birthdate'), { required: true }) }}
 
-        {{ textArea('address', 'section1.mailing_address', { hint: 'section1.mailing_address_hint', required: true}) }}
+        {{ textInput('address', 'section1.mailing_address', { required: true }) }}
+        {{ textInput('city', 'section1.city', { required: true }) }}
+        {{ textInput('province', 'section1.province', { required: true }) }}
+        {{ textInput('country', 'section1.country', { required: true }) }}
+        {{ textInput('postal', 'section1.postal', { required: true }) }}
+        {{ textInput('email', 'section1.email', { hint: 'section1.email.hint' }) }}
 
-        {{ textInput('telephone', 'section1.telephone', { hint: 'telephone_format', required: true }) }}
-        {{ textInput('alternateTelephone', 'section1.alternate_telephone', { hint: 'telephone_format' }) }}
-
-        {{ radioButtons(
-            'contactTime', [
-              {'value': 'morning', 'text': 'section1.contact_time_morning'},
-              {'value': 'afternoon', 'text': 'section1.contact_time_afternoon'},
-              {'value': 'letters_only', 'text': 'section1.contact_time_letters_only'}
-            ],
-            data.contactTime,
-            'section1.contact_time',
-            errors,
-            { required: true }
-          )
-        }}
+        {{ textInput('telephone', 'section1.telephone', { required: true }) }}
+        {{ textInput('alternateTelephone', 'section1.alternate_telephone') }}
 
         <div class="w-full">
             <div class="w-1/3">
-                <button type="submit">{{ __('Continue') }}</button>
+                <button type="submit">{{ __('Next: Consent') }}</button>
             </div>
         </div>
     </form>
