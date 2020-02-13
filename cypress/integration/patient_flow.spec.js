@@ -7,6 +7,11 @@ describe('Run through the patient-facing portion of the service', () => {
     cy.injectAxe().checkA11y();
   });
 
+  // is this a good idea?
+  afterEach(() => {
+    cy.injectAxe().checkA11y();
+  });
+
   it('load start page', () => {
     cy.get('h1').contains('Request a medical report for your Canada Pension Plan Disability Benefits application');
   });
