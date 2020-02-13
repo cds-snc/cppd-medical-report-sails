@@ -4,6 +4,13 @@ describe('Test the authentication flow for medical adjudicators', () => {
   });
 
   beforeEach(() => {
+    /**
+     * When we add our migrations, this should reset
+     * the db then seed the test data.
+     */
+    cy.exec('npm run db:seed:undo && npm run db:seed');
+
+    // check baseline a11y on every page before the test
     cy.injectAxe().checkA11y();
   });
 
@@ -30,7 +37,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
       followRedirect: false,
       form: true,
       body: {
-        email: 'dave.samojlenko@cds-snc.ca',
+        email: 'test@user.com',
         password: 'secret'
       }
     })
@@ -45,7 +52,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
 
   it('successfully logs in', () => {
     cy.visit('/en/login');
-    cy.get('[name=email]').type('dave.samojlenko@cds-snc.ca');
+    cy.get('[name=email]').type('test@user.com');
     cy.get('[name=password]').type('secret');
     cy.get('[type="submit"]').click();
     cy.url().should('include', '/en/sessions');
@@ -54,7 +61,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
 
   it('errors on bad credentials', () => {
     cy.visit('/en/login');
-    cy.get('[name=email]').type('dave.samojlenko@cds-snc.ca');
+    cy.get('[name=email]').type('test@user.com');
     cy.get('[name=password]').type('xxx');
     cy.get('[type="submit"]').click();
     cy.url().should('include', '/en/login');
