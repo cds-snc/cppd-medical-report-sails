@@ -27,6 +27,10 @@ module.exports.webpack = {
           {
             from: './assets/js/jSignature.min.js',
             to: path.resolve(__dirname, '..', '.tmp', 'public', 'build', 'assets', 'js')
+          },
+          {
+            from: './assets/js/confirmAction.js',
+            to: path.resolve(__dirname, '..', '.tmp', 'public', 'build', 'assets', 'js')
           }
           /* {
             from: "./assets/fonts",

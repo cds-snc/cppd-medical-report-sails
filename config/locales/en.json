@@ -619,5 +619,8 @@
 	"errors.province_required": "Province is required",
 	"errors.country_required": "Country is required",
 	"errors.postal_required": "Postal is required",
-	"errors.phone_required": "Phone is required"
+	"errors.phone_required": "Phone is required",
+	"conditions.confirm_delete": "Are you sure you want to delete this condition?",
+	"medications.confirm_delete": "Are you sure you want to delete this medications?",
+	"treatments.confirm_delete": "Are you sure you want to delete this treatments?"
 }
