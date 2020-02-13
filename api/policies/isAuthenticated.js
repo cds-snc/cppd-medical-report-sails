@@ -1,7 +1,7 @@
 module.exports = async function (req, res, next) {
-  if (req.session.user && req.session.user !== null) {
-    return next();
+  if (!req.session.user) {
+    return res.redirect(sails.route('login'));
   }
 
-  res.redirect(sails.route('login'));
+  return next();
 };

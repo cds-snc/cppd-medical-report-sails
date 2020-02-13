@@ -41,5 +41,9 @@ module.exports.policies = {
 
   MedicalProfessionalController: {
     '*': ['localize', 'route', 'flash']
+  },
+
+  AuthController: {
+    '*': ['localize', 'route', 'flash']
   }
 };
