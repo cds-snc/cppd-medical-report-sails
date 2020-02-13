@@ -23,6 +23,12 @@ module.exports = {
   },
 
   save: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+    });
+
     let valid = req.validate(req, res, {
       patientTreatments: {
         presence: {
@@ -34,12 +40,8 @@ module.exports = {
 
     if (valid) {
       // save the model
-      await MedicalReport.update({
+      await medicalReport.update({
         patientTreatments: req.body.patientTreatments,
-      }, {
-        where: {
-          applicationCode: req.session.applicationCode
-        }
       });
 
       if (req.body.patientTreatments === '1') {
