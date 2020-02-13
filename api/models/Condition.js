@@ -1,6 +1,8 @@
 'use strict';
 
 const validate = require('validate.js');
+const conditionOutlook = require('../utils/support/conditionOutlook');
+const symptomsOccur = require('../utils/support/symptomsOccur');
 
 module.exports = {
   attributes: {
@@ -36,6 +38,16 @@ module.exports = {
     getterMethods: {
       isValid: function () {
         return !validate(this, require('../schemas/condition.schema'));
+      },
+      conditionOutlookText: function() {
+        if (this.conditionOutlook !== null) {
+          return conditionOutlook[this.conditionOutlook];
+        }
+      },
+      symptomsOccurText: function() {
+        if (this.symptomsOccur !== null) {
+          return symptomsOccur[this.symptomsOccur];
+        }
       }
     },
   }
