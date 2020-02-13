@@ -5,6 +5,11 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+// remove any non-numeric characters
+const numbersOnly = (txt) => {
+  return txt.replace(/\D/g, '');
+};
+
 module.exports = {
   index: function (req, res) {
     /**
@@ -17,6 +22,9 @@ module.exports = {
   },
 
   store: async function (req, res) {
+    // combine date parts and reassign to the body for validation
+    req.body.birthdate = numbersOnly(req.body.birthdateYear) + '-' + numbersOnly(req.body.birthdateMonth) + '-' + numbersOnly(req.body.birthdateDay);
+
     // Validate completion / formatting, this calls res.redirect if invalid
     let valid = req.validate(req, res, require('../schemas/invitation.schema'));
 

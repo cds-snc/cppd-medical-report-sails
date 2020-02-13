@@ -12,7 +12,7 @@
         <p>{{ __('confirmation.what_happens_next_1', data.fullName, data.fullName) }}</p>
         <p>{{ __('confirmation.what_happens_next_2') }}</p>
 
-        <a class="button-link" href="" role="button">
+        <a class="button-link" href="{{ route('declaration.view') }}" role="button">
             {{ __('confirmation.download_the_medical_report') }}
         </a>
     </div>

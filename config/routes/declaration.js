@@ -24,4 +24,15 @@ module.exports.routes = {
     }
   },
 
+  'GET /en/declaration/view': {
+    name: 'declaration.view',
+    controller: 'DeclarationController',
+    action: 'view',
+    lang: 'en',
+    i18n: {
+      en: '/en/declaration/view',
+      fr: '/fr/declaration/view'
+    }
+  }
+
 };
