@@ -21,4 +21,14 @@ module.exports.routes = {
     }
   },
 
+  'GET /en/logout': {
+    name: 'logout',
+    controller: 'AuthController',
+    action: 'logout',
+    lang: 'en',
+    i18n: {
+      en: '/en/logout',
+      fr: '/fr/logout'
+    }
+  }
 };
