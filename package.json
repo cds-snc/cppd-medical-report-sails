@@ -79,7 +79,7 @@
     "ignore": [
       "config/locales/*.json",
       "sessions/*.json",
-      "cypress/**/*"
+      "cypress/**/*.js"
     ]
   },
   "author": "samojled",
