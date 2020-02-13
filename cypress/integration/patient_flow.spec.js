@@ -22,6 +22,6 @@ describe('Run through the patient-facing portion of the service', () => {
     cy.get('[name=socialInsuranceNumber]').type('123 456 789');
     cy.get('[type="submit"]').click();
     cy.get('#content .error-list').contains('Social Insurance Number is invalid').click();
-    cy.focused().should('have.attr', 'name', 'socialInsuranceNumber');
+    cy.focused().should('have.attr', 'name', 'socialInsuranceNumber'); // this doesn't seem to work on firefox?
   });
 });
