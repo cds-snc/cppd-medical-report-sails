@@ -20,6 +20,9 @@ describe('Test the authentication flow for medical adjudicators', () => {
     cy.injectAxe().checkA11y();
   });
 
+  /**
+   * TODO: Add other authenticated routes as we create them.
+   */
   it('cannot access protected routes when not logged in', () => {
     const routes = [
       '/en/sessions',
@@ -39,7 +42,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
     });
   });
 
-  it('login redirects to sessions on successful login', () => {
+  it('redirects to sessions on successful login', () => {
     cy.request({
       method: 'POST',
       url: '/en/login',
@@ -59,6 +62,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
     cy.get('h1').contains('Sessions');
   });
 
+  // Basically the same test as above but using the UI directly
   it('successfully logs in', () => {
     cy.visit('/en/login');
     cy.get('[name=email]').type('test@user.com');
