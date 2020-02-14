@@ -37,7 +37,7 @@ module.exports = {
     let valid = req.validate(req, res, require('../schemas/functional.schema'));
 
     if (valid) {
-      medicalReport.update({
+      await medicalReport.update({
         limitations: req.body.limitations,
         plannedTreatments: req.body.plannedTreatments,
         height: req.body.height,
