@@ -8,7 +8,7 @@
 module.exports = {
 
   index: function (req, res) {
-    // already logged in
+    // already authenticated, come on in!
     if (req.session.user && req.session.user !== null) {
       return res.redirect(sails.route('sessions'));
     }
@@ -21,6 +21,10 @@ module.exports = {
     const email = req.body.email;
     const password = req.body.password;
 
+    /**
+     * We check that the user exists first because
+     * password comparisons are expensive
+     */
     let user = await User.findOne({
       where: {
         email: email
@@ -28,13 +32,14 @@ module.exports = {
     });
 
     if (!user) {
-      req.flash('error', 'User not found'); // user doesn't exist
+      req.flash('error', 'Invalid login'); // user doesn't exist
       return res.redirect('back');
     }
 
+    // ok we have a user, check the password
     user.checkPassword(password, (err, valid) => {
       if (err) { // some mysterious error
-        req.flash('error', 'Error message');
+        req.flash('error', err);
         return res.redirect('back');
       }
 
@@ -43,7 +48,7 @@ module.exports = {
         return res.redirect('back');
       }
 
-      // we're good
+      // we're good set session vars and redirect
       req.session.loggedIn = true;
       req.session.user = user;
       return res.redirect(sails.route('sessions'));
