@@ -38,7 +38,7 @@ module.exports = {
 
     if (valid) {
       // save the model
-      medicalReport.update({
+      await medicalReport.update({
         conditionType: req.body.conditionType,
         diagnosis: req.body.diagnosis,
         icdCode: req.body.icdCode,

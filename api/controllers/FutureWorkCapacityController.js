@@ -39,7 +39,7 @@ module.exports = {
     if (valid) {
       // save the model
       const willReturn = req.body.returnToWork === '1';
-      medicalReport.update({
+      await medicalReport.update({
         returnToWork: req.body.returnToWork,
         returnToWorkWhen: willReturn ? req.body.returnToWorkWhen : null,
         typeOfWork: willReturn ? req.body.typeOfWork : null,

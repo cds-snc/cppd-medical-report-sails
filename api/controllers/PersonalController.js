@@ -9,8 +9,8 @@ const applicationCodeHelper = require('../utils/ApplicationCodeHelper');
 
 // remove any non-numeric characters
 const numbersOnly = (txt) => {
-  return txt.replace(/\D/g,'');
-}
+  return txt.replace(/\D/g, '');
+};
 
 module.exports = {
   index: async function (req, res) {
