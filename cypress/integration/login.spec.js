@@ -5,8 +5,8 @@ describe('Test the authentication flow for medical adjudicators', () => {
 
   beforeEach(() => {
     /**
-     * When we add our migrations, this should reset
-     * the db then seed the test data.
+     * TODO: When we add our migrations, this should
+     * reset the db then seed the test data.
      */
     cy.exec('npm run db:seed:undo && npm run db:seed');
 
@@ -17,17 +17,26 @@ describe('Test the authentication flow for medical adjudicators', () => {
   it('loads the login screen', () => {
     cy.visit('/en/login');
     cy.get('h1').contains('Login');
+    cy.injectAxe().checkA11y();
   });
 
-  it('session page redirects if not logged in', () => {
-    cy.request({
-      url: '/en/sessions',
-      followRedirect: false,
-    })
+  it('cannot access protected routes when not logged in', () => {
+    const routes = [
+      '/en/sessions',
+      '/en/sessions/1/view',
+      '/en/logout'
+    ];
+
+    routes.forEach((route) => {
+      cy.request({
+        url: route,
+        followRedirect: false,
+      })
       .then((res) => {
         expect(res.status).to.eq(302);
         expect(res.redirectedToUrl).to.contains('/en/login');
       });
+    });
   });
 
   it('login redirects to sessions on successful login', () => {
@@ -66,5 +75,14 @@ describe('Test the authentication flow for medical adjudicators', () => {
     cy.get('[type="submit"]').click();
     cy.url().should('include', '/en/login');
     cy.get('#content .error-list').contains('Invalid login');
+    cy.injectAxe().checkA11y();
+  });
+
+  it('logs me out', () => {
+    cy.login('test@user.com', 'secret');
+    cy.visit('/en/logout');
+    cy.url().should('include', '/en/login');
+    cy.visit('/en/sessions');
+    cy.url().should('include', '/en/login');
   });
 });
