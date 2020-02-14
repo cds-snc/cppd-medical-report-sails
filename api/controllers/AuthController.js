@@ -44,6 +44,7 @@ module.exports = {
       }
 
       // we're good
+      req.session.loggedIn = true;
       req.session.user = user;
       return res.redirect(sails.route('sessions'));
     });
