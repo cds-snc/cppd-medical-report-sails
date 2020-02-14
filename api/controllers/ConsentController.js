@@ -8,7 +8,7 @@
 const moment = require('moment');
 
 function getSignatureDrawData(req) {
-  if(req.body.signatureMode === 'draw') {
+  if (req.body.signatureMode === 'draw') {
     return req.body.signatureDrawData;
   }
 
@@ -16,7 +16,7 @@ function getSignatureDrawData(req) {
 }
 
 function getSignatureTypedData(req) {
-  if(req.body.signatureMode === 'type') {
+  if (req.body.signatureMode === 'type') {
     return req.body.signatureTyped;
   }
 
@@ -47,22 +47,24 @@ module.exports = {
   },
 
   store: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+    });
+
     let valid = req.validate(req, res, require('../schemas/consent.schema'));
 
     if (valid) {
       // Update existing, or create a new one!
-      if( req.body.consent === 'no') {
-        await MedicalReport.update({
+      if (req.body.consent === 'no') {
+        await medicalReport.update({
           consent: false,
           applicantSubmittedAt: moment().format()
-        }, {
-          where: {
-            applicationCode: req.session.applicationCode
-          }
         });
       }
       else {
-        await MedicalReport.update({
+        await medicalReport.update({
           consent: true,
           consentEducation: req.body.consent_optional_parties.includes('education'),
           consentAccountant: req.body.consent_optional_parties.includes('accountant'),
@@ -73,10 +75,6 @@ module.exports = {
           signatureDraw: getSignatureDrawData(req),
           signatureType: getSignatureTypedData(req),
           applicantSubmittedAt: moment().format()
-        }, {
-          where: {
-            applicationCode: req.session.applicationCode
-          }
         });
       }
 
@@ -86,7 +84,7 @@ module.exports = {
 
   show: async function (req, res) {
     let medicalReport = null;
-    if( req.session.applicationCode ) { // For medical professional view
+    if (req.session.applicationCode) { // For medical professional view
       medicalReport = await MedicalReport.findOne({
         where: {
           applicationCode: req.session.applicationCode

@@ -39,7 +39,7 @@ module.exports = {
 
     if (valid) {
       // save the model
-      medicalReport.update({
+      await medicalReport.update({
         relationshipStarted: req.body.relationshipStarted,
         firstTreatmentDate: req.body.firstTreatmentDate,
         visitNumber: req.body.visitNumber,

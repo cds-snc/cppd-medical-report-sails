@@ -38,7 +38,7 @@ module.exports = {
 
     if (valid) {
       // save the model
-      medicalReport.update({
+      await medicalReport.update({
         returnToWork: req.body.returnToWork,
         returnToWorkWhen: req.body.returnToWorkWhen,
         typeOfWork: req.body.typeOfWork,
