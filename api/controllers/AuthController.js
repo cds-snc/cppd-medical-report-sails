@@ -5,8 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const passport = require('passport');
-
 module.exports = {
 
   index: function (req, res) {
