@@ -43,7 +43,7 @@ module.exports = {
     }
 
     sails.log.info('All good, creating....');
-    let user = await User.create({
+    await User.create({
       name: name,
       email: email,
       password: password
