@@ -36,6 +36,7 @@ module.exports = {
           return cb(err);
         });
       },
+      // exclude password when serializing
       toJSON: function () {
         let values = Object.assign({}, this.get());
 
