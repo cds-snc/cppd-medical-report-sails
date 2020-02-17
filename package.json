@@ -26,6 +26,7 @@
     "sails-hook-sequelize-blueprints": "^0.3.0",
     "sails-hook-sockets": "^2.0.0",
     "sequelize": "^5.21.4",
+    "social-insurance-number": "^0.1.0",
     "validate.js": "^0.13.1"
   },
   "devDependencies": {
