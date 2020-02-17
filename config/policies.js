@@ -23,7 +23,7 @@ module.exports.policies = {
   '*': defaultPolicies,
 
   SessionsController: {
-    '*': ['localize', 'route', 'flash', 'isAuthenticated'],
+    '*': process.env.FEATURE_AUTH ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
   },
 
   StartController: {
