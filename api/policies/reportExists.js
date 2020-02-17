@@ -18,7 +18,7 @@ module.exports = async function (req, res, next) {
     req.session.applicationCode = null;
     return res.redirect(sails.route('start'));
   }
-  else if (medicalReport.practitionerSubmittedAt != null) {
+  else if (medicalReport.practitionerSubmittedAt !== null && medicalReport.practitionerSubmittedAt !== undefined) {
     req.session.destroy();
     return res.redirect(sails.route('medical-professional'));
   }
