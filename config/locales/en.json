@@ -621,7 +621,7 @@
 	"errors.postal_required": "Postal is required",
 	"errors.phone_required": "Phone is required",
 	"conditions.confirm_delete": "Are you sure you want to delete this condition?",
-	"medications.confirm_delete": "Are you sure you want to delete this medications?",
+	"medications.confirm_delete": "Are you sure you want to delete this medication?",
 	"treatments.confirm_delete": "Are you sure you want to delete this treatments",
 	"declaration.review_and_confirm": "Review and confirm the contents of this medical report before submitting to Service Canada.",
 	"edit": "Edit",
