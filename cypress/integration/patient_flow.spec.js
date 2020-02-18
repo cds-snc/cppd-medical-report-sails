@@ -21,7 +21,7 @@ describe('Run through the patient-facing portion of the service', () => {
 
   it('successfully submits a completed personal information form', () => {
     cy.visit('/en/personal');
-    
+
     cy.get('[name=socialInsuranceNumber]').type(social.generate());
     cy.get('[name=firstName]').type('Cypress');
     cy.get('[name=lastName]').type('Testperson');
