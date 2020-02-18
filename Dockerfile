@@ -16,7 +16,7 @@ RUN apk --no-cache add --virtual native-deps \
 COPY . /app/
 
 # Install dependencies
-RUN npm install
+RUN npm install --production
 
 FROM node:lts-alpine3.11 AS final
 WORKDIR /app
