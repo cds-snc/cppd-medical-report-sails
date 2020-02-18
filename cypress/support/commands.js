@@ -25,6 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 const social = require('social-insurance-number');
+const faker = require('faker');
 
 // shortcut to skip the peronal form
 Cypress.Commands.add('personal', () => {
@@ -35,17 +36,17 @@ Cypress.Commands.add('personal', () => {
     form: true,
     body: {
       socialInsuranceNumber: social.generate(),
-      firstName: 'Cypress',
-      lastName: 'Testperson',
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
       birthdateDay: '9',
       birthdateMonth: '9',
       birthdateYear: '1999',
-      address: '219 Laurier Avenue West',
-      city: 'Ottawa',
+      address: faker.address.streetAddress(),
+      city: faker.address.city(),
       province: 'ON',
       country: 'Canada',
       postal: 'K1A 1K3',
-      telephone: '555-555-5555'
+      telephone: faker.phone.phoneNumber()
     }
   })
     .then((res) => {
