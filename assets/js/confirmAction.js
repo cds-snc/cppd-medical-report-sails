@@ -1,6 +1,6 @@
-const confirmAction = (message, okAction) => {
-    const isOk = confirm(message);
-    if(isOk) {
-        okAction();
-    }
-};
+function confirmAction(message, okAction) {
+  const isOk = confirm(message);
+  if (isOk) {
+    okAction();
+  }
+}
