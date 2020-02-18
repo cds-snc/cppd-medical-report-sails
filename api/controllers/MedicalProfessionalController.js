@@ -46,8 +46,7 @@ module.exports = {
       }
 
       // Was the report submitted already by the medical professional?
-      if (medicalReport.practitionerSubmittedAt != null) {  // Us `!=` instead of `!==` so that it works for both `null` and `undefined`
-        console.log("[JM] " + (medicalReport.practitionerSubmittedAt));
+      if (medicalReport.practitionerSubmittedAt !== null) { 
         req.flash('error', 'errors.application_submitted_already');
         req.flash('data', req.body);
         return res.redirect('back');        
