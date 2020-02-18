@@ -18,41 +18,58 @@ module.exports = {
 
   login: async function (req, res) {
 
-    const email = req.body.email;
-    const password = req.body.password;
-
-    /**
-     * We check that the user exists first because
-     * password comparisons are expensive
-     */
-    let user = await User.findOne({
-      where: {
-        email: email
+    let valid = req.validate(req, res, {
+      email: {
+        presence: {
+          allowEmpty: false,
+          message: '^Email is required'
+        },
+      },
+      password: {
+        presence: {
+          allowEmpty: false,
+          message: '^Password is required'
+        },
       }
     });
 
-    if (!user) {
-      req.flash('error', 'Invalid login'); // user doesn't exist
-      return res.redirect('back');
+    if (valid) {
+      const email = req.body.email;
+      const password = req.body.password;
+
+      /**
+      * We check that the user exists first because
+      * password comparisons are expensive
+      */
+      let user = await User.findOne({
+        where: {
+          email: email
+        }
+      });
+
+      if (!user) {
+        req.flash('error', 'Invalid login'); // user doesn't exist
+        return res.redirect('back');
+      }
+
+      // ok we have a user, check the password
+      user.checkPassword(password, (err, valid) => {
+        if (err) { // some mysterious error
+          req.flash('error', err);
+          return res.redirect('back');
+        }
+
+        if (!valid) { // wrong password
+          req.flash('error', 'Invalid login');
+          return res.redirect('back');
+        }
+
+        // we're good set session vars and redirect
+        req.session.loggedIn = true;
+        req.session.user = user;
+        return res.redirect(sails.route('sessions'));
+      });
     }
-
-    // ok we have a user, check the password
-    user.checkPassword(password, (err, valid) => {
-      if (err) { // some mysterious error
-        req.flash('error', err);
-        return res.redirect('back');
-      }
-
-      if (!valid) { // wrong password
-        req.flash('error', 'Invalid login');
-        return res.redirect('back');
-      }
-
-      // we're good set session vars and redirect
-      req.session.loggedIn = true;
-      req.session.user = user;
-      return res.redirect(sails.route('sessions'));
-    });
   },
 
   logout: function (req, res) {
