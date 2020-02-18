@@ -13,17 +13,19 @@ RUN apk --no-cache add --virtual native-deps \
   npm install --quiet node-gyp -g
 
 # Package files
-COPY . /app/
+COPY package.json package-lock.json ./app/
 
 # Install dependencies
 RUN npm install
 
 FROM node:lts-alpine3.11 AS final
 WORKDIR /app
-COPY --from=base /app /app
 
 # Install SailsJS
 RUN npm install sails@${SAILS_VERISON} -g
+
+COPY . /app/
+COPY --from=base /app/node_modules /app/node_modules
 
 # Run the app in dev mode
 EXPOSE  1337
