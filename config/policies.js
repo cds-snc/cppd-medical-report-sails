@@ -8,6 +8,8 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 
+const featureFlags = require('../api/utils/FeatureFlags');
+
 // const defaultPolicies = ['localize', 'route', 'flash'];
 const defaultPolicies = ['localize', 'route', 'flash', 'reportExists'];
 
@@ -23,7 +25,7 @@ module.exports.policies = {
   '*': defaultPolicies,
 
   SessionsController: {
-    '*': process.env.FEATURE_AUTH ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
+    '*': featureFlags.isEnabled('FEATURE_AUTH') ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
   },
 
   StartController: {
