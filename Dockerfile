@@ -13,7 +13,7 @@ RUN apk --no-cache add --virtual native-deps \
   npm install --quiet node-gyp -g
 
 # Package files
-COPY package.json package-lock.json ./app/
+COPY package.json package-lock.json /app/
 
 # Install dependencies
 RUN npm install
