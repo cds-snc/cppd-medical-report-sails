@@ -7,9 +7,6 @@ FROM node:lts-alpine3.11 AS base
 ARG SAILS_VERISON=^1.0.0
 WORKDIR /app
 
-# Install SailsJS
-RUN npm install sails@${SAILS_VERISON} -g
-
 # Need to install python to compile bcrypt dependency
 RUN apk --no-cache add --virtual native-deps \
   g++ gcc libgcc libstdc++ linux-headers autoconf automake make nasm python git && \
@@ -24,6 +21,9 @@ RUN npm install
 FROM node:lts-alpine3.11 AS final
 WORKDIR /app
 COPY --from=base /app /app
+
+# Install SailsJS
+RUN npm install sails@${SAILS_VERISON} -g
 
 # Run the app in dev mode
 EXPOSE  1337
