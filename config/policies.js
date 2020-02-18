@@ -10,9 +10,6 @@
 
 const featureFlags = require('../api/utils/FeatureFlags');
 
-// const defaultPolicies = ['localize', 'route', 'flash'];
-const defaultPolicies = ['localize', 'route', 'flash', 'reportExists'];
-
 module.exports.policies = {
   /***************************************************************************
    *                                                                          *
@@ -22,7 +19,7 @@ module.exports.policies = {
    ***************************************************************************/
 
   // '*': true,
-  '*': defaultPolicies,
+  '*': ['localize', 'route', 'flash', 'reportExists'],
 
   SessionsController: {
     '*': featureFlags.isEnabled('FEATURE_AUTH') ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
