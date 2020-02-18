@@ -46,10 +46,10 @@ module.exports = {
       }
 
       // Was the report submitted already by the medical professional?
-      if (medicalReport.practitionerSubmittedAt !== null) { 
+      if (medicalReport.practitionerSubmittedAt !== null) {
         req.flash('error', 'errors.application_submitted_already');
         req.flash('data', req.body);
-        return res.redirect('back');        
+        return res.redirect('back');
       }
 
       req.session.applicationCode = applicationCode;
