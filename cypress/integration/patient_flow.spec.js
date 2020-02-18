@@ -1,3 +1,5 @@
+const social = require('social-insurance-number');
+
 describe('Run through the patient-facing portion of the service', () => {
   before(() => {
     cy.visit('/');
@@ -19,13 +21,27 @@ describe('Run through the patient-facing portion of the service', () => {
 
   it('successfully submits a completed personal information form', () => {
     cy.visit('/en/personal');
-    cy.fillPersonalForm();
+    
+    cy.get('[name=socialInsuranceNumber]').type(social.generate());
+    cy.get('[name=firstName]').type('Cypress');
+    cy.get('[name=lastName]').type('Testperson');
+    cy.get('[name=birthdateDay]').type('9');
+    cy.get('[name=birthdateMonth]').type('9');
+    cy.get('[name=birthdateYear]').type('1999');
+    cy.get('[name=address]').type('219 Laurier Avenue West');
+    cy.get('[name=city]').type('Ottawa');
+    cy.get('[name=province]').type('Ontario');
+    cy.get('[name=country]').type('Canada');
+    cy.get('[name=postal]').type('K1A 1K3');
+    cy.get('[name=telephone]').type('555-555-5555');
+    cy.get('[type="submit"]').click();
+
     cy.get('h1').contains('Consent for Service Canada to obtain personal information');
   });
 
   it('successfully submits a completed consent form', () => {
-    cy.visit('/en/personal');
-    cy.fillPersonalForm();
+    cy.personal();
+    cy.visit('/en/consent');
     cy.get('h1').contains('Consent for Service Canada to obtain personal information');
 
     cy.get('[id=consentyes]').check();

@@ -186,7 +186,4 @@ describe('Test validation on Personal form', () => {
       cy.get('#content .error-list').contains('valid email').should('not.exist');
     });
   });
-
 });
-
-

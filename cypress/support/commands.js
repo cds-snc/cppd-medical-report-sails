@@ -24,18 +24,32 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('fillPersonalForm', () => {
-  cy.get('[name=socialInsuranceNumber]').type('198 430 597');
-  cy.get('[name=firstName]').type('Cypress');
-  cy.get('[name=lastName]').type('Testperson');
-  cy.get('[name=birthdateDay]').type('9');
-  cy.get('[name=birthdateMonth]').type('9');
-  cy.get('[name=birthdateYear]').type('1999');
-  cy.get('[name=address]').type('219 Laurier Avenue West');
-  cy.get('[name=city]').type('Ottawa');
-  cy.get('[name=province]').type('Ontario');
-  cy.get('[name=country]').type('Canada');
-  cy.get('[name=postal]').type('K1A 1K3');
-  cy.get('[name=telephone]').type('555-555-5555');
-  cy.get('[type="submit"]').click();
+const social = require('social-insurance-number');
+
+// shortcut to skip the peronal form
+Cypress.Commands.add('personal', () => {
+  cy.request({
+    method: 'POST',
+    url: '/en/personal',
+    followRedirect: false,
+    form: true,
+    body: {
+      socialInsuranceNumber: social.generate(),
+      firstName: 'Cypress',
+      lastName: 'Testperson',
+      birthdateDay: '9',
+      birthdateMonth: '9',
+      birthdateYear: '1999',
+      address: '219 Laurier Avenue West',
+      city: 'Ottawa',
+      province: 'ON',
+      country: 'Canada',
+      postal: 'K1A 1K3',
+      telephone: '555-555-5555'
+    }
+  })
+    .then((res) => {
+      expect(res.status).to.eq(302);
+      expect(res.redirectedToUrl).to.contains('/en/consent');
+    });
 });
