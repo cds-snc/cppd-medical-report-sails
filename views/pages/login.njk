@@ -8,14 +8,12 @@
         <form action="{{ route('login.post') }}" method="POST">
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
-            <label for="username">Email</label>
-            <input type="text" name="email" id="username" autofocus="true">
+            {{ textInput('email', 'Email', { required: true, class: 'w-full' }) }}
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+            {{ textInput('password', 'Password', { required: true, type: 'password', class: 'w-full' }) }}
 
             <button type="submit">
-                Login!
+                Login
             </button>
         </form>
     </div>
