@@ -7,8 +7,8 @@ module.exports.routes = {
     action: 'index',
     lang: 'en',
     i18n: {
-      en: '/en/admin/users',
-      fr: '/fr/admin/users'
+      en: '/en/users',
+      fr: '/fr/users'
     }
   },
 
@@ -20,6 +20,17 @@ module.exports.routes = {
     i18n: {
       en: '/en/users/create',
       fr: '/fr/users/create'
+    }
+  },
+
+  'POST /en/users': {
+    name: 'users.store',
+    controller: 'UserManagementController',
+    action: 'store',
+    lang: 'en',
+    i18n: {
+      en: '/en/users',
+      fr: '/fr/users'
     }
   },
 };
