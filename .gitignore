@@ -122,7 +122,6 @@ nbproject
 .idea
 *.iml
 .vscode
-.devcontainer
 .node_history
 dump.rdb
 

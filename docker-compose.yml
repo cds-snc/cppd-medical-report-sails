@@ -1,11 +1,15 @@
+# For local development (uses Dockerfile.dev, which keeps build deps)
+
 version: '3'
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     ports:
       - '1337:1337'
     volumes:
-      - .:/cppd-medical-report-sails
+      - .:/app
     links:
       - db
       - sessions

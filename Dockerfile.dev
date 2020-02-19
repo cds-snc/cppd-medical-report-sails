@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.11 AS base
+FROM node:lts-alpine3.11
 
 # Versions
 # ARG NODE_VERSION=12.14.0 # Alpine 3.11 tracks NodeJS 12.x LTS
@@ -12,20 +12,12 @@ RUN apk --no-cache add --virtual native-deps \
   g++ gcc libgcc libstdc++ linux-headers autoconf automake make nasm python git && \
   npm install --quiet node-gyp -g
 
-# Package files
-COPY package.json package-lock.json /app/
+# Copy code in for initial dependency build
+COPY . /app/
 
 # Install dependencies
 RUN npm install
-
-FROM node:lts-alpine3.11 AS final
-WORKDIR /app
-
-# Install SailsJS
 RUN npm install sails@${SAILS_VERISON} -g
-
-COPY . /app/
-COPY --from=base /app/node_modules /app/node_modules
 
 # Run the app in dev mode
 EXPOSE  1337
