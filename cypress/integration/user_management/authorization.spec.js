@@ -1,4 +1,4 @@
-describe('Test the User Management section authentication and authorization', () => {
+describe('Test the User Management authorization', () => {
   before(() => {
     /**
      * TODO: When we add our migrations, this should
