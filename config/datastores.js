@@ -13,6 +13,17 @@
  * https://sailsjs.com/config/datastores
  */
 
+function generateDialectOptions()  {
+  if (process.env.AppServiceSSL !== 'true'){
+    return {};
+  }
+  return {
+    'ssl': {
+      ca: require('fs').readFileSync('./BaltimoreCyberTrustRoot.crt.pem')
+    }
+  };
+}
+
 module.exports.datastores = {
 
 
@@ -32,6 +43,7 @@ module.exports.datastores = {
   *                                                                          *
   ***************************************************************************/
 
+
   default: {
     /***************************************************************************
     *                                                                          *
@@ -48,6 +60,10 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     url: process.env.DATABASE_URL || 'postgresql://postgres@db:5432/postgres',
+    options: {
+      logging: 'verbose',
+      dialectOptions: generateDialectOptions(),
+    }
 
   },
 
