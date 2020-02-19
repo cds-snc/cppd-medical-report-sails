@@ -1,5 +1,18 @@
 {% extends "layouts/layout.njk" %}
 
 {% block content %}
+  <h1>{{ __('Create a user') }}</h1>
 
+  <form action="{{ route('users.store') }}" method="POST">
+    <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+    {{ textInput('name', 'Name', { required: true }) }}
+    {{ textInput('email', 'Email', { required: true }) }}
+    {{ textInput('password', 'Password', { required: true, type: 'password' }) }}
+    {{ textInput('passwordConfirm', 'Confirm password', { required: true, type: 'password' }) }}
+
+    <button type="submit" class="w-3/4 mt-8">
+      Submit
+    </button>
+  </form>
 {% endblock %}

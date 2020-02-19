@@ -33,4 +33,15 @@ module.exports.routes = {
       fr: '/fr/users'
     }
   },
+
+  'GET /en/users/:id': {
+    name: 'users.edit',
+    controller: 'UserManagementController',
+    action: 'edit',
+    lang: 'en',
+    i18n: {
+      en: '/en/users/:id',
+      fr: '/fr/users/:id'
+    }
+  },
 };

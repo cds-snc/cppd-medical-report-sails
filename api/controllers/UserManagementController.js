@@ -46,7 +46,16 @@ module.exports = {
   },
 
   edit: async function (req, res) {
+    let user = await User.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: ['name', 'email']
+    });
 
+    res.view('pages/users/edit.njk', {
+      data: user
+    });
   },
 
   update: async function (req, res) {
