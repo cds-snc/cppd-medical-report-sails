@@ -16,7 +16,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
 
   it('loads the login screen', () => {
     cy.visit('/en/login');
-    cy.get('h1').contains('Login');
+    cy.get('h1').contains('Medical adjudication sign in');
     cy.injectAxe().checkA11y();
   });
 
@@ -35,10 +35,10 @@ describe('Test the authentication flow for medical adjudicators', () => {
         url: route,
         followRedirect: false,
       })
-      .then((res) => {
-        expect(res.status).to.eq(302);
-        expect(res.redirectedToUrl).to.contains('/en/login');
-      });
+        .then((res) => {
+          expect(res.status).to.eq(302);
+          expect(res.redirectedToUrl).to.contains('/en/login');
+        });
     });
   });
 
