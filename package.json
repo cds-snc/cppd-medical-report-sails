@@ -9,6 +9,7 @@
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
     "axios": "^0.19.2",
+    "bcrypt": "^3.0.8",
     "connect-flash": "^0.1.1",
     "connect-pg-simple": "^6.1.0",
     "consolidate": "^0.15.1",
@@ -64,6 +65,7 @@
     "db:migrate": "sequelize-cli db:migrate",
     "db:migrate:undo": "sequelize-cli db:migrate:undo:all",
     "db:seed": "sequelize-cli db:seed:all",
+    "db:seed:undo": "sequelize-cli db:seed:undo:all",
     "cypress:open": "cypress open"
   },
   "main": "app.js",
@@ -76,7 +78,7 @@
     "ignore": [
       "config/locales/*.json",
       "sessions/*.json",
-      "cypress/**/*"
+      "cypress/**/*.js"
     ]
   },
   "author": "samojled",

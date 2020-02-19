@@ -1,0 +1,22 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+    <h1>{{ __('login.title') }}</h1>
+
+<div class="flex"> 
+
+        <form action="{{ route('login.post') }}" method="POST">
+            <input type="hidden" name="_csrf" value="{{ _csrf }}">
+
+            {{ textInput('email', 'Email', { required: true, class: 'w-3/4' }) }}
+
+            {{ textInput('password', 'Password', { required: true, type: 'password', class: 'w-3/4' }) }}
+
+            <button type="submit" class="w-3/4 mt-8">
+                Login
+            </button>
+        </form>
+
+</div>
+
+{% endblock %}

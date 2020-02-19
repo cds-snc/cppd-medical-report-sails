@@ -24,6 +24,6 @@
         {% if errors and errors[name] %}
             {{ validationMessage(errors[name], name) }}
         {% endif %}
-        <input class="{{ attributes.class if attributes.class else "w-3-4" }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} type="text" id="{{ attributes.id if attributes.id else name }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === name %} autofocus="true" {% endif %} name="{{ name }}" value="{{ attributes.value if attributes.value else data[name] }}"/>
+        <input class="{{ attributes.class if attributes.class else "w-3-4" }}" {% if attributes.autocomplete %}autocomplete="{{ attributes.autocomplete }}" {% endif %} {% if attributes.type %}type="{{ attributes.type }}"{% else %}type="text"{% endif %} id="{{ attributes.id if attributes.id else name }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === name %} autofocus="true" {% endif %} name="{{ name }}" value="{{ attributes.value if attributes.value else data[name] }}"/>
     </div>
 {% endmacro %}
