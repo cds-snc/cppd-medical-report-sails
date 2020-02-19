@@ -14,7 +14,7 @@
  */
 
 function generateDialectOptions()  {
-  if (process.env.AppServiceSSL !== 'true'){
+  if (process.env.AZURE_DB_PG_SSL !== 'true'){
     return {};
   }
   return {
