@@ -25,11 +25,20 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', (email, password) => {
-  cy.visit('/en/login');
-
-  cy.get('[name=email]').type(email);
-  cy.get('[name=password]').type(password);
-  cy.get('[type="submit"]').click();
+  cy.request({
+    method: 'POST',
+    url: '/en/login',
+    followRedirect: false,
+    form: true,
+    body: {
+      email: email,
+      password: password
+    }
+  })
+    .then((res) => {
+      expect(res.status).to.eq(302);
+      expect(res.redirectedToUrl).to.contains('/en/sessions');
+    });
 });
 
 Cypress.Commands.add('logout', () => {
