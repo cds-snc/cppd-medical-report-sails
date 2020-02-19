@@ -3,7 +3,7 @@
 {% block content %}
   <h1>{{ __('Users') }}
     <div class="text-right inline-block">
-      <a href="{{ route('users.create') }}" class="text-sm">
+      <a href="{{ route('users.create') }}" data-cy="create-user" class="text-sm">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 inline-block" viewBox="0 0 20 20"><path d="M10 1.6a8.4 8.4 0 1 0 0 16.8 8.4 8.4 0 0 0 0-16.8zm5 9.4h-4v4H9v-4H5V9h4V5h2v4h4v2z"/></svg>
         Create user
       </a>
@@ -25,7 +25,7 @@
           <td class="py-2">{{ user.email }}</td>
           <td class="py-2">{{ user.isAdmin }}</td>
           <td>
-            <a href="">Edit</a> | 
+            <a href="{{ route('users.edit', { id: user.id }) }}">Edit</a> | 
             <a href="">Delete</a> | 
             <a href="">Reset password</a>
           </td>
