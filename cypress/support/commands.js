@@ -53,6 +53,7 @@ Cypress.Commands.add('personal', () => {
       expect(res.status).to.eq(302);
       expect(res.redirectedToUrl).to.contains('/en/consent');
     });
+});
 
 Cypress.Commands.add('login', (email, password) => {
   cy.visit('/en/login');
