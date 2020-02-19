@@ -20,6 +20,11 @@ module.exports = {
       set(value) {
         this.setDataValue('password', bcrypt.hashSync(value, 10));
       }
+    },
+    isAdmin: {
+      type: Sequelize.BOOLEAN,
+      required: true,
+      defaultValue: false
     }
   },
   options: {
