@@ -8,16 +8,46 @@ describe('Test the User Management section', () => {
   });
 
   it('only allows users with isAdmin flag to access users section', () => {
-    cy.login('admin@user.com', 'secret');
+    // unauthenticated
     cy.visit('/en/users');
-    cy.get('h1').contains('Users');
+    cy.get('h1').contains('Medical adjudication sign in');
 
-    cy.logout();
-
+    // authenticated but not admin
     cy.login('test@user.com', 'secret');
     cy.visit('/en/users');
     cy.get('h1').contains('Sessions');
-    // should redirect to sessions
+
+    cy.logout();
+
+    // authenticated and isAdmin
+    cy.login('admin@user.com', 'secret');
+    cy.visit('/en/users');
+    cy.get('h1').contains('Users');
   });
 
+  it('can access the create user form', () => {
+    cy.login('admin@user.com', 'secret');
+    cy.visit('/en/users');
+    cy.contains('Create user').click();
+    cy.url().should('contain', '/en/users/create');
+  });
+
+  it('can create a new user', () => {
+    cy.login('admin@user.com', 'secret');
+    cy.visit('/en/users');
+    cy.contains('Create user').click();
+    cy.url().should('contain', '/en/users/create');
+
+    cy.get('[name=name]').type('Faker name');
+    cy.get('[name=email]').type('faker@email.com');
+    cy.get('[name=password]').type('secret');
+    cy.get('[name=password_confirm]').type('secret');
+
+    // cy.get('[type="submit"]').click();
+  });
+
+  // error on existing email
+
+  // edit user
+  // delete user
 });
