@@ -1,17 +1,12 @@
 describe('Test the authentication flow for medical adjudicators', () => {
   before(() => {
-    cy.visit('/en/login');
-  });
-
-  beforeEach(() => {
     /**
      * TODO: When we add our migrations, this should
      * reset the db then seed the test data.
      */
     cy.exec('npm run db:seed:undo && npm run db:seed');
 
-    // check baseline a11y on every page before the test
-    cy.injectAxe().checkA11y();
+    cy.visit('/en/login');
   });
 
   it('loads the login screen', () => {
