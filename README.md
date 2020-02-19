@@ -170,11 +170,11 @@ These instructions are optimized for development at the moment, rather than prod
 #### Build
 
 1. Navigate into a cloned copy of this repo
-1. `docker build -t cdssnc/cppd-medical-report-sails .`
+1. `docker build -t cdssnc/cppd-medical-report-sails-dev ./Dockerfile.dev`
 
 #### Run
 
-1. `docker run -it --rm -p 1337:1337 cdssnc/cppd-medical-report-sails`
+1. `docker run -it --rm -p 1337:1337 cdssnc/cppd-medical-report-sails-dev`
 
 ### Dev Container + Database (Docker Compose)
 
@@ -197,5 +197,6 @@ This lets your development environment in the Docker image that resembles produc
 1. Restart VSCode, opening it into this code base
 1. Open the command prompt (macOS: CMD+SHIFT+P, Win: CTRL+SHIFT+P), and choose `Remote-Containers: Reopen in Container`
 1. Choose `From docker-compose.yml`, then `web` (this might take a little bit of time at first start)
-1. After it fully starts up, use the terminal embedded inside of VSCode to issue commands within the main container (such as `npm run dev`)
-  - You'll likely need to run things like `npm run db:migrate` and `npm run dev` to start going
+1. After it fully starts up, use the terminal embedded inside of VSCode to issue commands within the main container
+1. Run to set things up `npm install && npm run db:migrate && npm run db:seed`
+1. Run `npm run dev` to start the server

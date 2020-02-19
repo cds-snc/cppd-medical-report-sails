@@ -630,5 +630,7 @@
 	"phone_number": "Phone number",
 	"declaration.submit_to_service_canada": "Submit report to Service Canada",
 	"declaration.i_confirm_that": "I confirm that, to the best of my knowledge all of the information I have provided in this report is accurate and complete",
-	"declaration.title": "Declaration and review"
+	"declaration.title": "Declaration and review",
+	"login.title": "Medical adjudication sign in",
+	"Password": "Password"
 }
