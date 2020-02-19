@@ -53,6 +53,10 @@ module.exports = {
       attributes: ['name', 'email']
     });
 
+    if (!user) {
+      return res.redirect(sails.route('users'));
+    }
+
     res.view('pages/users/edit.njk', {
       data: user
     });
