@@ -16,7 +16,7 @@ RUN apk --no-cache add --virtual native-deps \
 COPY package.json package-lock.json /app/
 
 # Install dependencies
-RUN npm install
+RUN npm install --production
 
 FROM node:lts-alpine3.11 AS final
 WORKDIR /app
@@ -30,7 +30,7 @@ COPY --from=base /app/node_modules /app/node_modules
 # Run the app in dev mode
 EXPOSE  1337
 
-CMD npm run dev
+CMD npm run start
 
 ### TODO Make this production ready later, right now runs in DEV mode
 # CMD node app.js --prod
