@@ -50,7 +50,7 @@ module.exports = {
       where: {
         id: req.params.id
       },
-      attributes: ['name', 'email']
+      attributes: ['id', 'name', 'email']
     });
 
     if (!user) {
@@ -63,7 +63,22 @@ module.exports = {
   },
 
   update: async function (req, res) {
+    let user = await User.findOne({
+      where: {
+        id: req.params.id
+      }
+    });
 
+    if (!user) {
+      return res.redirect(sails.route('users'));
+    }
+
+    user.update({
+      name: req.body.name,
+      email: req.body.email
+    });
+
+    res.redirect(sails.route('users'));
   },
 
   destroy: async function (req, res) {

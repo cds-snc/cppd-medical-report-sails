@@ -9,7 +9,7 @@
       </a>
     </div>
   </h1>
-  <table class="w-full table-full">
+  <table data-cy="usersTable" class="w-full table-full">
     <thead class="border-solid border-b-2 text-left">
       <tr>
         <th scope="col">Name</th>
@@ -21,13 +21,13 @@
     <tbody >
       {% for user in users %}
         <tr class="odd:bg-gray-300">
-          <td class="py-2">{{ user.name }}</td>
-          <td class="py-2">{{ user.email }}</td>
-          <td class="py-2">{{ user.isAdmin }}</td>
+          <td class="py-2" data-cy="name">{{ user.name }}</td>
+          <td class="py-2" data-cy="email">{{ user.email }}</td>
+          <td class="py-2" data-cy="isAdmin">{{ user.isAdmin }}</td>
           <td>
-            <a href="{{ route('users.edit', { id: user.id }) }}">Edit</a> | 
-            <a href="">Delete</a> | 
-            <a href="">Reset password</a>
+            <a href="{{ route('users.edit', { id: user.id }) }}" data-cy="edit">Edit</a> | 
+            <a href="" data-cy="delete">Delete</a> | 
+            <a href="" data-cy="resetPassword">Reset password</a>
           </td>
         </tr>
       {% endfor %}

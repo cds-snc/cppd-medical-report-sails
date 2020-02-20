@@ -44,4 +44,15 @@ module.exports.routes = {
       fr: '/fr/users/:id'
     }
   },
+
+  'POST /en/users/:id': {
+    name: 'users.update',
+    controller: 'UserManagementController',
+    action: 'update',
+    lang: 'en',
+    i18n: {
+      en: '/en/users/:id',
+      fr: '/fr/users/:id'
+    }
+  },
 };
