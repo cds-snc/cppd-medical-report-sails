@@ -14,7 +14,7 @@ describe('Test the Delete User flow', () => {
     cy.exec('npm run db:seed:undo && npm run db:seed');
   });
 
-  it('can ask for confirmation when deleting a user', () => {
+  it('can delete a user', () => {
     cy.login(adminUser, adminPass);
     cy.createUser(testUserName, testUserEmail, 'secret');
     cy.visit('/en/users');
@@ -29,14 +29,5 @@ describe('Test the Delete User flow', () => {
       });
 
     cy.get('[data-cy=name]').contains('td', testUserName).should('not.exist');
-
-    // edit the first user in the table
-    /* cy.get('[data-cy=name]').first().invoke('text').then((userName) => {
-      cy.get('[data-cy=edit]').first().click();
-      cy.get('h1').contains('Edit a user');
-      cy.get('[name=name]').should('have.value', userName).clear().type('Test User 2{enter}');
-    }); */
   });
-
-
 });
