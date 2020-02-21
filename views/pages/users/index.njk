@@ -33,9 +33,9 @@
             <form action="{{ route('users.delete', { id: user.id }) }}" method="POST" class="mt-0 inline">
               <input type="hidden" name="_csrf" value="{{ _csrf }}">
               <input type="hidden" name="_method" value="DELETE">
-              <a role="button" data-cy="delete" onclick="confirmAction('{{ __('users.confirm_delete') }}', () => { this.parentNode.submit(this) } );">Delete</a> | 
+              <a role="button" data-cy="delete" onclick="confirmAction('{{ __('users.confirm_delete') }}', () => { this.parentNode.submit(this) } );">Delete</a>
             </form>
-            <a href="" data-cy="resetPassword">Reset password</a>
+            <!-- <a href="" data-cy="resetPassword">Reset password</a> -->
           </td>
         </tr>
       {% endfor %}
