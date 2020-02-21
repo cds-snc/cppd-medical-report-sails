@@ -8,6 +8,14 @@
  * For all available options, see:
  * https://sailsjs.com/config/session
  */
+function generateTls()  {
+  if (process.env.AZURE_DB_PG_SSL !== 'true'){
+    return {};
+  }
+  return {
+    'tls': {},
+  };
+}
 
 module.exports.session = {
 
@@ -26,6 +34,7 @@ module.exports.session = {
   adapter: process.env.SESSION_ADAPTER || null,
 
   url: process.env.REDIS_URL || process.env.SESSION_ADAPTER_URL || 'redis://localhost:6379',
+  generateTls()
 
   /***************************************************************************
   *                                                                          *

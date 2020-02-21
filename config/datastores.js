@@ -19,6 +19,7 @@ function generateDialectOptions()  {
   }
   return {
     'ssl': {
+      rejectUnauthorized: true,
       ca: require('fs').readFileSync('./BaltimoreCyberTrustRoot.crt.pem')
     }
   };

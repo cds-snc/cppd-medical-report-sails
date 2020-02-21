@@ -23,6 +23,8 @@ RUN npm install
 # Copy in the rest of the files
 COPY . ./
 
+ADD https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt.pem ./
+
 # Run the app in dev mode
 EXPOSE  1337
 
