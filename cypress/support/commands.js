@@ -68,7 +68,6 @@ Cypress.Commands.add('login', (email, password) => {
   })
     .then((res) => {
       expect(res.status).to.eq(302);
-      expect(res.redirectedToUrl).to.contains('/en/sessions');
     });
 });
 
