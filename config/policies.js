@@ -8,8 +8,7 @@
  * https://sailsjs.com/docs/concepts/policies
  */
 
-const defaultPolicies = ['localize', 'route', 'flash'];
-const defaultPlusReportExists = ['localize', 'route', 'flash', 'reportExists'];
+const featureFlags = require('../api/utils/FeatureFlags');
 
 module.exports.policies = {
   /***************************************************************************
@@ -20,61 +19,30 @@ module.exports.policies = {
    ***************************************************************************/
 
   // '*': true,
-  '*': defaultPolicies,
+  '*': ['localize', 'route', 'flash', 'reportExists'],
 
-  ConditionsController: {
-    'index': defaultPlusReportExists,
+  SessionsController: {
+    '*': featureFlags.isEnabled('FEATURE_AUTH') ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
   },
 
-  AddConditionController: {
-    'create': defaultPlusReportExists,
+  StartController: {
+    '*': ['localize', 'route', 'flash'],
   },
 
-  AddMedicationController: {
-    'create': defaultPlusReportExists,
-  },
-
-  AddTreatmentController: {
-    'create': defaultPlusReportExists,
+  PersonalController: {
+    '*': ['localize', 'route', 'flash'],
   },
 
   ConsentController: {
-    'index': defaultPlusReportExists,
+    'index': ['localize', 'route', 'flash'],
+    'store': ['localize', 'route', 'flash'],
   },
 
-  DashboardController: {
-    'index': defaultPlusReportExists,
+  MedicalProfessionalController: {
+    '*': ['localize', 'route', 'flash']
   },
 
-  DeclarationController: {
-    'index': defaultPlusReportExists,
-  },
-
-  DocumentsController: {
-    'index': defaultPlusReportExists,
-  },
-
-  ExpeditedController: {
-    'index': defaultPlusReportExists,
-  },
-
-  HealthController: {
-    'index': defaultPlusReportExists,
-  },
-
-  MedicationsController: {
-    'index': defaultPlusReportExists,
-  },
-
-  RelationshipController: {
-    'index': defaultPlusReportExists,
-  },
-
-  TreatmentsController: {
-    'index': defaultPlusReportExists,
-  },
-
-  FutureWorkCapacityController: {
-    'index': defaultPlusReportExists
+  AuthController: {
+    '*': ['localize', 'route', 'flash']
   }
 };

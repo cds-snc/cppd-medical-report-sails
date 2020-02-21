@@ -630,5 +630,8 @@
 	"phone_number": "Phone number",
 	"declaration.submit_to_service_canada": "Submit report to Service Canada",
 	"declaration.i_confirm_that": "I confirm that, to the best of my knowledge all of the information I have provided in this report is accurate and complete",
-	"declaration.title": "Declaration and review"
+	"declaration.title": "Declaration and review",
+	"errors.application_submitted_already": "A medical report has already been submitted using the unique code you entered and cannot be accessed. Call Service Canada at 1-800-277-9914 if you have any questions.",
+	"login.title": "Medical adjudication sign in",
+	"Password": "Password"
 }
