@@ -29,13 +29,15 @@
           <td class="py-2" data-cy="email">{{ user.email }}</td>
           <td class="py-2" data-cy="isAdmin">{{ user.isAdmin }}</td>
           <td data-cy="actions">
-            <a href="{{ route('users.edit', { id: user.id }) }}" data-cy="edit">Edit</a> | 
-            <form action="{{ route('users.delete', { id: user.id }) }}" method="POST" class="mt-0 inline">
+            <a href="{{ route('users.edit', { id: user.id }) }}" data-cy="edit">Edit</a>
+            {% if user.id !== req.session.user.id %}
+            | <form action="{{ route('users.delete', { id: user.id }) }}" method="POST" class="mt-0 inline">
               <input type="hidden" name="_csrf" value="{{ _csrf }}">
               <input type="hidden" name="_method" value="DELETE">
               <a role="button" data-cy="delete" onclick="confirmAction('{{ __('users.confirm_delete') }}', () => { this.parentNode.submit(this) } );">Delete</a>
             </form>
-            <!-- <a href="" data-cy="resetPassword">Reset password</a> -->
+            {% endif %}
+            <!-- | <a href="" data-cy="resetPassword">Reset password</a> -->
           </td>
         </tr>
       {% endfor %}
