@@ -72,6 +72,25 @@ Cypress.Commands.add('login', (email, password) => {
     });
 });
 
+Cypress.Commands.add('createUser', (name, email, password) => {
+  cy.request({
+    method: 'POST',
+    url: '/en/users',
+    followRedirect: false,
+    form: true,
+    body: {
+      name: name,
+      email: email,
+      password: password,
+      passwordConfirm: password
+    }
+  })
+    .then((res) => {
+      expect(res.status).to.eq(302);
+      expect(res.redirectedToUrl).to.contains('/en/users');
+    });
+});
+
 Cypress.Commands.add('logout', () => {
   cy.visit('/en/logout');
 });

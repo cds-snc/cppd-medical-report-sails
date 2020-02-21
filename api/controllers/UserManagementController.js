@@ -82,7 +82,19 @@ module.exports = {
   },
 
   destroy: async function (req, res) {
+    let user = await User.findOne({
+      where: {
+        id: req.params.id
+      }
+    });
 
+    if (!user) {
+      return res.redirect(sails.route('users'));
+    }
+
+    user.destroy();
+
+    res.redirect(sails.route('users'));
   }
 
 };

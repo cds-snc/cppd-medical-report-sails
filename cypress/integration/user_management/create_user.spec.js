@@ -31,7 +31,7 @@ describe('Test the Create User flow', () => {
     cy.get('[data-cy="submit"]').click();
 
     cy.get('[name=name]').type('Faker name');
-    cy.get('[name=email]').type('faker@email.com');
+    cy.get('[name=email]').type('fake@user.com');
     cy.get('[name=password]').type('secret');
     cy.get('[name=passwordConfirm]').type('secret2');
     cy.get('[data-cy="submit"]').click();
@@ -70,7 +70,7 @@ describe('Test the Create User flow', () => {
     cy.url().should('contain', '/en/users/create');
 
     cy.get('[name=name]').type('Faker name');
-    cy.get('[name=email]').type('faker@email.com');
+    cy.get('[name=email]').type('fake@user.com');
     cy.get('[name=password]').type('secret');
     cy.get('[name=passwordConfirm]').type('secret');
 
@@ -78,6 +78,6 @@ describe('Test the Create User flow', () => {
 
     cy.get('h1').contains('Users');
     cy.get('table').contains('td', 'Faker name');
-    cy.get('table').contains('td', 'faker@email.com');
+    cy.get('table').contains('td', 'fake@user.com');
   });
 });

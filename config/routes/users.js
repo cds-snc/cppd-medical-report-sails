@@ -55,4 +55,15 @@ module.exports.routes = {
       fr: '/fr/users/:id'
     }
   },
+
+  'POST /en/users/:id/delete': {
+    name: 'users.delete',
+    controller: 'UserManagementController',
+    action: 'destroy',
+    lang: 'en',
+    i18n: {
+      en: '/en/users/:id/delete',
+      fr: '/fr/users/:id/delete'
+    }
+  },
 };
