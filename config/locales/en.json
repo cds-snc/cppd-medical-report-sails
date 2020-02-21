@@ -632,5 +632,7 @@
 	"declaration.i_confirm_that": "I confirm that, to the best of my knowledge all of the information I have provided in this report is accurate and complete",
 	"declaration.title": "Declaration and review",
 	"login.title": "Medical adjudication sign in",
-	"Password": "Password"
+	"Password": "Password",
+	"users.confirm_delete": "Are you sure you want to delete this user?",
+	"Users": "Users"
 }

@@ -1,5 +1,9 @@
 {% extends "layouts/layout.njk" %}
 
+{% block scripts %}
+    <script type="text/javascript" src="/build/assets/js/confirmAction.js"></script>
+{% endblock %}
+
 {% block content %}
   <h1>{{ __('Users') }}
     <div class="text-right inline-block">
@@ -26,7 +30,10 @@
           <td class="py-2" data-cy="isAdmin">{{ user.isAdmin }}</td>
           <td>
             <a href="{{ route('users.edit', { id: user.id }) }}" data-cy="edit">Edit</a> | 
-            <a href="" data-cy="delete">Delete</a> | 
+            <form action="" method="DELETE" class="mt-0 inline">
+              <input type="hidden" name="_csrf" value="{{ _csrf }}">
+              <a role="button" data-cy="delete" onclick="confirmAction('{{ __('users.confirm_delete') }}', () => { this.parentNode.submit(this) } );">Delete</a> | 
+            </form>
             <a href="" data-cy="resetPassword">Reset password</a>
           </td>
         </tr>
