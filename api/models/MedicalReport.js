@@ -120,7 +120,8 @@ module.exports = {
     billingIdType: Sequelize.STRING,
     billingId: Sequelize.STRING,
     applicantSubmittedAt: Sequelize.DATE,
-    practitionerSubmittedAt: Sequelize.DATE
+    practitionerSubmittedAt: Sequelize.DATE,
+    practitionerTimezoneOffset: Sequelize.INTEGER // Hours offset from GMT
   },
   associations: function () {
     MedicalReport.hasMany(Condition, {
