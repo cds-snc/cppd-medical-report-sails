@@ -35,6 +35,9 @@ module.exports.session = {
 
   url: process.env.REDIS_URL || process.env.SESSION_ADAPTER_URL || 'redis://localhost:6379',
   tls: generateTls(),
+  //increase timeout for Azure Cache for Redis
+  // eslint-disable-next-line camelcase
+  connect_timeout: 20000,
   /***************************************************************************
   *                                                                          *
   * Customize when built-in session support will be skipped.                 *
