@@ -1,3 +1,18 @@
+
+const featureFlags = require('../api/utils/FeatureFlags');
+
+function generateDialectOptions()  {
+  if (featureFlags.isEnabled('FEATURE_AZURE_PG_SSL')){
+    return {
+      'ssl': {
+        rejectUnauthorized: true,
+        ca: require('fs').readFileSync('./BaltimoreCyberTrustRoot.crt.pem')
+      }
+    };
+  }
+  return {};
+}
+
 /**
  * Datastores
  * (sails.config.datastores)
@@ -12,19 +27,6 @@
  * For more information on configuring datastores, check out:
  * https://sailsjs.com/config/datastores
  */
-
-function generateDialectOptions()  {
-  if (process.env.AZURE_DB_PG_SSL !== 'true'){
-    return {};
-  }
-  return {
-    'ssl': {
-      rejectUnauthorized: true,
-      ca: require('fs').readFileSync('./BaltimoreCyberTrustRoot.crt.pem')
-    }
-  };
-}
-
 module.exports.datastores = {
 
 

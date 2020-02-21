@@ -8,13 +8,13 @@
  * For all available options, see:
  * https://sailsjs.com/config/session
  */
+
+const featureFlags = require('../api/utils/FeatureFlags');
 function generateTls()  {
-  if (process.env.AZURE_DB_PG_SSL !== 'true'){
-    return {};
+  if (featureFlags.isEnabled('FEATURE_REDIS_SSL')) {
+    return { };
   }
-  return {
-    'tls': {},
-  };
+  return undefined;
 }
 
 module.exports.session = {
@@ -34,8 +34,7 @@ module.exports.session = {
   adapter: process.env.SESSION_ADAPTER || null,
 
   url: process.env.REDIS_URL || process.env.SESSION_ADAPTER_URL || 'redis://localhost:6379',
-  generateTls()
-
+  tls: generateTls(),
   /***************************************************************************
   *                                                                          *
   * Customize when built-in session support will be skipped.                 *
