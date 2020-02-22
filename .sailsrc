@@ -11,5 +11,8 @@
     "orm": false,
     "pubsub": false,
     "blueprints": false
+  },
+  "paths": {
+    "public": "public"
   }
 }
