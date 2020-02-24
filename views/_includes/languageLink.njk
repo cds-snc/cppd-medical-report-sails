@@ -1,8 +1,11 @@
 <div class="language-link print:hidden">
+    {% if(req.session.loggedIn) %}
+        <a href="{{ route('logout') }}" data-cy="logout" class="mr-12">Sign out</a>
+    {% endif %}
     {% if getLocale() != 'fr' %}
-    <a href="{{ route(req.options.name, { lang: 'fr' }) }}" lang="fr">Français</a>
+        <a href="{{ route(req.options.name, { lang: 'fr' }) }}" lang="fr">Français</a>
     {% endif %}
     {% if getLocale() != 'en' %}
-    <a href="{{ route(req.options.name, { lang: 'en' }) }}" lang="en">English</a>
+        <a href="{{ route(req.options.name, { lang: 'en' }) }}" lang="en">English</a>
     {% endif %}
 </div>
