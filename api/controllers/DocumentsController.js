@@ -5,6 +5,9 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const features = require('../utils/FeatureFlags');
+const download = require('../utils/DownloadHelpers');
+
 module.exports = {
   index: async function (req, res) {
     // Load the report from the database.
@@ -63,16 +66,10 @@ module.exports = {
       }
     });
 
-    const SkipperAzure = require('skipper-azure');
+    if (features.isEnabled('FEATURE_AZ_STORAGE')) {
+      return download.streamFileFromAz(document, res);
+    }
 
-    const fileAdapter = SkipperAzure({
-      container: process.env.AZURE_STORAGE_CONTAINER
-    });
-
-    fileAdapter.read(document.fileName, (d, data) => {
-      res.set('Content-disposition', 'attachment; filename=' + document.originalFileName);
-      res.write(data, 'binary');
-      res.end();
-    });
-  }
+    return download.streamFileFromLocal(document, res);
+  },
 };
