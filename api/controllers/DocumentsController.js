@@ -6,8 +6,7 @@
  */
 
 const features = require('../utils/FeatureFlags');
-const streamFileFromAz = require('../utils/DownloadHelpers').streamFileFromAz;
-const streamFileFromLocal = require('../utils/DownloadHelpers').streamFileFromLocal;
+const { streamFileFromAz, streamFileFromLocal } = require('../utils/DownloadHelpers');
 
 module.exports = {
   index: async function (req, res) {
