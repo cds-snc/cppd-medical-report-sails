@@ -1,70 +1,4 @@
 'use strict';
-/*
-
-CREATE TABLE public."MedicalReports" (
-    id integer NOT NULL,
-    "applicationCode" character varying(255),
-    "socialInsuranceNumber" character varying(255),
-    "firstName" character varying(255),
-    "middleName" character varying(255),
-    "lastName" character varying(255),
-    "birthLastName" character varying(255),
-    birthdate date,
-    address character varying(255),
-    city character varying(255),
-    province character varying(255),
-    country character varying(255),
-    postal character varying(255),
-    email character varying(255),
-    telephone character varying(255),
-    "alternateTelephone" character varying(255),
-    "contactTime" character varying(255),
-    consent boolean,
-    "consentEducation" boolean,
-    "consentAccountant" boolean,
-    "consentFinancial" boolean,
-    "consentVolunteer" boolean,
-    "consentEmployees" boolean,
-    "signatureDraw" text,
-    "signatureType" character varying(255),
-    "relationshipStarted" character varying(255),
-    "firstTreatmentDate" character varying(255),
-    "visitNumber" integer,
-    "lastVisitDate" character varying(255),
-    "conditionType" character varying(255),
-    diagnosis text,
-    "icdCode" character varying(255),
-    "onsetDate" character varying(255),
-    limitations text,
-    "plannedTreatments" text,
-    height character varying(255),
-    weight character varying(255),
-    "stopWorking" integer,
-    "stopWorkingWhen" character varying(255),
-    "returnToWork" integer,
-    "returnToWorkWhen" integer,
-    "typeOfWork" integer,
-    "workDetails" text,
-    "patientMedications" boolean,
-    "patientTreatments" boolean,
-    "practitionerType" integer,
-    "practitionerTypeOtherSpecify" character varying(255),
-    "practitionerFirstName" character varying(255),
-    "practitionerLastName" character varying(255),
-    "practitionerAddress" character varying(255),
-    "practitionerCity" character varying(255),
-    "practitionerProvince" character varying(255),
-    "practitionerCountry" character varying(255),
-    "practitionerPostal" character varying(255),
-    "practitionerEmail" character varying(255),
-    "practitionerPhone" character varying(255),
-    "practitionerSignatureDraw" text,
-    "practitionerSignatureType" character varying(255),
-    "billingIdType" character varying(255),
-    "billingId" character varying(255),
-    "applicantSubmittedAt" timestamp with time zone,
-    "practitionerSubmittedAt" timestamp with time zone,
-*/
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('MedicalReports', {
@@ -240,7 +174,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       practitionerSignatureDraw: {
-        type: Sequelize.text
+        type: Sequelize.TEXT
       },
       practitionerSignatureType: {
         type: Sequelize.STRING
