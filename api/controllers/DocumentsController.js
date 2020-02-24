@@ -5,9 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const path = require('path');
-const fs = require('fs');
-
 module.exports = {
   index: async function (req, res) {
     // Load the report from the database.
@@ -66,17 +63,16 @@ module.exports = {
       }
     });
 
-    const filePath = path.join(process.cwd(), '.tmp/uploads', document.fileName);
+    const SkipperAzure = require('skipper-azure');
 
-    if (!fs.existsSync(filePath)) {
-      return res.notFound();
-    }
+    const fileAdapter = SkipperAzure({
+      container: process.env.AZURE_STORAGE_CONTAINER
+    });
 
-    const SkipperDisk = require('skipper-disk');
-    const fileAdapter = SkipperDisk();
-
-    res.set('Content-disposition', 'attachment; filename=' + document.originalFileName);
-
-    fileAdapter.read(filePath).pipe(res);
+    fileAdapter.read(document.fileName, (d, data) => {
+      res.set('Content-disposition', 'attachment; filename=' + document.originalFileName);
+      res.write(data, 'binary');
+      res.end();
+    });
   }
 };

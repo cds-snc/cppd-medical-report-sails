@@ -65,8 +65,13 @@ module.exports = {
       },
     });
 
+
     var settings = {
       maxBytes: 10000000,
+      adapter: require('skipper-azure'),
+      key: process.env.AZURE_STORAGE_ACCOUNT,
+      secret: process.env.AZURE_STORAGE_ACCESS_KEY,
+      container: process.env.AZURE_STORAGE_CONTAINER
     };
 
     req.file('file').upload(settings, async (err, uploadedFiles) => {
