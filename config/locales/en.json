@@ -636,5 +636,6 @@
   "Password": "Password",
   "users.confirm_delete": "Are you sure you want to delete this user?",
   "Users": "Users",
-  "users.title": "Canada Pension Plan Disability Benefits - Account management"
+  "users.title": "Canada Pension Plan Disability Benefits - Account management",
+  "users.add_new_user": "Add new user"
 }
