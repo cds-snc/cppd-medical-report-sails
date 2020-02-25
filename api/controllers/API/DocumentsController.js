@@ -7,7 +7,7 @@
 
 const arrayHelpers = require('../../utils/ArrayHelpers');
 const path = require('path');
-const fs = require('fs');
+const { deleteFile } = require('../../utils/DocumentHelpers');
 
 module.exports = {
   /**
@@ -136,16 +136,10 @@ module.exports = {
       },
     });
 
-    const filePath = path.join(process.cwd(), '.tmp/uploads', document.fileName);
+    deleteFile(document);
 
-    // delete from filesystem
-    fs.unlink(filePath, async (err) => {
-      if (err) { return console.log(err); }
-
-      await document.destroy();
-
-      res.ok();
-    });
+    await document.destroy();
+    return res.ok();
   }
 };
 

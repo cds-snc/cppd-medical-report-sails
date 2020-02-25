@@ -6,7 +6,7 @@
  */
 
 const features = require('../utils/FeatureFlags');
-const { streamFileFromAz, streamFileFromLocal } = require('../utils/DownloadHelpers');
+const { streamFile } = require('../utils/DocumentHelpers');
 
 module.exports = {
   index: async function (req, res) {
@@ -66,10 +66,6 @@ module.exports = {
       }
     });
 
-    if (features.isEnabled('FEATURE_AZ_STORAGE')) {
-      return streamFileFromAz(document, res);
-    }
-
-    return streamFileFromLocal(document, res);
+    streamFile(document, res);
   },
 };
