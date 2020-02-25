@@ -48,7 +48,8 @@ module.exports = {
         practitionerSignatureDraw: req.body.signatureMode === 'draw' ? req.body.signatureDrawData : null,
         practitionerSignatureType: req.body.signatureMode === 'type' ? req.body.signatureTyped : null,
         practitionerSubmittedAt: moment().format(),
-        practitionerTimezoneOffset: req.body.practitionerTimezoneOffset
+        practitionerTimezoneOffset: req.body.practitionerTimezoneOffset,
+        practitionerIpAddress: /(.*:)?(.+)$/.exec(req.ip)[2]
       });
 
       res.redirect(sails.route('confirmation'));
