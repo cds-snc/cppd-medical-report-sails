@@ -33,6 +33,17 @@ module.exports.routes = {
       en: '/en/declaration/view',
       fr: '/fr/declaration/view'
     }
-  }
+  },
+
+  'GET /en/declaration/:session/view': {
+    name: 'declaration.processingView',
+    controller: 'DeclarationController',
+    action: 'processingView',
+    lang: 'en',
+    i18n: {
+      en: '/en/declaration/:session/view',
+      fr: '/fr/declaration/:session/view'
+    }
+  },
 
 };

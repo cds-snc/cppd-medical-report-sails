@@ -109,6 +109,12 @@ module.exports = {
       }
     },
     practitionerAddress: Sequelize.STRING,
+    practitionerFullAddress: {
+      type: Sequelize.VIRTUAL,
+      get() {
+        return `${this.practitionerAddress}, ${this.practitionerCity}, ${this.practitionerProvince}, ${this.practitionerPostal}, ${this.practitionerCountry}`;
+      }
+    },
     practitionerCity: Sequelize.STRING,
     practitionerProvince: Sequelize.STRING,
     practitionerCountry: Sequelize.STRING,

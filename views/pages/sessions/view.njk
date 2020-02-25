@@ -14,9 +14,23 @@
     {{ __('ma.view.label.date_of_birth') }} {{ data.birthdate }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}<br>
     {{ __('ma.view.label.sin') }} {{ data.socialInsuranceNumber }}<br>
     {{ __('ma.view.label.last_name_at_birth') }} {{ data.birthLastName }}<br>
-    {{ __('ma.view.label.address') }} {{ data.address }}<br>
+    {{ __('ma.view.label.address') }}    {{ data.address }}<br>
     {{ __('ma.view.label.phone') }} {{ data.telephone }}<br>
   </p>
+
+  <br/>
+
+  <h3>{{ __('ma.view.hcp') }}</h3>
+  <p>
+    {{ data.practitionerFullName }}<br>
+    {{ __('ma.view.label.hcp_address') }} {{ data.practitionerFullAddress }}<br>
+    {{ __('ma.view.label.hcp_phone') }} <a href="tel:{{ data.practitionerPhone }}">{{ data.practitionerPhone }}</a><br>
+    {% if data.practitionerEmail %}
+      {{ __('ma.view.label.hcp_email') }} <a href="mailto:{{ data.practitionerEmail }}">{{ data.practitionerEmail }}</a><br>
+    {% endif %}
+    {{ __('ma.view.label.hcp_declaration') }} <a href="{{ route('declaration.processingView', {session: data.id}) }}">{{ __('ma.view.label.hcp_declaration_view') }}</a><br>
+  </p>
+
 </details>
 <details class="mt-4" open>
   <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.relationship_with_applicant') }}</h2></summary>

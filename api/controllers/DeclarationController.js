@@ -71,5 +71,16 @@ module.exports = {
     res.view('pages/practitioner/view', {
       data: medicalReport
     });
+  },
+
+  processingView: async function (req, res) {
+    const reportId = req.params.session;
+    const medicalReport = await MedicalReport.findOne({
+      where: { id: reportId }
+    });
+
+    res.view('pages/processingDeclarationView', {
+      data: medicalReport
+    });
   }
 };

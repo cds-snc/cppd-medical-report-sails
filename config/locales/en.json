@@ -629,9 +629,18 @@
 	"declaration.you_are_a": "You are a",
 	"phone_number": "Phone number",
 	"declaration.submit_to_service_canada": "Submit report to Service Canada",
-	"declaration.i_confirm_that": "I confirm that, to the best of my knowledge all of the information I have provided in this report is accurate and complete",
+	"declaration.i_confirm_that": "I confirm that, to the best of my knowledge all of the information I have provided in this report is accurate and complete.",
 	"declaration.title": "Declaration and review",
 	"errors.application_submitted_already": "A medical report has already been submitted using the unique code you entered and cannot be accessed. Call Service Canada at 1-800-277-9914 if you have any questions.",
 	"login.title": "Medical adjudication sign in",
-	"Password": "Password"
+	"Password": "Password",
+	"sessions.searchApplications": "sessions.searchApplications",
+	"": "",
+	"ma.view.hcp": "Health care professional",
+	"ma.view.label.hcp_address": "Address:",
+	"ma.view.label.hcp_phone": "Phone:",
+	"ma.view.label.hcp_email": "Email:",
+	"ma.view.label.hcp_declaration": "Declaration:",
+	"ma.view.label.hcp_declaration_view": "View declaration and signature",
+	"errors.declaration.timezone_offset_invalid": "Timezone offset is invalid"
 }
