@@ -26,9 +26,10 @@
 
 const social = require('social-insurance-number');
 const faker = require('faker');
+const moment = require('moment');
 
 // shortcut to skip the peronal form
-Cypress.Commands.add('personal', () => {
+Cypress.Commands.add('personal', (firstName, lastName, birthdateDay, birthdateMonth, birthdateYear, address, city, province, country, postal, telephone) => {
   cy.request({
     method: 'POST',
     url: '/en/personal',
@@ -36,22 +37,42 @@ Cypress.Commands.add('personal', () => {
     form: true,
     body: {
       socialInsuranceNumber: social.generate(),
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      birthdateDay: '9',
-      birthdateMonth: '9',
-      birthdateYear: '1999',
-      address: faker.address.streetAddress(),
-      city: faker.address.city(),
-      province: 'ON',
-      country: 'Canada',
-      postal: 'K1A 1K3',
-      telephone: faker.phone.phoneNumber()
+      firstName: firstName || faker.name.firstName(),
+      lastName: lastName || faker.name.lastName(),
+      birthdateDay: birthdateDay || '9',
+      birthdateMonth: birthdateMonth || '9',
+      birthdateYear: birthdateYear || '1999',
+      address: address || faker.address.streetAddress(),
+      city: city || faker.address.city(),
+      province: province || 'ON',
+      country: country || 'Canada',
+      postal: postal || 'K1A 1K3',
+      telephone: telephone || faker.phone.phoneNumber()
     }
   })
     .then((res) => {
       expect(res.status).to.eq(302);
       expect(res.redirectedToUrl).to.contains('/en/consent');
+    });
+});
+
+Cypress.Commands.add('consent', () => {
+  cy.request({
+    method: 'POST',
+    url: '/en/consent',
+    followRedirect: false,
+    form: true,
+    body: {
+      consent: true,
+      consent_optional_parties: ['education', 'accountant', 'financial', 'volunteer', 'employees'],
+      signatureMode: 'type',
+      signatureTyped: 'Test Name',
+      applicantSubmittedAt: moment().format()
+    }
+  })
+    .then((res) => {
+      expect(res.status).to.eq(302);
+      expect(res.redirectedToUrl).to.contains('/en/invite');
     });
 });
 
