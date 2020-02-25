@@ -314,7 +314,7 @@
 	"section1.title": "Section 1 - Information about you",
 	"consent.preamble": "Service Canada is authorized under Section 68 and 69 of the Canada Pension Plan (CPP) Regulations to receive personal information (medical and non-medical) about you to determine if you qualify or continue to qualify for CPP disability benefits. Your consent to permit Service Canada to obtain this information is necessary, should Service Canada need this information from persons and organizations listed below.",
 	"consent.may_contact_preamble": "For this reason, Service Canada may contact any of the following persons and organizations if necessary:",
-	"consent.practioners": "medical doctors, nurse practitioners, consultant specialists, or other health care professionals",
+	"consent.practioners": "medical doctors, nurse practitioners, consultant specialists, or other healthcare professionals",
 	"consent.facilities": "medical facilities or hospitals",
 	"consent.government": "federal, provincial, territorial, or municipal government departments and agencies",
 	"consent.compensation_boards": "provincial or territorial workers' compensation boards",
@@ -636,11 +636,14 @@
 	"Password": "Password",
 	"sessions.searchApplications": "sessions.searchApplications",
 	"": "",
-	"ma.view.hcp": "Health care professional",
+	"ma.view.hcp": "Healthcare professional",
 	"ma.view.label.hcp_address": "Address:",
 	"ma.view.label.hcp_phone": "Phone:",
 	"ma.view.label.hcp_email": "Email:",
 	"ma.view.label.hcp_declaration": "Declaration:",
 	"ma.view.label.hcp_declaration_view": "View declaration and signature",
-	"errors.declaration.timezone_offset_invalid": "Timezone offset is invalid"
+	"errors.declaration.timezone_offset_invalid": "Timezone offset is invalid",
+	"declaration.hcp_declaration": "Health",
+	"declaration.signed_by": "Signed by",
+	"declaration.doctor": "Dr."
 }

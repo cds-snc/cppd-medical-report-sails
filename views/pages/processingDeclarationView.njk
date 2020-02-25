@@ -2,4 +2,25 @@
 
 {% block content %}
 
+<h1></h1>
+
+<div>
+    {{ __('declaration.i_confirm_that') }}
+    <div>
+        {% if data.practitionerSignatureDraw %}
+            {{ data.practitionerSignatureDraw | safe }}
+        {% else %}
+            <span class="signature">{{ data.practitionerSignatureType }}</span>
+        {% endif %}
+    </div>
+
+    <p>{{ __('declaration.signed_by') }}</p>
+    <p>{{ __('declaration.doctor') }} {{ data.practitionerFullName }}</p>
+    <p>{{ data.practitioner }}</p>
+
+    <p>Date: {{ signedDateTime }}</p>
+    <p>IP: {{ data.practitionerIpAddress }}</p>
+
+</div>
+
 {% endblock %}

@@ -9,6 +9,7 @@
  */
 
 const featureFlags = require('../api/utils/FeatureFlags');
+const processingPolicies = featureFlags.isEnabled('FEATURE_AUTH') ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'];
 
 module.exports.policies = {
   /***************************************************************************
@@ -22,7 +23,7 @@ module.exports.policies = {
   '*': ['localize', 'route', 'flash', 'reportExists'],
 
   SessionsController: {
-    '*': featureFlags.isEnabled('FEATURE_AUTH') ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
+    '*': processingPolicies,
   },
 
   StartController: {
@@ -44,5 +45,9 @@ module.exports.policies = {
 
   AuthController: {
     '*': ['localize', 'route', 'flash']
+  },
+
+  DeclarationController:{
+    'processingView': processingPolicies
   }
 };

@@ -79,8 +79,11 @@ module.exports = {
       where: { id: reportId }
     });
 
+    let signedDateTime = moment(medicalReport.practitionerSubmittedAt).subtract(medicalReport.practitionerTimezoneOffset, 'hours');
+
     res.view('pages/processingDeclarationView', {
-      data: medicalReport
+      data: medicalReport,
+      signedDateTime: signedDate.format('LLL')
     });
   }
 };
