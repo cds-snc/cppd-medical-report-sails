@@ -5,7 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const features = require('../utils/FeatureFlags');
 const { streamFile } = require('../utils/DocumentHelpers');
 
 module.exports = {
