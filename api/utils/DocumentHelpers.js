@@ -21,7 +21,6 @@ deleteFile = (document) => {
   }
 };
 
-
 streamFileFromLocal = (document, res) => {
   const localFileAdapter = SkipperDisk();
 
