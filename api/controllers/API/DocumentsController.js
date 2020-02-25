@@ -8,6 +8,7 @@
 const arrayHelpers = require('../../utils/ArrayHelpers');
 const path = require('path');
 const { deleteFile } = require('../../utils/DocumentHelpers');
+const features = require('../../utils/FeatureFlags');
 
 module.exports = {
   /**
@@ -65,14 +66,19 @@ module.exports = {
       },
     });
 
-
-    var settings = {
-      maxBytes: 10000000,
-      adapter: require('skipper-azure'),
-      key: process.env.AZURE_STORAGE_ACCOUNT,
-      secret: process.env.AZURE_STORAGE_ACCESS_KEY,
-      container: process.env.AZURE_STORAGE_CONTAINER
+    let settings = {
+      maxBytes: 10000000
     };
+
+    if (features.isEnabled('FEATURE_AZ_STORAGE')) {
+      settings = {
+        maxBytes: 10000000,
+        adapter: require('skipper-azure'),
+        key: process.env.AZURE_STORAGE_ACCOUNT,
+        secret: process.env.AZURE_STORAGE_ACCESS_KEY,
+        container: process.env.AZURE_STORAGE_CONTAINER
+      };
+    }
 
     req.file('file').upload(settings, async (err, uploadedFiles) => {
       if (err) {
