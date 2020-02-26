@@ -27,6 +27,8 @@ RUN npm install sails@${SAILS_VERISON} -g
 COPY . /app/
 COPY --from=base /app/node_modules /app/node_modules
 
+ADD https://www.digicert.com/CACerts/BaltimoreCyberTrustRoot.crt.pem ./
+
 # Run the app in dev mode
 EXPOSE  1337
 
