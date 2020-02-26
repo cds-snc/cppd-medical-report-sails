@@ -66,7 +66,7 @@ describe('Test the Create User flow', () => {
   it('can create a new user', () => {
     cy.login('admin@user.com', 'secret');
     cy.visit('/en/users');
-    cy.contains('Create user').click();
+    cy.contains('Add new user').click();
     cy.url().should('contain', '/en/users/create');
 
     cy.get('[name=name]').type('Faker name');
@@ -76,7 +76,7 @@ describe('Test the Create User flow', () => {
 
     cy.get('[data-cy="submit"]').click();
 
-    cy.get('h1').contains('Users');
+    cy.get('h1').contains('Account management');
     cy.get('table').contains('td', 'Faker name');
     cy.get('table').contains('td', 'fake@user.com');
   });

@@ -22,6 +22,6 @@ describe('Test the User Management authorization', () => {
     // authenticated and isAdmin
     cy.login('admin@user.com', 'secret');
     cy.visit('/en/users');
-    cy.get('h1').contains('Users');
+    cy.get('h1').contains('Account management');
   });
 });
