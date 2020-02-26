@@ -90,8 +90,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
   // is this redundant?
   it('logs me out', () => {
     cy.login('test@user.com', 'secret');
-    cy.visit('/en/logout');
-    cy.url().should('include', '/en/login');
+    cy.visit('/en/logout').url().should('include', '/en/login');
     cy.visit('/en/sessions');
     cy.url().should('include', '/en/login');
   });
