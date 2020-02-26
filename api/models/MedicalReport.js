@@ -4,7 +4,6 @@ const stopWorking = require('../utils/support/stopWorking');
 const returnToWork = require('../utils/support/returnToWork');
 const returnToWorkWhen = require('../utils/support/returnToWorkWhen');
 const typeOfWork = require('../utils/support/typeOfWork');
-const practitionerType = require('../utils/support/practitionerType');
 
 module.exports = {
   attributes: {
@@ -90,15 +89,7 @@ module.exports = {
     workDetails: Sequelize.TEXT,
     patientMedications: Sequelize.BOOLEAN,
     patientTreatments: Sequelize.BOOLEAN,
-    practitionerType: Sequelize.INTEGER, // fk to support
-    practitionerTypeText: {
-      type: Sequelize.VIRTUAL,
-      get() {
-        if (this.practitionerType !== null) {
-          return sails.__(practitionerType[this.practitionerType]);
-        }
-      }
-    },
+    practitionerType: Sequelize.STRING, // Type of HCP (ccfp, rn, np, other)
     practitionerTypeOtherSpecify: Sequelize.STRING,
     practitionerFirstName: Sequelize.STRING,
     practitionerLastName: Sequelize.STRING,

@@ -645,5 +645,7 @@
 	"errors.declaration.timezone_offset_invalid": "Timezone offset is invalid",
 	"declaration.hcp_declaration": "Health",
 	"declaration.signed_by": "Signed by",
-	"declaration.doctor": "Dr."
+	"declaration.doctor": "Dr.",
+	"When they stopped working is required": "When they stopped working is required",
+	"errors.practitioner.invalid": "Invalid practitioner type"
 }
