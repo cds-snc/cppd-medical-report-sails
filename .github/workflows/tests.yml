@@ -18,7 +18,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run tests
-        run: sails test
+        run: npm run test
       - name: Run Cypress end-to-end
         uses: cypress-io/github-action@v1
         with:
