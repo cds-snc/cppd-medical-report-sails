@@ -10,19 +10,23 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
+
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12.13.1
           env: FEATURE_AUTH=true
+
       - name: Install dependencies
         run: npm install
+
       - name: Run tests
         run: npm run test
+
       - name: Run Cypress end-to-end
         uses: cypress-io/github-action@v1
         with:
           browser: chrome
           install: false
-          start: npm run start:test
-          env: FEATURE_AUTH=true
+          start: node app.js
+          env: FEATURE_AUTH=true,NODE_ENV=testing
