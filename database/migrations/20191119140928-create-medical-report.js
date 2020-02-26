@@ -26,7 +26,7 @@ module.exports = {
       birthLastName: {
         type: Sequelize.STRING
       },
-      birthDate: {
+      birthdate: {
         type: Sequelize.DATEONLY
       },
       address: {
