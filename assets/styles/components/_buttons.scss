@@ -68,4 +68,8 @@ a.button-link {
     text-decoration: underline;
     box-shadow: none;
   }
+
+  &.success {
+    @apply bg-green-700;
+  }
 }
