@@ -28,5 +28,4 @@ jobs:
         with:
           browser: chrome
           install: false
-          start: node app.js
-          env: FEATURE_AUTH=true,NODE_ENV=testing
+          start: FEATURE_AUTH=true NODE_ENV=testing node app.js
