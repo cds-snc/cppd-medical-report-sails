@@ -67,6 +67,11 @@ module.exports = {
         // we're good set session vars and redirect
         req.session.loggedIn = true;
         req.session.user = user;
+
+        if (user.isAdmin) {
+          return res.redirect(sails.route('users'));
+        }
+
         return res.redirect(sails.route('sessions'));
       });
     }
