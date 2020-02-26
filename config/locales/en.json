@@ -643,9 +643,11 @@
 	"ma.view.label.hcp_declaration": "Declaration:",
 	"ma.view.label.hcp_declaration_view": "View declaration and signature",
 	"errors.declaration.timezone_offset_invalid": "Timezone offset is invalid",
-	"declaration.hcp_declaration": "Health",
-	"declaration.signed_by": "Signed by",
+	"declaration.hcp_declaration": "Healthcare practitioner's declaration",
+	"declaration.signed_by": "Signed by:",
 	"declaration.doctor": "Dr.",
 	"When they stopped working is required": "When they stopped working is required",
-	"errors.practitioner.invalid": "Invalid practitioner type"
+	"errors.practitioner.invalid": "Invalid practitioner type",
+	"declaration.signed_date": "Date:",
+	"declaration.ip_address": "IP address:"
 }

@@ -83,7 +83,7 @@ module.exports = {
 
     res.view('pages/processingDeclarationView', {
       data: medicalReport,
-      signedDateTime: signedDate.format('LLL')
+      signedDateTime: signedDateTime.format('LLL')
     });
   }
 };
