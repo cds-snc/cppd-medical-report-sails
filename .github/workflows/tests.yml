@@ -23,5 +23,7 @@ jobs:
       - name: Run Cypress end-to-end
         uses: cypress-io/github-action@v1
         with:
-          install: false,
+          browser: chrome
+          install: false
           start: npm run start:test
+          env: FEATURE_AUTH=true
