@@ -14,8 +14,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.13.1
-      - name: Install Sails
-        run: npm install sails -g
+          env: FEATURE_AUTH=true
       - name: Install dependencies
         run: npm install
       - name: Run tests
