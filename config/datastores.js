@@ -63,6 +63,10 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     url: process.env.DATABASE_URL || 'postgresql://postgres@db:5432/postgres',
+    
+    /**
+     * @todo remove the feature flags and move the tls options into production.js
+     */
     options: {
       logging: 'verbose',
       dialectOptions: generateDialectOptions(),

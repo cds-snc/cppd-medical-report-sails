@@ -11,11 +11,6 @@
 
 module.exports.bootstrap = async function() {
 
-  sails.log.debug('Environment Variables:');
-  _.forIn(process.env,(value, key) => {
-    sails.log.debug(`${key} : ${value}`);
-  });
-
   // By convention, this is a good place to set up fake data during development.
   //
   // For example:
