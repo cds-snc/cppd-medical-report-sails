@@ -633,5 +633,14 @@
 	"declaration.title": "Declaration and review",
 	"errors.application_submitted_already": "A medical report has already been submitted using the unique code you entered and cannot be accessed. Call Service Canada at 1-800-277-9914 if you have any questions.",
 	"login.title": "Medical adjudication sign in",
-	"Password": "Password"
+	"Password": "Password",
+	"sessions.searchApplications": "sessions.searchApplications",
+	"Invalid login": "Invalid login",
+	"Birthdate day is required": "Birthdate day is required",
+	"Birthdate day is not a number": "Birthdate day is not a number",
+	"Birthdate month is required": "Birthdate month is required",
+	"Birthdate month is not a number": "Birthdate month is not a number",
+	"Birthdate year is required": "Birthdate year is required",
+	"Birthdate year is not a number": "Birthdate year is not a number",
+	"You must have been born before yesterday": "You must have been born before yesterday"
 }
