@@ -19,8 +19,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm run test
+      - name: Linty McLinterson
+        run: npm run lint
 
       - name: Run Cypress end-to-end
         uses: cypress-io/github-action@v1
