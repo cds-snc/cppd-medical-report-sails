@@ -1,41 +1,31 @@
 'use strict';
 
+
 /*
-CREATE TABLE public."Treatments" (
+
+CREATE TABLE public."Documents" (
     id integer NOT NULL,
-    "treatmentType" character varying(255),
-    "treatmentFrequency" character varying(255),
-    "treatmentStartDate" character varying(255),
-    "treatmentEndDate" character varying(255),
-    "treatmentResults" text,
+    "originalFileName" character varying(255),
+    "fileName" character varying(255),
     "createdAt" timestamp with time zone NOT NULL,
     "updatedAt" timestamp with time zone NOT NULL,
     "MedicalReportId" integer
 );
- */
+*/
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Treatments', {
+    return queryInterface.createTable('Documents', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      treatmentType: {
+      originalFileName: {
         type: Sequelize.STRING
       },
-      treatmentFrequency: {
+      fileName: {
         type: Sequelize.STRING
-      },
-      treatmentStartDate: {
-        type: Sequelize.STRING
-      },
-      treatmentEndDate: {
-        type: Sequelize.STRING
-      },
-      treatmentResults: {
-        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
@@ -58,6 +48,6 @@ module.exports = {
     });
   },
   down: (queryInterface) => {
-    return queryInterface.dropTable('Treatments');
+    return queryInterface.dropTable('Documents');
   }
 };
