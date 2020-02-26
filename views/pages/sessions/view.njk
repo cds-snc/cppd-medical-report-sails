@@ -138,14 +138,20 @@
  <details class="mt-4" open>
   <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.work_capacity') }}</h2></summary>
   <dl>
-    <dt>{{ __('ma.view.label.told_to_cease_work') }}</td>
-    <dd>{{ __(stopWorking[data.stopWorking]) if data.stopWorking }}
+    {% if data.stopWorking %}
+      <dt>{{ __('ma.view.label.told_to_cease_work') }}</td>
+      <dd>{{ __(stopWorking[data.stopWorking]) }}
+    {% endif %}
 
-    <dt>{{ __('ma.view.label.expected_to_return_to_work') }}
-    <dd>{{ __(returnToWorkWhen[data.returnToWorkWhen] if data.returnToWorkWhen) }}
+    {% if data.returnToWorkWhen %}
+      <dt>{{ __('ma.view.label.expected_to_return_to_work') }}
+      <dd>{{ __(returnToWorkWhen[data.returnToWorkWhen]) }}
+    {% endif %}
 
-    <dt>{{ __('ma.view.label.type_of_work') }}</dt>
-    <dd>{{ __(typeOfWork[data.typeOfWork]) if data.typeOfWork }}</dd>
+    {% if data.typeOfWork %}
+      <dt>{{ __('ma.view.label.type_of_work') }}</dt>
+      <dd>{{ __(typeOfWork[data.typeOfWork]) }}</dd>
+    {% endif %}
 
     <dt>{{ __('ma.view.label.type_of_work_detail') }}</dt>
     <dd>{{ data.workDetails }}
