@@ -1,8 +1,6 @@
 {
-  "name": "sails-starter-2",
+  "name": "cppd-medical-report",
   "private": true,
-  "version": "0.0.0",
-  "description": "a Sails application",
   "keywords": [],
   "dependencies": {
     "@sailshq/connect-redis": "^3.2.1",
@@ -61,9 +59,7 @@
     "start": "NODE_ENV=production node app.js",
     "dev": "nodemon --exec NODE_ENV=development node app.js",
     "debug": "nodemon --inspect-brk app.js",
-    "test": "npm run lint && npm run custom-tests && echo 'Done.'",
     "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=300 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
-    "custom-tests": "echo \"(No other custom tests yet.)\" && echo",
     "db:install": "docker pull postgres:latest",
     "db:start": "docker run --rm -p 5432:5432 -d --name postgres-dev postgres:latest",
     "db:stop": "docker stop postgres-dev",
@@ -72,8 +68,8 @@
     "db:seed": "sequelize-cli db:seed:all",
     "db:seed:undo": "sequelize-cli db:seed:undo:all",
     "cypress:open": "cypress open",
-    "start:test": "nodemon --exec FEATURE_AUTH=true NODE_ENV=testing node app.js",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "start:test": "nodemon --exec FEATURE_AUTH=true NODE_ENV=testing node app.js"
   },
   "main": "app.js",
   "repository": {
