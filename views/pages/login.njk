@@ -5,7 +5,7 @@
 
 <div class="flex"> 
 
-        <form action="{{ route('login.post') }}" method="POST">
+        <form action="{{ route('login.post') }}" method="POST" data-cy="login-form">
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
             {{ textInput('email', 'Email', { required: true, class: 'w-3/4' }) }}

@@ -1,28 +1,9 @@
-const validateLuhn = string => {
-  // Validates using Luhn Algorithm
-  let nCheck = 0;
-  let bEven = false;
-  string = string.replace(/\D/g, '');
-
-  for (var n = string.length - 1; n >= 0; n--) {
-    var cDigit = string.charAt(n);
-    var nDigit = parseInt(cDigit, 10);
-
-    if (bEven && (nDigit *= 2) > 9) {nDigit -= 9;}
-
-    nCheck += nDigit;
-    bEven = !bEven;
-  }
-
-  return (nCheck % 10) === 0;
-};
+const SocialInsuranceNumber = require('social-insurance-number');
 
 const validateSIN = function (value, options) {
-  if (/[^0-9\s]+/.test(value)) {
-    return options.message || 'is incorrectly formatted';
-  }
+  const sin = new SocialInsuranceNumber(value);
 
-  if (!validateLuhn(value)) {
+  if (!sin.isValid()) {
     return options.message || 'is invalid';
   }
 };
