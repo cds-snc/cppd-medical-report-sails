@@ -20,12 +20,11 @@
                 {% for item in values %}
                 {% set itemId %}{{ key }}{{ item.value }}{%endset%}
                     <div class="multiple-choice__item">
-
                         <input id="{{ itemId }}"
                             name="{{ key }}"
                             type="radio"
                             value="{{ item.value }}"
-                            {% if selectedValue === item.value%}
+                            {% if selectedValue == item.value %}
                                 checked="checked"
                             {% endif %}
                             {% if errors and errors[id] %}
