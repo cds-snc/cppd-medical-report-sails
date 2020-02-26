@@ -17,6 +17,8 @@ services:
     image: postgres:12
     ports:
       - '5432:5432'
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
   sessions:
     image: redis:5
     ports:
