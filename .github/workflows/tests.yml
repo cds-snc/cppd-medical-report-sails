@@ -15,7 +15,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.13.1
-          env: FEATURE_AUTH=true
 
       - name: Install dependencies
         run: npm install
@@ -28,4 +27,4 @@ jobs:
         with:
           browser: chrome
           install: false
-          start: FEATURE_AUTH=true NODE_ENV=testing node app.js
+          start: npm run start:test
