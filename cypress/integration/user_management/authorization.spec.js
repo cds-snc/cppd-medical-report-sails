@@ -1,10 +1,6 @@
 describe('Test the User Management authorization', () => {
   before(() => {
-    /**
-     * TODO: When we add our migrations, this should
-     * reset the db then seed the test data.
-     */
-    cy.exec('npm run db:seed:undo && npm run db:seed');
+    cy.dbseed();
   });
 
   it('only allows users with isAdmin flag to access users section', () => {
