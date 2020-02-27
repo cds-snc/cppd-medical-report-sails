@@ -49,7 +49,7 @@ module.exports = {
       symptomsOccur: {
         type: Sequelize.INTEGER
       },
-      symptomsOccurUnkown: {
+      symptomsOccurUnknown: {
         type: Sequelize.TEXT
       },
       MedicalReportId: {
