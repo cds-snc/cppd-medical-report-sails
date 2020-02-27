@@ -8,11 +8,7 @@ describe('Test the Delete User flow', () => {
   const testUserEmail = 'fake@user.com';
 
   before(() => {
-    /**
-     * TODO: When we add our migrations, this should
-     * reset the db then seed the test data.
-     */
-    cy.exec('npm run db:seed:undo && npm run db:seed');
+    cy.dbseed();
   });
 
   it('can delete a user', () => {
