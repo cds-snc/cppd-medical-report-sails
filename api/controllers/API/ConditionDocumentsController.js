@@ -5,8 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const path = require('path');
-const fs = require('fs');
+const { deleteFile } = require('../../utils/DocumentHelpers');
 
 module.exports = {
   /**
@@ -116,18 +115,14 @@ module.exports = {
      * associated with, delete the document.
      */
     if (!document.Conditions.length) {
-      const filePath = path.join(process.cwd(), '.tmp/uploads', document.fileName);
 
-      fs.unlink(filePath, async (err) => {
-        if (err) { return console.log(err); }
+      deleteFile(document);
 
-        await document.destroy();
-
-        return res.ok();
-      });
-    } else {
-      res.ok();
+      await document.destroy();
+      return res.ok();
     }
+
+    return res.ok();
   }
 };
 
