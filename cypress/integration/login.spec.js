@@ -1,17 +1,12 @@
 describe('Test the authentication flow for medical adjudicators', () => {
   before(() => {
-    cy.visit('/en/login');
-  });
-
-  beforeEach(() => {
     /**
      * TODO: When we add our migrations, this should
      * reset the db then seed the test data.
      */
     cy.exec('npm run db:seed:undo && npm run db:seed');
 
-    // check baseline a11y on every page before the test
-    cy.injectAxe().checkA11y();
+    cy.visit('/en/login');
   });
 
   it('loads the login screen', () => {
@@ -82,6 +77,21 @@ describe('Test the authentication flow for medical adjudicators', () => {
     cy.injectAxe().checkA11y();
   });
 
+  it('can only see a logout link when logged in', () => {
+    // link's not there when not signed in
+    cy.visit('/en/start');
+    cy.get('[data-cy=logout]').should('not.exist');
+
+    // link is visible, try clicking it
+    cy.login('test@user.com', 'secret');
+    cy.visit('/en/sessions');
+    cy.get('[data-cy=logout]').should('be.visible').click();
+
+    // logged out
+    cy.get('[data-cy=login-form]').should('be.visible');
+  });
+
+  // is this redundant?
   it('logs me out', () => {
     cy.login('test@user.com', 'secret');
     cy.visit('/en/logout');

@@ -1,3 +1,18 @@
+
+const featureFlags = require('../api/utils/FeatureFlags');
+
+function generateDialectOptions()  {
+  if (featureFlags.isEnabled('FEATURE_AZURE_PG_SSL')){
+    return {
+      'ssl': {
+        rejectUnauthorized: true,
+        ca: require('fs').readFileSync('./BaltimoreCyberTrustRoot.crt.pem')
+      }
+    };
+  }
+  return {};
+}
+
 /**
  * Datastores
  * (sails.config.datastores)
@@ -12,7 +27,6 @@
  * For more information on configuring datastores, check out:
  * https://sailsjs.com/config/datastores
  */
-
 module.exports.datastores = {
 
 
@@ -32,6 +46,7 @@ module.exports.datastores = {
   *                                                                          *
   ***************************************************************************/
 
+
   default: {
     /***************************************************************************
     *                                                                          *
@@ -48,6 +63,14 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     url: process.env.DATABASE_URL || 'postgresql://postgres@db:5432/postgres',
+    
+    /**
+     * @todo remove the feature flags and move the tls options into production.js
+     */
+    options: {
+      logging: 'verbose',
+      dialectOptions: generateDialectOptions(),
+    }
 
   },
 
