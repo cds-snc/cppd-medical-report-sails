@@ -44,5 +44,13 @@ module.exports.policies = {
 
   AuthController: {
     '*': ['localize', 'route', 'flash']
+  },
+
+  DocumentsController: {
+    'get': ['localize', 'route', 'flash', 'isAuthenticated']
+  },
+  
+  UserManagementController: {
+    '*': ['localize', 'route', 'flash', 'isAuthenticated', 'isAdmin']
   }
 };
