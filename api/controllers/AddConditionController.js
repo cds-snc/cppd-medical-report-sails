@@ -29,7 +29,7 @@ module.exports = {
       };
     }
 
-    if (medicalReport.Conditions) {
+    if (medicalReport.Conditions.length) {
       return res.view('pages/conditions/add', {
         medicalReport: medicalReport
       });
