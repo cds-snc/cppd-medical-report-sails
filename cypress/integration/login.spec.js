@@ -17,8 +17,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
   it('cannot access protected routes when not logged in', () => {
     const routes = [
       '/en/sessions',
-      '/en/sessions/1/view',
-      '/en/logout'
+      '/en/sessions/1/view'
     ];
 
     routes.forEach((route) => {
@@ -84,14 +83,15 @@ describe('Test the authentication flow for medical adjudicators', () => {
     cy.get('[data-cy=logout]').should('be.visible').click();
 
     // logged out
-    cy.get('[data-cy=login-form]').should('be.visible');
+    cy.get('h1').contains('signed out');
+    cy.url().should('include', '/en/loggedout');
   });
 
   // is this redundant?
   it('logs me out', () => {
     cy.login('test@user.com', 'secret');
-    cy.visit('/en/logout').url().should('include', '/en/login');
+    cy.visit('/en/logout').url().should('include', '/en/loggedout');
     cy.visit('/en/sessions');
-    cy.url().should('include', '/en/loggedout');
+    cy.url().should('include', '/en/login');
   });
 });
