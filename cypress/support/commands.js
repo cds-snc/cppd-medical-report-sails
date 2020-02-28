@@ -27,6 +27,10 @@
 const social = require('social-insurance-number');
 const faker = require('faker');
 
+Cypress.Commands.add('dbseed', () => {
+  cy.exec('NODE_ENV=testing npm run db:seed:undo && NODE_ENV=testing npm run db:seed');
+});
+
 // shortcut to skip the peronal form
 Cypress.Commands.add('personal', () => {
   cy.request({
@@ -56,12 +60,40 @@ Cypress.Commands.add('personal', () => {
 });
 
 Cypress.Commands.add('login', (email, password) => {
-  cy.visit('/en/login');
-  cy.injectAxe().checkA11y();
+  cy.request({
+    method: 'POST',
+    url: '/en/login',
+    followRedirect: false,
+    form: true,
+    body: {
+      email: email,
+      password: password
+    }
+  })
+    .then((res) => {
+      expect(res.status).to.eq(302);
+    });
+});
 
-  cy.get('[name=email]').type(email);
-  cy.get('[name=password]').type(password);
-  cy.get('[type="submit"]').click();
-  cy.url().should('include', '/en/sessions');
-  cy.get('h1').contains('Sessions');
+Cypress.Commands.add('createUser', (name, email, password) => {
+  cy.request({
+    method: 'POST',
+    url: '/en/users',
+    followRedirect: false,
+    form: true,
+    body: {
+      name: name,
+      email: email,
+      password: password,
+      passwordConfirm: password
+    }
+  })
+    .then((res) => {
+      expect(res.status).to.eq(302);
+      // expect(res.redirectedToUrl).to.contains('/en/users');
+    });
+});
+
+Cypress.Commands.add('logout', () => {
+  cy.visit('/en/logout');
 });

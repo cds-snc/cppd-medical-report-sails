@@ -133,3 +133,7 @@ lib-cov
 *.pid
 
 .env
+
+cypress/videos
+cypress/screenshots
+database.sqlite
