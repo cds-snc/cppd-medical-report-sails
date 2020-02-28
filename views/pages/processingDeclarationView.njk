@@ -16,7 +16,12 @@
 
     <h2 class="mt-5">{{ __('declaration.signed_by') }}</h2>
     <div class="mt-5">
-        <strong>{{ __('declaration.doctor') }} {{ data.practitionerFullName }}</strong><br/>
+        <strong>
+            {% if (data.practitionerType === 'ccfp' or data.practitionerType === 'other') %}
+                {{ __('declaration.doctor') }}
+            {% endif %}
+            {{ data.practitionerFullName }}
+        </strong><br/>
         {{ __('section9.confirm_statement_' + data.practitionerType ) }}
     </div>
 
