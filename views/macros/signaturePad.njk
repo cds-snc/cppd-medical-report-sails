@@ -72,13 +72,14 @@
             };
 
             function switchSignatureMode() {
-                let value = $('input[type=radio][name=signatureMode]:checked')[0].value;
+                let value = $('input[type=radio][name=signatureMode]:checked').val();
+
                 if(value === 'draw'){
                     signatureDraw();
                 }
                 else {
                     signatureType();
-                }    
+                }   
             };
 
             function encodeSignatureDrawing() {
@@ -93,9 +94,6 @@
             $(document).ready(function() {
                 let signaturePad = $("#signature_pad");
                 signaturePad.jSignature({width: 600, height: 200});
-
-                $('#signature_draw').hide();
-                $('#signature_type').hide();
 
                 $('input[type=radio][name=signatureMode]').change(switchSignatureMode);
                 switchSignatureMode();

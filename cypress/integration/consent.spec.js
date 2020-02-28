@@ -11,24 +11,13 @@ describe('Test the Consent form', () => {
     cy.get('[type="submit"]').click();
 
     cy.get('#content .error-list').contains('You must select an option');
-    // cy.get('[name=socialInsuranceNumber]').should('have.attr', 'aria-invalid', 'true');
+
+    cy.get('[id=signatureModetype').check();
+    cy.get('[id=signature_type]').should('be.visible');
+    cy.get('[type="submit"]').click();
 
     cy.get('#content .error-list').contains('Signature is required');
-    // cy.get('[name=socialInsuranceNumber]').should('have.attr', 'aria-invalid', 'true');
   });
-
-  /*
-  it('toggles display of signature pad on consent', () => {
-    cy.personal();
-    cy.visit('/en/consent');
-
-    cy.get('[id=consentyes]').check();
-    cy.get('[id=signatureBlock]').should('be.visible');
-
-    cy.get('[id=consentno]').check();
-    cy.get('[id=signatureBlock]').should('not.be.visible');
-  });
-  */
 
   it('displays a message if consent not given', () => {
     cy.personal();
