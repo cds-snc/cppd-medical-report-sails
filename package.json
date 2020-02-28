@@ -69,8 +69,9 @@
     "db:seed": "sequelize-cli db:seed:all",
     "db:seed:undo": "sequelize-cli db:seed:undo:all",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "start:test": "nodemon --exec FEATURE_AUTH=true NODE_ENV=testing node app.js"
+    "start:dev": "nodemon --exec NODE_ENV=development node app.js",
+    "start:test": "nodemon --exec FEATURE_AUTH=true NODE_ENV=testing node app.js",
+    "cypress:run:test": "NODE_ENV=testing cypress run"
   },
   "main": "app.js",
   "repository": {

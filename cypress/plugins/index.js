@@ -15,7 +15,9 @@
 /**
  * @type {Cypress.PluginConfig}
  */
+// Allowing unused vars here in case we need them in the future.
+// eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-}
+};

@@ -33,11 +33,6 @@ module.exports.policies = {
     '*': ['localize', 'route', 'flash'],
   },
 
-  ConsentController: {
-    'index': ['localize', 'route', 'flash'],
-    'store': ['localize', 'route', 'flash'],
-  },
-
   MedicalProfessionalController: {
     '*': ['localize', 'route', 'flash']
   },
@@ -49,7 +44,7 @@ module.exports.policies = {
   DocumentsController: {
     'get': ['localize', 'route', 'flash', 'isAuthenticated']
   },
-  
+
   UserManagementController: {
     '*': ['localize', 'route', 'flash', 'isAuthenticated', 'isAdmin']
   }
