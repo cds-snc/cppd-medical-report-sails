@@ -18,7 +18,7 @@
                 {'value': 'draw', 'text': 'consent.signature_draw'},
                 {'value': 'type', 'text': 'consent.signature_type'}
             ],
-            data.signatureMode if data.signatureMode else 'draw',
+            data.signatureMode,
             'consent.signature_option',
             errors,
             {
@@ -28,7 +28,7 @@
     }}
 
     <br/>
-    <div id="signature_options" class="{{ 'has-error' if errors and errors['signatureDrawData'] }}">
+    <div id="signature_draw" class="{{ 'has-error' if errors and errors['signatureDrawData'] }}">
         <label>
             <span aria-hidden="true" class="required">*</span>
             {{ __('consent.signature_draw_instructions') }}
@@ -37,7 +37,8 @@
         {% if errors and errors['signatureDrawData'] %}
             {{ validationMessage(errors['signatureDrawData'], 'signatureDrawData') }}
         {% endif %}
-        <div id="signature_draw" class="relative w-3-4 border-2 border-black">
+        
+        <div class="relative w-3-4 border-2 border-black">
             <div id="signature_pad_clear" class="bottom-0 w-full text-right pr-4 pt-4 leading-none bg-white">
                 <a onclick="$('#signature_pad').jSignature('clear')" class="no-underline text-gray-700 cursor-pointer">{{ __('clear') }}</a>
             </div>
@@ -92,6 +93,9 @@
             $(document).ready(function() {
                 let signaturePad = $("#signature_pad");
                 signaturePad.jSignature({width: 600, height: 200});
+
+                $('#signature_draw').hide();
+                $('#signature_type').hide();
 
                 $('input[type=radio][name=signatureMode]').change(switchSignatureMode);
                 switchSignatureMode();

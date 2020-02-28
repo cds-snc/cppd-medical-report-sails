@@ -37,13 +37,12 @@ describe('Run through the patient-facing portion of the service', () => {
     cy.get('[name=telephone]').type(faker.phone.phoneNumber());
     cy.get('[type="submit"]').click();
 
-    cy.get('h1').contains('Consent for Service Canada to obtain personal information');
+    cy.url().should('contain', '/en/consent');
   });
 
   it('successfully submits a completed consent form', () => {
     cy.personal();
     cy.visit('/en/consent');
-    cy.get('h1').contains('Consent for Service Canada to obtain personal information');
 
     cy.get('[id=consentyes]').check();
     cy.get('[id=signatureModetype]').check();

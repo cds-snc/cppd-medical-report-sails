@@ -66,11 +66,6 @@ module.exports = {
       else {
         await medicalReport.update({
           consent: true,
-          consentEducation: req.body.consentOptionalParties.includes('education'),
-          consentAccountant: req.body.consentOptionalParties.includes('accountant'),
-          consentFinancial: req.body.consentOptionalParties.includes('financial'),
-          consentVolunteer: req.body.consentOptionalParties.includes('volunteer'),
-          consentEmployees: req.body.consentOptionalParties.includes('employees'),
           signatureMode: req.body.signatureMode,
           signatureDraw: getSignatureDrawData(req),
           signatureType: getSignatureTypedData(req),
