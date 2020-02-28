@@ -24,8 +24,8 @@ jobs:
 
       - name: Run Cypress end-to-end
         uses: cypress-io/github-action@v1
+        env:
+          NODE_ENV: testing
         with:
-          env: NODE_ENV=testing
-          browser: chrome
           install: false
           start: npm run start:test
