@@ -312,7 +312,7 @@
                 <tr class="odd:bg-gray-300">
                     <th scope="row" class="w-1/3 text-left font-normal p-4 border-2 border-white align-top">{{ __('declaration.you_are_a') }}</th>
                     <td class="w-2/3 p-4 border-2 border-white align-top">
-                        {{ data.practitionerTypeText }}
+                        {{ __('section9.confirm_statement_' + data.practitionerType ) }}
                     </td>
                 </tr>
                 <tr class="odd:bg-gray-300">
@@ -345,12 +345,14 @@
         </table>
     </details>
 
-    <form action="{{ route('declaration.store') }}" method="post" class="w-full">
+    <form action="{{ route('declaration.store') }}" method="post"  class="w-full" onsubmit="document.querySelector('#practitionerTimezoneOffset').value = new Date().getTimezoneOffset()/60">
         <div class="mt-8 text-lg">
             <p class="font-bold">{{ __('declaration.i_confirm_that') }}</p>
         </div>
 
         {{ signaturePad() }}
+
+        <input name="practitionerTimezoneOffset" id="practitionerTimezoneOffset" type="hidden"/>
 
         <div class="md:w-1/2">
             <button type="submit" class="bg-green-700">{{ __('declaration.submit_to_service_canada') }}</button>

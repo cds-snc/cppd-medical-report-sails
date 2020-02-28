@@ -4,7 +4,6 @@ const stopWorking = require('../utils/support/stopWorking');
 const returnToWork = require('../utils/support/returnToWork');
 const returnToWorkWhen = require('../utils/support/returnToWorkWhen');
 const typeOfWork = require('../utils/support/typeOfWork');
-const practitionerType = require('../utils/support/practitionerType');
 
 module.exports = {
   attributes: {
@@ -90,15 +89,7 @@ module.exports = {
     workDetails: Sequelize.TEXT,
     patientMedications: Sequelize.BOOLEAN,
     patientTreatments: Sequelize.BOOLEAN,
-    practitionerType: Sequelize.INTEGER, // fk to support
-    practitionerTypeText: {
-      type: Sequelize.VIRTUAL,
-      get() {
-        if (this.practitionerType !== null) {
-          return sails.__(practitionerType[this.practitionerType]);
-        }
-      }
-    },
+    practitionerType: Sequelize.STRING, // Type of HCP (ccfp, rn, np, other)
     practitionerTypeOtherSpecify: Sequelize.STRING,
     practitionerFirstName: Sequelize.STRING,
     practitionerLastName: Sequelize.STRING,
@@ -109,6 +100,12 @@ module.exports = {
       }
     },
     practitionerAddress: Sequelize.STRING,
+    practitionerFullAddress: {
+      type: Sequelize.VIRTUAL,
+      get() {
+        return `${this.practitionerAddress}, ${this.practitionerCity}, ${this.practitionerProvince}, ${this.practitionerPostal}, ${this.practitionerCountry}`;
+      }
+    },
     practitionerCity: Sequelize.STRING,
     practitionerProvince: Sequelize.STRING,
     practitionerCountry: Sequelize.STRING,
@@ -120,7 +117,9 @@ module.exports = {
     billingIdType: Sequelize.STRING,
     billingId: Sequelize.STRING,
     applicantSubmittedAt: Sequelize.DATE,
-    practitionerSubmittedAt: Sequelize.DATE
+    practitionerSubmittedAt: Sequelize.DATE,
+    practitionerTimezoneOffset: Sequelize.INTEGER, // Hours offset from GMT
+    practitionerIpAddress: Sequelize.STRING // IP address of the HCP
   },
   associations: function () {
     MedicalReport.hasMany(Condition, {

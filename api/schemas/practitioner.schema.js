@@ -4,10 +4,14 @@ module.exports = {
       message: '^I am a is required',
       allowEmpty: false,
     },
+    inclusion: {
+      within: ['ccfp', 'rn', 'np', 'other'],
+      message: '^errors.practitioner.invalid_type'
+    }
   },
   practitionerTypeOtherSpecify: function (value, attributes) {
     const practitionerType = attributes.practitionerType;
-    if (practitionerType === '4') {
+    if (practitionerType === 'other') {
       return {
         presence: {
           message: '^Other is required if Other is selected',
