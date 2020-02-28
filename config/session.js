@@ -34,7 +34,7 @@ module.exports.session = {
   adapter: process.env.SESSION_ADAPTER || null,
 
   url: process.env.REDIS_URL || process.env.SESSION_ADAPTER_URL || 'redis://localhost:6379',
-  
+
   /**
      * @todo remove the feature flags and move the tls options into production.js
      */
