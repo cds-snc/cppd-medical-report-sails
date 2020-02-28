@@ -50,7 +50,7 @@ module.exports.policies = {
   DeclarationController:{
     'processingView': processingPolicies
   },
-  
+
   DocumentsController: {
     'get': ['localize', 'route', 'flash', 'isAuthenticated']
   },
