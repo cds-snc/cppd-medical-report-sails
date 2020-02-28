@@ -68,7 +68,7 @@ Cypress.Commands.add('consent', () => {
     form: true,
     body: {
       consent: true,
-      consent_optional_parties: ['education', 'accountant', 'financial', 'volunteer', 'employees'],
+      consentOptionalParties: ['education', 'accountant', 'financial', 'volunteer', 'employees'],
       signatureMode: 'type',
       signatureTyped: 'Test Name',
       applicantSubmittedAt: moment().format()
