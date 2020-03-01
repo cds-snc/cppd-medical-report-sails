@@ -200,3 +200,4 @@ This lets your development environment in the Docker image that resembles produc
 1. After it fully starts up, use the terminal embedded inside of VSCode to issue commands within the main container
 1. Run to set things up `npm install && npm run db:migrate && npm run db:seed`
 1. Run `npm run dev` to start the server
+  - To run automated tests after the server is up, use `npx cypress run`
