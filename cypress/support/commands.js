@@ -67,7 +67,7 @@ Cypress.Commands.add('consent', () => {
     followRedirect: false,
     form: true,
     body: {
-      consent: true,
+      consent: 'yes',
       consentOptionalParties: ['education', 'accountant', 'financial', 'volunteer', 'employees'],
       signatureMode: 'type',
       signatureTyped: 'Test Name',
