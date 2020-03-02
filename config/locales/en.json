@@ -631,5 +631,9 @@
   "no_consent.title": "You have not given consent",
   "no_consent.body": "<p>Your doctor, nurse practitioner or registered nurse does not have your permission to give Service Canada any information about you.</p><p>Service Canada will make a decision based on the available information on your file.</p><p>If you change your mind, fill out this form again and answer 'yes' to the consent question.</p>",
   "login.logged_out": "You've signed out",
-  "login.logged_out_message": "You've successfully signed out of the medical adjudication system!"
+  "login.logged_out_message": "You've successfully signed out of the medical adjudication system!",
+  "consent.ma.positive": "%s has given their healthcare practitioner consent to send their medical information to Service Canada, and to contact other health professionals to obtain more information.",
+  "consent.dr.positive": "%s has given consent for you to send their medical information to Service Canada, and to contact other health professionals to obtain more information.",
+  "consent.ma.negative": "%s has not given their healthcare practitioner consent to send their medical information to Service Canada, and to contact other health professionals to obtain more information.",
+  "consent.proof_of_consent": "Proof of consent"
 }
