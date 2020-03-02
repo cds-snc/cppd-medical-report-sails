@@ -29,7 +29,7 @@ const faker = require('faker');
 const moment = require('moment');
 
 Cypress.Commands.add('dbseed', () => {
-  cy.exec('npm run db:seed:undo && npm run db:seed');
+  cy.exec('npm run db:migrate:undo && npm run db:migrate && npm run db:seed');
 });
 
 // shortcut to skip the peronal form
