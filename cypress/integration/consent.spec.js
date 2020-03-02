@@ -71,9 +71,9 @@ describe('Test the Consent form', () => {
   });
 
   // medical professional consent view
-  it('displays consent for a medical professional', () => {
+  it('displays positive consent for a medical professional', () => {
     cy.personal(firstName, lastName, 9, 9, 1999);
-    cy.consent();
+    cy.consent(name, 'yes');
     cy.visit('/en/invite');
 
     cy.get('[data-cy=applicationCode]').then(($code) => {
@@ -92,6 +92,32 @@ describe('Test the Consent form', () => {
 
       cy.get('h1').contains('consent to share medical and personal information');
       cy.get('h1').contains(name);
+      cy.get('[data-cy=consent-given]').contains(name + ' has given consent for you');
+    });
+  });
+
+  it('displays negative consent for a medical professional', () => {
+    cy.personal(firstName, lastName, 9, 9, 1999);
+    cy.consent(name, 'no');
+    cy.visit('/en/invite');
+
+    cy.get('[data-cy=applicationCode]').then(($code) => {
+      const code = $code.text();
+
+      cy.visit('/en/doctor');
+      cy.get('[name=applicationCode]').type(code);
+      cy.get('[name=birthdateMonth]').type('9');
+      cy.get('[name=birthdateDay]').type('9');
+      cy.get('[name=birthdateYear]').type('1999');
+
+      cy.get('[data-cy=start]').click();
+      cy.url().should('include', '/en/dashboard');
+
+      cy.get('[data-cy=view-consent-link]').click();
+
+      cy.get('h1').contains('consent to share medical and personal information');
+      cy.get('h1').contains(name);
+      cy.get('[data-cy=consent-not-given]').contains(name + ' has not given');
     });
   });
 
