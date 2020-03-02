@@ -103,6 +103,8 @@ module.exports = {
   },
 
   noConsent: async function (req, res) {
+    req.session.destroy();
+
     res.view('pages/no_consent');
   }
 };
