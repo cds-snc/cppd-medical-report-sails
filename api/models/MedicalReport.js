@@ -30,7 +30,15 @@ module.exports = {
     telephone: Sequelize.STRING,
     alternateTelephone: Sequelize.STRING,
     contactTime: Sequelize.STRING,
-    consent: Sequelize.BOOLEAN, // Overall, for Service Canada, medical professionals, and other gov
+    consent: {
+      type: Sequelize.BOOLEAN,
+      get() {
+        if (this.getDataValue('consent')) {
+          return 'yes';
+        }
+        return 'no';
+      }
+    },
     signatureDraw: Sequelize.TEXT, // SVG data
     signatureType: Sequelize.STRING, // Full name
     relationshipStarted: Sequelize.STRING,
