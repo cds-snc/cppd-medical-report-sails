@@ -33,6 +33,10 @@ module.exports = {
     consent: {
       type: Sequelize.BOOLEAN,
       get() {
+        if (this.getDataValue('consent') === null) {
+          return null;
+        }
+
         if (this.getDataValue('consent')) {
           return 'yes';
         }
