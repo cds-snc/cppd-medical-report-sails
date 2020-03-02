@@ -51,4 +51,16 @@ describe('Run through the patient-facing portion of the service', () => {
 
     cy.get('h1').contains('Give this code to your doctor or nurse practitioner');
   });
+
+  it('successfully submits a completed consent form, answering no', () => {
+    cy.personal();
+    cy.visit('/en/consent');
+
+    cy.get('[id=consentno]').check();
+    cy.get('[id=signatureModetype]').check();
+    cy.get('[name=signatureTyped]').type('Cypress Testerman');
+    cy.get('[type="submit"]').click();
+
+    cy.get('h1').contains('You have not given consent');
+  });
 });

@@ -7,19 +7,35 @@ describe('Test the Consent form', () => {
   it('validates all required fields', () => {
     cy.personal();
     cy.visit('/en/consent');
-
     cy.get('[type="submit"]').click();
 
-    cy.get('#content .error-list').contains('You must select an option');
+    // both radios will display this error
+    cy.get('#content .error-list ol').within(() => {
+      cy.get('li').should('have.length', 2);
 
+      cy.get('li').eq(0).contains('You must select an option');
+      cy.get('li a').eq(0).should('have.attr', 'href', '#consent');
+
+      cy.get('li').eq(1).contains('You must select an option');
+      cy.get('li a').eq(1).should('have.attr', 'href', '#signatureMode');
+    });
+
+    // conditional validation once signature mode is selected
     cy.get('[id=signatureModetype').check();
     cy.get('[id=signature_type]').should('be.visible');
     cy.get('[type="submit"]').click();
 
     cy.get('#content .error-list').contains('Signature is required');
+
+    // conditional validation also applies to draw mode
+    cy.get('[id=signatureModedraw').check();
+    cy.get('[id=signature_draw]').should('be.visible');
+    cy.get('[type="submit"]').click();
+
+    cy.get('#content .error-list').contains('Signature is required');
   });
 
-  it('displays a message if consent not given', () => {
+  it('displays an inline message if consent=no selected', () => {
     cy.personal();
     cy.visit('/en/consent');
     cy.get('[data-cy=noConsentMsg]').should('not.be.visible');
