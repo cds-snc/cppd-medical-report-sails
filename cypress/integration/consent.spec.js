@@ -1,3 +1,9 @@
+const faker = require('faker');
+
+const firstName = faker.name.firstName();
+const lastName = faker.name.lastName();
+const name = firstName + ' ' + lastName;
+
 describe('Test the Consent form', () => {
   it('redirects to start if no medical report has been started', () => {
     cy.visit('/en/consent');
@@ -63,4 +69,31 @@ describe('Test the Consent form', () => {
     cy.get('[id=signature_type]').should('not.be.visible');
     cy.injectAxe().checkA11y();
   });
+
+  // medical professional consent view
+  it('displays consent for a medical professional', () => {
+    cy.personal(firstName, lastName, 9, 9, 1999);
+    cy.consent();
+    cy.visit('/en/invite');
+
+    cy.get('[data-cy=applicationCode]').then(($code) => {
+      const code = $code.text();
+
+      cy.visit('/en/doctor');
+      cy.get('[name=applicationCode]').type(code);
+      cy.get('[name=birthdateMonth]').type('9');
+      cy.get('[name=birthdateDay]').type('9');
+      cy.get('[name=birthdateYear]').type('1999');
+
+      cy.get('[data-cy=start]').click();
+      cy.url().should('include', '/en/dashboard');
+
+      cy.get('[data-cy=view-consent-link]').click();
+
+      cy.get('h1').contains('consent to share medical and personal information');
+      cy.get('h1').contains(name);
+    });
+  });
+
+  // medical adjudicator consent view
 });
