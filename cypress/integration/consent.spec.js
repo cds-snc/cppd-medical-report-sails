@@ -7,6 +7,7 @@ describe('Test the Consent form', () => {
   it('validates all required fields', () => {
     cy.personal();
     cy.visit('/en/consent');
+    cy.injectAxe().checkA11y();
     cy.get('[type="submit"]').click();
 
     // both radios will display this error
@@ -18,6 +19,7 @@ describe('Test the Consent form', () => {
 
       cy.get('li').eq(1).contains('You must select an option');
       cy.get('li a').eq(1).should('have.attr', 'href', '#signatureMode');
+      cy.injectAxe().checkA11y();
     });
 
     // conditional validation once signature mode is selected
@@ -42,6 +44,7 @@ describe('Test the Consent form', () => {
 
     cy.get('[id=consentno]').check();
     cy.get('[data-cy=noConsentMsg]').should('be.visible');
+    cy.injectAxe().checkA11y();
   });
 
   it('toggles between type and draw signature', () => {
@@ -58,5 +61,6 @@ describe('Test the Consent form', () => {
     cy.get('[id=signatureModedraw]').check();
     cy.get('[id=signature_draw]').should('be.visible');
     cy.get('[id=signature_type]').should('not.be.visible');
+    cy.injectAxe().checkA11y();
   });
 });
