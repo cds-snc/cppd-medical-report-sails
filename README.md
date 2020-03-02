@@ -4,7 +4,7 @@
 
 For more information, contact us at [cds-snc@tbs-sct.gc.ca](mailto:cds-snc@tbs-sct.gc.ca).
 
---- 
+---
 
 [ESDC](https://www.canada.ca/en/employment-social-development.html) et la [CDS](https://digital.canada.ca) travaillent ensemble pour améliorer le PPIRPC (programme de prestations d'invalidité du Régime de pensions du Canada). Nous travaillons à trouver des moyens de réduire le temps de traitement de bout en bout sans nuire à la qualité des décisions. Nous mettons actuellement au point un prototype du rapport médical sur le PPPC afin d’explorer certaines hypothèses et d’optimiser davantage ce processus en ligne.
 
@@ -159,8 +159,84 @@ There is an example of how to setup a Redis session store in the .env.example fi
 
 ## Database
 
-Detailed instructions to follow, but the database is Postgres, and we use [Sequelize](https://sequelize.readthedocs.io/en/v3/) for Models and Migrations in the application.
+Detailed instructions to follow, but the database is Postgres, and we use [Sequelize](https://sequelize.org/v5/) for Models and Migrations in the application.
 
+
+Migrations require the **sequelize-cli** tool You can either install the tool globally or use npx to run it. Sequelize-cli will be used for creating models, migrations, and seeds and also for running migrations.
+
+### Install Globally
+
+You can install sequelize-cli globally using the following command.
+
+```sh
+npm i sequelize-cli -g
+```
+
+### Running using npx
+
+You can also use [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) to run the tool if you don't want to install it globally, you simply need to prefix your commands with `npx`.
+
+```sh
+npx sequelize-cli --version
+```
+### Commonly used commands
+
+To run migrations use the following command :
+
+```sh
+npm run db:migrate
+```
+
+This will run all the migration scripts in the `\database\migrations` folder.
+
+If you want to undo all migrations run
+
+```sh
+npm run db:migrate:undo
+```
+
+Sequelize-cli has more granular options for managing migrations you can see them [here on sequelize-cli's github repo (link to github repo)](https://github.com/sequelize/cli).
+
+### New Model Creation
+
+Sequelize-cli has the option to auto-generate models and migrations for you.
+
+For instance to create a basic User model with a first name, last name and email attributes you can run the following command:
+
+```sh
+npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string
+```
+
+**Please Note: ** This is only an option when first creating a model, subsequent migrations will require you to write a custom migration.
+
+### Migrations
+
+Sequelize-cli can be used to create a migration skeleton file. Migrations are timestamped files that contain the scripts that when run in order create the current state of your database.
+
+Migrations consist of an `up` method that is run when an migration is executed and a `down` method that is run when undoing a migration.
+
+To create a skeleton file you can run the following command:
+
+```sh
+npx sequelize-cli migration:create --name migration_name
+```
+
+This will create a timestamped file with the following name ``yyyyMMddhhmmss-migration_name.js`.
+
+Migrations are designed to always be run in order from oldest to newest.
+
+Migrations have full access to the Sequelize API so you are able to not only modify the databases schema but you also have the ability to transform data.
+
+You will use the [queryInterface api (link to API documentation)](https://sequelize.org/master/class/lib/query-interface.js~QueryInterface.html) for modifying the schema and transforming data.
+
+
+### Tracking Migrations
+
+Sequelize will by default create a table in your database called `SequelizeMeta` to track the migration scripts that have been run.
+
+### Seeds
+
+Sequelize also has the ability to seed your database with data, the typical usecase for this is for setting your database to a known state see this
 ## Docker
 
 These instructions are optimized for development at the moment, rather than production runs.
