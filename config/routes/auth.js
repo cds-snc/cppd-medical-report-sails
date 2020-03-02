@@ -30,5 +30,16 @@ module.exports.routes = {
       en: '/en/logout',
       fr: '/fr/logout'
     }
+  },
+
+  'GET /en/loggedout': {
+    name: 'loggedOut',
+    controller: 'AuthController',
+    action: 'loggedOut',
+    lang: 'en',
+    i18n: {
+      en: '/en/loggedout',
+      fr: '/fr/loggedout'
+    }
   }
 };
