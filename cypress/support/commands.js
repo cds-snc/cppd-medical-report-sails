@@ -60,23 +60,27 @@ Cypress.Commands.add('personal', (firstName, lastName, birthdateDay, birthdateMo
     });
 });
 
-Cypress.Commands.add('consent', () => {
+Cypress.Commands.add('consent', (name, consent) => {
   cy.request({
     method: 'POST',
     url: '/en/consent',
     followRedirect: false,
     form: true,
     body: {
-      consent: 'yes',
-      consentOptionalParties: ['education', 'accountant', 'financial', 'volunteer', 'employees'],
+      consent: consent || 'yes',
       signatureMode: 'type',
-      signatureTyped: 'Test Name',
+      signatureTyped: name || 'Test Name',
       applicantSubmittedAt: moment().format()
     }
   })
     .then((res) => {
       expect(res.status).to.eq(302);
-      expect(res.redirectedToUrl).to.contains('/en/invite');
+
+      if (consent === 'no') {
+        expect(res.redirectedToUrl).to.contains('/en/no_consent');
+      } else {
+        expect(res.redirectedToUrl).to.contains('/en/invite');
+      }
     });
 });
 
