@@ -637,5 +637,7 @@
   "users.confirm_delete": "Are you sure you want to delete this user?",
   "Users": "Users",
   "users.title": "Canada Pension Plan Disability Benefits - Account management",
-  "users.add_new_user": "Add new user"
+  "users.add_new_user": "Add new user",
+  "login.logged_out": "You've signed out",
+  "login.logged_out_message": "You've successfully signed out of the medical adjudication system!"
 }
