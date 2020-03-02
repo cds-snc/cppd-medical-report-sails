@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const moment = require('moment');
+
 module.exports = {
   index: async function (req, res) {
 
@@ -60,5 +62,27 @@ module.exports = {
       typeOfWork: require('../utils/support/typeOfWork'),
       moment: require('moment')
     });
+  },
+
+  showConsent: async function (req, res) {
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        id: req.params.session
+      }
+    });
+
+    if (!medicalReport) {
+      res.notFound();
+    }
+
+    let submissionMoment = moment(medicalReport.applicantSubmittedAt);
+    let submittedAt = submissionMoment.format('LL');
+
+    res.view('pages/show_consent', {
+      maView: true,
+      data: medicalReport,
+      submittedAt: submittedAt
+    });
   }
+
 };

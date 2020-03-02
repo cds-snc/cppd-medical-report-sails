@@ -73,21 +73,11 @@ module.exports = {
   },
 
   show: async function (req, res) {
-    let medicalReport = null;
-    if (req.session.applicationCode) { // For medical professional view
-      medicalReport = await MedicalReport.findOne({
-        where: {
-          applicationCode: req.session.applicationCode
-        }
-      });
-    }
-    else { // For MAs
-      medicalReport = await MedicalReport.findOne({
-        where: {
-          id: req.params.session
-        }
-      });
-    }
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
 
     let submissionMoment = moment(medicalReport.applicantSubmittedAt);
     let submittedAt = submissionMoment.format('LL');
@@ -97,6 +87,8 @@ module.exports = {
       submittedAt: submittedAt
     });
   },
+
+
 
   noConsent: async function (req, res) {
     req.session.destroy();
