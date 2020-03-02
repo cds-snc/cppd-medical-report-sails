@@ -2,39 +2,53 @@
 
 {% block content %}
 
-    <h1>{{ data.firstName }} {{ data.lastName }}{{ __('show_consent.title') }}</h1>
+    <h1>{{ __('show_consent.title', data.fullName) }}</h1>
  
-    {% if data.consent %}
-        <p>{{ data.fullName }} ({{ data.socialInsuranceNumber }}) {{ __('show_consent.intro') }}</p>
+    <div class="text-white bg-green-600 p-4 flex w-3/4">
+        <div class="px-4 pt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8 h-8"><path d="M8.294 16.998c-.435 0-.847-.203-1.111-.553L3.61 11.724a1.392 1.392 0 0 1 .27-1.951 1.392 1.392 0 0 1 1.953.27l2.351 3.104 5.911-9.492a1.396 1.396 0 0 1 1.921-.445c.653.406.854 1.266.446 1.92L9.478 16.34a1.39 1.39 0 0 1-1.12.656c-.022.002-.042.002-.064.002z"/></svg>
+        </div>
+        <div class="px-4">
+            {{ data.fullName }} has given consent for you to send their medical information to Service Canada, and to contact other health professionals to obtain more information.
+        </div>
+    </div>
 
-        
-        {{ checkmarkList([
-            ['consent.practioners',  true],
-            ['consent.facilities',  true],
-            ['consent.government',  true],
-            ['consent.compensation_boards',  true],
-            ['consent.employers',  true],
-            ['consent.insurers',  true],
-            ['consent.education',  data.consentEducation],
-            ['consent.accountant',  data.consentAccountant],
-            ['consent.financial',  data.consentFinancial],
-            ['consent.volunteer',  data.consentVolunteer],
-            ['consent.employees',  data.consentEmployees]
-        ])}}
+    <h2 class="text-3xl mt-8 mb-4">Proof of consent</h2>
 
-    {% else %}
-         <p>{{ data.firstName }} {{ data.lastName }} ({{ data.socialInsuranceNumber }}) {{ __('show_consent.no_consent_intro') | safe }}</p>    
-    {% endif %}
+    <div class="w-3/4 border border-black p-8">
 
-    <p>{{ data.firstName }} {{ data.lastName }}{{ __('show_consent.signature_intro') }}</p>
-    {% if data.signatureDraw %}
-        {{ data.signatureDraw | safe }}
-    {% else %}
-        <span class="signature text-4xl">{{ data.signatureType }}</span>
-    {% endif %}
+        <p>{{ __('consent.preamble') }}</p>
 
-    <!-- TODO -->
-    <p>{{ __('show_consent.submitted') }} {{ submittedAt }}</p>
-    <p>{{ __('show_consent.valid_til') }} {{ validTil }}</p>
+        {{ __('consent.permission') | safe }}
 
+        <div class="mt-8">
+            <form>
+                {{ radioButtons(
+                        'consent',
+                        [
+                            {'value': true,'text': 'consent.yes'},
+                            {'value': false,'text': 'consent.no'}
+                        ],
+                        data.consent,
+                        'consent.question',
+                        errors,
+                        {
+                            'safe': true,
+                            required: true,
+                            disabled: true
+                        }
+                    )
+                }}
+            </form>
+        </div>
+
+        <h3 class="mt-8">{{ __('consent.signature') }}</h3>
+        {% if data.signatureDraw %}
+            {{ data.signatureDraw | safe }}
+        {% else %}
+            <span class="signature text-4xl">{{ data.signatureType }}</span>
+        {% endif %}
+
+        <p>{{ __('show_consent.submitted') }} {{ submittedAt }}</p>
+    </div>
 {% endblock %}

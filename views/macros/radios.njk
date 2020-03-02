@@ -30,7 +30,11 @@
                             {% if errors and errors[id] %}
                                 aria-describedby="{{ id + '-error' }}"
                                 aria-invalid="true"
-                            {% endif %}>
+                            {% endif %}
+                            {% if attributes.disabled %}
+                                disabled="disabled"
+                            {% endif %}
+                            >
                         <label for="{{ itemId }}">
                             {% if attributes.safe %}
                                 {{ __(item.text) | safe }}
