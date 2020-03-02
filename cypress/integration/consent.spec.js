@@ -5,6 +5,10 @@ const lastName = faker.name.lastName();
 const name = firstName + ' ' + lastName;
 
 describe('Test the Consent form', () => {
+  before(() => {
+    cy.dbseed();
+  });
+
   it('redirects to start if no medical report has been started', () => {
     cy.visit('/en/consent');
     cy.url().should('include', '/en/start');
@@ -70,7 +74,7 @@ describe('Test the Consent form', () => {
     cy.injectAxe().checkA11y();
   });
 
-  // medical professional consent view
+  // Medical Professional positive consent view
   it('displays positive consent for a medical professional', () => {
     cy.personal(firstName, lastName, 9, 9, 1999);
     cy.consent(name, 'yes');
@@ -96,30 +100,36 @@ describe('Test the Consent form', () => {
     });
   });
 
-  it('displays negative consent for a medical professional', () => {
+  // No negative consent for Medical Professional
+
+  // Medical Adjudicator consent view
+  it('displays positive consent for a Medical Adjudicator', () => {
+    // resetting the db so we only have one session makes this easier
+    cy.dbseed();
+
+    cy.personal(firstName, lastName, 9, 9, 1999);
+    cy.consent(name, 'yes');
+    cy.visit('/en/invite');
+
+    cy.login('test@user.com', 'secret');
+    cy.visit('/en/sessions');
+
+    cy.visit('/en/sessions/1/consent');
+    cy.get('[data-cy=consent-given]').contains(name + ' has given their healthcare practitioner consent');
+  });
+
+  it('displays negative consent for a Medical Adjudicator', () => {
+    // resetting the db so we only have one session makes this easier
+    cy.dbseed();
+
     cy.personal(firstName, lastName, 9, 9, 1999);
     cy.consent(name, 'no');
     cy.visit('/en/invite');
 
-    cy.get('[data-cy=applicationCode]').then(($code) => {
-      const code = $code.text();
+    cy.login('test@user.com', 'secret');
+    cy.visit('/en/sessions');
 
-      cy.visit('/en/doctor');
-      cy.get('[name=applicationCode]').type(code);
-      cy.get('[name=birthdateMonth]').type('9');
-      cy.get('[name=birthdateDay]').type('9');
-      cy.get('[name=birthdateYear]').type('1999');
-
-      cy.get('[data-cy=start]').click();
-      cy.url().should('include', '/en/dashboard');
-
-      cy.get('[data-cy=view-consent-link]').click();
-
-      cy.get('h1').contains('consent to share medical and personal information');
-      cy.get('h1').contains(name);
-      cy.get('[data-cy=consent-not-given]').contains(name + ' has not given');
-    });
+    cy.visit('/en/sessions/1/consent');
+    cy.get('[data-cy=consent-not-given]').contains(name + ' has not given their healthcare practitioner consent');
   });
-
-  // medical adjudicator consent view
 });
