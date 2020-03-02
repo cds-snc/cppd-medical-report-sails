@@ -4,7 +4,7 @@
 
 For more information, contact us at [cds-snc@tbs-sct.gc.ca](mailto:cds-snc@tbs-sct.gc.ca).
 
---- 
+---
 
 [ESDC](https://www.canada.ca/en/employment-social-development.html) et la [CDS](https://digital.canada.ca) travaillent ensemble pour améliorer le PPIRPC (programme de prestations d'invalidité du Régime de pensions du Canada). Nous travaillons à trouver des moyens de réduire le temps de traitement de bout en bout sans nuire à la qualité des décisions. Nous mettons actuellement au point un prototype du rapport médical sur le PPPC afin d’explorer certaines hypothèses et d’optimiser davantage ce processus en ligne.
 
@@ -200,3 +200,6 @@ This lets your development environment in the Docker image that resembles produc
 1. After it fully starts up, use the terminal embedded inside of VSCode to issue commands within the main container
 1. Run to set things up `npm install && npm run db:migrate && npm run db:seed`
 1. Run `npm run dev` to start the server
+
+
+Ta da!
