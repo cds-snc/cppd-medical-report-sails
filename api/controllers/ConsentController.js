@@ -56,24 +56,19 @@ module.exports = {
     let valid = req.validate(req, res, require('../schemas/consent.schema'));
 
     if (valid) {
-      // Update existing, or create a new one!
-      if (req.body.consent === 'no') {
-        await medicalReport.update({
-          consent: false,
-          applicantSubmittedAt: moment().format()
-        });
-      }
-      else {
-        await medicalReport.update({
-          consent: true,
-          signatureMode: req.body.signatureMode,
-          signatureDraw: getSignatureDrawData(req),
-          signatureType: getSignatureTypedData(req),
-          applicantSubmittedAt: moment().format()
-        });
+      await medicalReport.update({
+        consent: req.body.consent === 'yes',
+        signatureMode: req.body.signatureMode,
+        signatureDraw: getSignatureDrawData(req),
+        signatureType: getSignatureTypedData(req),
+        applicantSubmittedAt: moment().format()
+      });
+
+      if (req.body.consent === 'yes') {
+        return res.redirect(sails.route('invite'));
       }
 
-      res.redirect(sails.route('invite'));
+      return res.redirect(sails.route('consent.no'));
     }
   },
 
@@ -105,5 +100,9 @@ module.exports = {
       submittedAt: submittedAt,
       validTil: validTil
     });
+  },
+
+  noConsent: async function (req, res) {
+    res.view('pages/no_consent');
   }
 };

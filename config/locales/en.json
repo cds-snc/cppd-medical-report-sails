@@ -626,5 +626,7 @@
   "users.confirm_delete": "Are you sure you want to delete this user?",
   "Users": "Users",
   "users.title": "Canada Pension Plan Disability Benefits - Account management",
-  "users.add_new_user": "Add new user"
+  "users.add_new_user": "Add new user",
+  "no_consent.title": "You have not given consent",
+  "no_consent.body": "<p>Your doctor, nurse practitioner or registered nurse does not have your permission to give Service Canada any information about you.</p><p>Service Canada will make a decision based on the available information on your file.</p><p>If you change your mind, fill out this form again and answer 'yes' to the consent question.</p>"
 }
