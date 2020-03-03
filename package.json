@@ -16,6 +16,7 @@
     "grunt": "1.0.4",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "nodemon-webpack-plugin": "^4.3.1",
     "nunjucks": "^3.2.0",
     "pg": "^7.18.1",
     "pg-hstore": "^2.3.3",
@@ -58,7 +59,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node app.js",
-    "dev": "nodemon --exec NODE_ENV=development node app.js",
+    "dev": "webpack --mode=development && nodemon --exec NODE_ENV=development node app.js",
     "debug": "nodemon --inspect-brk app.js",
     "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=300 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "db:install": "docker pull postgres:latest",
@@ -71,7 +72,8 @@
     "cypress:open": "cypress open",
     "start:dev": "nodemon --exec NODE_ENV=development node app.js",
     "start:test": "nodemon --exec FEATURE_AUTH=true NODE_ENV=testing node app.js",
-    "cypress:run:test": "NODE_ENV=testing cypress run"
+    "cypress:run:test": "NODE_ENV=testing cypress run",
+    "wp-start": "webpack --watch"
   },
   "main": "app.js",
   "repository": {
