@@ -21,7 +21,7 @@
 
         {{
             checkBoxes(
-                'consent_optional_parties',
+                'consentOptionalParties',
                 {
                     'education': 'consent.education',
                     'accountant':'consent.accountant',
@@ -29,7 +29,7 @@
                     'volunteer': 'consent.volunteer',
                     'employees': 'consent.employees'
                 },
-                data.consent_optional_parties if data.consent_optional_parties else [
+                data.consentOptionalParties if data.consentOptionalParties else [
                     'education',
                     'accountant',
                     'financial',

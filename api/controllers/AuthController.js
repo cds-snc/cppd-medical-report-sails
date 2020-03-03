@@ -79,7 +79,11 @@ module.exports = {
 
   logout: function (req, res) {
     req.session.destroy();
-    return res.redirect(sails.route('login'));
+    return res.redirect(sails.route('loggedOut'));
+  },
+
+  loggedOut: function (req, res) {
+    res.view('pages/logout-confirm');
   }
 };
 

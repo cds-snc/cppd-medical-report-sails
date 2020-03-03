@@ -1,6 +1,6 @@
 name: Run Tests
 
-on: 
+on:
   pull_request:
     types: [opened, reopened, synchronize]
 
@@ -10,14 +10,22 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
+
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12.13.1
-      - name: Install Sails
-        run: npm install sails -g
+
       - name: Install dependencies
         run: npm install
-      - name: Run tests
-        run: sails test
 
+      - name: Linty McLinterson
+        run: npm run lint
+
+      - name: Run Cypress end-to-end
+        uses: cypress-io/github-action@v1
+        env:
+          NODE_ENV: testing
+        with:
+          install: false
+          start: npm run start:test

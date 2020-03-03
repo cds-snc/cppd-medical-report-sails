@@ -136,3 +136,4 @@ lib-cov
 
 cypress/videos
 cypress/screenshots
+database.sqlite

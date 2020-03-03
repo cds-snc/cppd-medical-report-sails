@@ -5,8 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const path = require('path');
-const fs = require('fs');
+const { streamFile } = require('../utils/DocumentHelpers');
 
 module.exports = {
   index: async function (req, res) {
@@ -66,17 +65,6 @@ module.exports = {
       }
     });
 
-    const filePath = path.join(process.cwd(), '.tmp/uploads', document.fileName);
-
-    if (!fs.existsSync(filePath)) {
-      return res.notFound();
-    }
-
-    const SkipperDisk = require('skipper-disk');
-    const fileAdapter = SkipperDisk();
-
-    res.set('Content-disposition', 'attachment; filename=' + document.originalFileName);
-
-    fileAdapter.read(filePath).pipe(res);
-  }
+    streamFile(document, res);
+  },
 };

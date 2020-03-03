@@ -6,9 +6,9 @@ module.exports = {
     'dialect': 'postgres',
     'operatorsAliases': 'false'
   },
-  'test': {
-    'url': process.env.DATABASE_URL,
-    'dialect': 'postgres',
+  'testing': {
+    'dialect': 'sqlite',
+    'storage': 'database.sqlite',
     'operatorsAliases': 'false'
   }
 };
