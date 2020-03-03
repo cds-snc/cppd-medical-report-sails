@@ -1,27 +1,7 @@
 const moment = require('moment');
 
 module.exports = {
-  socialInsuranceNumber: {
-    presence: {
-      allowEmpty: false,
-      message: '^Social Insurance Number is required'
-    },
-    validateSIN: {
-      message: '^Social Insurance Number is invalid'
-    },
-  },
-  firstName: {
-    presence: {
-      allowEmpty: false,
-      message: '^First name is required'
-    },
-  },
-  lastName: {
-    presence: {
-      allowEmpty: false,
-      message: '^Last name is required'
-    }
-  },
+
   birthdateDay: {
     presence: {
       allowEmpty: false,
@@ -75,49 +55,5 @@ module.exports = {
       },
     };
   },
-  address: {
-    presence: {
-      allowEmpty: false,
-      message: '^Mailing address is required'
-    }
-  },
-  city: {
-    presence: {
-      allowEmpty: false,
-      message: '^City is required'
-    }
-  },
-  province: {
-    presence: {
-      allowEmpty: false,
-      message: '^Province is required'
-    }
-  },
-  country: {
-    presence: {
-      allowEmpty: false,
-      message: '^Country is required'
-    }
-  },
-  postal: {
-    presence: {
-      allowEmpty: false,
-      message: '^Postal code is required'
-    }
-  },
-  email: function (value) {
-    if (value) {
-      return {
-        email: {
-          message: '^Does not seem to be a valid email'
-        }
-      };
-    }
-  },
-  telephone: {
-    presence: {
-      allowEmpty: false,
-      message: '^Telephone is required'
-    },
-  },
+
 };
