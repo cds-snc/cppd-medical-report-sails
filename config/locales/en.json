@@ -489,7 +489,7 @@
   "dashboard.completed": "Completed",
   "dashboard.not-completed": "Not Completed",
   "dashboard.consent": "has given consent for Service Canada to obtain personal information about them.",
-  "dashboard.view_download_consent": "View their consent",
+  "dashboard.view_download_consent": "View and print their consent  for your records",
   "return_to_dashboard": "Save",
   "show_consent.title": "%s's consent to share medical and personal information",
   "show_consent.intro": "has given Service Canada permissions to obtain medical and professional information from:",
