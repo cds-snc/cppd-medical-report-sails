@@ -3,7 +3,7 @@
 {% block content %}
     {%- from 'pages/conditions/condition-form.njk' import conditionForm with context -%}
     
-    {{ backButton('conditions') }}
+    {{ backButton('dashboard') }}
 
     <h1>{{ __('conditions.title') }}<br/> <span class="text-base">{{ __('conditions.patient')}} {{ medicalReport.fullName }}</span></h1>
 
