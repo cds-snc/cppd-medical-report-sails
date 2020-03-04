@@ -56,59 +56,43 @@ module.exports = {
     let valid = req.validate(req, res, require('../schemas/consent.schema'));
 
     if (valid) {
-      // Update existing, or create a new one!
-      if (req.body.consent === 'no') {
-        await medicalReport.update({
-          consent: false,
-          applicantSubmittedAt: moment().format()
-        });
-      }
-      else {
-        await medicalReport.update({
-          consent: true,
-          consentEducation: req.body.consentOptionalParties.includes('education'),
-          consentAccountant: req.body.consentOptionalParties.includes('accountant'),
-          consentFinancial: req.body.consentOptionalParties.includes('financial'),
-          consentVolunteer: req.body.consentOptionalParties.includes('volunteer'),
-          consentEmployees: req.body.consentOptionalParties.includes('employees'),
-          signatureMode: req.body.signatureMode,
-          signatureDraw: getSignatureDrawData(req),
-          signatureType: getSignatureTypedData(req),
-          applicantSubmittedAt: moment().format()
-        });
+      await medicalReport.update({
+        consent: req.body.consent === 'yes',
+        signatureMode: req.body.signatureMode,
+        signatureDraw: getSignatureDrawData(req),
+        signatureType: getSignatureTypedData(req),
+        applicantSubmittedAt: moment().format()
+      });
+
+      if (req.body.consent === 'yes') {
+        return res.redirect(sails.route('invite'));
       }
 
-      res.redirect(sails.route('invite'));
+      return res.redirect(sails.route('consent.no'));
     }
   },
 
   show: async function (req, res) {
-    let medicalReport = null;
-    if (req.session.applicationCode) { // For medical professional view
-      medicalReport = await MedicalReport.findOne({
-        where: {
-          applicationCode: req.session.applicationCode
-        }
-      });
-    }
-    else { // For MAs
-      medicalReport = await MedicalReport.findOne({
-        where: {
-          id: req.params.session
-        }
-      });
-    }
-
-    // Load the report from the database.
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      }
+    });
 
     let submissionMoment = moment(medicalReport.applicantSubmittedAt);
     let submittedAt = submissionMoment.format('LL');
-    let validTil = submissionMoment.add(3, 'y').format('LL');
 
     res.view('pages/show_consent', {
       data: medicalReport,
-      submittedAt: submittedAt,
-      validTil: validTil
+      submittedAt: submittedAt
     });
+  },
+
+
+
+  noConsent: async function (req, res) {
+    req.session.destroy();
+
+    res.view('pages/no_consent');
   }
 };

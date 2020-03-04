@@ -33,4 +33,14 @@ module.exports.routes = {
       fr: '/fr/show_consent'
     }
   },
+  'GET /en/no_consent': {
+    name: 'consent.no',
+    controller: 'ConsentController',
+    action: 'noConsent',
+    lang: 'en',
+    i18n: {
+      en: '/en/no_consent',
+      fr: '/fr/no_consent'
+    }
+  },
 };

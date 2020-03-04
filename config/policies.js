@@ -47,5 +47,5 @@ module.exports.policies = {
 
   UserManagementController: {
     '*': ['localize', 'route', 'flash', 'isAuthenticated', 'isAdmin']
-  }
+  },
 };

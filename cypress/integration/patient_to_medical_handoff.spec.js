@@ -10,6 +10,7 @@ describe('Test the patient to medical handoff', () => {
     cy.personal(firstName, lastName);
     cy.consent();
     cy.visit('/en/invite');
+    cy.injectAxe().checkA11y();
 
     cy.get('[data-cy=applicationCode]').should(($code) => {
       const code = $code.text();

@@ -25,8 +25,8 @@ module.exports.routes = {
   },
   'GET /en/sessions/:session/consent': {
     name: 'sessions.consent',
-    controller: 'ConsentController',
-    action: 'show',
+    controller: 'SessionsController',
+    action: 'showConsent',
     lang: 'en',
     i18n: {
       en: '/en/sessions/:session/consent',
