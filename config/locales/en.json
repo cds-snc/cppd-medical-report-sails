@@ -448,6 +448,7 @@
   "medical_professional.instructions_2": "To support your patient's application for Canada Pension Plan Disability Benefits, enter the unique code they gave you, and their date of birth.",
   "medical_professional.invitation_code": "Unique 6 character invitation code",
   "medical_professional.patient_birth_date": "Patient's date of birth",
+  "medical_professional.patient_lost_code": "If your patient has lost their unique code, ask them to generate a new one by going to:",
   "medical_professional.start": "Start medical report",
   "Social Insurance Number is invalid": "Social Insurance Number is invalid",
   "errors.application_code_presence": "Code must be entered",
