@@ -3,30 +3,23 @@
 {% block content %}
     <h1>{{ __('invite.title') }}</h1>
 
-    {% if consent %}
-        <div class="w-4/5 block border border-gray-500 border-solid p-5">
-            <p class="font-bold text-6xl" data-cy="applicationCode">{{ applicationCode }}</p>
-            
-            <p class="font-semibold">{{ __('invite.give_code') }}</p>
-            <p>{{ __('invite.give_code_details') }}</p>
+    <div class="w-4/5 block border border-gray-500 border-solid p-5">
+        <p class="font-bold text-6xl" data-cy="applicationCode">{{ applicationCode }}</p>
+        
+        <p class="font-semibold">{{ __('invite.give_code') }}</p>
+        <p>{{ __('invite.give_code_details') }}</p>
 
-            <a href="javascript:window.print()" class="button-link w-2/5">{{ __('invite.print_button') }}</a>
-            <p class="mt-8">{{ __('invite.expires', validTil) }}</p>
-            <p>{{ __('invite.code_loss_instruction') }}</p>
-        </div>
+        <a href="javascript:window.print()" class="button-link w-2/5">{{ __('invite.print_button') }}</a>
+        <p class="mt-8">{{ __('invite.expires', validTil) }}</p>
+        <p>{{ __('invite.code_loss_instruction') }}</p>
+    </div>
 
-        <div class="mt-16">
-            <p class="italic">{{ __('invite.for_medical_professionals') }}</p>
-            <ol>
-                <li>{{ __('invite.go_to', medicalProfessionalUrl) }}</li>
-                <li>{{ __('invite.enter_the_code', applicationCode) }}</li>
-                <li>{{ __('invite.complete_sections') }}</li>
-            </ol>
-        </div>
-    {% else %}
-        <p>{{  __('invite.no_consent_1')  }}</p>
-        <p>{{  __('invite.no_consent_2')  }}</p>
-        <p><a href="{{ __('invite.no_consent_3_link_href') }}">{{  __('invite.no_consent_3_link_text')  }}</a> {{ __('invite.no_consent_3') }}</p>
-    {% endif%}
-
+    <div class="mt-16">
+        <p class="italic">{{ __('invite.for_medical_professionals') }}</p>
+        <ol>
+            <li>{{ __('invite.go_to', medicalProfessionalUrl) }}</li>
+            <li>{{ __('invite.enter_the_code', applicationCode) }}</li>
+            <li>{{ __('invite.complete_sections') }}</li>
+        </ol>
+    </div>
 {% endblock %}

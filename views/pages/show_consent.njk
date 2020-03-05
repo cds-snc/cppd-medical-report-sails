@@ -2,39 +2,69 @@
 
 {% block content %}
 
-    <h1>{{ data.firstName }} {{ data.lastName }}{{ __('show_consent.title') }}</h1>
+    <h1>{{ __('show_consent.title', data.fullName) }}</h1>
  
-    {% if data.consent %}
-        <p>{{ data.fullName }} ({{ data.socialInsuranceNumber }}) {{ __('show_consent.intro') }}</p>
+    {% if data.consent === 'yes' %}
+        <div class="text-white bg-green-600 p-4 flex w-3/4" data-cy="consent-given">
+            <div class="px-4 pt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8 h-8"><path d="M8.294 16.998c-.435 0-.847-.203-1.111-.553L3.61 11.724a1.392 1.392 0 0 1 .27-1.951 1.392 1.392 0 0 1 1.953.27l2.351 3.104 5.911-9.492a1.396 1.396 0 0 1 1.921-.445c.653.406.854 1.266.446 1.92L9.478 16.34a1.39 1.39 0 0 1-1.12.656c-.022.002-.042.002-.064.002z"/></svg>
+            </div>
+            <div class="px-4">
+                {% if (maView) %}
+                    {{ __('consent.ma.positive', data.fullName) }}
+                {% else %}
+                    {{ __('consent.dr.positive', data.fullName) }}
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div class="text-white bg-red-600 p-4 flex w-3/4" data-cy="consent-not-given">
+            <div class="px-4 pt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-8 h-8"><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </div>
+            <div class="px-4">
+                {{ __('consent.ma.negative', data.fullName) }}
+            </div>
+        </div>
+    {% endif %}
 
+    <h2 class="text-3xl mt-8 mb-4">{{ __('consent.proof_of_consent') }}</h2>
+
+    <div class="w-3/4 border border-black p-8 bg-gray-200">
+
+        <p>{{ __('consent.preamble') }}</p>
+
+        {{ __('consent.permission') | safe }}
+
+        <div class="mt-8">
+            <form>
+                {{ radioButtons(
+                        'consent',
+                        [
+                            {'value': 'yes','text': 'consent.yes'},
+                            {'value': 'no','text': 'consent.no'}
+                        ],
+                        data.consent,
+                        'consent.question',
+                        errors,
+                        {
+                            'safe': true,
+                            required: true,
+                            disabled: true
+                        }
+                    )
+                }}
+            </form>
+        </div>
+
+        <h3 class="mt-8">{{ __('consent.signature') }}</h3>
         
-        {{ checkmarkList([
-            ['consent.practioners',  true],
-            ['consent.facilities',  true],
-            ['consent.government',  true],
-            ['consent.compensation_boards',  true],
-            ['consent.employers',  true],
-            ['consent.insurers',  true],
-            ['consent.education',  data.consentEducation],
-            ['consent.accountant',  data.consentAccountant],
-            ['consent.financial',  data.consentFinancial],
-            ['consent.volunteer',  data.consentVolunteer],
-            ['consent.employees',  data.consentEmployees]
-        ])}}
+        {% if data.signatureDraw %}
+            {{ data.signatureDraw | safe }}
+        {% else %}
+            <span class="signature text-4xl">{{ data.signatureType }}</span>
+        {% endif %}
 
-    {% else %}
-         <p>{{ data.firstName }} {{ data.lastName }} ({{ data.socialInsuranceNumber }}) {{ __('show_consent.no_consent_intro') | safe }}</p>    
-    {% endif %}
-
-    <p>{{ data.firstName }} {{ data.lastName }}{{ __('show_consent.signature_intro') }}</p>
-    {% if data.signatureDraw %}
-        {{ data.signatureDraw | safe }}
-    {% else %}
-        <span class="signature text-4xl">{{ data.signatureType }}</span>
-    {% endif %}
-
-    <!-- TODO -->
-    <p>{{ __('show_consent.submitted') }} {{ submittedAt }}</p>
-    <p>{{ __('show_consent.valid_til') }} {{ validTil }}</p>
-
+        <p>{{ __('show_consent.submitted') }} {{ submittedAt }}</p>
+    </div>
 {% endblock %}
