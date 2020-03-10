@@ -140,6 +140,9 @@ module.exports = {
       patientTreatments: {
         type: Sequelize.BOOLEAN
       },
+      patientDocuments: {
+        type: Sequelize.BOOLEAN
+      },
       practitionerType: {
         type: Sequelize.INTEGER
       },
