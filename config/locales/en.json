@@ -255,7 +255,7 @@
   "form.medication_start_date.hint": "For example, Feb 2008",
   "form.medication_start_date.text": "Start date:",
   "form.medication_treated_conditions.question": "Which condition(s) does this medication treat?",
-  "form.medication_add.missing.condition": "Add a missing medical condition"
+  "form.medication_add.missing.condition": "Add a missing medical condition",
   "form.notify_by": "Notify by",
   "form.notify_by.desc": "You can select as many as you like.",
   "form.send_notifications": "Would you like to receive notifications?",
