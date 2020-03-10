@@ -36,7 +36,7 @@ checkConsent();
     <h1>{{ __('consent.title') }}</h1>
 
     <p>{{ __('consent.preamble') }}</p>
-    
+
     <div class="font-bold">
         {{ __('consent.permission') | safe }}
     </div>
@@ -66,10 +66,10 @@ checkConsent();
                     <svg class="h-8 w-8 inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M19.511 17.98L10.604 1.348a.697.697 0 0 0-1.208 0L.49 17.98a.675.675 0 0 0 .005.68c.125.211.352.34.598.34h17.814a.694.694 0 0 0 .598-.34.677.677 0 0 0 .006-.68zM11 17H9v-2h2v2zm0-3.5H9V7h2v6.5z"></svg>
                 </div>
                 <div class="pl-4">
-                    <p>If you do not give your consent:</p>
+                    <p>{{ __('consent.i_understand_intro') }}</p>
                     <ul>
-                        <li>your doctor, nurse practitioner, or registered nurse will <strong>not</strong> be able to complete a medical report, and</li>
-                        <li>Service Canada will make a decision based on the available information on your file.</li>
+                        <li>{{ __('consent.i_understand_1') }}</li>
+                        <li>{{ __('consent.i_understand_2') }}</li>
                     </ul>
                 </div>
             </div>

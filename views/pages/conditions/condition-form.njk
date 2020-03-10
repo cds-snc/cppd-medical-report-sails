@@ -15,13 +15,6 @@
 
     {{ textArea('conditionOutlookUnknown', 'add_condition.prognosis_unknown', { value: condition.conditionOutlookUnknown }) }}
 
-    {{ radioButtons('conditionLast',
-      [
-        {'value': '1', 'text' :'add_condition.condition_last_1_year'},
-        {'value': '2', 'text' :'add_condition.condition_last_more'}
-      ],
-      condition.conditionLast, 'add_condition.condition_last', errors, { required: true }) }}
-
     {{ radioButtons('symptomsOccur',
       [ {'value': '1','text':'add_condition.symptoms_occur_periodically'},
         {'value': '2', 'text': 'add_condition.symptoms_occur_continuously'},

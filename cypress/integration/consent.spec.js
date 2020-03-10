@@ -37,14 +37,14 @@ describe('Test the Consent form', () => {
     cy.get('[id=signature_type]').should('be.visible');
     cy.get('[type="submit"]').click();
 
-    cy.get('#content .error-list').contains('Signature is required');
+    cy.get('#content .error-list').contains('Make sure you provide your signature');
 
     // conditional validation also applies to draw mode
     cy.get('[id=signatureModedraw').check();
     cy.get('[id=signature_draw]').should('be.visible');
     cy.get('[type="submit"]').click();
 
-    cy.get('#content .error-list').contains('Signature is required');
+    cy.get('#content .error-list').contains('Make sure you provide your signature');
   });
 
   it('displays an inline message if consent=no selected', () => {

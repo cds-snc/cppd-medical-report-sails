@@ -8,7 +8,6 @@ CREATE TABLE public."Conditions" (
     "clinicallyImpair" character varying(255),
     "conditionOutlook" integer,
     "conditionOutlookUnknown" text,
-    "conditionLast" integer,
     "symptomsOccur" integer,
     "symptomsOccurUnknown" text,
     "createdAt" timestamp with time zone NOT NULL,
@@ -42,9 +41,6 @@ module.exports = {
       },
       conditionOutlookUnknown: {
         type: Sequelize.TEXT
-      },
-      conditionLast: {
-        type: Sequelize.INTEGER
       },
       symptomsOccur: {
         type: Sequelize.INTEGER
