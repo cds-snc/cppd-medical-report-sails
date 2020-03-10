@@ -31,16 +31,22 @@ function checkTreatements(medicalReport) {
   return isCollectionValid(medicalReport.Treatments);
 }
 
+function checkDocuments(medicalReport) {
+  if (medicalReport.patientDocuments === false) {
+    return true;
+  }
+  return medicalReport.Documents.length > 0;
+}
+
 const getValidationStatus = (medicalReport) => {
   return {
     personal: isValid(medicalReport, require('../schemas/relationship.schema')),
-    expedited: isValid(medicalReport, require('../schemas/expedited.schema')),
     functional: isValid(medicalReport, require('../schemas/functional.schema')),
     conditions: isCollectionValid(medicalReport.Conditions),
     medications: checkMedications(medicalReport),
     treatments: checkTreatements(medicalReport),
     futureWork: isValid(medicalReport, require('../schemas/work.schema')),
-    supportingDocuments: isValid(medicalReport, require('../schemas/documents.schema')),
+    supportingDocuments: checkDocuments(medicalReport),
     practitioner: isValid(medicalReport, require('../schemas/practitioner.schema')),
   };
 };

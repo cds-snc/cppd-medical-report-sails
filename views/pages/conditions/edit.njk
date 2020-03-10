@@ -5,7 +5,7 @@
     
     {{ backButton('conditions') }}
 
-    <h1>{{ __('conditions.title') }}<br/> <span class="text-base">{{ __('conditions.patient')}} {{ patientName(medicalReport) }}</span></h1>
+    <h1>{{ __('conditions.title') }}<br/> <span class="text-base">{{ __('conditions.patient')}} {{ medicalReport.fullName }}</span></h1>
 
     <div>
         <form action="{{ route('conditions.update', { id: id }) }}" enctype="multipart/form-data" method="post">
@@ -24,13 +24,6 @@
 
             <div id="app">
                 <file-upload :files="{{ data.conditionFiles | dump }}" condition-id="{{ id }}" field-name="conditionFiles" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
-            </div>
-
-            <div class="multiple-choice multiple-choice--checkboxes">
-                <div class="multiple-choice__item">
-                    <input id="attachLater" name="attachLater" type="checkbox" value="attachLater">
-                    <label for="attachLater">{{ __('add_condition.attach_later') }}</label>
-                </div>
             </div>
 
             <div class="w-full flex">
