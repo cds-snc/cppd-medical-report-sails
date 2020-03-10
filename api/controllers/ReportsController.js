@@ -10,7 +10,7 @@ const moment = require('moment');
 module.exports = {
   index: async function (req, res) {
 
-    const reports = await MedicalReport.findAll({ limit: 10, attributes: ['id', 'firstName', 'lastName', 'socialInsuranceNumber'] });
+    const reports = await MedicalReport.findAll({ attributes: ['id', 'firstName', 'lastName', 'socialInsuranceNumber'] });
     sails.log.silly(`Query returned: ${JSON.stringify(reports, null, 2)}`);
     const viewModel = reports.map(x => {
       return {
