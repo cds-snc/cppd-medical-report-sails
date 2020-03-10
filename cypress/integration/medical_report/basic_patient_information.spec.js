@@ -19,7 +19,6 @@ describe('Test the basic patient information section', () => {
 
       cy.visit('/en/dashboard');
       cy.url().should('include', '/en/dashboard');
-      cy.get('h1').contains('Medical report for Canada Pension Plan Disability Benefits');
       cy.get('h1').contains('Patient: ' + name);
     });
   });
