@@ -99,7 +99,6 @@ module.exports = {
         clinicallyImpair: req.body.clinicallyImpair,
         conditionOutlook: req.body.conditionOutlook,
         conditionOutlookUnknown: req.body.conditionOutlookUnknown,
-        conditionLast: req.body.conditionLast,
         symptomsOccur: req.body.symptomsOccur,
         symptomsOccurUnknown: req.body.symptomsOccurUnknown
       });

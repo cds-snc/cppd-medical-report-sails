@@ -9,7 +9,7 @@ describe('Test validation on Personal form', () => {
     cy.injectAxe().checkA11y();
     cy.get('[name=socialInsuranceNumber]').type('123 456 789');
     cy.get('[type="submit"]').click();
-    cy.get('#content .error-list').contains('Social Insurance Number is invalid').click();
+    cy.get('#content .error-list').contains('Social insurance number is invalid').click();
     cy.focused().should('have.attr', 'name', 'socialInsuranceNumber'); // this doesn't seem to work on firefox?
     cy.injectAxe().checkA11y();
   });
@@ -17,20 +17,20 @@ describe('Test validation on Personal form', () => {
   it('accepts a valid social insurance number', () => {
     cy.get('[name=socialInsuranceNumber]').type(social.generate());
     cy.get('[type="submit"]').click();
-    cy.get('#content .error-list').contains('Social Insurance Number is invalid').should('not.exist');
+    cy.get('#content .error-list').contains('Social insurance number is invalid').should('not.exist');
     cy.injectAxe().checkA11y();
   });
 
   it('validates all required fields', () => {
     cy.get('[type="submit"]').click();
 
-    cy.get('#content .error-list').contains('Social Insurance Number is required');
+    cy.get('#content .error-list').contains('Social insurance number is required');
     cy.get('[name=socialInsuranceNumber]').should('have.attr', 'aria-invalid', 'true');
 
-    cy.get('#content .error-list').contains('First name is required');
+    cy.get('#content .error-list').contains('Enter your first name');
     cy.get('[name=firstName]').should('have.attr', 'aria-invalid', 'true');
 
-    cy.get('#content .error-list').contains('Last name is required');
+    cy.get('#content .error-list').contains('Enter your last name');
     cy.get('[name=lastName]').should('have.attr', 'aria-invalid', 'true');
 
     cy.get('#content .error-list').contains('Birthdate day is required');

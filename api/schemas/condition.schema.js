@@ -28,12 +28,6 @@ module.exports = {
       message: '^errors.condition_outlook_required'
     }
   },
-  conditionLast: {
-    presence: {
-      message: '^errors.condition_last_required'
-    }
-    // also validate options
-  },
   symptomsOccur: {
     presence: {
       message: '^errors.symptoms_occur_required'
