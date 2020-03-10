@@ -97,6 +97,7 @@ module.exports = {
     workDetails: Sequelize.TEXT,
     patientMedications: Sequelize.BOOLEAN,
     patientTreatments: Sequelize.BOOLEAN,
+    patientDocuments: Sequelize.BOOLEAN,
     practitionerType: Sequelize.INTEGER, // fk to support
     practitionerTypeText: {
       type: Sequelize.VIRTUAL,
