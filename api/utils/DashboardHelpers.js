@@ -34,7 +34,6 @@ function checkTreatements(medicalReport) {
 const getValidationStatus = (medicalReport) => {
   return {
     personal: isValid(medicalReport, require('../schemas/relationship.schema')),
-    expedited: isValid(medicalReport, require('../schemas/expedited.schema')),
     functional: isValid(medicalReport, require('../schemas/functional.schema')),
     conditions: isCollectionValid(medicalReport.Conditions),
     medications: checkMedications(medicalReport),
