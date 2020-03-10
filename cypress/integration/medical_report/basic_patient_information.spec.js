@@ -33,13 +33,13 @@ describe('Test the basic patient information section', () => {
     cy.get('#content .error-list').contains('When did they come into your care is required');
     cy.get('[name=relationshipStarted]').should('have.attr', 'aria-invalid', 'true');
 
-    cy.get('#content .error-list').contains('Date of first treatment is required');
+    cy.get('#content .error-list').contains('Enter the date you started treating your patient\'s primary medical condition.');
     cy.get('[name=firstTreatmentDate]').should('have.attr', 'aria-invalid', 'true');
 
-    cy.get('#content .error-list').contains('You must enter how many times the patient has visited your office in the past 12 months.');
+    cy.get('#content .error-list').contains('Tell us the number of times your patient has visited you in the last 12 months.');
     cy.get('[name=visitNumber]').should('have.attr', 'aria-invalid', 'true');
 
-    cy.get('#content .error-list').contains('Date of last office visit is required');
+    cy.get('#content .error-list').contains('Enter the date on which your patient last visited you.');
     cy.get('[name=lastVisitDate]').should('have.attr', 'aria-invalid', 'true');
 
     cy.get('#content .error-list').contains('Stopped working is required');
