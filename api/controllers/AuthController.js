@@ -10,7 +10,7 @@ module.exports = {
   index: function (req, res) {
     // already authenticated, come on in!
     if (req.session.user && req.session.user !== null) {
-      return res.redirect(sails.route('sessions'));
+      return res.redirect(sails.route('reports'));
     }
 
     res.view('pages/login');
@@ -72,7 +72,7 @@ module.exports = {
           return res.redirect(sails.route('users'));
         }
 
-        return res.redirect(sails.route('sessions'));
+        return res.redirect(sails.route('reports'));
       });
     }
   },
