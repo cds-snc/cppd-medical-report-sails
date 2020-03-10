@@ -31,6 +31,13 @@ function checkTreatements(medicalReport) {
   return isCollectionValid(medicalReport.Treatments);
 }
 
+function checkDocuments(medicalReport) {
+  if (medicalReport.patientDocuments === false) {
+    return true;
+  }
+  return medicalReport.Documents.length > 0;
+}
+
 const getValidationStatus = (medicalReport) => {
   return {
     personal: isValid(medicalReport, require('../schemas/relationship.schema')),
@@ -39,7 +46,7 @@ const getValidationStatus = (medicalReport) => {
     medications: checkMedications(medicalReport),
     treatments: checkTreatements(medicalReport),
     futureWork: isValid(medicalReport, require('../schemas/work.schema')),
-    supportingDocuments: isValid(medicalReport, require('../schemas/documents.schema')),
+    supportingDocuments: checkDocuments(medicalReport),
     practitioner: isValid(medicalReport, require('../schemas/practitioner.schema')),
   };
 };
