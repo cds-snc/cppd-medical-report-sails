@@ -8,7 +8,6 @@
 
 function ableToSubmit(sections) {
   return sections.personal &&
-    sections.expedited &&
     sections.functional &&
     sections.conditions &&
     sections.medications &&
