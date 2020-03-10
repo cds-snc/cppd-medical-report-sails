@@ -26,15 +26,8 @@
                 <file-upload :files="{{ data.conditionFiles | dump }}" field-name="conditionFiles" upload-label="{{ __('Upload') }}" remove-label="{{ __('documents.delete') }}"></file-upload>
             </div>
 
-            <div class="multiple-choice multiple-choice--checkboxes">
-                <div class="multiple-choice__item">
-                    <input id="attachLater" name="attachLater" type="checkbox" value="attachLater">
-                    <label for="attachLater">{{ __('add_condition.attach_later') }}</label>
-                </div>
-            </div>
-
             <div>
-                <p>{{ __('conditions.all_conditions_message', patientName(data) ) }}</p>
+                <p>{{ __('conditions.all_conditions_message', medicalReport.fullName ) }}</p>
             </div>
 
             <div class="w-full flex">

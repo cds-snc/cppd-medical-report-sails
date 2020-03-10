@@ -47,7 +47,7 @@ describe('Test the patient to medical handoff', () => {
 
       cy.get('[data-cy=start]').click();
       cy.url().should('include', '/en/dashboard');
-      cy.get('h1').contains('Medical report for Canada Pension Plan Disability Benefits');
+      cy.get('h1').contains('Medical report for the Canada Pension Plan Disability Benefits');
       cy.get('h1').contains('Patient: ' + name);
     });
   });

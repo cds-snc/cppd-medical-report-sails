@@ -21,7 +21,7 @@ module.exports.policies = {
   // '*': true,
   '*': ['localize', 'route', 'flash', 'reportExists'],
 
-  SessionsController: {
+  ReportsController: {
     '*': featureFlags.isEnabled('FEATURE_AUTH') ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
   },
 

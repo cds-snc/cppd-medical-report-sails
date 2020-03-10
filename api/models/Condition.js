@@ -12,7 +12,6 @@ module.exports = {
     clinicallyImpair: Sequelize.STRING,
     conditionOutlook: Sequelize.INTEGER, // fk to support
     conditionOutlookUnknown: Sequelize.TEXT,
-    conditionLast: Sequelize.INTEGER, // fk to support
     symptomsOccur: Sequelize.INTEGER,
     symptomsOccurUnknown: Sequelize.TEXT,
   },
@@ -39,12 +38,12 @@ module.exports = {
       isValid: function () {
         return !validate(this, require('../schemas/condition.schema'));
       },
-      conditionOutlookText: function() {
+      conditionOutlookText: function () {
         if (this.conditionOutlook !== null) {
           return conditionOutlook[this.conditionOutlook];
         }
       },
-      symptomsOccurText: function() {
+      symptomsOccurText: function () {
         if (this.symptomsOccur !== null) {
           return symptomsOccur[this.symptomsOccur];
         }

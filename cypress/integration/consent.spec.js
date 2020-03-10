@@ -37,14 +37,14 @@ describe('Test the Consent form', () => {
     cy.get('[id=signature_type]').should('be.visible');
     cy.get('[type="submit"]').click();
 
-    cy.get('#content .error-list').contains('Signature is required');
+    cy.get('#content .error-list').contains('Make sure you provide your signature');
 
     // conditional validation also applies to draw mode
     cy.get('[id=signatureModedraw').check();
     cy.get('[id=signature_draw]').should('be.visible');
     cy.get('[type="submit"]').click();
 
-    cy.get('#content .error-list').contains('Signature is required');
+    cy.get('#content .error-list').contains('Make sure you provide your signature');
   });
 
   it('displays an inline message if consent=no selected', () => {
@@ -112,9 +112,9 @@ describe('Test the Consent form', () => {
     cy.visit('/en/invite');
 
     cy.login('test@user.com', 'secret');
-    cy.visit('/en/sessions');
+    cy.visit('/en/reports');
 
-    cy.visit('/en/sessions/1/consent');
+    cy.visit('/en/reports/1/consent');
     cy.get('[data-cy=consent-given]').contains(name + ' has given their healthcare practitioner consent');
   });
 
@@ -127,9 +127,9 @@ describe('Test the Consent form', () => {
     cy.visit('/en/invite');
 
     cy.login('test@user.com', 'secret');
-    cy.visit('/en/sessions');
+    cy.visit('/en/reports');
 
-    cy.visit('/en/sessions/1/consent');
+    cy.visit('/en/reports/1/consent');
     cy.get('[data-cy=consent-not-given]').contains(name + ' has not given their healthcare practitioner consent');
   });
 });
