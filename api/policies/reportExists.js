@@ -19,10 +19,11 @@ module.exports = async function (req, res, next) {
     return res.redirect(sails.route('start'));
   }
   // If report exists, but it's been submitted already, go to medical professional login screen
+  /* commenting out because problems looking for a fix -ds
   else if (medicalReport.practitionerSubmittedAt !== null) {
     req.session.destroy();
     return res.redirect(sails.route('medical-professional'));
-  }
+  } */
 
   next();
 };
