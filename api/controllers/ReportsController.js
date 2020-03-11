@@ -6,27 +6,19 @@
  */
 
 const moment = require('moment');
+const { Op } = require('sequelize');
 
 module.exports = {
   index: async function (req, res) {
 
-    const reports = await MedicalReport.findAll({ limit: 10, attributes: ['id', 'firstName', 'lastName', 'socialInsuranceNumber'] });
-    sails.log.silly(`Query returned: ${JSON.stringify(reports, null, 2)}`);
-    const viewModel = reports.map(x => {
-      return {
-        id: x.id,
-        dateReceived: 'Not Implemented',
-        applicant: `${x.lastName}, ${x.firstName}`,
-        sin: x.socialInsuranceNumber,
-        lastViewed: 'Not Implemented'
-      };
+    const reports = await MedicalReport.findAll({
+      where: {
+        practitionerSubmittedAt: { [Op.not]: null }
+      }
     });
 
-    const totalReports = await MedicalReport.count();
-    sails.log.silly(`totalReports: ${totalReports}`);
     return res.view('pages/reports/index', {
-      reports: viewModel,
-      total: totalReports
+      reports: reports
     });
   },
 

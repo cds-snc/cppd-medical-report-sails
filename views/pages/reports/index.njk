@@ -15,30 +15,22 @@
   </form>
   <table class="w-full table-full">
     <thead class="border-solid border-b-2 text-left">
-      <tr  >
+      <tr class="">
         <th class="w-1/4">Date Recieved</th>
-        <th class="w-2/4">Applicant</th>
+        <th class="w-1/4">Applicant</th>
+        <th class="w-1/4">Social insurance number</th>
         <th class="w-1/4">Last opened</th>
       </tr>
     </thead>
     <tbody >
-      {% set zebra = cycler("", "bg-gray-200") %}
       {% for report in reports %}
-        <tr class=" {{ zebra.next() }}">
-          <td class="w-1/4 py-2">{{ report.dateReceived }}</td>
-          <td class="w-2/4 py-2"><a href={{ route('reports.view', { report: report.id }) }}>{{ report.applicant }}</a> ({{ report.sin }})</td>
-          <td class="w-1/4 py-2">{{ report.lastViewed }}</td>
+        <tr class="odd:bg-gray-300">
+          <td class="py-2">{{ report.practitionerSubmittedAt.format('MMM Do YY') }}</td>
+          <td class="py-2"><a href={{ route('reports.view', { report: report.id }) }}>{{ report.fullNameLastFirst }}</a></td>
+          <td class="py-2">{{ report.socialInsuranceNumber }}</td>
+          <td class="py-2"></td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
-
-  <div class="my-4">
-    {% set pages = ((total/8)|round(0,'ceil')) %}
-    {% if total > 8 %}
-      {% for i in range(0, pages) %}
-        <a href="#" class="m-1"><span class="sr-only">Page </span>{{ i + 1 }}<span class="sr-only"> of {{ pages }}</span></a>
-      {% endfor %}
-    {% endif %}
-  </div>
 {% endblock %}
