@@ -139,7 +139,10 @@ module.exports = {
     practitionerSubmittedAt: {
       type: Sequelize.DATE,
       get() {
-        return moment(this.getDataValue('practitionerSubmittedAt')).format('MMM D, YYYY H:mmA');
+        if (this.getDataValue('lastAccessedAt')) {
+          return moment(this.getDataValue('practitionerSubmittedAt')).format('MMM D, YYYY H:mmA');
+        }
+        return null;
       }
     },
     lastAccessedAt: {
