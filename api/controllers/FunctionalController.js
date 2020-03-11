@@ -39,7 +39,6 @@ module.exports = {
     if (valid) {
       await medicalReport.update({
         limitations: req.body.limitations,
-        plannedTreatments: req.body.plannedTreatments,
         height: req.body.height,
         weight: req.body.weight
       });
