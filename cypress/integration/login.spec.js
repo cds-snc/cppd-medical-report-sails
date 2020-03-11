@@ -32,7 +32,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
     });
   });
 
-  it('redirects to sessions on successful login', () => {
+  it('redirects to reports on successful login', () => {
     cy.request({
       method: 'POST',
       url: '/en/login',
@@ -47,9 +47,6 @@ describe('Test the authentication flow for medical adjudicators', () => {
         expect(res.status).to.eq(302);
         expect(res.redirectedToUrl).to.contains('/en/reports');
       });
-
-    cy.visit('/en/reports');
-    cy.get('h1').contains('Sessions');
   });
 
   // Basically the same test as above but using the UI directly
@@ -59,7 +56,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
     cy.get('[name=password]').type('secret');
     cy.get('[type="submit"]').click();
     cy.url().should('include', '/en/reports');
-    cy.get('h1').contains('Sessions');
+    cy.get('h1').contains('completed medical reports');
   });
 
   it('errors on bad credentials', () => {
