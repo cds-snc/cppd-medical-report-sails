@@ -62,10 +62,6 @@
                     <td class="w-2/3 p-4 border-2 border-white align-top">{{ data.limitations }}</td>
                 </tr>
                 <tr class="odd:bg-gray-300">
-                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.plannedTreatments', data.fullName) }}</th>
-                    <td class="p-4 border-2 border-white align-top">{{ data.plannedTreatments }}</td>
-                </tr>
-                <tr class="odd:bg-gray-300">
                     <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.weight', data.fullName) }}</th>
                     <td class="p-4 border-2 border-white align-top">{{ data.weight }}</td>
                 </tr>
@@ -274,6 +270,10 @@
 
         <table class="table-fixed">
             <tbody class="bg-gray-100">
+                <tr class="odd:bg-gray-300">
+                    <th scope="row" class="text-left font-normal p-4 border-2 border-white align-top">{{ __('functional.plannedTreatments', data.fullName) }}</th>
+                    <td class="p-4 border-2 border-white align-top">{{ data.plannedTreatments }}</td>
+                </tr>
                 <tr class="odd:bg-gray-300">
                     <th scope="row" class="w-1/3 text-left font-normal p-4 border-2 border-white align-top">{{ __('section6.return_work_question', data.fullName) }}</th>
                     <td class="w-2/3 p-4 border-2 border-white align-top">

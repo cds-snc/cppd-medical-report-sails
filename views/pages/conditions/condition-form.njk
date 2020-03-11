@@ -1,7 +1,7 @@
 {% macro conditionForm(condition) %}
     {{ textInput('icdCode', 'ICD 9 CM code', { required: true, value: condition.icdCode }) }}
 
-    {{ textInput('symptomsBegan', 'add_condition.symptoms_began', { hint: 'add_condition.symptoms_began_hint', required: true, "autocomplete": "off", value: condition.symptomsBegan }) }}
+    {{ textInputRaw('symptomsBegan', __('add_condition.symptoms_began', medicalReport.fullName), { hint: __('add_condition.symptoms_began_hint'), required: true, "autocomplete": "off", value: condition.symptomsBegan }) }}
 
     {{ textArea('clinicallyImpair', 'add_condition.clinically_impair', { hint: 'add_condition.clinically_impair_hint', required: true, value: condition.clinicallyImpair }) }}
 

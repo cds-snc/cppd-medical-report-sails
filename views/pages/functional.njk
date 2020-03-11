@@ -34,12 +34,12 @@
 {% block content %}
 
   {{ backButton('dashboard') }}
-  
+
   <h1>{{ __('functional.title') }}<br/> <span class="text-base">{{ __('patient')}} {{ data.fullName }}</span></h1>
 
   <form method="post" actioh="{{ route('functional.store') }}">
     {{ textAreaSafeHint('limitations', __('functional.limitations', data.fullName), { required: true, hint: __('functional.limitations_hint')})}}
-    {{ textAreaRaw('plannedTreatments', __('functional.plannedTreatments', data.fullName), { required: true})}}
+    
     <div class="md:flex">
     <div class="md:flex-1 md:w-1/2 md:mr-4">
       {{ textInputRaw('weight', __('functional.weight', data.fullName), { required: true })}}
