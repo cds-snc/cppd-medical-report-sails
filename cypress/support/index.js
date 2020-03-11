@@ -15,7 +15,27 @@
 
 // Import commands.js using ES2015 syntax:
 require('./commands');
-require('cypress-axe');
+
+import { A11yReporter } from '@cdssnc/a11y-tracker-client'
+
+// default to not reporting
+A11yReporter.configure({
+  trackerURI: undefined,
+  revision: '<local>',
+  project: 'cppd-medical-report-sails',
+})
+
+// if we're in CI and on the master branch, do the actual reporting
+if (Cypress.env['testing'] && Cypress.env['GITHUB_REF'] === 'refs/heads/master') {
+  A11yReporter.configure({
+    trackerURI: Cypress.env('A11Y_TRACKER_URI') || 'https://a11y-tracker.herokuapp.com/',
+    revision: Cypress.env('GITHUB_GIT_HASH'),
+    key: Cypress.env('A11Y_TRACKER_KEY'),
+    project: 'cppd-medical-report-sails',
+  })
+}
+
+A11yReporter.setupCypress()
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
