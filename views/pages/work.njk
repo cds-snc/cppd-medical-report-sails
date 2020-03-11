@@ -10,7 +10,7 @@
 
     <div>
         <form method="post">
-
+          {{ textAreaRaw('plannedTreatments', __('functional.plannedTreatments', data.fullName), { required: true})}}
             <input type="hidden" name="_csrf" value="{{ _csrf }}">
 
             {{

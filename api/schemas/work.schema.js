@@ -1,4 +1,10 @@
 module.exports = {
+  plannedTreatments: {
+    presence: {
+      allowEmpty: false,
+      message: '^errors.functional.plannedTreatments.length'
+    },
+  },
   returnToWork: {
     presence: {
       allowEmpty: false,
