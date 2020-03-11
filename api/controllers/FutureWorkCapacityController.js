@@ -41,6 +41,7 @@ module.exports = {
       const willReturn = req.body.returnToWork === '1';
       await medicalReport.update({
         returnToWork: req.body.returnToWork,
+        plannedTreatments: req.body.plannedTreatments,
         returnToWorkWhen: willReturn ? req.body.returnToWorkWhen : null,
         typeOfWork: willReturn ? req.body.typeOfWork : null,
         workDetails: willReturn ? req.body.workDetails : null,
