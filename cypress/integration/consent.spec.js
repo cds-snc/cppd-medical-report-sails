@@ -3,7 +3,7 @@ const faker = require('faker');
 const firstName = faker.name.firstName();
 const lastName = faker.name.lastName();
 const name = firstName + ' ' + lastName;
-const nameLastFirst = lastName + ', ' + firstName;
+// const nameLastFirst = lastName + ', ' + firstName;
 
 describe('Test the Consent form', () => {
   before(() => {
