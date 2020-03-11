@@ -6,7 +6,7 @@
  */
 
 const moment = require('moment');
-const { Op } = require('sequelize');
+const { Op, fn } = require('sequelize');
 
 module.exports = {
   index: async function (req, res) {
@@ -24,6 +24,7 @@ module.exports = {
 
   view: async function (req, res) {
     const reportId = req.params.report;
+
     sails.log.silly(`Requesing medical report: ${reportId}`);
     const medicalReport = await MedicalReport.findOne({
       where: { id: reportId },
@@ -40,10 +41,13 @@ module.exports = {
           model: Document,
           as: 'Documents'
         }]
-
       }]
     });
     sails.log.silly(`medicalReport: ${JSON.stringify(medicalReport.toJSON(), null, 2)}`);
+
+    medicalReport.update({
+      lastAccessedAt: fn('NOW')
+    });
 
     res.view('pages/reports/view', {
       data: medicalReport,
