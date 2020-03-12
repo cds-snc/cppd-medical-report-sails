@@ -654,7 +654,8 @@
   "ma.view.label.hcp_phone": "Phone:",
   "ma.view.label.hcp_email": "Email:",
   "ma.view.label.hcp_declaration": "Declaration:",
-  "ma.view.label.link_to_declaration": "View delcaration and signature",
+  "ma.view.label.link_to_declaration": "View declaration and signature",
   "yes": "Yes",
+  "feedback": "Have feedback about this website? Tell us more.",
   "no": "No"
 }
