@@ -77,105 +77,107 @@
   </dl>
 </details>
 
-<h2 class="mt-4 text-4xl">{{ __('ma.view.medical_conditions_and_treatments') }}</h2>
-<dl class="dl-columns">
-  <dt>{{ __('ma.view.label.current_weight') }}</dt>
-  <dd>{{ data.weight }}</dd>
+<details class="mt-4" open>
+  <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.medical_conditions_and_treatments') }}</h2></summary>
+  <dl class="dl-columns">
+    <dt>{{ __('ma.view.label.current_weight') }}</dt>
+    <dd>{{ data.weight }}</dd>
 
 
-  <dt>{{ __('ma.view.label.current_height') }}</dt>
-  <dd>{{ data.height }}</dd>
+    <dt>{{ __('ma.view.label.current_height') }}</dt>
+    <dd>{{ data.height }}</dd>
 
 
-  <dt>{{ __('ma.view.label.bmi') }}</dt>
-  <dd>26.8</dd>
-</dl>
+    <dt>{{ __('ma.view.label.bmi') }}</dt>
+    <dd>26.8</dd>
+  </dl>
 
-{% for condition in data.Conditions %}
-  <details class="mt-4" open>
-    <summary class="text-blue-800"><h3 class="mt-4 inline">{{ condition.conditionName }}</h3></summary>
-    <dl class="dl-columns">
-      <dt>{{ __('ma.view.label.icd_code') }}</dt>
-      <dd>{{ condition.icdCode }}</dd>
+  {% for condition in data.Conditions %}
+    <details class="mt-4" open>
+      <summary class="text-blue-800"><h3 class="mt-4 inline">{{ condition.conditionName }}</h3></summary>
+      <dl class="dl-columns">
+        <dt>{{ __('ma.view.label.icd_code') }}</dt>
+        <dd>{{ condition.icdCode }}</dd>
 
-      <dt>{{ __('ma.view.label.symptoms_began') }}</dt>
-      <dd>{{ condition.symptomsBegan }}</dd>
+        <dt>{{ __('ma.view.label.symptoms_began') }}</dt>
+        <dd>{{ condition.symptomsBegan }}</dd>
 
-      <dt>{{ __('ma.view.label.symptom_frequency') }}</dt>
-      <dd>{{ __(symptomsOccur[condition.symptomsOccur]) }}</dd>
+        <dt>{{ __('ma.view.label.symptom_frequency') }}</dt>
+        <dd>{{ __(symptomsOccur[condition.symptomsOccur]) }}</dd>
 
-      <dt>{{ __('ma.view.label.symptom_detail') }}</dt>
-      <dd>{{ condition.symptomsOccurUnknown }}</dd>
+        <dt>{{ __('ma.view.label.symptom_detail') }}</dt>
+        <dd>{{ condition.symptomsOccurUnknown }}</dd>
 
-      <dt>{{ __('ma.view.label.prognosis') }}</dt>
-      <dd>{{ __(conditionOutlook[condition.conditionOutlook]) }}</dd>
+        <dt>{{ __('ma.view.label.prognosis') }}</dt>
+        <dd>{{ __(conditionOutlook[condition.conditionOutlook]) }}</dd>
 
-      <dt>{{ __('ma.view.label.prognosis_detail') }}</dt>
-      <dd>{{ condition.conditionOutlookUnknown }}</dd>
+        <dt>{{ __('ma.view.label.prognosis_detail') }}</dt>
+        <dd>{{ condition.conditionOutlookUnknown }}</dd>
 
-      <dt>{{ __('ma.view.label.clinical_findings') }}</dt>
-      <dd>{{ condition.clinicallyImpair }}</dd>
+        <dt>{{ __('ma.view.label.clinical_findings') }}</dt>
+        <dd>{{ condition.clinicallyImpair }}</dd>
 
-      <dt>{{ __('ma.view.label.supporting_documents') }}</dt>
-      <dd>
-        {% for document in condition.Documents %}
-          <a href="{{ route('documents.get', { id: document.id }) }}">{{ document.originalFileName }}</a><br>
-        {% endfor %}
-      </dd>
-    </dl>
+        <dt>{{ __('ma.view.label.supporting_documents') }}</dt>
+        <dd>
+          {% for document in condition.Documents %}
+            <a href="{{ route('documents.get', { id: document.id }) }}">{{ document.originalFileName }}</a><br>
+          {% endfor %}
+        </dd>
+      </dl>
 
-    {% if condition.Medications.length %}
-      <details>
-        <summary class="text-blue-800"><h4 class="mt-4 text-2xl inline">Medications</h4></summary>
-        {% for medication in condition.Medications %}
-          <dl class="dl-columns">
-              <dt>{{ __('ma.view.label.medication') }}</dt>
-              <dd>{{ medication.medicationName }}</dd>
+      {% if condition.Medications.length %}
+        <details>
+          <summary class="text-blue-800"><h4 class="mt-4 text-2xl inline">Medications ({{ condition.Medications.length }})</h4></summary>
+          {% for medication in condition.Medications %}
+            <dl class="dl-columns">
+                <dt>{{ __('ma.view.label.medication') }}</dt>
+                <dd>{{ medication.medicationName }}</dd>
+
+                <dt>{{ __('ma.view.label.start_date') }}</dt>
+                <dd>{{ medication.medicationStartDate }}</dd>
+
+                <dt>{{ __('ma.view.label.end_date') }}</dt>
+                <dd>{{ medication.medicationEndDate }}</dd>
+
+                <dt>{{ __('ma.view.label.dosage') }}</dt>
+                <dd>{{ medication.medicationDosage }}</dd>
+
+                <dt>{{ __('ma.view.label.frequency') }}</dt>
+                <dd>{{ medication.medicationFrequency }}</dd>
+
+                <dt>{{ __('ma.view.label.patient_response') }}</dt>
+                <dd>{{ medication.medicationResults }}</dd>
+            </dl>
+          {% endfor %}
+        </details>
+      {% endif %}
+
+      {% if condition.Treatments.length %}
+        <details>
+          <summary class="text-blue-800"><h4 class="mt-4 text-2xl inline">Treatments ({{ condition.Treatments.length }})</h4></summary>
+          {% for treatment in condition.Treatments %}
+            <dl class="dl-columns">
+              <dt>{{ __('ma.view.label.treatment_type') }}</dt>
+              <dd>{{ treatment.treatmentType }}</dd>
 
               <dt>{{ __('ma.view.label.start_date') }}</dt>
-              <dd>{{ medication.medicationStartDate }}</dd>
+              <dd>{{ treatment.treatmentStartDate }}</dd>
 
               <dt>{{ __('ma.view.label.end_date') }}</dt>
-              <dd>{{ medication.medicationEndDate }}</dd>
-
-              <dt>{{ __('ma.view.label.dosage') }}</dt>
-              <dd>{{ medication.medicationDosage }}</dd>
+              <dd>{{ treatment.treatmentEndDate }}</dd>
 
               <dt>{{ __('ma.view.label.frequency') }}</dt>
-              <dd>{{ medication.medicationFrequency }}</dd>
+              <dd>{{ treatment.treatmentFrequency }}</dd>
 
               <dt>{{ __('ma.view.label.patient_response') }}</dt>
-              <dd>{{ medication.medicationResults }}</dd>
-          </dl>
-        {% endfor %}
-      </details>
-    {% endif %}
-
-    {% if condition.Treatments.length %}
-      <details>
-        <summary class="text-blue-800"><h4 class="mt-4 text-2xl inline">Treatments</h4></summary>
-        {% for treatment in condition.Treatments %}
-          <dl class="dl-columns">
-            <dt>{{ __('ma.view.label.treatment_type') }}</dt>
-            <dd>{{ treatment.treatmentType }}</dd>
-
-            <dt>{{ __('ma.view.label.start_date') }}</dt>
-            <dd>{{ treatment.treatmentStartDate }}</dd>
-
-            <dt>{{ __('ma.view.label.end_date') }}</dt>
-            <dd>{{ treatment.treatmentEndDate }}</dd>
-
-            <dt>{{ __('ma.view.label.frequency') }}</dt>
-            <dd>{{ treatment.treatmentFrequency }}</dd>
-
-            <dt>{{ __('ma.view.label.patient_response') }}</dt>
-            <dd>{{ treatment.treatmentResults }}</dd>
-          </dl>
-        {% endfor %}
-      </details>
-    {% endif %}
-  </details>
-{% endfor %}
+              <dd>{{ treatment.treatmentResults }}</dd>
+            </dl>
+          {% endfor %}
+        </details>
+      {% endif %}
+    </details>
+  {% endfor %}
+</details>
 
  <details class="mt-4" open>
   <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.work_capacity') }}</h2></summary>
