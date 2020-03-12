@@ -56,7 +56,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
     cy.get('[name=password]').type('secret');
     cy.get('[type="submit"]').click();
     cy.url().should('include', '/en/reports');
-    cy.get('h1').contains('completed medical reports');
+    cy.get('[data-cy=reports-section]').should('be.visible');
   });
 
   it('errors on bad credentials', () => {
