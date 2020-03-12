@@ -18,6 +18,6 @@ jobs:
       - name: Get branch
         run: echo ::set-env name=BRANCH::$(echo ${GITHUB_REF:10})
       - name: Build Docker image
-        run: docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:${{env.BRANCH}} .
+        run: docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd/node-app:${{env.BRANCH}} .
       - name: Publish Docker image
-        run: docker push ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd-medical-report-sails:${{env.BRANCH}}
+        run: docker push ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd/node-app:${{env.BRANCH}}

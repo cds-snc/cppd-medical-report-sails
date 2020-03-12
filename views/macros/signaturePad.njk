@@ -27,31 +27,32 @@
         )
     }}
 
-    <br/>
-    <div id="signature_draw" class="{{ 'has-error' if errors and errors['signatureDrawData'] }}">
-        <label>
-            <span aria-hidden="true" class="required">*</span>
-            {{ __('consent.signature_draw_instructions') }}
-            <span class="required">{{ __('required') }}</span>
-        </label>
-        {% if errors and errors['signatureDrawData'] %}
-            {{ validationMessage(errors['signatureDrawData'], 'signatureDrawData') }}
-        {% endif %}
-        
-        <div class="relative w-3-4 border-2 border-black">
-            <div id="signature_pad_clear" class="bottom-0 w-full text-right pr-4 pt-4 leading-none bg-white">
-                <a onclick="$('#signature_pad').jSignature('clear')" class="no-underline text-gray-700 cursor-pointer">{{ __('clear') }}</a>
+    <div class="mt-4">
+        <div id="signature_draw" class="{{ 'has-error' if errors and errors['signatureDrawData'] }}">
+            <label>
+                <span aria-hidden="true" class="required">*</span>
+                {{ __('consent.signature_draw_instructions') }}
+                <span class="required">{{ __('required') }}</span>
+            </label>
+            {% if errors and errors['signatureDrawData'] %}
+                {{ validationMessage(errors['signatureDrawData'], 'signatureDrawData') }}
+            {% endif %}
+            
+            <div class="relative w-3-4 border-2 border-black">
+                <div id="signature_pad_clear" class="bottom-0 w-full text-right pr-4 pt-4 leading-none bg-white">
+                    <a onclick="$('#signature_pad').jSignature('clear')" class="no-underline text-gray-700 cursor-pointer">{{ __('clear') }}</a>
+                </div>
+                <div id="signature_pad" class="overflow-hidden bg-white"></div>
+                <div id="signature_pad_line" class="absolute bottom-0 p-4 pb-16 pointer-events-none w-full">
+                    <div class="border-b border-gray-500 text-gray-500">x</div>
+                </div>
             </div>
-            <div id="signature_pad" class="overflow-hidden bg-white"></div>
-            <div id="signature_pad_line" class="absolute bottom-0 p-4 pb-16 pointer-events-none w-full">
-                <div class="border-b border-gray-500 text-gray-500">x</div>
-            </div>
+            <input id="signature_draw_data" name="signatureDrawData" type="hidden"/>
         </div>
-        <input id="signature_draw_data" name="signatureDrawData" type="hidden"/>
-    </div>
 
-    <div id="signature_type" class="hidden">
-        {{ textInput('signatureTyped', 'consent.signature_type_instructions', {'required': true} ) }}
+        <div id="signature_type" class="hidden">
+            {{ textInput('signatureTyped', 'consent.signature_type_instructions', {'required': true} ) }}
+        </div>
     </div>
 
     {% block scripts %}
@@ -77,9 +78,12 @@
                 if(value === 'draw'){
                     signatureDraw();
                 }
-                else {
+                else if (value === 'type') {
                     signatureType();
-                }   
+                } else {
+                    $('#signature_draw').hide();
+                    $('#signature_type').hide();
+                }
             };
 
             function encodeSignatureDrawing() {

@@ -1,5 +1,5 @@
 /**
- * SessionsController
+ * ReportsController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
@@ -24,14 +24,14 @@ module.exports = {
 
     const totalReports = await MedicalReport.count();
     sails.log.silly(`totalReports: ${totalReports}`);
-    return res.view('pages/sessions', {
+    return res.view('pages/reports/index', {
       reports: viewModel,
       total: totalReports
     });
   },
 
   view: async function (req, res) {
-    const reportId = req.params.session;
+    const reportId = req.params.report;
     sails.log.silly(`Requesing medical report: ${reportId}`);
     const medicalReport = await MedicalReport.findOne({
       where: { id: reportId },
@@ -53,7 +53,7 @@ module.exports = {
     });
     sails.log.silly(`medicalReport: ${JSON.stringify(medicalReport.toJSON(), null, 2)}`);
 
-    res.view('pages/sessions/view', {
+    res.view('pages/reports/view', {
       data: medicalReport,
       symptomsOccur: require('../utils/support/symptomsOccur'),
       conditionOutlook: require('../utils/support/conditionOutlook'),
@@ -67,7 +67,7 @@ module.exports = {
   showConsent: async function (req, res) {
     let medicalReport = await MedicalReport.findOne({
       where: {
-        id: req.params.session
+        id: req.params.report
       }
     });
 

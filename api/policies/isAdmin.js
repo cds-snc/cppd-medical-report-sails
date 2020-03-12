@@ -4,7 +4,7 @@ module.exports = async function (req, res, next) {
   }
 
   if (!req.session.user.isAdmin) {
-    return res.redirect(sails.route('sessions'));
+    return res.redirect(sails.route('reports'));
   }
 
   return next();

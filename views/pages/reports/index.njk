@@ -26,7 +26,7 @@
       {% for report in reports %}
         <tr class=" {{ zebra.next() }}">
           <td class="w-1/4 py-2">{{ report.dateReceived }}</td>
-          <td class="w-2/4 py-2"><a href={{ route('sessions.view', { session: report.id }) }}>{{ report.applicant }}</a> ({{ report.sin }})</td>
+          <td class="w-2/4 py-2"><a href={{ route('reports.view', { report: report.id }) }}>{{ report.applicant }}</a> ({{ report.sin }})</td>
           <td class="w-1/4 py-2">{{ report.lastViewed }}</td>
         </tr>
       {% endfor %}

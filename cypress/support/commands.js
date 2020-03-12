@@ -84,6 +84,24 @@ Cypress.Commands.add('consent', (name, consent) => {
     });
 });
 
+Cypress.Commands.add('loginDoctor', (applicationCode, birthdateMonth, birthdateDay, birthdateYear) => {
+  cy.request({
+    method: 'POST',
+    url: '/en/medical-professional',
+    followRedirect: false,
+    form: true,
+    body: {
+      applicationCode: applicationCode,
+      birthdateMonth: birthdateMonth,
+      birthdateDay: birthdateDay,
+      birthdateYear: birthdateYear
+    }
+  })
+    .then((res) => {
+      expect(res.status).to.eq(302);
+    });
+});
+
 Cypress.Commands.add('login', (email, password) => {
   cy.request({
     method: 'POST',

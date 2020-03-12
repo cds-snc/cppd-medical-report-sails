@@ -50,10 +50,18 @@ module.exports = {
 
   store: async function (req, res) {
     /**
-     * We don't validate here because we need to be able to
-     * upload files even if conditions haven't been added yet.
-     * Validate on the Dashboard only.
+     * This should be replaced when we add the new docs
+     * screening question (like medications/treatments)
      */
+    let medicalReport = await MedicalReport.findOne({
+      where: {
+        applicationCode: req.session.applicationCode
+      },
+    });
+
+    await medicalReport.update({
+      patientDocuments: req.body.attachLater ? false : true
+    });
 
     res.redirect(sails.route('dashboard'));
   },

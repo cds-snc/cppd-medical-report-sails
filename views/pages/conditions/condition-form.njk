@@ -1,7 +1,7 @@
 {% macro conditionForm(condition) %}
     {{ textInput('icdCode', 'ICD 9 CM code', { required: true, value: condition.icdCode }) }}
 
-    {{ textInput('symptomsBegan', 'add_condition.symptoms_began', { hint: 'add_condition.symptoms_began_hint', required: true, "autocomplete": "off", value: condition.symptomsBegan }) }}
+    {{ textInputRaw('symptomsBegan', __('add_condition.symptoms_began', medicalReport.fullName), { hint: __('add_condition.symptoms_began_hint'), required: true, "autocomplete": "off", value: condition.symptomsBegan }) }}
 
     {{ textArea('clinicallyImpair', 'add_condition.clinically_impair', { hint: 'add_condition.clinically_impair_hint', required: true, value: condition.clinicallyImpair }) }}
 
@@ -14,13 +14,6 @@
         ], condition.conditionOutlook, 'add_condition.condition_outlook', errors, { required: true }) }}
 
     {{ textArea('conditionOutlookUnknown', 'add_condition.prognosis_unknown', { value: condition.conditionOutlookUnknown }) }}
-
-    {{ radioButtons('conditionLast',
-      [
-        {'value': '1', 'text' :'add_condition.condition_last_1_year'},
-        {'value': '2', 'text' :'add_condition.condition_last_more'}
-      ],
-      condition.conditionLast, 'add_condition.condition_last', errors, { required: true }) }}
 
     {{ radioButtons('symptomsOccur',
       [ {'value': '1','text':'add_condition.symptoms_occur_periodically'},

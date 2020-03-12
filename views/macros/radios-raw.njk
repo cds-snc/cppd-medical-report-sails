@@ -19,8 +19,8 @@
                 {% endif %}
                 {% for index, val in values %}
                     <div class="multiple-choice__item">
-                        <input id="{{ key }}{{ val }}" name="{{ key }}" type="radio" value="{{ index }}" {% if value == index %} checked="checked" {% endif %} {% if errors and errors[key] %} aria-describedby="{{ key + '-error' }}" aria-invalid="true" {% endif %}>
-                        <label for="{{ key }}{{ val }}">{{ __(val) }}</label>
+                        <input id="{{ key }}{{ index }}" name="{{ key }}" type="radio" value="{{ index }}" {% if value == index %} checked="checked" {% endif %} {% if errors and errors[key] %} aria-describedby="{{ key + '-error' }}" aria-invalid="true" {% endif %}>
+                        <label for="{{ key }}{{ index }}">{{ __(val) }}</label>
                     </div>
                 {% endfor %}
             </div>

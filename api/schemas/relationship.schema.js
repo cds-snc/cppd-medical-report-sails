@@ -30,10 +30,14 @@ module.exports = {
       message: '^Stopped working is required'
     }
   },
-  stopWorkingWhen: {
-    presence: {
-      allowEmpty: false,
-      message: '^When they stopped working is required'
+  stopWorkingWhen: function (value, attributes) {
+    if (attributes.stopWorking === '1') {
+      return {
+        presence: {
+          allowEmpty: false,
+          message: '^When they stopped working is required'
+        }
+      };
     }
   }
 };

@@ -16,8 +16,8 @@ describe('Test the authentication flow for medical adjudicators', () => {
    */
   it('cannot access protected routes when not logged in', () => {
     const routes = [
-      '/en/sessions',
-      '/en/sessions/1/view'
+      '/en/reports',
+      '/en/reports/1/view'
     ];
 
     routes.forEach((route) => {
@@ -45,10 +45,10 @@ describe('Test the authentication flow for medical adjudicators', () => {
     })
       .then((res) => {
         expect(res.status).to.eq(302);
-        expect(res.redirectedToUrl).to.contains('/en/sessions');
+        expect(res.redirectedToUrl).to.contains('/en/reports');
       });
 
-    cy.visit('/en/sessions');
+    cy.visit('/en/reports');
     cy.get('h1').contains('Sessions');
   });
 
@@ -58,7 +58,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
     cy.get('[name=email]').type('test@user.com');
     cy.get('[name=password]').type('secret');
     cy.get('[type="submit"]').click();
-    cy.url().should('include', '/en/sessions');
+    cy.url().should('include', '/en/reports');
     cy.get('h1').contains('Sessions');
   });
 
@@ -79,7 +79,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
 
     // link is visible, try clicking it
     cy.login('test@user.com', 'secret');
-    cy.visit('/en/sessions');
+    cy.visit('/en/reports');
     cy.get('[data-cy=logout]').should('be.visible').click();
 
     // logged out
@@ -91,7 +91,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
   it('logs me out', () => {
     cy.login('test@user.com', 'secret');
     cy.visit('/en/logout').url().should('include', '/en/loggedout');
-    cy.visit('/en/sessions');
+    cy.visit('/en/reports');
     cy.url().should('include', '/en/login');
   });
 });
