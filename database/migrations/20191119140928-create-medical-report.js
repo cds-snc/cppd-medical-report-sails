@@ -194,6 +194,9 @@ module.exports = {
       practitionerSubmittedAt: {
         type: Sequelize.DATE
       },
+      lastAccessedAt: {
+        type: Sequelize.DATE
+      },
       createdAt: {
         type: Sequelize.DATE
       },

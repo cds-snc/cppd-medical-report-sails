@@ -1,0 +1,28 @@
+name: Bump version and build container
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      id: tag
+      uses: anothrNick/github-tag-action@1.13.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+        DEFAULT_BUMP: patch
+    - uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}
+        username: ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}
+        password: ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
+    - name: Build Docker image
+      run: docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd/node-app:${{steps.tag.outputs.new_tag}} .
+    - name: Publish Docker image
+      run: docker push ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}/cppd/node-app:${{steps.tag.outputs.new_tag}}
