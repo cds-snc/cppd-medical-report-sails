@@ -9,7 +9,7 @@
   <dd>{{ data.practitionerSubmittedAt }}</dd>
 
   <dt><strong>{{ __('ma.view.label.consent') }}</strong></dt>
-  <dd><a href={{ route('reports.consent', { report: data.id }) }}>{{ __('ma.view.view_and_download_consent') }}</a></dd>
+  <dd>{{ __(data.consent) }}. <a href={{ route('reports.consent', { report: data.id }) }}>{{ __('ma.view.view_and_download_consent', data.fullName) }}</a></dd>
 </dl>
 
 <details class="mt-4" open>
