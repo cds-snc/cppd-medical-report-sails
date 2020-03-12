@@ -11,7 +11,7 @@ describe('Test the User Management authorization', () => {
     // authenticated but not admin
     cy.login('test@user.com', 'secret');
     cy.visit('/en/users');
-    cy.get('h1').contains('Sessions');
+    cy.get('[data-cy=reports-section]').should('be.visible');
 
     cy.logout();
 

@@ -639,5 +639,12 @@
   "consent.ma.positive": "%s has given their healthcare practitioner consent to send their medical information to Service Canada, and to contact other health professionals to obtain more information.",
   "consent.dr.positive": "%s has given consent for you to send their medical information to Service Canada, and to contact other health professionals to obtain more information.",
   "consent.ma.negative": "%s has not given their healthcare practitioner consent to send their medical information to Service Canada.",
-  "consent.proof_of_consent": "Proof of consent:"
+  "consent.proof_of_consent": "Proof of consent:",
+  "reports.search_applications": "Search applications by name or SIN",
+  "reports.title": "Canada Pension Plan Disability Benefits - completed medical reports",
+  "New": "New",
+  "reports.date_received": "Date received",
+  "reports.applicant": "Applicant",
+  "reports.social": "Social insurance number",
+  "reports.last_opened": "Last opened"
 }
