@@ -642,5 +642,9 @@
   "consent.proof_of_consent": "Proof of consent:",
   "reports.search_applications": "Search applications by name or SIN",
   "reports.title": "Canada Pension Plan Disability Benefits - completed medical reports",
-  "New": "New"
+  "New": "New",
+  "reports.date_received": "Date received",
+  "reports.applicant": "Applicant",
+  "reports.social": "Social insurance number",
+  "reports.last_opened": "Last opened"
 }
