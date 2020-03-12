@@ -16,14 +16,14 @@
 // Import commands.js using ES2015 syntax:
 require('./commands');
 
-import { A11yReporter } from '@cdssnc/a11y-tracker-client'
+const { A11yReporter } = require ('@cdssnc/a11y-tracker-client');
 
 // default to not reporting
 A11yReporter.configure({
   trackerURI: undefined,
   revision: '<local>',
   project: 'cppd-medical-report-sails',
-})
+});
 
 // if we're in CI and on the master branch, do the actual reporting
 if (Cypress.env['testing'] && Cypress.env['GITHUB_REF'] === 'refs/heads/master') {
@@ -32,10 +32,10 @@ if (Cypress.env['testing'] && Cypress.env['GITHUB_REF'] === 'refs/heads/master')
     revision: Cypress.env('GITHUB_GIT_HASH'),
     key: Cypress.env('A11Y_TRACKER_KEY'),
     project: 'cppd-medical-report-sails',
-  })
+  });
 }
 
-A11yReporter.setupCypress()
+A11yReporter.setupCypress();
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
