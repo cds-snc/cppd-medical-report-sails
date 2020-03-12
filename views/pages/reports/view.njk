@@ -2,25 +2,67 @@
 
 {% block content %}
 
-<h1>{{ __('ma.view.medical_report_for', data.firstName + ' ' + data.lastName) }}</h1>
-{{ __('ma.view.date_of_birth') }}: {{ data.birthdate }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}<br>
-{{ __('ma.view.label.consent') }} <a href={{ route('reports.consent', { report: data.id }) }}>{{ __('ma.view.view_and_download_consent') }}</a><br>
+<h1>{{ __('ma.view.medical_report_for', data.fullNameLastFirst) }} ({{ data.socialInsuranceNumber }})</h1>
 
+<dl class="dl-inline">
+  <dt><strong>{{ __('ma.view.report_submitted') }}</strong></dt>
+  <dd>{{ data.practitionerSubmittedAt }}</dd>
+
+  <dt><strong>{{ __('ma.view.label.consent') }}</strong></dt>
+  <dd><a href={{ route('reports.consent', { report: data.id }) }}>{{ __('ma.view.view_and_download_consent') }}</a></dd>
+</dl>
 
 <details class="mt-4" open>
-  <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.applicant_profile') }}</h2></summary>
+  <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.applicant_profile') }}</h2></summary>
   <h3>{{ __('ma.view.applicant') }}</h3>
+  <dl class="dl-inline">
+    <dt>{{ __('ma.view.label.date_of_birth') }}</dt> 
+    <dd>{{ moment(data.birthdate).format('MMMM D, YYYY') }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}</dd>
+
+    <dt>{{ __('ma.view.label.sin') }}</dt> 
+    <dd>{{ data.socialInsuranceNumber }}</dd>
+    
+    {% if (data.birthLastName) %}
+      <dt>{{ __('ma.view.label.last_name_at_birth') }}</dt> 
+      <dd>{{ data.birthLastName }}</dd>
+    {% endif %}
+    
+    <dt>{{ __('ma.view.label.address') }}</dt> 
+    <dd>{{ data.address }}</dd>
+
+    <dt>{{ __('ma.view.label.phone') }}</dt> 
+    <dd>{{ data.telephone }}</dd>
+
+    {% if (data.email) %}
+      <dt>{{ __('ma.view.label.email') }}</dt> 
+      <dd>{{ data.email }}</dd>
+    {% endif %}
+  </dl>
+
+  <h3 class="mt-8">{{ __('ma.view.health_care_professional') }}</h3>
   <p>
-    {{ __('ma.view.label.date_of_birth') }} {{ data.birthdate }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}<br>
-    {{ __('ma.view.label.sin') }} {{ data.socialInsuranceNumber }}<br>
-    {{ __('ma.view.label.last_name_at_birth') }} {{ data.birthLastName }}<br>
-    {{ __('ma.view.label.address') }} {{ data.address }}<br>
-    {{ __('ma.view.label.phone') }} {{ data.telephone }}<br>
+    {{ data.practitionerFirstName }} {{ data.practitionerLastName }} ({{ data.practitionerTypeText }}) <!-- handle other -->
   </p>
+  <dl class="dl-inline">
+    <dt>{{ __('ma.view.label.hcp_address') }}</dt>
+    <dd>{{ data.practitionerAddress }}, {{ data.practitionerCity }}, {{ data.practitionerProvince }} {{ data.practitionerPostal }}<dd>
+
+    <dt>{{ __('ma.view.label.hcp_phone') }}</dt>
+    <dd>{{ data.practitionerPhone }}<dd>
+
+    {% if (data.practitionerEmail) %}
+      <dt>{{ __('ma.view.label.hcp_email') }}</dt>
+      <dd><a href="mailto:{{ data.practitionerEmail }}">{{ data.practitionerEmail }}</a><dd>
+    {% endif %}
+
+    <dt>{{ __('ma.view.label.hcp_declaration') }}</dt>
+    <dd><a href="">{{ __('ma.view.label.link_to_declaration') }}</a></dd>
+  </dl>
 </details>
+
 <details class="mt-4" open>
-  <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.relationship_with_applicant') }}</h2></summary>
-  <dl>
+  <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.relationship_with_applicant') }}</h2></summary>
+  <dl class="dl-columns">
     <dt>{{ __('ma.view.label.first_visit') }}</dt>
     <dd>{{ data.relationshipStarted }}</dd>
 
@@ -36,7 +78,7 @@
 </details>
 
 <h2 class="mt-4 text-4xl">{{ __('ma.view.medical_conditions_and_treatments') }}</h2>
-<dl>
+<dl class="dl-columns">
   <dt>{{ __('ma.view.label.current_weight') }}</dt>
   <dd>{{ data.weight }}</dd>
 
@@ -51,8 +93,8 @@
 
 {% for condition in data.Conditions %}
   <details class="mt-4" open>
-    <summary><h3 class="mt-4 inline">{{ condition.conditionName }}</h3></summary>
-    <dl>
+    <summary class="text-blue-800"><h3 class="mt-4 inline">{{ condition.conditionName }}</h3></summary>
+    <dl class="dl-columns">
       <dt>{{ __('ma.view.label.icd_code') }}</dt>
       <dd>{{ condition.icdCode }}</dd>
 
@@ -84,9 +126,9 @@
 
     {% if condition.Medications.length %}
       <details>
-        <summary><h4 class="mt-4 text-2xl inline">Medications</h4></summary>
+        <summary class="text-blue-800"><h4 class="mt-4 text-2xl inline">Medications</h4></summary>
         {% for medication in condition.Medications %}
-          <dl>
+          <dl class="dl-columns">
               <dt>{{ __('ma.view.label.medication') }}</dt>
               <dd>{{ medication.medicationName }}</dd>
 
@@ -111,9 +153,9 @@
 
     {% if condition.Treatments.length %}
       <details>
-        <summary><h4 class="mt-4 text-2xl inline">Treatments</h4></summary>
+        <summary class="text-blue-800"><h4 class="mt-4 text-2xl inline">Treatments</h4></summary>
         {% for treatment in condition.Treatments %}
-          <dl>
+          <dl class="dl-columns">
             <dt>{{ __('ma.view.label.treatment_type') }}</dt>
             <dd>{{ treatment.treatmentType }}</dd>
 
@@ -136,8 +178,8 @@
 {% endfor %}
 
  <details class="mt-4" open>
-  <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.work_capacity') }}</h2></summary>
-  <dl>
+  <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.work_capacity') }}</h2></summary>
+  <dl class="dl-columns">
     {% if data.stopWorking %}
       <dt>{{ __('ma.view.label.told_to_cease_work') }}</td>
       <dd>{{ __(stopWorking[data.stopWorking]) }}

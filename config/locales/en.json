@@ -548,7 +548,7 @@
   "ma.view.medical_report_for": "Medical report for %s",
   "ma.view.date_of_birth": "Date of birth",
   "ma.view.years_old": "(%s years old)",
-  "ma.view.applicant_profile": "Applicant profile",
+  "ma.view.applicant_profile": "Profile information",
   "ma.view.hide": "Hide",
   "ma.view.applicant": "Applicant",
   "ma.view.sin": "SIN",
@@ -646,5 +646,13 @@
   "reports.date_received": "Date received",
   "reports.applicant": "Applicant",
   "reports.social": "Social insurance number",
-  "reports.last_opened": "Last opened"
+  "reports.last_opened": "Last opened",
+  "ma.view.report_submitted": "Report submitted:",
+  "ma.view.label.email": "Email",
+  "ma.view.health_care_professional": "Health care professional",
+  "ma.view.label.hcp_address": "Address:",
+  "ma.view.label.hcp_phone": "Phone:",
+  "ma.view.label.hcp_email": "Email:",
+  "ma.view.label.hcp_declaration": "Declaration:",
+  "ma.view.label.link_to_declaration": "View delcaration and signature"
 }
