@@ -14,7 +14,10 @@ module.exports = {
     const reports = await MedicalReport.findAll({
       where: {
         practitionerSubmittedAt: { [Op.not]: null }
-      }
+      },
+      order: [
+        ['practitionerSubmittedAt', 'DESC']
+      ]
     });
 
     return res.view('pages/reports/index', {
