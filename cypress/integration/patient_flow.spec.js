@@ -18,7 +18,7 @@ describe('Run through the patient-facing portion of the service', () => {
 
   it('successfully submits a completed personal information form', () => {
     cy.visit('/en/personal');
-    cy.reportA11y()
+    cy.reportA11y();
     cy.get('[name=socialInsuranceNumber]').type(social.generate());
     cy.get('[name=firstName]').type(faker.name.firstName());
     cy.get('[name=lastName]').type(faker.name.lastName());
@@ -39,7 +39,7 @@ describe('Run through the patient-facing portion of the service', () => {
   it('successfully submits a completed consent form', () => {
     cy.personal();
     cy.visit('/en/consent');
-    cy.reportA11y()
+    cy.reportA11y();
     cy.get('[id=consentyes]').check();
     cy.get('[id=signatureModetype]').check();
     cy.get('[name=signatureTyped]').type('Cypress Testerman');
@@ -51,7 +51,7 @@ describe('Run through the patient-facing portion of the service', () => {
   it('successfully submits a completed consent form, answering no', () => {
     cy.personal();
     cy.visit('/en/consent');
-    cy.reportA11y()
+    cy.reportA11y();
     cy.get('[id=consentno]').check();
     cy.get('[id=signatureModetype]').check();
     cy.get('[name=signatureTyped]').type('Cypress Testerman');
