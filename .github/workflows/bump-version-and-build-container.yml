@@ -16,6 +16,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
+        DEFAULT_BUMP: patch
     - uses: azure/docker-login@v1
       with:
         login-server: ${{ secrets.AZURE_CONTAINER_REGISTRY_URL }}
