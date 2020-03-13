@@ -17,16 +17,13 @@
     <h2 class="mt-5">{{ __('declaration.signed_by') }}</h2>
     <div class="mt-5">
         <strong>
-            {% if (data.practitionerType === 'ccfp' or data.practitionerType === 'other') %}
-                {{ __('declaration.doctor') }}
-            {% endif %}
             {{ data.practitionerFullName }}
         </strong><br/>
-        {{ __('section9.confirm_statement_' + data.practitionerType ) }}
+        {{ __(data.practitionerTypeText) }}
     </div>
 
     <div class="mt-5">
-        <strong>{{ __('declaration.signed_date') }}</strong> {{ signedDateTime }}<br/>
+        <strong>{{ __('declaration.signed_date') }}</strong> {{ data.practitionerSubmittedAt }}<br/>
         <strong>{{ __('declaration.ip_address') }}</strong> {{ data.practitionerIpAddress }}
     </div>
 
