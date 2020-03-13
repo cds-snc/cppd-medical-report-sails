@@ -47,7 +47,8 @@ module.exports = {
       await medicalReport.update({
         practitionerSignatureDraw: req.body.signatureMode === 'draw' ? req.body.signatureDrawData : null,
         practitionerSignatureType: req.body.signatureMode === 'type' ? req.body.signatureTyped : null,
-        practitionerSubmittedAt: moment().format()
+        practitionerSubmittedAt: moment().format(),
+        practitionerIpAddress: /(.*:)?(.+)$/.exec(req.ip)[2]
       });
 
       res.redirect(sails.route('confirmation'));

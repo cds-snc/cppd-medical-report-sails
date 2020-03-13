@@ -23,14 +23,26 @@ module.exports.routes = {
       fr: '/fr/reports/:report/view'
     }
   },
+
   'GET /en/reports/:report/consent': {
     name: 'reports.consent',
-    controller: 'ReportsController',
-    action: 'showConsent',
+    controller: 'ReportConsentController',
+    action: 'show',
     lang: 'en',
     i18n: {
       en: '/en/reports/:report/consent',
       fr: '/fr/reports/:report/consent'
     }
   },
+
+  'GET /en/reports/:report/declaration': {
+    name: 'reports.declaration',
+    controller: 'ReportDeclarationController',
+    action: 'show',
+    lang: 'en',
+    i18n: {
+      en: '/en/reports/:report/declaration',
+      fr: '/fr/reports/:report/declaration'
+    }
+  }
 };

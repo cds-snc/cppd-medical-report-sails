@@ -133,6 +133,7 @@ module.exports = {
     practitionerPhone: Sequelize.STRING,
     practitionerSignatureDraw: Sequelize.TEXT, // SVG data
     practitionerSignatureType: Sequelize.STRING, // Full name
+    practitionerIpAddress: Sequelize.STRING,
     billingIdType: Sequelize.STRING,
     billingId: Sequelize.STRING,
     applicantSubmittedAt: Sequelize.DATE,
