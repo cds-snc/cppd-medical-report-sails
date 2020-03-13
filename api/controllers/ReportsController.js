@@ -5,7 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const moment = require('moment');
 const { Op, fn } = require('sequelize');
 
 module.exports = {
@@ -61,27 +60,5 @@ module.exports = {
       typeOfWork: require('../utils/support/typeOfWork'),
       moment: require('moment')
     });
-  },
-
-  showConsent: async function (req, res) {
-    let medicalReport = await MedicalReport.findOne({
-      where: {
-        id: req.params.report
-      }
-    });
-
-    if (!medicalReport) {
-      res.notFound();
-    }
-
-    let submissionMoment = moment(medicalReport.applicantSubmittedAt);
-    let submittedAt = submissionMoment.format('LL');
-
-    res.view('pages/show_consent', {
-      maView: true,
-      data: medicalReport,
-      submittedAt: submittedAt
-    });
   }
-
 };

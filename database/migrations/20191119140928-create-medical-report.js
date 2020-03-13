@@ -182,6 +182,9 @@ module.exports = {
       practitionerSignatureType: {
         type: Sequelize.STRING
       },
+      practitionerIpAddress: {
+        type: Sequelize.STRING
+      },
       billingIdType: {
         type: Sequelize.STRING
       },
