@@ -56,7 +56,7 @@
     {% endif %}
 
     <dt>{{ __('ma.view.label.hcp_declaration') }}</dt>
-    <dd><a href="">{{ __('ma.view.label.link_to_declaration') }}</a></dd>
+    <dd><a href="{{ route('reports.declaration', { report: data.id }) }}">{{ __('ma.view.label.link_to_declaration') }}</a></dd>
   </dl>
 </details>
 

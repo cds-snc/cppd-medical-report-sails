@@ -1,0 +1,35 @@
+{% extends "layouts/layout.njk" %}
+
+{% block content %}
+
+<h1>{{ __('declaration.hcp_declaration') }}</h1>
+
+<div class="border border-gray-600 border-solid bg-gray-100 p-8">
+    <h2>{{ __('declaration.i_confirm_that') }}</h2>
+    <div class="border border-gray-600 border-solid bg-gray-100 p-8 mt-5">
+        {% if data.practitionerSignatureDraw %}
+            {{ data.practitionerSignatureDraw | safe }}
+        {% else %}
+            <span class="signature text-3xl">{{ data.practitionerSignatureType }}</span>
+        {% endif %}
+    </div>
+
+    <h2 class="mt-5">{{ __('declaration.signed_by') }}</h2>
+    <div class="mt-5">
+        <strong>
+            {% if (data.practitionerType === 'ccfp' or data.practitionerType === 'other') %}
+                {{ __('declaration.doctor') }}
+            {% endif %}
+            {{ data.practitionerFullName }}
+        </strong><br/>
+        {{ __('section9.confirm_statement_' + data.practitionerType ) }}
+    </div>
+
+    <div class="mt-5">
+        <strong>{{ __('declaration.signed_date') }}</strong> {{ signedDateTime }}<br/>
+        <strong>{{ __('declaration.ip_address') }}</strong> {{ data.practitionerIpAddress }}
+    </div>
+
+</div>
+
+{% endblock %}
