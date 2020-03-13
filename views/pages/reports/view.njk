@@ -2,25 +2,69 @@
 
 {% block content %}
 
-<h1>{{ __('ma.view.medical_report_for', data.firstName + ' ' + data.lastName) }}</h1>
-{{ __('ma.view.date_of_birth') }}: {{ data.birthdate }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}<br>
-{{ __('ma.view.label.consent') }} <a href={{ route('reports.consent', { report: data.id }) }}>{{ __('ma.view.view_and_download_consent') }}</a><br>
+<h1>{{ __('ma.view.medical_report_for', data.fullNameLastFirst) }} ({{ data.socialInsuranceNumber }})</h1>
 
+<dl class="dl-inline">
+  <dt><strong>{{ __('ma.view.report_submitted') }}</strong></dt>
+  <dd>{{ data.practitionerSubmittedAt }}</dd>
+
+  <dt><strong>{{ __('ma.view.label.consent') }}</strong></dt>
+  <dd>{{ __(data.consent) }}. <a href={{ route('reports.consent', { report: data.id }) }}>{{ __('ma.view.view_and_download_consent', data.fullName) }}</a></dd>
+</dl>
 
 <details class="mt-4" open>
-  <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.applicant_profile') }}</h2></summary>
+  <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.applicant_profile') }}</h2></summary>
   <h3>{{ __('ma.view.applicant') }}</h3>
+  <dl class="dl-inline">
+    <dt>{{ __('ma.view.label.date_of_birth') }}</dt> 
+    <dd>{{ moment(data.birthdate).format('MMMM D, YYYY') }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}</dd>
+
+    <dt>{{ __('ma.view.label.sin') }}</dt> 
+    <dd>{{ data.socialInsuranceNumber }}</dd>
+    
+    {% if (data.birthLastName) %}
+      <dt>{{ __('ma.view.label.last_name_at_birth') }}</dt> 
+      <dd>{{ data.birthLastName }}</dd>
+    {% endif %}
+    
+    <dt>{{ __('ma.view.label.address') }}</dt> 
+    <dd>{{ data.address }}</dd>
+
+    <dt>{{ __('ma.view.label.phone') }}</dt> 
+    <dd>{{ data.telephone }}</dd>
+
+    {% if (data.email) %}
+      <dt>{{ __('ma.view.label.email') }}</dt> 
+      <dd>{{ data.email }}</dd>
+    {% endif %}
+  </dl>
+
+  <h3 class="mt-8">{{ __('ma.view.health_care_professional') }}</h3>
   <p>
-    {{ __('ma.view.label.date_of_birth') }} {{ data.birthdate }} {{ __('ma.view.years_old', moment(data.birthdate).toNow(true)) }}<br>
-    {{ __('ma.view.label.sin') }} {{ data.socialInsuranceNumber }}<br>
-    {{ __('ma.view.label.last_name_at_birth') }} {{ data.birthLastName }}<br>
-    {{ __('ma.view.label.address') }} {{ data.address }}<br>
-    {{ __('ma.view.label.phone') }} {{ data.telephone }}<br>
+    {{ data.practitionerFirstName }} {{ data.practitionerLastName }} ({{ data.practitionerTypeText }}) <!-- handle other -->
   </p>
+  <dl class="dl-inline">
+    <dt>{{ __('ma.view.label.hcp_address') }}</dt>
+    <dd>{{ data.practitionerAddress }}, {{ data.practitionerCity }}, {{ data.practitionerProvince }} {{ data.practitionerPostal }}<dd>
+
+    <dt>{{ __('ma.view.label.hcp_phone') }}</dt>
+    <dd>{{ data.practitionerPhone }}<dd>
+
+    {% if (data.practitionerEmail) %}
+      <dt>{{ __('ma.view.label.hcp_email') }}</dt>
+      <dd><a href="mailto:{{ data.practitionerEmail }}">{{ data.practitionerEmail }}</a><dd>
+    {% endif %}
+
+    <dt>{{ __('ma.view.label.hcp_declaration') }}</dt>
+    <dd><a href="">{{ __('ma.view.label.link_to_declaration') }}</a></dd>
+  </dl>
 </details>
+
+<hr class="w-full border-gray-400 mt-8">
+
 <details class="mt-4" open>
-  <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.relationship_with_applicant') }}</h2></summary>
-  <dl>
+  <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.relationship_with_applicant') }}</h2></summary>
+  <dl class="dl-columns">
     <dt>{{ __('ma.view.label.first_visit') }}</dt>
     <dd>{{ data.relationshipStarted }}</dd>
 
@@ -35,109 +79,115 @@
   </dl>
 </details>
 
-<h2 class="mt-4 text-4xl">{{ __('ma.view.medical_conditions_and_treatments') }}</h2>
-<dl>
-  <dt>{{ __('ma.view.label.current_weight') }}</dt>
-  <dd>{{ data.weight }}</dd>
+<hr class="w-full border-gray-400 mt-8">
+
+<details class="mt-4" open>
+  <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.medical_conditions_and_treatments') }}</h2></summary>
+  <dl class="dl-columns">
+    <dt>{{ __('ma.view.label.current_weight') }}</dt>
+    <dd>{{ data.weight }}</dd>
 
 
-  <dt>{{ __('ma.view.label.current_height') }}</dt>
-  <dd>{{ data.height }}</dd>
+    <dt>{{ __('ma.view.label.current_height') }}</dt>
+    <dd>{{ data.height }}</dd>
 
 
-  <dt>{{ __('ma.view.label.bmi') }}</dt>
-  <dd>26.8</dd>
-</dl>
+    <dt>{{ __('ma.view.label.bmi') }}</dt>
+    <dd>26.8</dd>
+  </dl>
 
-{% for condition in data.Conditions %}
-  <details class="mt-4" open>
-    <summary><h3 class="mt-4 inline">{{ condition.conditionName }}</h3></summary>
-    <dl>
-      <dt>{{ __('ma.view.label.icd_code') }}</dt>
-      <dd>{{ condition.icdCode }}</dd>
+  {% for condition in data.Conditions %}
+    <details class="mt-4" open>
+      <summary class="text-blue-800"><h3 class="mt-4 inline">{{ condition.conditionName }}</h3></summary>
+      <dl class="dl-columns">
+        <dt>{{ __('ma.view.label.icd_code') }}</dt>
+        <dd>{{ condition.icdCode }}</dd>
 
-      <dt>{{ __('ma.view.label.symptoms_began') }}</dt>
-      <dd>{{ condition.symptomsBegan }}</dd>
+        <dt>{{ __('ma.view.label.symptoms_began') }}</dt>
+        <dd>{{ condition.symptomsBegan }}</dd>
 
-      <dt>{{ __('ma.view.label.symptom_frequency') }}</dt>
-      <dd>{{ __(symptomsOccur[condition.symptomsOccur]) }}</dd>
+        <dt>{{ __('ma.view.label.symptom_frequency') }}</dt>
+        <dd>{{ __(symptomsOccur[condition.symptomsOccur]) }}</dd>
 
-      <dt>{{ __('ma.view.label.symptom_detail') }}</dt>
-      <dd>{{ condition.symptomsOccurUnknown }}</dd>
+        <dt>{{ __('ma.view.label.symptom_detail') }}</dt>
+        <dd>{{ condition.symptomsOccurUnknown }}</dd>
 
-      <dt>{{ __('ma.view.label.prognosis') }}</dt>
-      <dd>{{ __(conditionOutlook[condition.conditionOutlook]) }}</dd>
+        <dt>{{ __('ma.view.label.prognosis') }}</dt>
+        <dd>{{ __(conditionOutlook[condition.conditionOutlook]) }}</dd>
 
-      <dt>{{ __('ma.view.label.prognosis_detail') }}</dt>
-      <dd>{{ condition.conditionOutlookUnknown }}</dd>
+        <dt>{{ __('ma.view.label.prognosis_detail') }}</dt>
+        <dd>{{ condition.conditionOutlookUnknown }}</dd>
 
-      <dt>{{ __('ma.view.label.clinical_findings') }}</dt>
-      <dd>{{ condition.clinicallyImpair }}</dd>
+        <dt>{{ __('ma.view.label.clinical_findings') }}</dt>
+        <dd>{{ condition.clinicallyImpair }}</dd>
 
-      <dt>{{ __('ma.view.label.supporting_documents') }}</dt>
-      <dd>
-        {% for document in condition.Documents %}
-          <a href="{{ route('documents.get', { id: document.id }) }}">{{ document.originalFileName }}</a><br>
-        {% endfor %}
-      </dd>
-    </dl>
+        <dt>{{ __('ma.view.label.supporting_documents') }}</dt>
+        <dd>
+          {% for document in condition.Documents %}
+            <a href="{{ route('documents.get', { id: document.id }) }}">{{ document.originalFileName }}</a><br>
+          {% endfor %}
+        </dd>
+      </dl>
 
-    {% if condition.Medications.length %}
-      <details>
-        <summary><h4 class="mt-4 text-2xl inline">Medications</h4></summary>
-        {% for medication in condition.Medications %}
-          <dl>
-              <dt>{{ __('ma.view.label.medication') }}</dt>
-              <dd>{{ medication.medicationName }}</dd>
+      {% if condition.Medications.length %}
+        <details>
+          <summary class="text-blue-800"><h4 class="mt-4 text-2xl inline">Medications ({{ condition.Medications.length }})</h4></summary>
+          {% for medication in condition.Medications %}
+            <dl class="dl-columns">
+                <dt>{{ __('ma.view.label.medication') }}</dt>
+                <dd>{{ medication.medicationName }}</dd>
+
+                <dt>{{ __('ma.view.label.start_date') }}</dt>
+                <dd>{{ medication.medicationStartDate }}</dd>
+
+                <dt>{{ __('ma.view.label.end_date') }}</dt>
+                <dd>{{ medication.medicationEndDate }}</dd>
+
+                <dt>{{ __('ma.view.label.dosage') }}</dt>
+                <dd>{{ medication.medicationDosage }}</dd>
+
+                <dt>{{ __('ma.view.label.frequency') }}</dt>
+                <dd>{{ medication.medicationFrequency }}</dd>
+
+                <dt>{{ __('ma.view.label.patient_response') }}</dt>
+                <dd>{{ medication.medicationResults }}</dd>
+            </dl>
+          {% endfor %}
+        </details>
+      {% endif %}
+
+      {% if condition.Treatments.length %}
+        <details>
+          <summary class="text-blue-800"><h4 class="mt-4 text-2xl inline">Treatments ({{ condition.Treatments.length }})</h4></summary>
+          {% for treatment in condition.Treatments %}
+            <dl class="dl-columns">
+              <dt>{{ __('ma.view.label.treatment_type') }}</dt>
+              <dd>{{ treatment.treatmentType }}</dd>
 
               <dt>{{ __('ma.view.label.start_date') }}</dt>
-              <dd>{{ medication.medicationStartDate }}</dd>
+              <dd>{{ treatment.treatmentStartDate }}</dd>
 
               <dt>{{ __('ma.view.label.end_date') }}</dt>
-              <dd>{{ medication.medicationEndDate }}</dd>
-
-              <dt>{{ __('ma.view.label.dosage') }}</dt>
-              <dd>{{ medication.medicationDosage }}</dd>
+              <dd>{{ treatment.treatmentEndDate }}</dd>
 
               <dt>{{ __('ma.view.label.frequency') }}</dt>
-              <dd>{{ medication.medicationFrequency }}</dd>
+              <dd>{{ treatment.treatmentFrequency }}</dd>
 
               <dt>{{ __('ma.view.label.patient_response') }}</dt>
-              <dd>{{ medication.medicationResults }}</dd>
-          </dl>
-        {% endfor %}
-      </details>
-    {% endif %}
+              <dd>{{ treatment.treatmentResults }}</dd>
+            </dl>
+          {% endfor %}
+        </details>
+      {% endif %}
+    </details>
+  {% endfor %}
+</details>
 
-    {% if condition.Treatments.length %}
-      <details>
-        <summary><h4 class="mt-4 text-2xl inline">Treatments</h4></summary>
-        {% for treatment in condition.Treatments %}
-          <dl>
-            <dt>{{ __('ma.view.label.treatment_type') }}</dt>
-            <dd>{{ treatment.treatmentType }}</dd>
+<hr class="w-full border-gray-400 mt-8">
 
-            <dt>{{ __('ma.view.label.start_date') }}</dt>
-            <dd>{{ treatment.treatmentStartDate }}</dd>
-
-            <dt>{{ __('ma.view.label.end_date') }}</dt>
-            <dd>{{ treatment.treatmentEndDate }}</dd>
-
-            <dt>{{ __('ma.view.label.frequency') }}</dt>
-            <dd>{{ treatment.treatmentFrequency }}</dd>
-
-            <dt>{{ __('ma.view.label.patient_response') }}</dt>
-            <dd>{{ treatment.treatmentResults }}</dd>
-          </dl>
-        {% endfor %}
-      </details>
-    {% endif %}
-  </details>
-{% endfor %}
-
- <details class="mt-4" open>
-  <summary><h2 class="mt-4 text-4xl inline">{{ __('ma.view.work_capacity') }}</h2></summary>
-  <dl>
+<details class="mt-4" open>
+  <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.work_capacity') }}</h2></summary>
+  <dl class="dl-columns">
     {% if data.stopWorking %}
       <dt>{{ __('ma.view.label.told_to_cease_work') }}</td>
       <dd>{{ __(stopWorking[data.stopWorking]) }}
