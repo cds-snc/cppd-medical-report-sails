@@ -60,6 +60,8 @@
   </dl>
 </details>
 
+<hr class="w-full border-gray-400 mt-8">
+
 <details class="mt-4" open>
   <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.relationship_with_applicant') }}</h2></summary>
   <dl class="dl-columns">
@@ -76,6 +78,8 @@
     <dd>{{ data.lastVisitDate }}</dd>
   </dl>
 </details>
+
+<hr class="w-full border-gray-400 mt-8">
 
 <details class="mt-4" open>
   <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.medical_conditions_and_treatments') }}</h2></summary>
@@ -179,7 +183,9 @@
   {% endfor %}
 </details>
 
- <details class="mt-4" open>
+<hr class="w-full border-gray-400 mt-8">
+
+<details class="mt-4" open>
   <summary class="text-blue-800"><h2 class="mt-4 text-4xl inline">{{ __('ma.view.work_capacity') }}</h2></summary>
   <dl class="dl-columns">
     {% if data.stopWorking %}
