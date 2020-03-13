@@ -25,10 +25,10 @@ describe('Test the basic patient information section', () => {
 
   it('validates required fields', () => {
     cy.visit('/en/relationship');
-    cy.injectAxe().checkA11y();
+    cy.reportA11y();
 
     cy.get('[type="submit"]').click();
-    cy.injectAxe().checkA11y();
+    cy.reportA11y();
 
     cy.get('#content .error-list').contains('When did they come into your care is required');
     cy.get('[name=relationshipStarted]').should('have.attr', 'aria-invalid', 'true');
