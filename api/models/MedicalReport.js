@@ -6,6 +6,8 @@ const returnToWorkWhen = require('../utils/support/returnToWorkWhen');
 const typeOfWork = require('../utils/support/typeOfWork');
 const practitionerType = require('../utils/support/practitionerType');
 
+const moment = require('moment');
+
 module.exports = {
   attributes: {
     applicationCode: { type: Sequelize.STRING, unique: true },
@@ -17,6 +19,12 @@ module.exports = {
       type: Sequelize.VIRTUAL,
       get() {
         return this.firstName + ' ' + this.lastName;
+      }
+    },
+    fullNameLastFirst: {
+      type: Sequelize.VIRTUAL,
+      get() {
+        return this.lastName + ', ' + this.firstName;
       }
     },
     birthLastName: Sequelize.STRING,
@@ -128,7 +136,24 @@ module.exports = {
     billingIdType: Sequelize.STRING,
     billingId: Sequelize.STRING,
     applicantSubmittedAt: Sequelize.DATE,
-    practitionerSubmittedAt: Sequelize.DATE
+    practitionerSubmittedAt: {
+      type: Sequelize.DATE,
+      get() {
+        if (this.getDataValue('practitionerSubmittedAt')) {
+          return moment(this.getDataValue('practitionerSubmittedAt')).format('MMM D, YYYY H:mmA');
+        }
+        return null;
+      }
+    },
+    lastAccessedAt: {
+      type: Sequelize.DATE,
+      get() {
+        if (this.getDataValue('lastAccessedAt')) {
+          return moment(this.getDataValue('lastAccessedAt')).format('MMM D, YYYY H:mmA');
+        }
+        return sails.__('New');
+      }
+    }
   },
   associations: function () {
     MedicalReport.hasMany(Condition, {

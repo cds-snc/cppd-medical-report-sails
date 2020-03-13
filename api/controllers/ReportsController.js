@@ -6,32 +6,28 @@
  */
 
 const moment = require('moment');
+const { Op, fn } = require('sequelize');
 
 module.exports = {
   index: async function (req, res) {
 
-    const reports = await MedicalReport.findAll({ attributes: ['id', 'firstName', 'lastName', 'socialInsuranceNumber'] });
-    sails.log.silly(`Query returned: ${JSON.stringify(reports, null, 2)}`);
-    const viewModel = reports.map(x => {
-      return {
-        id: x.id,
-        dateReceived: 'Not Implemented',
-        applicant: `${x.lastName}, ${x.firstName}`,
-        sin: x.socialInsuranceNumber,
-        lastViewed: 'Not Implemented'
-      };
+    const reports = await MedicalReport.findAll({
+      where: {
+        practitionerSubmittedAt: { [Op.not]: null }
+      },
+      order: [
+        ['practitionerSubmittedAt', 'DESC']
+      ]
     });
 
-    const totalReports = await MedicalReport.count();
-    sails.log.silly(`totalReports: ${totalReports}`);
     return res.view('pages/reports/index', {
-      reports: viewModel,
-      total: totalReports
+      reports: reports
     });
   },
 
   view: async function (req, res) {
     const reportId = req.params.report;
+
     sails.log.silly(`Requesing medical report: ${reportId}`);
     const medicalReport = await MedicalReport.findOne({
       where: { id: reportId },
@@ -48,10 +44,13 @@ module.exports = {
           model: Document,
           as: 'Documents'
         }]
-
       }]
     });
     sails.log.silly(`medicalReport: ${JSON.stringify(medicalReport.toJSON(), null, 2)}`);
+
+    medicalReport.update({
+      lastAccessedAt: fn('NOW')
+    });
 
     res.view('pages/reports/view', {
       data: medicalReport,
