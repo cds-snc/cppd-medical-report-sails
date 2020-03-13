@@ -589,7 +589,7 @@
   "ma.view.label.type_of_work": "Type of work:",
   "ma.view.label.type_of_work_detail": "Type of work detail:",
   "ma.view.label.functional_limitations": "Functional limitations:",
-  "ma.view.label.future_treatments": "Future treatments/impact on functional abilities:",
+  "ma.view.label.future_treatments": "Any future treatments that impact functional abilities:",
   "Email is required": "Email is required",
   "Does not seem to be a valid email": "Does not seem to be a valid email",
   "City is required": "City is required",
