@@ -17,7 +17,7 @@ describe('Test validation on Personal form', () => {
   it('accepts a valid social insurance number', () => {
     cy.get('[name=socialInsuranceNumber]').type(social.generate());
     cy.get('[type="submit"]').click();
-    cy.get('#content .error-list').contains('Social Insurance Number is invalid').should('not.exist');
+    cy.get('#content .error-list').contains('Social insurance number is invalid').should('not.exist');
     cy.reportA11y();
   });
 
