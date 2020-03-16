@@ -25,6 +25,14 @@ module.exports.policies = {
     '*': featureFlags.isEnabled('FEATURE_AUTH') ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
   },
 
+  ReportConsentController: {
+    '*': featureFlags.isEnabled('FEATURE_AUTH') ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
+  },
+
+  ReportDeclarationController: {
+    '*': featureFlags.isEnabled('FEATURE_AUTH') ? ['localize', 'route', 'flash', 'isAuthenticated'] : ['localize', 'route', 'flash'],
+  },
+
   StartController: {
     '*': ['localize', 'route', 'flash'],
   },

@@ -657,5 +657,9 @@
   "ma.view.label.link_to_declaration": "View declaration and signature",
   "yes": "Yes",
   "feedback": "Have feedback about this website? Tell us more.",
-  "no": "No"
+  "no": "No",
+  "declaration.hcp_declaration": "Healthcare practitioner's declaration",
+  "declaration.signed_by": "Signed by:",
+  "declaration.signed_date": "Date:",
+  "declaration.ip_address": "IP address:"
 }
