@@ -31,6 +31,7 @@
     "validate.js": "^0.13.1"
   },
   "devDependencies": {
+    "@cdssnc/a11y-tracker-client": "^1.1.2",
     "@csstools/postcss-sass": "^4.0.0",
     "@fullhuman/postcss-purgecss": "^1.3.0",
     "@symfony/webpack-encore": "^0.28.3",
@@ -62,7 +63,7 @@
     "debug": "nodemon --inspect-brk app.js",
     "lint": "./node_modules/eslint/bin/eslint.js . --max-warnings=300 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
     "db:install": "docker pull postgres:latest",
-    "db:start": "docker run --rm -p 5432:5432 -d --name postgres-dev postgres:latest",
+    "db:start": "docker run --rm -p 5432:5432 -d --name postgres-dev postgres:11",
     "db:stop": "docker stop postgres-dev",
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:migrate:undo": "npx sequelize-cli db:migrate:undo:all",

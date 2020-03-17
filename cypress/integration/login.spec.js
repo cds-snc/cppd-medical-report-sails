@@ -8,7 +8,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
   it('loads the login screen', () => {
     cy.visit('/en/login');
     cy.get('h1').contains('Medical adjudication sign in');
-    cy.injectAxe().checkA11y();
+    cy.reportA11y();
   });
 
   /**
@@ -66,7 +66,7 @@ describe('Test the authentication flow for medical adjudicators', () => {
     cy.get('[type="submit"]').click();
     cy.url().should('include', '/en/login');
     cy.get('#content .error-list').contains('Invalid login');
-    cy.injectAxe().checkA11y();
+    cy.reportA11y();
   });
 
   it('can only see a logout link when logged in', () => {
