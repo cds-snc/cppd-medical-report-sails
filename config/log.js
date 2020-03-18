@@ -23,6 +23,6 @@ module.exports.log = {
   * You may also set the level to "silent" to suppress all logs.             *
   *                                                                          *
   ***************************************************************************/
- level: process.env.LOG_LEVEL || 'info',
+  level: process.env.LOG_LEVEL || 'info',
 
 };
