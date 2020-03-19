@@ -665,5 +665,11 @@
   "declaration.hcp_declaration": "Healthcare practitioner's declaration",
   "declaration.signed_by": "Signed by:",
   "declaration.signed_date": "Date:",
-  "declaration.ip_address": "IP address:"
+  "declaration.ip_address": "IP address:",
+  "errors.relationship.relationship_started": "When did they come into your care is required",
+  "errors.relationship.first_treatment_date": "Date of first treatment is required",
+  "errors.relationship.visit_number": "You must enter how many times the patient has visited your office in the past 12 months",
+  "errors.relationship.last_visit_date": "Date of last office visit is required",
+  "errors.relationship.stop_working": "Stopped working is required",
+  "errors.relationship.stop_working_when": "When they stopped working is required"
 }

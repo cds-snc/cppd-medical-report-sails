@@ -2,32 +2,32 @@ module.exports = {
   relationshipStarted: {
     presence: {
       allowEmpty: false,
-      message: '^When did they come into your care is required'
+      message: '^errors.relationship.relationship_started'
     }
   },
   firstTreatmentDate: {
     presence: {
       allowEmpty: false,
-      message: '^Date of first treatment is required'
+      message: '^errors.relationship.first_treatment_date'
     },
   },
   visitNumber: {
     presence: {
       allowEmpty: false,
-      message: '^You must enter how many times the patient has visited your office in the past 12 months.'
+      message: '^errors.relationship.visit_number'
     },
     numericality: true,
   },
   lastVisitDate: {
     presence: {
       allowEmpty: false,
-      message: '^Date of last office visit is required'
+      message: '^errors.relationship.last_visit_date'
     },
   },
   stopWorking: {
     presence: {
       allowEmpty: false,
-      message: '^Stopped working is required'
+      message: '^errors.relationship.stop_working'
     }
   },
   stopWorkingWhen: function (value, attributes) {
@@ -35,7 +35,7 @@ module.exports = {
       return {
         presence: {
           allowEmpty: false,
-          message: '^When they stopped working is required'
+          message: '^errors.relationship.stop_working_when'
         }
       };
     }
