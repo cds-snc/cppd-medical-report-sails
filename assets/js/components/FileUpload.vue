@@ -35,7 +35,7 @@
         <a
           href="#"
           class="flex-auto remove-file underline text-base align-middle text-right pr-4 cursor-pointer"
-          @click="removeFile(file)"
+          @click.prevent="removeFile(file)"
           :title="'Delete item ' + file.fileName"
         >{{ removeLabel }}</a>
       </div>
@@ -112,6 +112,7 @@ export default {
           })
           .then(response => {
             this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+            this.$refs.file.focus();
           });
       } else {
         // on create, there is no Condition
@@ -123,6 +124,7 @@ export default {
           })
           .then(response => {
             this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+            this.$refs.file.focus();
           });
       }
     },
