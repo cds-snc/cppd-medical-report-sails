@@ -16,7 +16,7 @@
 
         <label
           for="file"
-          class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
+          class="w-64 border-2 border-black cursor-pointer bg-gray-200 hover:bg-gray-300 px-5 py-2 inline-block text-center"
         >{{ this.uploadLabel }}</label>
       </div>
 
