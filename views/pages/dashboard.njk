@@ -1,9 +1,9 @@
 {% macro sectionStatus(completed) %}
-      {% if completed %}
-        <span class="text-green-800">{{ __('dashboard.completed') }}</span>
-      {% else %}
-        <span class="text-gray-800">{{ __('dashboard.not-completed') }}</span>
-      {% endif %}
+  {% if completed %}
+    <span class="text-green-800">{{ __('dashboard.completed') }}</span>
+  {% else %}
+    <span class="text-gray-800">{{ __('dashboard.not-completed') }}</span>
+  {% endif %}
 {% endmacro %}
 
 {% macro sectionRow(routeName, label, completed) %}
@@ -15,9 +15,7 @@
   </tr>
 {% endmacro %}
 
-
 {% extends "layouts/layout.njk" %}
-
 
 {% block content %}
   <h1>{{ __('dashboard.title') }}<br/> <span class="text-base">{{ __('dashboard.patient')}} {{ data.fullName }} </span></h1>
