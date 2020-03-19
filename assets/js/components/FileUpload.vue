@@ -34,7 +34,7 @@
         <div class="flex-auto">{{ file.fileName }}</div>
         <a
           href="#"
-          class="flex-auto remove-file underline text-base align-middle text-right pr-4 cursor-pointer"
+          class="remove-file underline text-base align-middle text-right p-4 cursor-pointer"
           @click.prevent="removeFile(file)"
           :title="'Delete item ' + file.fileName"
         >{{ removeLabel }}</a>
