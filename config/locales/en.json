@@ -673,7 +673,7 @@
   "errors.relationship.stop_working": "Stopped working is required",
   "errors.relationship.stop_working_when": "When they stopped working is required",
   "errors.invitation.birthdate_day": "Birthdate day is required",
-  "errors.invitation.birtdate_month": "Birthdate month is required",
+  "errors.invitation.birthdate_month": "Birthdate month is required",
   "errors.invitation.birthdate_year": "Birthdate year is required",
   "errors.invitation.birtdate_invalid": "Birthdate is not a valid date",
   "errors.invitation.birthdate_age": "You must have been born before yesterday",
@@ -682,5 +682,16 @@
   "Birthdate year is not a number": "Birthdate year is not a number",
   "errors.invitation.birthdate_day_range": "Birthdate day must be a number between 1 and 31",
   "errors.invitation.birthdate_month_range": "Birthdate month must be a number between 1 and 12",
-  "Birthdate day is not a number": "Birthdate day is not a number"
+  "Birthdate day is not a number": "Birthdate day is not a number",
+  "errors.personal.sin_required": "Social Insurance Number is required",
+  "errors.personal.sin_invalid": "Social Insurance Number is invalid",
+  "errors.personal.first_name": "First name is required",
+  "errors.personal.last_name": "Last name is required",
+  "errors.personal.mailing_address": "Mailing address is required",
+  "errors.personal.city": "City is required",
+  "errors.personal.province": "Province is required",
+  "errors.personal.country": "Country is required",
+  "errors.personal.postal": "Postal code is required",
+  "errors.personal.telephone": "Telephone is required",
+  "errors.personal.email_invalid": "Does not seem to be a valid email"
 }

@@ -32,7 +32,7 @@ module.exports = {
   birthdateMonth: {
     presence: {
       allowEmpty: false,
-      message: '^errors.invitation.birtdate_month'
+      message: '^errors.invitation.birthdate_month'
     },
     numericality: {
       greaterThan: 0,
