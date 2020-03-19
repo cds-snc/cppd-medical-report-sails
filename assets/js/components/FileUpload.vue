@@ -31,7 +31,7 @@
         v-bind:key="file.id"
         class="border-t border-gray-300 py-4 px-4 flex"
       >
-        <div class="flex-auto">{{ file.fileName }}</div>
+        <div class="p-4 flex-auto">{{ file.fileName }}</div>
         <a
           href="#"
           class="remove-file underline text-base align-middle text-right p-4 cursor-pointer"
