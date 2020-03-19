@@ -42,15 +42,15 @@
         {% endif %}
         <div class="flex">
           <div class="w-32">
-            <input class="{{ attributes.class if attributes.class }}" autocomplete="bday-month" type="number" pattern="[0-9]*" min="1" max="12" id="{{ monthName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === monthName or firstError === name %} autofocus="true" {% endif %} name="{{ monthName }}" value="{{ value | datePart('MM') if value }}"/>
+            <input class="{{ attributes.class if attributes.class }}" autocomplete="bday-month" type="text" pattern="[0-9]*" inputmode="numeric" id="{{ monthName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === monthName or firstError === name %} autofocus="true" {% endif %} name="{{ monthName }}" value="{{ value | datePart('MM') if value }}"/>
             <label for="{{ monthName }}" class="text-gray-700">{{ __('Month') }}</label>
           </div>
           <div class="w-32 ml-4">
-            <input class="{{ attributes.class if attributes.class }}" autocomplete="bday-day" type="number" pattern="[0-9]*" min="1" max="31" id="{{ dayName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === dayName %} autofocus="true" {% endif %} name="{{ dayName }}" value="{{ value | datePart('DD') if value }}"/>
+            <input class="{{ attributes.class if attributes.class }}" autocomplete="bday-day" type="text" pattern="[0-9]*" inputmode="numeric" id="{{ dayName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === dayName %} autofocus="true" {% endif %} name="{{ dayName }}" value="{{ value | datePart('DD') if value }}"/>
             <label for="{{ dayName }}" class="text-gray-700">{{ __('Day') }}</label>
           </div>
           <div class="w-32 ml-4">
-            <input class="{{ attributes.class if attributes.class }}" autocomplete="bday-year" type="number" pattern="[0-9]*" min="1" id="{{ yearName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === yearName %} autofocus="true" {% endif %} name="{{ yearName }}" value="{{ value | datePart('YYYY') if value }}"/>
+            <input class="{{ attributes.class if attributes.class }}" autocomplete="bday-year" type="text" pattern="[0-9]*" inputmode="numeric" id="{{ yearName }}" {% if errors and errors[name] %} aria-describedby="{{ name + '-error' }}" aria-invalid="true" {% endif %} {% if errors and firstError === yearName %} autofocus="true" {% endif %} name="{{ yearName }}" value="{{ value | datePart('YYYY') if value }}"/>
             <label for="{{ yearName }}" class="text-gray-700">{{ __('Year') }}</label>
           </div>
         </div>
