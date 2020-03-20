@@ -4,112 +4,112 @@ module.exports = {
   socialInsuranceNumber: {
     presence: {
       allowEmpty: false,
-      message: '^Social Insurance Number is required'
+      message: '^errors.personal.sin_required'
     },
     validateSIN: {
-      message: '^Social Insurance Number is invalid'
+      message: '^errors.personal.sin_invalid'
     },
   },
   firstName: {
     presence: {
       allowEmpty: false,
-      message: '^First name is required'
+      message: '^errors.personal.first_name'
     },
   },
   lastName: {
     presence: {
       allowEmpty: false,
-      message: '^Last name is required'
+      message: '^errors.personal.last_name'
     }
   },
   birthdateDay: {
     presence: {
       allowEmpty: false,
-      message: '^Birthdate day is required'
+      message: '^errors.invitation.birthdate_day'
     },
     numericality: {
       greaterThan: 0,
-      notGreaterThan: '^Birthdate day must be a number between 1 and 31',
+      notGreaterThan: '^errors.invitation.birthdate_day_range',
       lessThanOrEqualTo: 31,
-      notLessThanOrEqualTo: '^Birthdate day be a number between 1 and 31'
+      notLessThanOrEqualTo: '^errors.invitation.birthdate_day_range'
     }
   },
   birthdateMonth: {
     presence: {
       allowEmpty: false,
-      message: '^Birthdate month is required'
+      message: '^errors.invitation.birthdate_month'
     },
     numericality: {
       greaterThan: 0,
-      notGreaterThan: '^Birthdate month must be a number between 1 and 12',
+      notGreaterThan: '^errors.invitation.birthdate_month_range',
       lessThanOrEqualTo: 12,
-      notLessThanOrEqualTo: '^Birthdate must be a number between 1 and 12'
+      notLessThanOrEqualTo: '^errors.invitation.birthdate_month_range'
     }
   },
   birthdateYear: {
     presence: {
       allowEmpty: false,
-      message: '^Birthdate year is required'
+      message: '^errors.invitation.birthdate_year'
     },
     numericality: {
       greaterThan: 0,
-      notGreaterThan: '^Birthdate year must be greater than 0'
+      notGreaterThan: '^errors.invitation.birthdate_year_range'
     }
   },
   birthdate: function (value) {
     if (value) {
       return {
         validateDateExists: {
-          message: '^Birthdate is not a valid date'
+          message: '^errors.invitation.birtdate_invalid'
         },
         date: {
           latest: moment.utc().subtract(1, 'days'),
-          message: '^You must have been born before yesterday'
+          message: '^errors.invitation.birthdate_age'
         }
       };
     }
     return {
       presence: {
         allowEmpty: false,
-        message: '^Birthdate is required'
+        message: '^errors.invitation.birtdate_required'
       },
     };
   },
   address: {
     presence: {
       allowEmpty: false,
-      message: '^Mailing address is required'
+      message: '^errors.personal.mailing_address'
     }
   },
   city: {
     presence: {
       allowEmpty: false,
-      message: '^City is required'
+      message: '^errors.personal.city'
     }
   },
   province: {
     presence: {
       allowEmpty: false,
-      message: '^Province is required'
+      message: '^errors.personal.province'
     }
   },
   country: {
     presence: {
       allowEmpty: false,
-      message: '^Country is required'
+      message: '^errors.personal.country'
     }
   },
   postal: {
     presence: {
       allowEmpty: false,
-      message: '^Postal code is required'
+      message: '^errors.personal.postal'
     }
   },
   email: function (value) {
     if (value) {
       return {
         email: {
-          message: '^Does not seem to be a valid email'
+          message: '^errors.personal.email_invalid'
         }
       };
     }
@@ -117,7 +117,7 @@ module.exports = {
   telephone: {
     presence: {
       allowEmpty: false,
-      message: '^Telephone is required'
+      message: '^errors.personal.telephone'
     },
   },
 };

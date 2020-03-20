@@ -20,53 +20,53 @@ module.exports = {
   birthdateDay: {
     presence: {
       allowEmpty: false,
-      message: '^Birthdate day is required'
+      message: '^errors.invitation.birthdate_day'
     },
     numericality: {
       greaterThan: 0,
-      notGreaterThan: '^Birthdate day must be a number between 1 and 31',
+      notGreaterThan: '^errors.invitation.birthdate_day_range',
       lessThanOrEqualTo: 31,
-      notLessThanOrEqualTo: '^Birthdate day be a number between 1 and 31'
+      notLessThanOrEqualTo: '^errors.invitation.birthdate_day_range'
     }
   },
   birthdateMonth: {
     presence: {
       allowEmpty: false,
-      message: '^Birthdate month is required'
+      message: '^errors.invitation.birthdate_month'
     },
     numericality: {
       greaterThan: 0,
-      notGreaterThan: '^Birthdate month must be a number between 1 and 12',
+      notGreaterThan: '^errors.invitation.birthdate_month_range',
       lessThanOrEqualTo: 12,
-      notLessThanOrEqualTo: '^Birthdate must be a number between 1 and 12'
+      notLessThanOrEqualTo: '^errors.invitation.birthdate_month_range'
     }
   },
   birthdateYear: {
     presence: {
       allowEmpty: false,
-      message: '^Birthdate year is required'
+      message: '^errors.invitation.birthdate_year'
     },
     numericality: {
       greaterThan: 0,
-      notGreaterThan: '^Birthdate year must be greater than 0'
+      notGreaterThan: '^errors.invitation.birthdate_year_range' // Birthdate year must be greater than 0
     }
   },
   birthdate: function (value) {
     if (value) {
       return {
         validateDateExists: {
-          message: '^Birthdate is not a valid date'
+          message: '^errors.invitation.birtdate_invalid'
         },
         date: {
           latest: moment().subtract(1, 'days').format('YYYY-MM-DD'),
-          message: '^You must have been born before yesterday'
+          message: '^errors.invitation.birthdate_age'
         }
       };
     }
     return {
       presence: {
         allowEmpty: false,
-        message: '^Birthdate is required'
+        message: '^errors.invitation.birtdate_required' // Birthdate is required
       },
     };
   },
