@@ -1,16 +1,21 @@
-{% macro sectionLink(link, text, completed) %}
-    <div class="flex justify-between">
-      <a href="{{ route(link) }}" >{{ __(text) }}</a>
-      {% if completed %}
-        <p class="text-green-800"><span class="sr-only">{{__(text)}} </span>{{ __('dashboard.completed') }}</p>
-      {% else %}
-        <p class="text-gray-800"><span class="sr-only">{{__(text)}} </span>{{ __('dashboard.not-completed') }}</p>
-      {% endif %}
-    </div>
+{% macro sectionStatus(completed) %}
+  {% if completed %}
+    <span class="text-green-800">{{ __('dashboard.completed') }}</span>
+  {% else %}
+    <span class="text-gray-800">{{ __('dashboard.not-completed') }}</span>
+  {% endif %}
+{% endmacro %}
+
+{% macro sectionRow(routeName, label, completed) %}
+  <tr class="border-b">
+    <td class="py-6"><a href="{{ route(routeName) }}" >{{ __(label) }}</a></td>
+    <td class="text-right py-6">
+      {{ sectionStatus(completed) }}
+    </td>
+  </tr>
 {% endmacro %}
 
 {% extends "layouts/layout.njk" %}
-
 
 {% block content %}
   <h1>{{ __('dashboard.title') }}<br/> <span class="text-base">{{ __('dashboard.patient')}} {{ data.fullName }} </span></h1>
@@ -28,24 +33,28 @@
         <p>{{ __('dashboard.pay') | safe }}</p>
       </div>
 
-      <h2 class="mt-8"> {{ __('dashboard.complete-sections') }} </h2>
-      <hr class="my-4">
-      {{ sectionLink('relationship','dashboard.basic_info', sectionsCompleted.personal) }}
-      <hr class="my-4">
-      {{ sectionLink('functional','dashboard.functional-limits', sectionsCompleted.functional)}}
-      <hr class="my-4">
-      {{ sectionLink('conditions','dashboard.medical-conditions', sectionsCompleted.conditions) }}
-      <hr class="my-4">
-      {{ sectionLink('medications','dashboard.medications', sectionsCompleted.medications) }}
-      <hr class="my-4">
-      {{ sectionLink('treatments','dashboard.treatments', sectionsCompleted.treatments) }}
-      <hr class="my-4">
-      {{ sectionLink('work','dashboard.future-work-capacity', sectionsCompleted.futureWork) }}
-      <hr class="my-4">
-      {{ sectionLink('documents','dashboard.supporting-docs', sectionsCompleted.supportingDocuments) }}
-      <hr class="my-4">
-      {{ sectionLink('practitioner','dashboard.practitioner', sectionsCompleted.practitioner) }}
-      <hr class="my-4">
+      <h2 class="mt-8">{{ __('dashboard.complete-sections') }}</h2>
+
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="w-1/2 text-left" scope="col"><span class="sr-only">{{ __('section') }}</span></th>
+            <th class="w-1/2" scope="col"><span class="sr-only">{{ __('status') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ sectionRow('relationship', 'dashboard.basic_info', sectionsCompleted.personal) }}
+          {{ sectionRow('functional','dashboard.functional-limits', sectionsCompleted.functional)}}
+          {{ sectionRow('conditions','dashboard.medical-conditions', sectionsCompleted.conditions) }}
+          {{ sectionRow('medications','dashboard.medications', sectionsCompleted.medications) }}
+          {{ sectionRow('treatments','dashboard.treatments', sectionsCompleted.treatments) }}
+          {{ sectionRow('work','dashboard.future-work-capacity', sectionsCompleted.futureWork) }}
+          {{ sectionRow('documents','dashboard.supporting-docs', sectionsCompleted.supportingDocuments) }}
+          {{ sectionRow('practitioner','dashboard.practitioner', sectionsCompleted.practitioner) }}
+        </tbody>
+      </table>
+
+      
     </div>
 
     <div class="w-3/12">
