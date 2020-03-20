@@ -3,7 +3,7 @@ const faker = require('faker');
 const firstName = faker.name.firstName();
 const lastName = faker.name.lastName();
 const name = firstName + ' ' + lastName;
-// const nameLastFirst = lastName + ', ' + firstName;
+const nameLastFirst = lastName + ', ' + firstName;
 
 describe('Test the Consent form', () => {
   before(() => {
@@ -101,6 +101,14 @@ describe('Test the Consent form', () => {
     });
   });
 
+  it('displays negative consent on report page', () => {
+    cy.dbseed();
+    cy.personal(firstName, lastName, 9, 9, 1999);
+    cy.consent(name, 'no');
+    cy.login('test@user.com', 'secret');
+    cy.visit('/en/reports');
+    cy.get('table').contains('td', nameLastFirst);
+  });
   // No negative consent for Medical Professional
 
   /*
@@ -138,5 +146,5 @@ describe('Test the Consent form', () => {
     cy.visit('/en/reports/1/consent');
     cy.get('[data-cy=consent-not-given]').contains(name + ' has not given their healthcare practitioner consent');
   });
-  */
+*/
 });

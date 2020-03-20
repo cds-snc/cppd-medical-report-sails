@@ -27,7 +27,6 @@ module.exports = {
     res.view('pages/invite', {
       applicationCode: medicalReport.applicationCode,
       medicalProfessionalUrl: medicalProfessionalUrl,
-      consent: medicalReport.consent,
       validTil: validTil
     });
   },

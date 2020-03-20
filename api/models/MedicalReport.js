@@ -38,19 +38,7 @@ module.exports = {
     telephone: Sequelize.STRING,
     alternateTelephone: Sequelize.STRING,
     contactTime: Sequelize.STRING,
-    consent: {
-      type: Sequelize.BOOLEAN,
-      get() {
-        if (this.getDataValue('consent') === null) {
-          return null;
-        }
-
-        if (this.getDataValue('consent')) {
-          return 'yes';
-        }
-        return 'no';
-      }
-    },
+    consent: Sequelize.BOOLEAN,
     signatureDraw: Sequelize.TEXT, // SVG data
     signatureType: Sequelize.STRING, // Full name
     relationshipStarted: Sequelize.STRING,
