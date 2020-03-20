@@ -607,5 +607,7 @@
   "Email address already taken": "Email address already taken",
   "Edit a user": "Edit a user",
   "For example: Nov 15, 2019": "For example: Nov 15, 2019",
-  "Did not discuss": "Did not discuss"
+  "Did not discuss": "Did not discuss",
+  "status": "Status",
+  "section": "Section"
 }
