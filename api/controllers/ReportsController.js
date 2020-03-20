@@ -51,6 +51,7 @@ module.exports = {
       lastAccessedAt: fn('NOW')
     });
 
+
     res.view('pages/reports/view', {
       data: medicalReport,
       symptomsOccur: require('../utils/support/symptomsOccur'),
