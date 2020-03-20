@@ -661,5 +661,7 @@
   "declaration.hcp_declaration": "Healthcare practitioner's declaration",
   "declaration.signed_by": "Signed by:",
   "declaration.signed_date": "Date:",
-  "declaration.ip_address": "IP address:"
+  "declaration.ip_address": "IP address:",
+  "status": "Status",
+  "section": "Section"
 }
