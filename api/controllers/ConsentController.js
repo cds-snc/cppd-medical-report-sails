@@ -47,21 +47,26 @@ module.exports = {
   },
 
   store: async function (req, res) {
-    let medicalReport = await MedicalReport.findOne({
+    const medicalReport = await MedicalReport.findOne({
       where: {
         applicationCode: req.session.applicationCode
       },
     });
 
-    let valid = req.validate(req, res, require('../schemas/consent.schema'));
+    const valid = req.validate(req, res, require('../schemas/consent.schema'));
+
+    const submitTime = moment().format();
+    const consent =req.body.consent === 'yes';
 
     if (valid) {
       await medicalReport.update({
-        consent: req.body.consent === 'yes',
+        consent: consent,
         signatureMode: req.body.signatureMode,
         signatureDraw: getSignatureDrawData(req),
         signatureType: getSignatureTypedData(req),
-        applicantSubmittedAt: moment().format()
+        applicantSubmittedAt: submitTime,
+        practitionerSubmittedAt: (consent?undefined:submitTime)
+
       });
 
       if (req.body.consent === 'yes') {
