@@ -1,13 +1,13 @@
 module.exports = {
   consent: {
     presence: {
-      message: '^You must select an option',
+      message: '^errors.consent.consent',
       allowEmpty: false,
     },
   },
   signatureMode: {
     presence: {
-      message: '^You must select an option',
+      message: '^errors.consent.signature_mode',
       allowEmpty: false,
     },
   },
@@ -16,7 +16,7 @@ module.exports = {
     if (mode === 'draw') {
       return {
         presence: {
-          message: '^Signature is required',
+          message: '^errors.consent.signature_required',
           allowEmpty: false
         }
       };
@@ -27,21 +27,10 @@ module.exports = {
     if (mode === 'type') {
       return {
         presence: {
-          message: '^Signature is required',
+          message: '^errors.consent.signature_required',
           allowEmpty: false
         }
       };
     }
-  },
-  signature: function (value, attributes) {
-    const consent = attributes.consent;
-    if (consent === '1') {
-      return {
-        presence: {
-          message: '^Signature is Required if you Consent',
-          allowEmpty: false
-        }
-      };
-    }
-  },
+  }
 };

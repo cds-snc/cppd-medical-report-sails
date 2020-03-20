@@ -22,7 +22,7 @@ module.exports = {
     let medicalProfessionalUrl = protocol + '://' + req.headers.host + medicalProfessionalRoute;
 
     let submissionMoment = moment(medicalReport.applicantSubmittedAt);
-    let validTil = submissionMoment.add(3, 'y').format('LL');
+    let validTil = submissionMoment.add(3, 'M').format('LL');
 
     res.view('pages/invite', {
       applicationCode: medicalReport.applicationCode,
