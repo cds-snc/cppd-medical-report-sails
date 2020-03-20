@@ -7,6 +7,10 @@
 
 module.exports = function (req, res, next) {
   sails.route = (routeName, params = {}) => {
+
+    // merge params with any existing req.params
+    params = { ...params, ...req.params };
+
     let lang = req.getLocale();
 
     // use optional lang param if passed
