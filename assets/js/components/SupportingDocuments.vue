@@ -1,19 +1,24 @@
 <template>
   <div class="file">
     <div :class="uploadError.length ? 'pl-8 border-l-4 border-red-700' : ''">
-      <label
-        class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
-      >
-        <span>{{ this.uploadLabel }}</span>
+      <div class="border-2 focus-within:border-orange-400 inline-block">
         <input
           type="file"
+          id="file"
+          name="file"
           ref="file"
+          class="sr-only"
           @change="onSelect"
-          class="hidden"
           :aria-describedby="uploadError.length > 0 ? 'file-error' : ''"
           :aria-invalid="uploadError.length > 0"
         />
-      </label>
+
+        <label
+          for="file"
+          class="w-64 border-2 border-black cursor-pointer bg-gray-200 hover:bg-gray-300 px-5 py-2 inline-block text-center"
+        >{{ this.uploadLabel }}</label>
+      </div>
+
       <span v-if="uploadError.length" class="validation-message" id="file-error" role="alert">
         <span class="visually-hidden">Error:</span>
         {{ uploadError }}
@@ -41,6 +46,7 @@
                 href="#"
                 class="flex-auto remove-file underline text-base cursor-pointer w-4"
                 @click.prevent="removeFile(file.id)"
+                :title="'Delete item ' + file.fileName"
               >{{ removeLabel }}</a>
             </td>
             <td class="pb-4 px-4">
@@ -141,6 +147,7 @@ export default {
         })
         .then(response => {
           this.updateFiles();
+          this.$refs.file.focus();
         });
     },
     updateFiles() {

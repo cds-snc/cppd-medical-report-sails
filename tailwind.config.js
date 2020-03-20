@@ -7,7 +7,8 @@ module.exports = {
     },
   },
   variants: {
-    backgroundColor: ['responsive', 'odd', 'hover', 'focus']
+    backgroundColor: ['responsive', 'odd', 'hover', 'focus'],
+    borderColor: ['responsive', 'hover', 'focus', 'focus-within']
   },
   plugins: [],
 };

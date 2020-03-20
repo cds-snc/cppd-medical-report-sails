@@ -2,19 +2,24 @@
   <div class="file">
     <input type="hidden" :name="fieldName" :value="JSON.stringify(uploaded_files)" />
     <div :class="uploadError.length ? 'pl-8 border-l-4 border-red-700' : ''">
-      <label
-        class="w-64 border-2 border-black cursor-pointer bg-gray-200 px-5 py-2 inline-block text-center"
-      >
-        <span>{{ this.uploadLabel }}</span>
+      <div class="border-2 focus-within:border-orange-400 inline-block">
         <input
           type="file"
+          id="file"
+          name="file"
           ref="file"
+          class="sr-only"
           @change="handleFileUpload"
-          class="hidden"
           :aria-describedby="uploadError.length > 0 ? 'file-error' : ''"
           :aria-invalid="uploadError.length > 0"
         />
-      </label>
+
+        <label
+          for="file"
+          class="w-64 border-2 border-black cursor-pointer bg-gray-200 hover:bg-gray-300 px-5 py-2 inline-block text-center"
+        >{{ this.uploadLabel }}</label>
+      </div>
+
       <span v-if="uploadError.length" class="validation-message" id="file-error" role="alert">
         <span class="visually-hidden">Error:</span>
         {{ uploadError }}
@@ -26,11 +31,13 @@
         v-bind:key="file.id"
         class="border-t border-gray-300 py-4 px-4 flex"
       >
-        <div class="flex-auto">{{ file.fileName }}</div>
-        <div
-          class="flex-auto remove-file underline text-base align-middle text-right pr-4 cursor-pointer"
-          @click="removeFile(file)"
-        >{{ removeLabel }}</div>
+        <div class="p-4 flex-auto">{{ file.fileName }}</div>
+        <a
+          href="#"
+          class="remove-file underline text-base align-middle text-right p-4 cursor-pointer"
+          @click.prevent="removeFile(file)"
+          :title="'Delete item ' + file.fileName"
+        >{{ removeLabel }}</a>
       </div>
     </div>
   </div>
@@ -105,6 +112,7 @@ export default {
           })
           .then(response => {
             this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+            this.$refs.file.focus();
           });
       } else {
         // on create, there is no Condition
@@ -116,6 +124,7 @@ export default {
           })
           .then(response => {
             this.uploaded_files.splice(this.uploaded_files.indexOf(file), 1);
+            this.$refs.file.focus();
           });
       }
     },
