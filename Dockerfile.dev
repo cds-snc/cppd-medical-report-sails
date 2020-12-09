@@ -1,8 +1,4 @@
-FROM node:lts-alpine3.11
-
-# Versions
-# ARG NODE_VERSION=12.14.0 # Alpine 3.11 tracks NodeJS 12.x LTS
-# ARG NPM_VERSION=6.13.4 # Alpine 3.11 tracks NPM 6.x
+FROM node:12-alpine3.11
 
 ARG SAILS_VERISON=^1.0.0
 WORKDIR /app
