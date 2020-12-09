@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.11 AS base
+FROM node:12-alpine3.11 AS base
 
 # Versions
 # ARG NODE_VERSION=12.14.0 # Alpine 3.11 tracks NodeJS 12.x LTS
@@ -18,7 +18,7 @@ COPY package.json package-lock.json /app/
 # Install dependencies
 RUN npm install
 
-FROM node:lts-alpine3.11 AS final
+FROM node:12-alpine3.11 AS final
 WORKDIR /app
 
 # Install SailsJS
