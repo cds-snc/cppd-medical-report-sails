@@ -9,7 +9,7 @@
     "axios": "^0.19.2",
     "bcrypt": "^3.0.8",
     "connect-flash": "^0.1.1",
-    "connect-pg-simple": "^6.1.0",
+    "connect-pg-simple": "^6.2.1",
     "consolidate": "^0.15.1",
     "continuation-local-storage": "^3.2.1",
     "dotenv": "^8.2.0",
